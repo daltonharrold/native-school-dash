@@ -1,0 +1,393 @@
+{
+    "dayTypeOnDate": {
+        "keywords": [
+            "Late Start Schedule"
+        ],
+        "name": "Late Start Schedule",
+        "periods": [
+            {
+                "name": "Assembly",
+                "start": "08:55",
+                "end": "09:05",
+                "_id": "624e1be551e677247525608e"
+            },
+            {
+                "name": "Period 1",
+                "start": "09:09",
+                "end": "09:49",
+                "_id": "625c6ed3d4d8fbafba98b7be"
+            },
+            {
+                "name": "Period 2",
+                "start": "09:53",
+                "end": "10:33",
+                "_id": "625c6ed5d4d8fbafba98b7bf"
+            },
+            {
+                "name": "Period 3",
+                "start": "10:37",
+                "end": "11:17",
+                "_id": "625c8de94aa5d0d900eb0fcc"
+            },
+            {
+                "name": "Period 4",
+                "start": "11:21",
+                "end": "12:01",
+                "_id": "625c8ded4aa5d0d900eb0fcd"
+            },
+            {
+                "name": "Period 5",
+                "start": "12:05",
+                "end": "12:45",
+                "_id": "625c8df24aa5d0d900eb0fce"
+            },
+            {
+                "name": "Period 6",
+                "start": "12:49",
+                "end": "13:29",
+                "_id": "625c8df94aa5d0d900eb0fcf"
+            },
+            {
+                "name": "Period 7",
+                "start": "13:33",
+                "end": "14:13",
+                "_id": "625c8dfd4aa5d0d900eb0fd0"
+            },
+            {
+                "name": "Period 8",
+                "start": "14:17",
+                "end": "14:57",
+                "_id": "625c8e004aa5d0d900eb0fd1"
+            },
+            {
+                "name": "Period 9",
+                "start": "15:01",
+                "end": "15:41",
+                "_id": "625c8e044aa5d0d900eb0fd2"
+            },
+            {
+                "name": "Period 10",
+                "start": "15:45",
+                "end": "16:25",
+                "_id": "625c8e084aa5d0d900eb0fd3"
+            }
+        ],
+        "_id": "624e1be551e677247525608f"
+    },
+    "settings": {
+        "mainColor": "#005b8f",
+        "secondaryColor": "#4f8eb2",
+        "tertiaryColor": "#dbe8ef",
+        "dataSource": "https://calendar.google.com/calendar/ical/daily.schedule@jburroughs.org/public/basic.ics"
+    },
+    "_id": "625cbc1bd8bc5e5a5ebca452",
+    "name": "JBS",
+    "dayTypes": [
+        {
+            "keywords": [
+                "DEFAULT_WEEKDAY"
+            ],
+            "name": "Regular Schedule",
+            "periods": [
+                {
+                    "name": "Assembly",
+                    "start": "08:30",
+                    "end": "08:45",
+                    "_id": "624dee89fef19b244539972d"
+                },
+                {
+                    "name": "Period 1",
+                    "start": "08:49",
+                    "end": "09:32",
+                    "_id": "62537690a7884da619b6b0d4"
+                },
+                {
+                    "name": "Period 2",
+                    "start": "09:35",
+                    "end": "10:17",
+                    "_id": "625376a3a7884da619b6b0d6"
+                },
+                {
+                    "name": "Period 3",
+                    "start": "10:21",
+                    "end": "11:03",
+                    "_id": "625376b7a7884da619b6b0d8"
+                },
+                {
+                    "name": "Period 4",
+                    "start": "11:07",
+                    "end": "11:49",
+                    "_id": "625376c4a7884da619b6b0da"
+                },
+                {
+                    "name": "Period 5",
+                    "start": "11:53",
+                    "end": "12:35",
+                    "_id": "625376d7a7884da619b6b0dc"
+                },
+                {
+                    "name": "Period 6",
+                    "start": "12:39",
+                    "end": "13:21",
+                    "_id": "625376eba7884da619b6b0de"
+                },
+                {
+                    "name": "Period 7",
+                    "start": "13:25",
+                    "end": "14:07",
+                    "_id": "62537701a7884da619b6b0e0"
+                },
+                {
+                    "name": "Period 8",
+                    "start": "14:11",
+                    "end": "14:53",
+                    "_id": "6253771ba7884da619b6b0e2"
+                },
+                {
+                    "name": "Period 9",
+                    "start": "14:57",
+                    "end": "15:39",
+                    "_id": "6253772ea7884da619b6b0e4"
+                },
+                {
+                    "name": "Period 10",
+                    "start": "15:43",
+                    "end": "16:25",
+                    "_id": "6253774ea7884da619b6b0e6"
+                }
+            ],
+            "_id": "624dee89fef19b244539972e"
+        },
+        {
+            "keywords": [
+                "Late Start Schedule"
+            ],
+            "name": "Late Start Schedule",
+            "periods": [
+                {
+                    "name": "Assembly",
+                    "start": "08:55",
+                    "end": "09:05",
+                    "_id": "624e1be551e677247525608e"
+                },
+                {
+                    "name": "Period 1",
+                    "start": "09:09",
+                    "end": "09:49",
+                    "_id": "625c6ed3d4d8fbafba98b7be"
+                },
+                {
+                    "name": "Period 2",
+                    "start": "09:53",
+                    "end": "10:33",
+                    "_id": "625c6ed5d4d8fbafba98b7bf"
+                },
+                {
+                    "name": "Period 3",
+                    "start": "10:37",
+                    "end": "11:17",
+                    "_id": "625c8de94aa5d0d900eb0fcc"
+                },
+                {
+                    "name": "Period 4",
+                    "start": "11:21",
+                    "end": "12:01",
+                    "_id": "625c8ded4aa5d0d900eb0fcd"
+                },
+                {
+                    "name": "Period 5",
+                    "start": "12:05",
+                    "end": "12:45",
+                    "_id": "625c8df24aa5d0d900eb0fce"
+                },
+                {
+                    "name": "Period 6",
+                    "start": "12:49",
+                    "end": "13:29",
+                    "_id": "625c8df94aa5d0d900eb0fcf"
+                },
+                {
+                    "name": "Period 7",
+                    "start": "13:33",
+                    "end": "14:13",
+                    "_id": "625c8dfd4aa5d0d900eb0fd0"
+                },
+                {
+                    "name": "Period 8",
+                    "start": "14:17",
+                    "end": "14:57",
+                    "_id": "625c8e004aa5d0d900eb0fd1"
+                },
+                {
+                    "name": "Period 9",
+                    "start": "15:01",
+                    "end": "15:41",
+                    "_id": "625c8e044aa5d0d900eb0fd2"
+                },
+                {
+                    "name": "Period 10",
+                    "start": "15:45",
+                    "end": "16:25",
+                    "_id": "625c8e084aa5d0d900eb0fd3"
+                }
+            ],
+            "_id": "624e1be551e677247525608f"
+        },
+        {
+            "keywords": [
+                "Special Assembly Schedule"
+            ],
+            "name": "Special Assembly Schedule",
+            "periods": [
+                {
+                    "name": "Assembly",
+                    "start": "08:30",
+                    "end": "09:05",
+                    "_id": "624e49e9f5ec228f6ab4dc14"
+                },
+                {
+                    "name": "Period 1",
+                    "start": "09:09",
+                    "end": "09:49",
+                    "_id": "625c8ebe4aa5d0d900eb0fd4"
+                },
+                {
+                    "name": "Period 2",
+                    "start": "09:53",
+                    "end": "10:33",
+                    "_id": "625c8ec04aa5d0d900eb0fd5"
+                },
+                {
+                    "name": "Period 3",
+                    "start": "10:37",
+                    "end": "11:17",
+                    "_id": "625c8ec34aa5d0d900eb0fd6"
+                },
+                {
+                    "name": "Period 4",
+                    "start": "11:21",
+                    "end": "12:01",
+                    "_id": "625c8ec64aa5d0d900eb0fd7"
+                },
+                {
+                    "name": "Period 5",
+                    "start": "12:05",
+                    "end": "12:45",
+                    "_id": "625c8ec94aa5d0d900eb0fd8"
+                },
+                {
+                    "name": "Period 6",
+                    "start": "12:49",
+                    "end": "13:29",
+                    "_id": "625c8ecc4aa5d0d900eb0fd9"
+                },
+                {
+                    "name": "Period 7",
+                    "start": "13:33",
+                    "end": "14:13",
+                    "_id": "625c8ed04aa5d0d900eb0fda"
+                },
+                {
+                    "name": "Period 8",
+                    "start": "14:17",
+                    "end": "14:57",
+                    "_id": "625c8ed34aa5d0d900eb0fdb"
+                },
+                {
+                    "name": "Period 9",
+                    "start": "15:01",
+                    "end": "15:41",
+                    "_id": "625c8ed74aa5d0d900eb0fdc"
+                },
+                {
+                    "name": "Period 10",
+                    "start": "15:45",
+                    "end": "16:25",
+                    "_id": "625c8eda4aa5d0d900eb0fdd"
+                }
+            ],
+            "_id": "624e49e9f5ec228f6ab4dc15"
+        },
+        {
+            "keywords": [
+                "Common Day"
+            ],
+            "name": "Common Day",
+            "periods": [
+                {
+                    "name": "Assembly",
+                    "start": "08:30",
+                    "end": "08:37",
+                    "_id": "625c8f6a4aa5d0d900eb0fde"
+                },
+                {
+                    "name": "Period 1",
+                    "start": "08:41",
+                    "end": "09:20",
+                    "_id": "625c8f794aa5d0d900eb0fe0"
+                },
+                {
+                    "name": "Period 2",
+                    "start": "09:24",
+                    "end": "10:03",
+                    "_id": "625c8f7c4aa5d0d900eb0fe1"
+                },
+                {
+                    "name": "Period 3",
+                    "start": "10:07",
+                    "end": "10:46",
+                    "_id": "625c8f7e4aa5d0d900eb0fe2"
+                },
+                {
+                    "name": "Common",
+                    "start": "10:50",
+                    "end": "11:17",
+                    "_id": "625c8f824aa5d0d900eb0fe3"
+                },
+                {
+                    "name": "Period 4",
+                    "start": "11:21",
+                    "end": "12:01",
+                    "_id": "625c8f874aa5d0d900eb0fe4"
+                },
+                {
+                    "name": "Period 5",
+                    "start": "12:05",
+                    "end": "12:45",
+                    "_id": "625c8f944aa5d0d900eb0fe5"
+                },
+                {
+                    "name": "Period 6",
+                    "start": "12:49",
+                    "end": "13:29",
+                    "_id": "625c8f974aa5d0d900eb0fe6"
+                },
+                {
+                    "name": "Period 7",
+                    "start": "13:33",
+                    "end": "14:13",
+                    "_id": "625c8f9a4aa5d0d900eb0fe7"
+                },
+                {
+                    "name": "Period 8",
+                    "start": "14:17",
+                    "end": "14:57",
+                    "_id": "625c8f9d4aa5d0d900eb0fe8"
+                },
+                {
+                    "name": "Period 9",
+                    "start": "15:01",
+                    "end": "15:41",
+                    "_id": "625c8fa14aa5d0d900eb0fe9"
+                },
+                {
+                    "name": "Period 10",
+                    "start": "15:45",
+                    "end": "16:25",
+                    "_id": "625c8fa54aa5d0d900eb0fea"
+                }
+            ],
+            "_id": "625c8f6a4aa5d0d900eb0fdf"
+        }
+    ]
+}

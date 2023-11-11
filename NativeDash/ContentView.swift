@@ -10,25 +10,14 @@ import SwiftUI
 
 
 struct ContentView: View {
-    @Binding var progress: CGFloat
-    var schedules: [ScheduleData]
-    // Get the number of seconds left in the period
-    @Binding var timeLeftInPeriod: Duration
-    @Binding var displayPeriod: Period
-    @Binding var periodRingShouldDisplay: Bool
+    @Binding var todaySchedule: DayType
+    @Binding var schedules: [DayType]
     
     var body: some View {
             ScrollView(.vertical, showsIndicators: false) {
                     Spacer().frame(height: 50)
-                if periodRingShouldDisplay {
-                    PeriodTimerRing(progress: $progress, timeLeftInPeriod: $timeLeftInPeriod)
-                    Spacer().frame(height: 50)
-                    Text(displayPeriod.periodTitle)
-                        .font(.title)
-                        .fontWeight(.bold)
-                    Spacer().frame(height: 50)
-                }
-                    ScheduleStack(schedules: schedules)
+                    PeriodTimerRing(todaySchedule: $todaySchedule)
+                    ScheduleStack(schedules: $schedules)
                     .padding(.horizontal, 40)
             }
             
@@ -36,22 +25,36 @@ struct ContentView: View {
 }
 
 struct ContentView_Previews: PreviewProvider {
-    static var timeLeftInPeriod = Duration.seconds(700)
-    static var progress: CGFloat = 0.6
-    static var displayPeriod = Period(periodTitle: "Preview Period", start: "2:32", end: "3:21")
-    static var schedules: [ScheduleData] = [
-        ScheduleData(
-            dayTitle: "Regular Schedule",
-            bellTimes: [
-                .init(periodTitle: "Assembly", start: "8:30", end: "8:45"),
-                .init(periodTitle: "Period 1", start: "8:49", end: "9:32"),
-                .init(periodTitle: "Period 2", start: "9:35", end: "10:17"),
-                .init(periodTitle: "Period 3", start: "10:21", end: "11:03"),
+    static var schedules: [DayType] = [
+        DayType(
+            name: "Regular Schedule",
+            periods: [
+                .init(name: "Assembly", start: "8:30", end: "8:45"),
+                .init(name: "Period 1", start: "8:49", end: "9:32"),
+                .init(name: "Period 2", start: "9:35", end: "10:17"),
+                .init(name: "Period 3", start: "10:21", end: "11:03"),
+            ]
+        ),
+        DayType(
+            name: "Different Schedule",
+            periods: [
+                .init(name: "Assembly", start: "8:38", end: "8:23"),
+                .init(name: "Period 1", start: "8:04", end: "9:54"),
+                .init(name: "Period 2", start: "9:23", end: "10:49"),
+                .init(name: "Period 3", start: "10:52", end: "11:42"),
             ]
         )
     ]
+    static var todaySchedule =  DayType(
+        name: "Regular Schedule",
+        periods: [
+            .init(name: "Assembly", start: "8:30", end: "8:45"),
+            .init(name: "Period 1", start: "8:49", end: "9:32"),
+            .init(name: "Period 2", start: "9:35", end: "10:17"),
+            .init(name: "Period 3", start: "10:21", end: "11:03"),
+        ]
+    )
     static var previews: some View {
-        ContentView(progress: .constant(progress), schedules: schedules, timeLeftInPeriod: .constant(timeLeftInPeriod), displayPeriod: .constant(displayPeriod), periodRingShouldDisplay: .constant(true)
-        )
+        ContentView(todaySchedule: .constant(todaySchedule), schedules: .constant(schedules))
     }
 }

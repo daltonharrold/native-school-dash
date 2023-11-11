@@ -9,13 +9,13 @@ import SwiftUI
 
 
 struct SingleCard: View {
-    @State var schedule: ScheduleData
+    @State var schedule: DayType
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 8)
                 .fill(Color("AccentColor"))
             VStack {
-                Text(schedule.dayTitle)
+                Text(schedule.name)
                     .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                     .multilineTextAlignment(.center)
                 Spacer().frame(height: 15)
@@ -24,9 +24,9 @@ struct SingleCard: View {
                     horizontalSpacing: 10.0,
                     verticalSpacing: 10.0
                 ) {
-                    ForEach(schedule.bellTimes, id: \.periodTitle) { period in
+                    ForEach(schedule.to12HourTime().periods, id: \.name) { period in
                         GridRow {
-                            Text(period.periodTitle)
+                            Text(period.name)
                                 .multilineTextAlignment(.trailing)
                                 .gridColumnAlignment(.trailing)
                             Spacer().frame(width: 15, height: 1)
@@ -49,14 +49,14 @@ struct SingleCard: View {
 }
 
 #Preview {
-    var previewSchedule: ScheduleData =
-        ScheduleData(
-            dayTitle: "Regular Schedule",
-            bellTimes: [
-                .init(periodTitle: "Assembly", start: "8:30", end: "8:45"),
-                .init(periodTitle: "Period 1", start: "8:49", end: "9:32"),
-                .init(periodTitle: "Period 2", start: "9:35", end: "10:17"),
-                .init(periodTitle: "Period 3", start: "10:21", end: "11:03"),
+    var previewSchedule: DayType =
+        DayType(
+            name: "Regular Schedule",
+            periods: [
+                .init(name: "Assembly", start: "8:30", end: "8:45"),
+                .init(name: "Period 1", start: "8:49", end: "9:32"),
+                .init(name: "Period 2", start: "9:35", end: "10:17"),
+                .init(name: "Period 3", start: "10:21", end: "11:03"),
             ]
         )
     

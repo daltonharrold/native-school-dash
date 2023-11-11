@@ -11,7 +11,13 @@ struct ContentView: View {
     @State var timeLeftInPeriod = Duration.seconds(633)
     @State var progress: CGFloat = 0.8
     var body: some View {
-        PeriodTimerRing(progress: $progress, timeLeftInPeriod: $timeLeftInPeriod)
+        VStack{
+            Text("Period 1")
+                .font(.title3)
+                .fontWeight(.bold)
+            Spacer().frame(height: 20)
+            // PeriodTimerRing(progress: $progress, timeLeftInPeriod: $timeLeftInPeriod)
+        }
     }
 }
 
