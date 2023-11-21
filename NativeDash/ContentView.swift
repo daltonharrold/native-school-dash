@@ -13,6 +13,10 @@ struct ContentView: View {
     @Binding var todaySchedule: DayType
     @Binding var schedules: [DayType]
     
+    @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(sortDescriptors: [])
+    private var items: FetchedResults<StoredDayType>
+    
     var body: some View {
             ScrollView(.vertical, showsIndicators: false) {
                     Spacer().frame(height: 50)
@@ -20,7 +24,40 @@ struct ContentView: View {
                     ScheduleStack(schedules: $schedules)
                     .padding(.horizontal, 40)
             }
-            
+        // Fetch schedule data
+        .task {
+            do {
+                let fetchedSchedules = try await getFromApi()
+                items.forEach(viewContext.delete)
+                for schedule in schedules {
+                    let newStoredSchedule = StoredDayType(context: viewContext)
+                    newStoredSchedule.name = schedule.name
+                    newStoredSchedule.addToPeriodsFromArray(schedule.periods)
+                }
+                
+                //schedules = fetchedSchedules!.dayTypes
+                //todaySchedule = fetchedSchedules!.dayTypeOnDate
+            } catch {
+                schedules = [DayType(name: "Fetch Error", periods: [])]
+            }
+        }
+        /*
+            .task{
+                let testSchedule = StoredDayType(context: viewContext)
+                testSchedule.name = "Some test period"
+                let testPeriod = StoredPeriod(context: viewContext)
+                testPeriod.name = "a test period"
+                testPeriod.start = "01:00"
+                testPeriod.end = "02:00"
+                testSchedule.addToPeriods(testPeriod)
+                do {
+                    try viewContext.save()
+                } catch {
+                    let nsError = error as NSError
+                    fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                }
+            }
+         */
     }
 }
 
@@ -56,5 +93,6 @@ struct ContentView_Previews: PreviewProvider {
     )
     static var previews: some View {
         ContentView(todaySchedule: .constant(todaySchedule), schedules: .constant(schedules))
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

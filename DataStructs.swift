@@ -35,7 +35,7 @@ public struct apiResponse: Decodable {
     let dayTypes: [DayType]
 }
 
-public func testDecode() async throws -> apiResponse? {
+public func getFromApi() async throws -> apiResponse? {
     let calendarDate = Calendar.current.dateComponents([.day, .year, .month], from: Date())
     if let url = URL(string: "\(ProcessInfo.processInfo.environment["API_ENDPOINT"]!)/schools/\( ProcessInfo.processInfo.environment["SCHOOL_ID"]!)?includes=dayTypeOnDate&day=\(calendarDate.day!)&month=\(calendarDate.month!)&year=\(calendarDate.year!)") {
         var request = URLRequest(url: url)

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22225" systemVersion="23B81" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="StoredDayType" representedClassName="StoredDayType" syncable="YES">
+        <attribute name="name" attributeType="String"/>
+        <relationship name="periods" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="StoredPeriod" inverseName="schedule" inverseEntity="StoredPeriod"/>
+    </entity>
+    <entity name="StoredPeriod" representedClassName="StoredPeriod" syncable="YES">
+        <attribute name="end" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="start" attributeType="String"/>
+        <relationship name="schedule" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="StoredDayType" inverseName="periods" inverseEntity="StoredDayType"/>
+    </entity>
+</model>
