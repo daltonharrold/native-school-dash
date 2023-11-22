@@ -15,7 +15,7 @@ struct NativeDashApp: App {
     let persistenceController = PersistenceController.shared
     var body: some Scene {
         WindowGroup {
-            ContentView(todaySchedule: $todaySchedule, schedules: $schedules)
+            ContentView(todaySchedule: $todaySchedule, schedules: schedules)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         
         }

@@ -12,9 +12,9 @@ import CoreData
 // Country
 @objc(StoredDayType)
 public class StoredDayType: NSManagedObject {
-    func addToPeriodsFromArray(_ periods: [Period]) {
+    func addToPeriodsFromArray(periods: [Period], context: NSManagedObjectContext) {
         for period in periods {
-            let newStoredPeriod = StoredPeriod()
+            let newStoredPeriod = StoredPeriod(context: context)
             newStoredPeriod.name = period.name
             newStoredPeriod.start = period.start
             newStoredPeriod.end = period.end

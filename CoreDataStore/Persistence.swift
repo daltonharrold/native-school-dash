@@ -9,7 +9,7 @@ import CoreData
 
 struct PersistenceController {
     // Switch to inMemory: false for production
-    static let shared = PersistenceController(inMemory: true)
+    static let shared = PersistenceController(inMemory: false)
     
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)

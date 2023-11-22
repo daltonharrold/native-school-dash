@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import CoreData
+
 public struct DayType: Decodable {
     let name: String
     var periods: [Period]
@@ -18,6 +20,12 @@ public struct DayType: Decodable {
             let newEnd = "\(newEndHour == 0 ? 12 : newEndHour):\(period.end.split(separator: ":")[1])"
             newDayType.periods.append(Period(name: period.name, start: newStart, end: newEnd))
         }
+        return newDayType
+    }
+    func toStoredDayType(context: NSManagedObjectContext) -> StoredDayType {
+        let newDayType = StoredDayType(context: context)
+        newDayType.name = self.name
+        newDayType.addToPeriodsFromArray(periods: self.periods, context: context)
         return newDayType
     }
 }
