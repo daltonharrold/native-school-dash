@@ -32,7 +32,7 @@ struct PeriodTimerRing: View {
             )
             Text(timeLeftInPeriod.formatted(.time(pattern: .minuteSecond(padMinuteToLength: 0))))
                 .fontWeight(.semibold)
-            
+                .font(.title)
         }
         .frame(idealWidth: 300, idealHeight: 300, alignment: .center) 
             Spacer().frame(height: 50)
@@ -43,14 +43,9 @@ struct PeriodTimerRing: View {
 
         // Recieve the timer event and re-render affected elements
         .onReceive(timer, perform: { time in
-            // If seconds remaining is more than 0, subtract one second
-            if timeLeftInPeriod.components.seconds > 0 {
-                timeLeftInPeriod -= .seconds(1)
-                updateDisplayPeriodAndProgress()
-            }
-            else {
-                timeLeftInPeriod = Duration.seconds(getSecondsToPeriodStartEnd(period: getNextPeriod(schedule: todaySchedule), isEnd: true))
-            }
+            updateDisplayPeriodAndProgress()
+            timeLeftInPeriod = Duration.seconds(getSecondsToPeriodStartEnd(period: getNextPeriod(schedule: todaySchedule), isEnd: true))
+
         })
     }
     
