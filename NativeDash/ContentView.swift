@@ -51,6 +51,8 @@ struct ContentView: View {
             
                 // Set today's schedule to the fetched schedule
                 todaySchedule = fetchedSchedules!.dayTypeOnDate
+                
+                try viewContext.save()
             } catch {
                 schedules = [DayType(name: "Fetch Error", periods: [])]
             }
