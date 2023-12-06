@@ -32,10 +32,10 @@ struct ContentView: View {
                 schedules.append(DayType(name: schedule.wrappedName, periods: schedule.periodsArray))
             }
         }
-        // Fetch schedule data from API to stay up to date
+        // Fetch schedule data from API to keep StoredDayType up to date
         .task {
             do {
-                let fetchedSchedules = try await getFromApi()
+                let fetchedSchedules = try await getDayTypeFromApi()
                 
                 // Set UI State to new schedules
                 schedules = fetchedSchedules!.dayTypes
@@ -54,7 +54,32 @@ struct ContentView: View {
                 
                 try viewContext.save()
             } catch {
-                schedules = [DayType(name: "Fetch Error", periods: [])]
+                schedules = [DayType(name: "Schedule Fetch Error", periods: [])]
+            }
+        }
+        // Fetch schedule data from API to keep StoredDayTypeOnDate up to date
+        .task {
+            do {
+                let fetchedSchedules = try await getCalendarFromApi()
+                
+                // Set UI State to new schedules
+                schedules = fetchedSchedules!.dayTypes
+                
+                // Delete previous local stores
+                scheduleStore.forEach(viewContext.delete)
+                
+                // Store new schedules that have been fetched
+                for schedule in fetchedSchedules!.dayTypes {
+                    _ = schedule.toStoredDayType(context: viewContext)
+                    
+                }
+            
+                // Set today's schedule to the fetched schedule
+                todaySchedule = fetchedSchedules!.dayTypeOnDate
+                
+                try viewContext.save()
+            } catch {
+                schedules = [DayType(name: "Schedule Fetch Error", periods: [])]
             }
         }
 
