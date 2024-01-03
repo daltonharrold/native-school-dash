@@ -4,7 +4,7 @@
 <dict>
 	<key>BGTaskSchedulerPermittedIdentifiers</key>
 	<array>
-		<string>com.icloud-djharrold53.NativeDash.ScheduleUpdater</string>
+		<string>com.icloud-djharrold53.NativeDash.DayTypeUpdater</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

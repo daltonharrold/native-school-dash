@@ -16,8 +16,12 @@ struct ContentView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(sortDescriptors: [])
-    private var scheduleStore: FetchedResults<StoredDayType>
+    private var todayScheduleStore: FetchedResults<StoredDayType>
 
+    @FetchRequest(sortDescriptors: [])
+    private var weeklyScheduleStore: FetchedResults<StoredScheduleOnDate>
+
+    let calendar = Calendar(identifier: .iso8601)
     
     var body: some View {
             ScrollView(.vertical, showsIndicators: false) {
@@ -28,20 +32,24 @@ struct ContentView: View {
             }
         // Load schedules from local stores while app launches
         .task {
-            for schedule in scheduleStore {
-                schedules.append(DayType(name: schedule.wrappedName, periods: schedule.periodsArray))
+            for dayType in todayScheduleStore {
+                schedules.append(DayType(name: dayType.wrappedName, periods: dayType.periodsArray))
             }
+        }
+        // Load what the day type is today from stores while app launches
+        .task {
+            todaySchedule = (weeklyScheduleStore.filter {Calendar.current.isDateInToday($0.date!)}[0].schedule!.asDayType())
         }
         // Fetch schedule data from API to keep StoredDayType up to date
         .task {
             do {
                 let fetchedSchedules = try await getDayTypeFromApi()
-                
+            
                 // Set UI State to new schedules
                 schedules = fetchedSchedules!.dayTypes
                 
                 // Delete previous local stores
-                scheduleStore.forEach(viewContext.delete)
+                todayScheduleStore.forEach(viewContext.delete)
                 
                 // Store new schedules that have been fetched
                 for schedule in fetchedSchedules!.dayTypes {
@@ -50,33 +58,38 @@ struct ContentView: View {
                 }
             
                 // Set today's schedule to the fetched schedule
-                todaySchedule = fetchedSchedules!.dayTypeOnDate
+                //todaySchedule = fetchedSchedules!.dayTypeOnDate
                 
                 try viewContext.save()
             } catch {
                 schedules = [DayType(name: "Schedule Fetch Error", periods: [])]
             }
         }
-        // Fetch schedule data from API to keep StoredDayTypeOnDate up to date
+        // Fetch schedule data from API to keep StoredScheduleOnDate up to date
+        // This makes it so that we can assume what schedule it is on any day in widgets and on app load
         .task {
             do {
-                let fetchedSchedules = try await getCalendarFromApi()
+                var dates: [Date] = [Date.now]
+                for i in (1...6) {
+                    dates.append(Date.now.addingTimeInterval(TimeInterval(i*60*60*24)))
+                }
                 
-                // Set UI State to new schedules
-                schedules = fetchedSchedules!.dayTypes
+                weeklyScheduleStore.forEach(viewContext.delete)
                 
-                // Delete previous local stores
-                scheduleStore.forEach(viewContext.delete)
                 
-                // Store new schedules that have been fetched
-                for schedule in fetchedSchedules!.dayTypes {
-                    _ = schedule.toStoredDayType(context: viewContext)
+                for date in dates {
+                    
+                    let components = calendar.dateComponents([.year, .month, .day], from: date)
+                    let scheduleOnDate = try await getDayTypeFromApi(onDay: YearMonthDay(components: components))
+                    
+                    
+                    
+                    
+                    let newSchedule = StoredScheduleOnDate(context: viewContext)
+                    newSchedule.date = date
+                    newSchedule.schedule = todayScheduleStore.filter {$0.name == scheduleOnDate?.dayTypeOnDate.name}[0]
                     
                 }
-            
-                // Set today's schedule to the fetched schedule
-                todaySchedule = fetchedSchedules!.dayTypeOnDate
-                
                 try viewContext.save()
             } catch {
                 schedules = [DayType(name: "Schedule Fetch Error", periods: [])]

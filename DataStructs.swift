@@ -36,15 +36,35 @@ public struct Period: Decodable {
     var end: String
 }
 
-public struct apiResponse: Decodable {
+public struct ApiResponse: Decodable {
     let dayTypeOnDate: DayType
     let name: String
     let _id: String
     let dayTypes: [DayType]
 }
 
-public func getDayTypeFromApi() async throws -> apiResponse? {
-    let calendarDate = Calendar.current.dateComponents([.day, .year, .month], from: Date())
+public class YearMonthDay {
+    let year: Int
+    let month: Int
+    let day: Int
+    func asDateComponents() -> DateComponents {
+        return DateComponents(year: year, month: month, day: day)
+    }
+
+    init(year: Int, month: Int, day: Int) {
+        self.year = year
+        self.month = month
+        self.day = day
+    }
+    init(components: DateComponents) {
+        self.year = components.year!
+        self.month = components.month!
+        self.day = components.day!
+    }
+}
+
+public func getDayTypeFromApi(onDay: YearMonthDay? = nil) async throws -> ApiResponse? {
+    let calendarDate = (onDay != nil) ? onDay!.asDateComponents() : Calendar.current.dateComponents([.day, .year, .month], from: Date())
     if let url = URL(string: "\(ProcessInfo.processInfo.environment["API_ENDPOINT"]!)/schools/\( ProcessInfo.processInfo.environment["SCHOOL_ID"]!)?includes=dayTypeOnDate&day=\(calendarDate.day!)&month=\(calendarDate.month!)&year=\(calendarDate.year!)") {
         var request = URLRequest(url: url)
         request.setValue(ProcessInfo.processInfo.environment["API_KEY"], forHTTPHeaderField: "authorization")
@@ -53,7 +73,7 @@ public func getDayTypeFromApi() async throws -> apiResponse? {
         if let jsonString = String(data: data, encoding: .utf8) {
             do {
                 let jsonData = jsonString.data(using: .utf8)!
-                let returnData = try JSONDecoder().decode(apiResponse.self, from: jsonData)
+                let returnData = try JSONDecoder().decode(ApiResponse.self, from: jsonData)
                 return returnData
             } catch let error {
                 print(error)

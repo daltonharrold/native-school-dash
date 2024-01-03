@@ -18,16 +18,7 @@ extension StoredDayType {
 
     @NSManaged public var name: String?
     @NSManaged public var periods: NSOrderedSet?
-    public var wrappedName: String {
-        name ?? "Unknown schedule"
-    }
-    public var periodsArray: [Period] {
-        var toReturn: [Period] = []
-        for period in periods?.array as! [StoredPeriod] {
-            toReturn.append(Period(name: period.wrappedName, start: period.wrappedStart, end: period.wrappedEnd))
-        }
-        return toReturn
-    }
+    
 }
 
 // MARK: Generated accessors for periods
