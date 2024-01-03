@@ -26,21 +26,31 @@ struct ContentView: View {
     var body: some View {
             ScrollView(.vertical, showsIndicators: false) {
                     Spacer().frame(height: 50)
-                    PeriodTimerRing(todaySchedule: $todaySchedule)
-                    ScheduleStack(schedules: $schedules)
+                PeriodTimerRing(todaySchedule: $todaySchedule)
+                ScheduleStack(schedules: $schedules)
                     .padding(.horizontal, 40)
+                
+                Text("JBS Dash for iOS made with ❤️ by Dalton Harrold")
+                    .font(.footnote)
+                    .foregroundStyle(.gray)
+                    .padding(.top, 20)
             }
+        
+        // Load what the day type is today from stores while app launches
+        .task {
+            let scheduleFromWeeklyStore: [StoredScheduleOnDate] = weeklyScheduleStore.filter {Calendar.current.isDateInToday($0.date!)}
+            todaySchedule = (scheduleFromWeeklyStore.count > 0) ? scheduleFromWeeklyStore[0].schedule!.asDayType() : todaySchedule
+        }
+        
         // Load schedules from local stores while app launches
         .task {
             for dayType in todayScheduleStore {
                 schedules.append(DayType(name: dayType.wrappedName, periods: dayType.periodsArray))
             }
         }
-        // Load what the day type is today from stores while app launches
-        .task {
-            todaySchedule = (weeklyScheduleStore.filter {Calendar.current.isDateInToday($0.date!)}[0].schedule!.asDayType())
-        }
+
         // Fetch schedule data from API to keep StoredDayType up to date
+        
         .task {
             do {
                 let fetchedSchedules = try await getDayTypeFromApi()
@@ -65,6 +75,7 @@ struct ContentView: View {
                 schedules = [DayType(name: "Schedule Fetch Error", periods: [])]
             }
         }
+        
         // Fetch schedule data from API to keep StoredScheduleOnDate up to date
         // This makes it so that we can assume what schedule it is on any day in widgets and on app load
         .task {
@@ -77,18 +88,21 @@ struct ContentView: View {
                 weeklyScheduleStore.forEach(viewContext.delete)
                 
                 
-                for date in dates {
-                    
+                for (index, date) in dates.enumerated() {
+                    // Separate date object into components and get data from API
                     let components = calendar.dateComponents([.year, .month, .day], from: date)
                     let scheduleOnDate = try await getDayTypeFromApi(onDay: YearMonthDay(components: components))
                     
+                    // Add the today date to the displayed schedule
+                    if index == 0 {
+                        todaySchedule = scheduleOnDate!.dayTypeOnDate
+                    }
                     
-                    
-                    
+                    // Save schedules in Core Data for quick future reference
                     let newSchedule = StoredScheduleOnDate(context: viewContext)
                     newSchedule.date = date
-                    newSchedule.schedule = todayScheduleStore.filter {$0.name == scheduleOnDate?.dayTypeOnDate.name}[0]
-                    
+                    let possibleSchedule = todayScheduleStore.filter {$0.name == scheduleOnDate?.dayTypeOnDate.name}
+                    newSchedule.schedule = possibleSchedule.count > 0 ? possibleSchedule[0] : todayScheduleStore[0]
                 }
                 try viewContext.save()
             } catch {
