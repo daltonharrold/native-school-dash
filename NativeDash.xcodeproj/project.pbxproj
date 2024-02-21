@@ -21,6 +21,15 @@
 		3F2F8BE32AEF4EF700393F60 /* ScheduleStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2F8BE22AEF4EF700393F60 /* ScheduleStack.swift */; };
 		3F2F8BE52AEF4F3C00393F60 /* PeriodTimerRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2F8BE42AEF4F3C00393F60 /* PeriodTimerRing.swift */; };
 		3F2F8BE62AEF4F3C00393F60 /* PeriodTimerRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2F8BE42AEF4F3C00393F60 /* PeriodTimerRing.swift */; };
+		3F5912502B752EED00BD42A0 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F59124F2B752EED00BD42A0 /* WidgetKit.framework */; };
+		3F5912522B752EED00BD42A0 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F5912512B752EED00BD42A0 /* SwiftUI.framework */; };
+		3F5912552B752EED00BD42A0 /* DashWidgetsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5912542B752EED00BD42A0 /* DashWidgetsBundle.swift */; };
+		3F5912572B752EED00BD42A0 /* DashWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5912562B752EED00BD42A0 /* DashWidgets.swift */; };
+		3F5912592B752EEF00BD42A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F5912582B752EEF00BD42A0 /* Assets.xcassets */; };
+		3F59125D2B752EEF00BD42A0 /* DashWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3F59124D2B752EED00BD42A0 /* DashWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3FAE55012B752F7500482F6B /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAE55002B752F7500482F6B /* AppGroup.swift */; };
+		3FAE55022B752F7500482F6B /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAE55002B752F7500482F6B /* AppGroup.swift */; };
+		3FAE55032B752F7500482F6B /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAE55002B752F7500482F6B /* AppGroup.swift */; };
 		3FB335DC2AF302B100028FC8 /* DataStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB335DB2AF302B100028FC8 /* DataStructs.swift */; };
 		3FB335DD2AF302B100028FC8 /* DataStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB335DB2AF302B100028FC8 /* DataStructs.swift */; };
 		3FB54FE22AEFFAC000623592 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FB54FE12AEFFAC000623592 /* Launch Screen.storyboard */; };
@@ -46,6 +55,13 @@
 			remoteGlobalIDString = 3F09BC452AB2160F00924ACE;
 			remoteInfo = "NativeDash Watch App";
 		};
+		3F59125B2B752EEF00BD42A0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3F09BC2E2AB2160D00924ACE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3F59124C2B752EED00BD42A0;
+			remoteInfo = DashWidgetsExtension;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -58,6 +74,17 @@
 				3F09BC472AB2160F00924ACE /* NativeDash Watch App.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F59125E2B752EEF00BD42A0 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				3F59125D2B752EEF00BD42A0 /* DashWidgetsExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -78,6 +105,14 @@
 		3F2F8BE42AEF4F3C00393F60 /* PeriodTimerRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodTimerRing.swift; sourceTree = "<group>"; };
 		3F399CCC2AFC479800A3505F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3F399CCD2AFD492600A3505F /* APIreturn.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = APIreturn.json; sourceTree = "<group>"; };
+		3F59124D2B752EED00BD42A0 /* DashWidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DashWidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F59124F2B752EED00BD42A0 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		3F5912512B752EED00BD42A0 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		3F5912542B752EED00BD42A0 /* DashWidgetsBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashWidgetsBundle.swift; sourceTree = "<group>"; };
+		3F5912562B752EED00BD42A0 /* DashWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashWidgets.swift; sourceTree = "<group>"; };
+		3F5912582B752EEF00BD42A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3F59125A2B752EEF00BD42A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3FAE55002B752F7500482F6B /* AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
 		3FB335DB2AF302B100028FC8 /* DataStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStructs.swift; sourceTree = "<group>"; };
 		3FB54FE12AEFFAC000623592 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		3FF726C52B0BB8450093E54C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -103,6 +138,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3F59124A2B752EED00BD42A0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F5912522B752EED00BD42A0 /* SwiftUI.framework in Frameworks */,
+				3F5912502B752EED00BD42A0 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -112,9 +156,12 @@
 				3FF726D82B0BF95A0093E54C /* CoreDataStore */,
 				3F2F8BE42AEF4F3C00393F60 /* PeriodTimerRing.swift */,
 				3FB335DB2AF302B100028FC8 /* DataStructs.swift */,
+				3FAE55002B752F7500482F6B /* AppGroup.swift */,
 				3F399CCD2AFD492600A3505F /* APIreturn.json */,
 				3F09BC382AB2160D00924ACE /* NativeDash */,
 				3F09BC4A2AB2160F00924ACE /* NativeDash Watch App */,
+				3F5912532B752EED00BD42A0 /* DashWidgets */,
+				3F59124E2B752EED00BD42A0 /* Frameworks */,
 				3F09BC372AB2160D00924ACE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -124,6 +171,7 @@
 			children = (
 				3F09BC362AB2160D00924ACE /* NativeDash.app */,
 				3F09BC462AB2160F00924ACE /* NativeDash Watch App.app */,
+				3F59124D2B752EED00BD42A0 /* DashWidgetsExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -170,6 +218,26 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		3F59124E2B752EED00BD42A0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3F59124F2B752EED00BD42A0 /* WidgetKit.framework */,
+				3F5912512B752EED00BD42A0 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3F5912532B752EED00BD42A0 /* DashWidgets */ = {
+			isa = PBXGroup;
+			children = (
+				3F5912542B752EED00BD42A0 /* DashWidgetsBundle.swift */,
+				3F5912562B752EED00BD42A0 /* DashWidgets.swift */,
+				3F5912582B752EEF00BD42A0 /* Assets.xcassets */,
+				3F59125A2B752EEF00BD42A0 /* Info.plist */,
+			);
+			path = DashWidgets;
+			sourceTree = "<group>";
+		};
 		3FF726D82B0BF95A0093E54C /* CoreDataStore */ = {
 			isa = PBXGroup;
 			children = (
@@ -194,11 +262,13 @@
 				3F09BC332AB2160D00924ACE /* Frameworks */,
 				3F09BC342AB2160D00924ACE /* Resources */,
 				3F09BC592AB2161000924ACE /* Embed Watch Content */,
+				3F59125E2B752EEF00BD42A0 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				3F09BC492AB2160F00924ACE /* PBXTargetDependency */,
+				3F59125C2B752EEF00BD42A0 /* PBXTargetDependency */,
 			);
 			name = NativeDash;
 			productName = NativeDash;
@@ -222,6 +292,23 @@
 			productReference = 3F09BC462AB2160F00924ACE /* NativeDash Watch App.app */;
 			productType = "com.apple.product-type.application";
 		};
+		3F59124C2B752EED00BD42A0 /* DashWidgetsExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3F5912612B752EEF00BD42A0 /* Build configuration list for PBXNativeTarget "DashWidgetsExtension" */;
+			buildPhases = (
+				3F5912492B752EED00BD42A0 /* Sources */,
+				3F59124A2B752EED00BD42A0 /* Frameworks */,
+				3F59124B2B752EED00BD42A0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DashWidgetsExtension;
+			productName = DashWidgetsExtension;
+			productReference = 3F59124D2B752EED00BD42A0 /* DashWidgetsExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -229,7 +316,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1430;
+				LastSwiftUpdateCheck = 1520;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					3F09BC352AB2160D00924ACE = {
@@ -237,6 +324,9 @@
 					};
 					3F09BC452AB2160F00924ACE = {
 						CreatedOnToolsVersion = 14.3.1;
+					};
+					3F59124C2B752EED00BD42A0 = {
+						CreatedOnToolsVersion = 15.2;
 					};
 				};
 			};
@@ -255,6 +345,7 @@
 			targets = (
 				3F09BC352AB2160D00924ACE /* NativeDash */,
 				3F09BC452AB2160F00924ACE /* NativeDash Watch App */,
+				3F59124C2B752EED00BD42A0 /* DashWidgetsExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -279,6 +370,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3F59124B2B752EED00BD42A0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F5912592B752EEF00BD42A0 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -292,6 +391,7 @@
 				3F2F8BE02AEC04F300393F60 /* SingleCard.swift in Sources */,
 				3FF726C62B0BB8450093E54C /* NativeDash.xcdatamodeld in Sources */,
 				3FF726D52B0BF9130093E54C /* StoredDayType+CoreDataProperties.swift in Sources */,
+				3FAE55012B752F7500482F6B /* AppGroup.swift in Sources */,
 				3F09BC3A2AB2160D00924ACE /* NativeDashApp.swift in Sources */,
 				3FF726D32B0BF9130093E54C /* StoredDayType+CoreDataClass.swift in Sources */,
 				3FB335DC2AF302B100028FC8 /* DataStructs.swift in Sources */,
@@ -312,10 +412,21 @@
 				3FF726CA2B0BDBEB0093E54C /* Persistence.swift in Sources */,
 				3FB335DD2AF302B100028FC8 /* DataStructs.swift in Sources */,
 				3FF726D62B0BF9130093E54C /* StoredDayType+CoreDataProperties.swift in Sources */,
+				3FAE55022B752F7500482F6B /* AppGroup.swift in Sources */,
 				3F2F8BE12AEC04F300393F60 /* SingleCard.swift in Sources */,
 				3FF726D02B0BF9130093E54C /* StoredPeriod+CoreDataClass.swift in Sources */,
 				3F09BC4C2AB2160F00924ACE /* NativeDashApp.swift in Sources */,
 				3FF726D42B0BF9130093E54C /* StoredDayType+CoreDataClass.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F5912492B752EED00BD42A0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F5912552B752EED00BD42A0 /* DashWidgetsBundle.swift in Sources */,
+				3FAE55032B752F7500482F6B /* AppGroup.swift in Sources */,
+				3F5912572B752EED00BD42A0 /* DashWidgets.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,6 +437,11 @@
 			isa = PBXTargetDependency;
 			target = 3F09BC452AB2160F00924ACE /* NativeDash Watch App */;
 			targetProxy = 3F09BC482AB2160F00924ACE /* PBXContainerItemProxy */;
+		};
+		3F59125C2B752EEF00BD42A0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3F59124C2B752EED00BD42A0 /* DashWidgetsExtension */;
+			targetProxy = 3F59125B2B752EEF00BD42A0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -573,6 +689,74 @@
 			};
 			name = Release;
 		};
+		3F59125F2B752EEF00BD42A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K5273GVYFN;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DashWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DashWidgets;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.icloud-djharrold53.NativeDash.DashWidgets";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3F5912602B752EEF00BD42A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K5273GVYFN;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DashWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DashWidgets;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.icloud-djharrold53.NativeDash.DashWidgets";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -599,6 +783,15 @@
 			buildConfigurations = (
 				3F09BC5B2AB2161000924ACE /* Debug */,
 				3F09BC5C2AB2161000924ACE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3F5912612B752EEF00BD42A0 /* Build configuration list for PBXNativeTarget "DashWidgetsExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F59125F2B752EEF00BD42A0 /* Debug */,
+				3F5912602B752EEF00BD42A0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
