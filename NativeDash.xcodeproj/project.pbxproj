@@ -27,6 +27,13 @@
 		3F5912572B752EED00BD42A0 /* DashWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5912562B752EED00BD42A0 /* DashWidgets.swift */; };
 		3F5912592B752EEF00BD42A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F5912582B752EEF00BD42A0 /* Assets.xcassets */; };
 		3F59125D2B752EEF00BD42A0 /* DashWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3F59124D2B752EED00BD42A0 /* DashWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3F8CA2A42B864B5700F13E25 /* DataStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB335DB2AF302B100028FC8 /* DataStructs.swift */; };
+		3F8CA2A52B864B6300F13E25 /* NativeDash.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726C42B0BB8450093E54C /* NativeDash.xcdatamodeld */; };
+		3F8CA2A62B864B6600F13E25 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726C72B0BB8950093E54C /* Persistence.swift */; };
+		3F8CA2A72B864B6800F13E25 /* StoredPeriod+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CB2B0BF9130093E54C /* StoredPeriod+CoreDataClass.swift */; };
+		3F8CA2A82B864B6A00F13E25 /* StoredPeriod+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CC2B0BF9130093E54C /* StoredPeriod+CoreDataProperties.swift */; };
+		3F8CA2A92B864B6C00F13E25 /* StoredDayType+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CD2B0BF9130093E54C /* StoredDayType+CoreDataClass.swift */; };
+		3F8CA2AA2B864B6E00F13E25 /* StoredDayType+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CE2B0BF9130093E54C /* StoredDayType+CoreDataProperties.swift */; };
 		3FAE55012B752F7500482F6B /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAE55002B752F7500482F6B /* AppGroup.swift */; };
 		3FAE55022B752F7500482F6B /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAE55002B752F7500482F6B /* AppGroup.swift */; };
 		3FAE55032B752F7500482F6B /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAE55002B752F7500482F6B /* AppGroup.swift */; };
@@ -425,8 +432,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F5912552B752EED00BD42A0 /* DashWidgetsBundle.swift in Sources */,
+				3F8CA2AA2B864B6E00F13E25 /* StoredDayType+CoreDataProperties.swift in Sources */,
+				3F8CA2A52B864B6300F13E25 /* NativeDash.xcdatamodeld in Sources */,
+				3F8CA2A72B864B6800F13E25 /* StoredPeriod+CoreDataClass.swift in Sources */,
 				3FAE55032B752F7500482F6B /* AppGroup.swift in Sources */,
+				3F8CA2A62B864B6600F13E25 /* Persistence.swift in Sources */,
+				3F8CA2A42B864B5700F13E25 /* DataStructs.swift in Sources */,
 				3F5912572B752EED00BD42A0 /* DashWidgets.swift in Sources */,
+				3F8CA2A92B864B6C00F13E25 /* StoredDayType+CoreDataClass.swift in Sources */,
+				3F8CA2A82B864B6A00F13E25 /* StoredPeriod+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

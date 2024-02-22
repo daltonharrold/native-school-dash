@@ -13,7 +13,7 @@ struct PeriodTimerRing: View {
     @State var progress: CGFloat = 0.0
     @State var timeLeftInPeriod: Duration = Duration.seconds(0)
     @State var periodRingShouldDisplay: Bool = false
-    @State var displayPeriod: Period = Period(name: "Init period", start: "00:00", end: "00:00")
+    @State var displayPeriod: Period?
 
     
     // Start a timer that fires an event every second to change the period time
@@ -36,7 +36,7 @@ struct PeriodTimerRing: View {
         }
         .frame(idealWidth: 300, idealHeight: 300, alignment: .center) 
             Spacer().frame(height: 50)
-            Text(displayPeriod.name)
+        Text(displayPeriod?.name ?? "")
                 .font(.title)
                 .fontWeight(.bold)
             Spacer().frame(height: 50)
@@ -44,7 +44,12 @@ struct PeriodTimerRing: View {
         // Recieve the timer event and re-render affected elements
         .onReceive(timer, perform: { time in
             updateDisplayPeriodAndProgress()
-            timeLeftInPeriod = Duration.seconds(getSecondsToPeriodStartEnd(period: getNextPeriod(schedule: todaySchedule), isEnd: true))
+            if let nextPeriod = getNextPeriod(schedule: todaySchedule) {
+                timeLeftInPeriod = Duration.seconds(getSecondsToPeriodStartEnd(period: nextPeriod, isEnd: true))
+            } else {
+                // If no period is found, do not display the ring
+                periodRingShouldDisplay = false
+            }
 
         })
     }
@@ -62,60 +67,7 @@ struct PeriodTimerRing: View {
         progress = CGFloat(secondsToStart) / CGFloat(secondsToEnd + secondsToStart)
     }
     
-    // Get the number of seconds to the start or end of current period. Time must be between given period start or end
-    // If isEnd = true, will return time to end, else will return time to start
-    func getSecondsToPeriodStartEnd(period: Period, isEnd: Bool) -> Int {
-        let nextPeriodEndTime = (isEnd ? period.end : period.start) + ":00"
-        let date = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy/MM/dd ZZZZ"
-        let yearMonthDay = formatter.string(from: date)
-        formatter.dateFormat = "yyyy/MM/dd ZZZZ HH:mm:ss"
-        let endOfPeriod = formatter.date(from: "\(yearMonthDay) \(nextPeriodEndTime)")
-        let diff = abs(endOfPeriod!.timeIntervalSinceNow)
-        return Int(diff)
-    }
     
-    func getNextPeriod(schedule: DayType) -> Period {
-        var periodToReturn: Period?
-        let date = Date()
-        let formatter = DateFormatter()
-        // We need to be able to make a date object setting the end of the period as the time, so we need to get the current date and re-input it in the date constructor
-        formatter.dateFormat = "yyyy/MM/dd ZZZZ"
-        let yearMonthDay = formatter.string(from: date)
-        formatter.dateFormat = "yyyy/MM/dd ZZZZ HH:mm:ss"
-        
-        for (index, period) in schedule.periods.enumerated() {
-            // If period start is in future (Currently in a passing period)
-            let timeSincePeriodStart = formatter.date(from: "\(yearMonthDay) \(period.start):00")!.timeIntervalSinceNow
-            let timeSincePeriodEnd = formatter.date(from: "\(yearMonthDay) \(period.end):00")!.timeIntervalSinceNow
-            
-            // If period start is in future (Currently in passing period)
-            if timeSincePeriodStart > 0 {
-                if index == 0 {
-                    // If before school, do not display period ring
-                    periodRingShouldDisplay = false
-                    break
-                }
-                periodToReturn = Period(name: "\(schedule.periods[index-1].name) → \(period.name)", start: schedule.periods[index-1].end, end: period.start)
-                periodRingShouldDisplay = true
-                break
-            } // If period end is in future (Currently in a period)
-            else if timeSincePeriodEnd > 0 {
-                periodToReturn = period
-                periodRingShouldDisplay = true
-                break
-            }
-            
-            // If no period detected and loop is on last period in schedule, assume after-school hours
-            // and do not display period ring timer
-            if index+1 == schedule.periods.count {
-                periodRingShouldDisplay = false
-                break
-            }
-        }
-        return periodToReturn ?? Period(name: "Period not found", start: "00:00", end: "00:00")
-    }
 }
 
 #Preview {

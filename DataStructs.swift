@@ -63,6 +63,55 @@ public class YearMonthDay {
     }
 }
 
+// Get the number of seconds to the start or end of current period. Time must be between given period start or end
+// If isEnd = true, will return time to end, else will return time to start
+func getSecondsToPeriodStartEnd(period: Period?, isEnd: Bool) -> Int {
+    let nextPeriodEndTime = (isEnd ? (period?.end ?? "00:00") : (period?.start ?? "00:00")) + ":00"
+    let date = Date()
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy/MM/dd ZZZZ"
+    let yearMonthDay = formatter.string(from: date)
+    formatter.dateFormat = "yyyy/MM/dd ZZZZ HH:mm:ss"
+    let endOfPeriod = formatter.date(from: "\(yearMonthDay) \(nextPeriodEndTime)")
+    let diff = abs(endOfPeriod!.timeIntervalSinceNow)
+    return Int(diff)
+}
+
+func getNextPeriod(schedule: DayType) -> Period? {
+    let date = Date()
+    let formatter = DateFormatter()
+    // We need to be able to make a date object setting the end of the period as the time, so we need to get the current date and re-input it in the date constructor
+    formatter.dateFormat = "yyyy/MM/dd ZZZZ"
+    let yearMonthDay = formatter.string(from: date)
+    formatter.dateFormat = "yyyy/MM/dd ZZZZ HH:mm:ss"
+    
+    for (index, period) in schedule.periods.enumerated() {
+        // If period start is in future (Currently in a passing period)
+        let timeSincePeriodStart = formatter.date(from: "\(yearMonthDay) \(period.start):00")!.timeIntervalSinceNow
+        let timeSincePeriodEnd = formatter.date(from: "\(yearMonthDay) \(period.end):00")!.timeIntervalSinceNow
+        
+        // If period start is in future (Currently in passing period)
+        if timeSincePeriodStart > 0 {
+            if index == 0 {
+                // If before school, do not display period ring
+                return nil
+            }
+            return Period(name: "\(schedule.periods[index-1].name) → \(period.name)", start: schedule.periods[index-1].end, end: period.start)
+        } 
+        // If period end is in future (Currently in a period)
+        else if timeSincePeriodEnd > 0 {
+            return period
+        }
+        
+        // If no period detected and loop is on last period in schedule, assume after-school hours
+        // and do not display period ring timer
+        if index+1 == schedule.periods.count {
+            return nil
+        }
+    }
+    return nil
+}
+
 public func getDayTypeFromApi(onDay: YearMonthDay? = nil) async throws -> ApiResponse? {
     let calendarDate = (onDay != nil) ? onDay!.asDateComponents() : Calendar.current.dateComponents([.day, .year, .month], from: Date())
     if let url = URL(string: "\(ProcessInfo.processInfo.environment["API_ENDPOINT"]!)/schools/\( ProcessInfo.processInfo.environment["SCHOOL_ID"]!)?includes=dayTypeOnDate&day=\(calendarDate.day!)&month=\(calendarDate.month!)&year=\(calendarDate.year!)") {
