@@ -119,6 +119,8 @@
 		3F5912562B752EED00BD42A0 /* DashWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashWidgets.swift; sourceTree = "<group>"; };
 		3F5912582B752EEF00BD42A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F59125A2B752EEF00BD42A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F8CA2AB2B88EFEA00F13E25 /* NativeDash.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NativeDash.entitlements; sourceTree = "<group>"; };
+		3F8CA2AC2B88F23900F13E25 /* DashWidgetsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DashWidgetsExtension.entitlements; sourceTree = "<group>"; };
 		3FAE55002B752F7500482F6B /* AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
 		3FB335DB2AF302B100028FC8 /* DataStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStructs.swift; sourceTree = "<group>"; };
 		3FB54FE12AEFFAC000623592 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 		3F09BC2D2AB2160D00924ACE = {
 			isa = PBXGroup;
 			children = (
+				3F8CA2AC2B88F23900F13E25 /* DashWidgetsExtension.entitlements */,
 				3FF726D82B0BF95A0093E54C /* CoreDataStore */,
 				3F2F8BE42AEF4F3C00393F60 /* PeriodTimerRing.swift */,
 				3FB335DB2AF302B100028FC8 /* DataStructs.swift */,
@@ -186,6 +189,7 @@
 		3F09BC382AB2160D00924ACE /* NativeDash */ = {
 			isa = PBXGroup;
 			children = (
+				3F8CA2AB2B88EFEA00F13E25 /* NativeDash.entitlements */,
 				3F399CCC2AFC479800A3505F /* Info.plist */,
 				3F09BC392AB2160D00924ACE /* NativeDashApp.swift */,
 				3F09BC3B2AB2160D00924ACE /* ContentView.swift */,
@@ -636,6 +640,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = NativeDash/NativeDash.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"NativeDash/Preview Content\"";
@@ -672,6 +677,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = NativeDash/NativeDash.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"NativeDash/Preview Content\"";
@@ -709,6 +715,7 @@
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = DashWidgetsExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = K5273GVYFN;
@@ -743,6 +750,7 @@
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = DashWidgetsExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = K5273GVYFN;

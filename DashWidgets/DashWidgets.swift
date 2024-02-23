@@ -9,12 +9,14 @@ import WidgetKit
 import SwiftUI
 
 struct Provider: TimelineProvider {
+    let testPeriod = Period(name: "Testing Period", start: "8:00", end: "10:00")
+    
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date())
+        SimpleEntry(date: Date(), displayPeriod: testPeriod)
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date())
+        let entry = SimpleEntry(date: Date(), displayPeriod: testPeriod)
         completion(entry)
     }
 
@@ -25,7 +27,7 @@ struct Provider: TimelineProvider {
         let currentDate = Date()
         for hourOffset in 0 ..< 5 {
             let entryDate = Calendar.current.date(byAdding: .minute, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate)
+            let entry = SimpleEntry(date: entryDate, displayPeriod: testPeriod)
             entries.append(entry)
         }
 
@@ -36,30 +38,40 @@ struct Provider: TimelineProvider {
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
+    let displayPeriod: Period
 }
 
 struct DashWidgetsEntryView : View {
     var entry: Provider.Entry
+    
+    @FetchRequest(sortDescriptors: [])
+    private var fetchedDayTypes: FetchedResults<StoredDayType>
+    
 
     var body: some View {
         VStack {
             Text("DashWidget")
+            Text(fetchedDayTypes[0].periodsArray[0].name)
+            Text("\(fetchedDayTypes[0].periodsArray[0].start) - \(fetchedDayTypes[0].periodsArray[0].end)")
         }
     }
 }
 
 struct DashWidgets: Widget {
     let kind: String = "DashWidgets"
+    let persistenceController = PersistenceController.shared
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             if #available(iOS 17.0, *) {
                 DashWidgetsEntryView(entry: entry)
                     .containerBackground(.fill.tertiary, for: .widget)
+                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
             } else {
                 DashWidgetsEntryView(entry: entry)
                     .padding()
                     .background()
+                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
             }
         }
         .configurationDisplayName("My Widget")
@@ -70,5 +82,6 @@ struct DashWidgets: Widget {
 #Preview(as: .systemSmall) {
     DashWidgets()
 } timeline: {
-    SimpleEntry(date: .now)
+    let previewPeriod = Period(name: "Testing Period", start: "8:00", end: "10:00")
+    SimpleEntry(date: .now, displayPeriod: previewPeriod)
 }
