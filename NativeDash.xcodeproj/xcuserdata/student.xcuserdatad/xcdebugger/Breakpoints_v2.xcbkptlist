@@ -14,8 +14,8 @@
             filePath = "NativeDash/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -331,8 +331,8 @@
             filePath = "NativeDash/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
             landmarkName = "todayScheduleStore"
             landmarkType = "24">
          </BreakpointContent>
@@ -347,8 +347,8 @@
             filePath = "NativeDash/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -363,8 +363,8 @@
             filePath = "NativeDash/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -441,8 +441,8 @@
             filePath = "DataStructs.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
             landmarkName = "toStoredDayType(context:)"
             landmarkType = "7">
             <Locations>
@@ -489,8 +489,8 @@
             filePath = "NativeDash/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -505,8 +505,8 @@
             filePath = "DataStructs.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
             landmarkName = "unknown"
             landmarkType = "0">
             <Locations>
@@ -576,77 +576,62 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8E9D0BF2-E9D6-4CD7-B7B5-A69B6553C171"
+            uuid = "F2C98A78-811F-4F6F-AE29-F180DCBF5A31"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "NativeDash/ContentView.swift"
+            filePath = "DashWidgets/DashWidgets.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "body"
-            landmarkType = "24">
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "unknown"
+            landmarkType = "0">
             <Locations>
                <Location
-                  uuid = "8E9D0BF2-E9D6-4CD7-B7B5-A69B6553C171 - b9c7c01bca46f04a"
+                  uuid = "F2C98A78-811F-4F6F-AE29-F180DCBF5A31 - bb56f612420e72ae"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(2) suspend resume partial function for closure #4 @Sendable () async -&gt; () in NativeDash.ContentView.body.getter : some"
-                  moduleName = "NativeDash"
+                  symbolName = "DashWidgetsExtension.DashWidgetsEntryView.todaySchedule.getter : Swift.Optional&lt;DashWidgetsExtension.DayType&gt;"
+                  moduleName = "DashWidgetsExtension"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/student/Desktop/mad/NativeDash/NativeDash/ContentView.swift"
+                  urlString = "file:///Users/student/Desktop/mad/NativeDash/DashWidgets/DashWidgets.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "95"
-                  endingLineNumber = "95"
-                  offsetFromSymbolStart = "2972">
+                  startingLineNumber = "54"
+                  endingLineNumber = "54"
+                  offsetFromSymbolStart = "240">
                </Location>
                <Location
-                  uuid = "8E9D0BF2-E9D6-4CD7-B7B5-A69B6553C171 - c85b7448c00c9645"
+                  uuid = "F2C98A78-811F-4F6F-AE29-F180DCBF5A31 - 341e86dea71deb8c"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(5) suspend resume partial function for closure #4 @Sendable () async -&gt; () in NativeDash.ContentView.body.getter : some"
-                  moduleName = "NativeDash"
+                  symbolName = "closure #1 (DashWidgetsExtension.StoredScheduleOnDate) -&gt; Swift.Bool in DashWidgetsExtension.DashWidgetsEntryView.todaySchedule.getter : Swift.Optional&lt;DashWidgetsExtension.DayType&gt;"
+                  moduleName = "DashWidgetsExtension"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/student/Desktop/mad/NativeDash/NativeDash/ContentView.swift"
+                  urlString = "file:///Users/student/Desktop/mad/NativeDash/DashWidgets/DashWidgets.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "95"
-                  endingLineNumber = "95"
-                  offsetFromSymbolStart = "440">
+                  startingLineNumber = "54"
+                  endingLineNumber = "54"
+                  offsetFromSymbolStart = "284">
                </Location>
                <Location
-                  uuid = "8E9D0BF2-E9D6-4CD7-B7B5-A69B6553C171 - 6c0e9d9ceb24dbce"
+                  uuid = "F2C98A78-811F-4F6F-AE29-F180DCBF5A31 - 341e86dea71de442"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #5 @Sendable () async -&gt; () in NativeDash.ContentView.body.getter : some"
-                  moduleName = "NativeDash"
+                  symbolName = "closure #1 (DashWidgetsExtension.StoredScheduleOnDate) -&gt; Swift.Bool in DashWidgetsExtension.DashWidgetsEntryView.todaySchedule.getter : Swift.Optional&lt;DashWidgetsExtension.DayType&gt;"
+                  moduleName = "DashWidgetsExtension"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/student/Desktop/mad/NativeDash/NativeDash/ContentView.swift"
+                  urlString = "file:///Users/student/Desktop/mad/NativeDash/DashWidgets/DashWidgets.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "91"
-                  endingLineNumber = "91"
-                  offsetFromSymbolStart = "1524">
-               </Location>
-               <Location
-                  uuid = "8E9D0BF2-E9D6-4CD7-B7B5-A69B6553C171 - 98d1b0bc14df17c0"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for closure #5 @Sendable () async -&gt; () in NativeDash.ContentView.body.getter : some"
-                  moduleName = "NativeDash"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/student/Desktop/mad/NativeDash/NativeDash/ContentView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "91"
-                  endingLineNumber = "91"
-                  offsetFromSymbolStart = "496">
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
+                  offsetFromSymbolStart = "300">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -654,64 +639,670 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "56925D6D-BA0C-42EE-9FDA-BA8363D0F0A1"
+            uuid = "5EDE881A-F4BE-40CC-8621-368DE22D9510"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DashWidgets/DashWidgets.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "DashWidgets"
+            landmarkType = "14">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FA7973D9-10E2-43E7-B531-4197481A71E3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DashWidgets/DashWidgets.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3960D0EE-A7C3-4F5F-91AB-62CA23F5F75D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DataStructs.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "149"
+            endingLineNumber = "149">
+            <Locations>
+               <Location
+                  uuid = "3960D0EE-A7C3-4F5F-91AB-62CA23F5F75D - 9245c8fce5fbf81a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for DashWidgetsExtension.updateStoredSchedulesOnDate(viewContext: __C.NSManagedObjectContext, storedSchedules: Swift.Array&lt;DashWidgetsExtension.StoredDayType&gt;) async -&gt; ()"
+                  moduleName = "DashWidgetsExtension"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Desktop/mad/NativeDash/DataStructs.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "147"
+                  endingLineNumber = "147"
+                  offsetFromSymbolStart = "1604">
+               </Location>
+               <Location
+                  uuid = "3960D0EE-A7C3-4F5F-91AB-62CA23F5F75D - 2a0d3d4740b51cc4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for DashWidgetsExtension.updateStoredSchedulesOnDate(viewContext: __C.NSManagedObjectContext, storedSchedules: Swift.Array&lt;DashWidgetsExtension.StoredDayType&gt;) async -&gt; ()"
+                  moduleName = "DashWidgetsExtension"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Desktop/mad/NativeDash/DataStructs.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "146"
+                  endingLineNumber = "146"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "3960D0EE-A7C3-4F5F-91AB-62CA23F5F75D - 2a0d3d4740b51c23"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for DashWidgetsExtension.updateStoredSchedulesOnDate(viewContext: __C.NSManagedObjectContext, storedSchedules: Swift.Array&lt;DashWidgetsExtension.StoredDayType&gt;) async -&gt; ()"
+                  moduleName = "DashWidgetsExtension"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Desktop/mad/NativeDash/DataStructs.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "147"
+                  endingLineNumber = "147"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  uuid = "3960D0EE-A7C3-4F5F-91AB-62CA23F5F75D - 38237205ac03bce3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for DashWidgetsExtension.updateStoredSchedulesOnDate(viewContext: __C.NSManagedObjectContext, storedSchedules: Swift.Array&lt;DashWidgetsExtension.StoredDayType&gt;) async -&gt; ()"
+                  moduleName = "DashWidgetsExtension"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Desktop/mad/NativeDash/DataStructs.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "146"
+                  endingLineNumber = "146"
+                  offsetFromSymbolStart = "84">
+               </Location>
+               <Location
+                  uuid = "3960D0EE-A7C3-4F5F-91AB-62CA23F5F75D - 38237205ac03bc04"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for DashWidgetsExtension.updateStoredSchedulesOnDate(viewContext: __C.NSManagedObjectContext, storedSchedules: Swift.Array&lt;DashWidgetsExtension.StoredDayType&gt;) async -&gt; ()"
+                  moduleName = "DashWidgetsExtension"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Desktop/mad/NativeDash/DataStructs.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "147"
+                  endingLineNumber = "147"
+                  offsetFromSymbolStart = "196">
+               </Location>
+               <Location
+                  uuid = "3960D0EE-A7C3-4F5F-91AB-62CA23F5F75D - 94fdc6aac8379ee2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for DashWidgetsExtension.updateStoredSchedulesOnDate(viewContext: __C.NSManagedObjectContext, storedSchedules: Swift.Array&lt;DashWidgetsExtension.StoredDayType&gt;) async -&gt; ()"
+                  moduleName = "DashWidgetsExtension"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Desktop/mad/NativeDash/DataStructs.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "146"
+                  endingLineNumber = "146"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  uuid = "3960D0EE-A7C3-4F5F-91AB-62CA23F5F75D - 94fdc6aac8379e05"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for DashWidgetsExtension.updateStoredSchedulesOnDate(viewContext: __C.NSManagedObjectContext, storedSchedules: Swift.Array&lt;DashWidgetsExtension.StoredDayType&gt;) async -&gt; ()"
+                  moduleName = "DashWidgetsExtension"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Desktop/mad/NativeDash/DataStructs.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "147"
+                  endingLineNumber = "147"
+                  offsetFromSymbolStart = "100">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "22AE28D9-2578-4CBB-8D35-818CA2731829"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DataStructs.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "getDayTypeFromApi(onDay:)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8BDDC0C0-450A-4511-AC4D-FE0D8A330438"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DataStructs.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
+            landmarkName = "getDayTypeFromApi(onDay:)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "8BDDC0C0-450A-4511-AC4D-FE0D8A330438 - 4d37c4ac51ff781d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for DashWidgetsExtension.getDayTypeFromApi(onDay: Swift.Optional&lt;DashWidgetsExtension.YearMonthDay&gt;) async throws -&gt; Swift.Optional&lt;DashWidgetsExtension.ApiResponse&gt;"
+                  moduleName = "DashWidgetsExtension"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Desktop/mad/NativeDash/DataStructs.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "120"
+                  endingLineNumber = "120"
+                  offsetFromSymbolStart = "3484">
+               </Location>
+               <Location
+                  uuid = "8BDDC0C0-450A-4511-AC4D-FE0D8A330438 - 9e3517e74f8db854"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for NativeDash.getDayTypeFromApi(onDay: Swift.Optional&lt;NativeDash.YearMonthDay&gt;) async throws -&gt; Swift.Optional&lt;NativeDash.ApiResponse&gt;"
+                  moduleName = "NativeDash"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Desktop/mad/NativeDash/DataStructs.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "120"
+                  endingLineNumber = "120"
+                  offsetFromSymbolStart = "3484">
+               </Location>
+               <Location
+                  uuid = "8BDDC0C0-450A-4511-AC4D-FE0D8A330438 - 9e3517e74f8db875"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for NativeDash.getDayTypeFromApi(onDay: Swift.Optional&lt;NativeDash.YearMonthDay&gt;) async throws -&gt; Swift.Optional&lt;NativeDash.ApiResponse&gt;"
+                  moduleName = "NativeDash"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Desktop/mad/NativeDash/DataStructs.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "119"
+                  endingLineNumber = "119"
+                  offsetFromSymbolStart = "3428">
+               </Location>
+               <Location
+                  uuid = "8BDDC0C0-450A-4511-AC4D-FE0D8A330438 - a4ec699cff99eddf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for NativeDash.getDayTypeFromApi(onDay: Swift.Optional&lt;NativeDash.YearMonthDay&gt;) async throws -&gt; Swift.Optional&lt;NativeDash.ApiResponse&gt;"
+                  moduleName = "NativeDash"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Desktop/mad/NativeDash/DataStructs.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "119"
+                  endingLineNumber = "119"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "8BDDC0C0-450A-4511-AC4D-FE0D8A330438 - e632813fff4ec77"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for NativeDash.getDayTypeFromApi(onDay: Swift.Optional&lt;NativeDash.YearMonthDay&gt;) async throws -&gt; Swift.Optional&lt;NativeDash.ApiResponse&gt;"
+                  moduleName = "NativeDash"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Desktop/mad/NativeDash/DataStructs.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "119"
+                  endingLineNumber = "119"
+                  offsetFromSymbolStart = "156">
+               </Location>
+               <Location
+                  uuid = "8BDDC0C0-450A-4511-AC4D-FE0D8A330438 - 4676359437f74676"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for NativeDash.getDayTypeFromApi(onDay: Swift.Optional&lt;NativeDash.YearMonthDay&gt;) async throws -&gt; Swift.Optional&lt;NativeDash.ApiResponse&gt;"
+                  moduleName = "NativeDash"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Desktop/mad/NativeDash/DataStructs.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "119"
+                  endingLineNumber = "119"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  uuid = "8BDDC0C0-450A-4511-AC4D-FE0D8A330438 - 4676359437f74676"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for NativeDash.getDayTypeFromApi(onDay: Swift.Optional&lt;NativeDash.YearMonthDay&gt;) async throws -&gt; Swift.Optional&lt;NativeDash.ApiResponse&gt;"
+                  moduleName = "NativeDash"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Desktop/mad/NativeDash/DataStructs.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "119"
+                  endingLineNumber = "119"
+                  offsetFromSymbolStart = "248">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "088EA26C-5663-4B77-AD54-A282EE49C2CE"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NativeDash/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "360C27A5-DC78-43E7-9914-AA029C21E930"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NativeDash/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
                <Location
-                  uuid = "56925D6D-BA0C-42EE-9FDA-BA8363D0F0A1 - b9c7c01bca46ff23"
+                  uuid = "360C27A5-DC78-43E7-9914-AA029C21E930 - b3d6f170221ffb56"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(2) suspend resume partial function for closure #4 @Sendable () async -&gt; () in NativeDash.ContentView.body.getter : some"
+                  symbolName = "closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0, NativeDash.PeriodTimerRing, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0)&gt; in NativeDash.ContentView.body.getter : some"
                   moduleName = "NativeDash"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/student/Desktop/mad/NativeDash/NativeDash/ContentView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "86"
-                  endingLineNumber = "86"
-                  offsetFromSymbolStart = "2888">
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "832">
                </Location>
                <Location
-                  uuid = "56925D6D-BA0C-42EE-9FDA-BA8363D0F0A1 - c85b7448c00c992c"
+                  uuid = "360C27A5-DC78-43E7-9914-AA029C21E930 - 14aaea479c290cf0"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(5) suspend resume partial function for closure #4 @Sendable () async -&gt; () in NativeDash.ContentView.body.getter : some"
+                  symbolName = "closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0, Swift.Optional&lt;NativeDash.PeriodTimerRing&gt;, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0)&gt; in NativeDash.ContentView.body.getter : some"
                   moduleName = "NativeDash"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/student/Desktop/mad/NativeDash/NativeDash/ContentView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "86"
-                  endingLineNumber = "86"
-                  offsetFromSymbolStart = "224">
-               </Location>
-               <Location
-                  uuid = "56925D6D-BA0C-42EE-9FDA-BA8363D0F0A1 - 6c0e9d9ceb24db23"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #5 @Sendable () async -&gt; () in NativeDash.ContentView.body.getter : some"
-                  moduleName = "NativeDash"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/student/Desktop/mad/NativeDash/NativeDash/ContentView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "86"
-                  endingLineNumber = "86"
-                  offsetFromSymbolStart = "1416">
+                  startingLineNumber = "41"
+                  endingLineNumber = "41"
+                  offsetFromSymbolStart = "656">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9B420D3B-1AB5-432B-9DBC-F3D2BC5B8F94"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NativeDash/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "todaySchedule"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "9B420D3B-1AB5-432B-9DBC-F3D2BC5B8F94 - 384c99b71270ecae"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NativeDash.ContentView.todaySchedule.getter : Swift.Optional&lt;NativeDash.DayType&gt;"
+                  moduleName = "NativeDash"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Desktop/mad/NativeDash/NativeDash/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "472">
+               </Location>
+               <Location
+                  uuid = "9B420D3B-1AB5-432B-9DBC-F3D2BC5B8F94 - 384c99b71270ecae"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NativeDash.ContentView.todaySchedule.getter : Swift.Optional&lt;NativeDash.DayType&gt;"
+                  moduleName = "NativeDash"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Desktop/mad/NativeDash/NativeDash/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "276">
+               </Location>
+               <Location
+                  uuid = "9B420D3B-1AB5-432B-9DBC-F3D2BC5B8F94 - fbe3015bc9fe861a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (NativeDash.StoredScheduleOnDate) -&gt; Swift.Bool in NativeDash.ContentView.todaySchedule.getter : Swift.Optional&lt;NativeDash.DayType&gt;"
+                  moduleName = "NativeDash"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Desktop/mad/NativeDash/NativeDash/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "244">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C4D7CCD4-9D0B-4E87-A98A-6D253F3E30AA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NativeDash/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "C4D7CCD4-9D0B-4E87-A98A-6D253F3E30AA - 5afc5ff989ce6931"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #3 @Sendable () async -&gt; () in NativeDash.ContentView.body.getter : some"
+                  moduleName = "NativeDash"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Desktop/mad/NativeDash/NativeDash/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "102"
+                  endingLineNumber = "102"
+                  offsetFromSymbolStart = "1748">
+               </Location>
+               <Location
+                  uuid = "C4D7CCD4-9D0B-4E87-A98A-6D253F3E30AA - 869f729935e8ad33"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #3 @Sendable () async -&gt; () in NativeDash.ContentView.body.getter : some"
+                  moduleName = "NativeDash"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Desktop/mad/NativeDash/NativeDash/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "102"
+                  endingLineNumber = "102"
+                  offsetFromSymbolStart = "1040">
+               </Location>
+               <Location
+                  uuid = "C4D7CCD4-9D0B-4E87-A98A-6D253F3E30AA - 5afc5ff989ce69bd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #3 @Sendable () async -&gt; () in NativeDash.ContentView.body.getter : some"
+                  moduleName = "NativeDash"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Desktop/mad/NativeDash/NativeDash/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "106"
+                  endingLineNumber = "106"
+                  offsetFromSymbolStart = "2964">
+               </Location>
+               <Location
+                  uuid = "C4D7CCD4-9D0B-4E87-A98A-6D253F3E30AA - 869f729935e8adbf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #3 @Sendable () async -&gt; () in NativeDash.ContentView.body.getter : some"
+                  moduleName = "NativeDash"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Desktop/mad/NativeDash/NativeDash/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "106"
+                  endingLineNumber = "106"
+                  offsetFromSymbolStart = "2984">
+               </Location>
+               <Location
+                  uuid = "C4D7CCD4-9D0B-4E87-A98A-6D253F3E30AA - e971842687f40fbe"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for closure #3 @Sendable () async -&gt; () in NativeDash.ContentView.body.getter : some"
+                  moduleName = "NativeDash"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Desktop/mad/NativeDash/NativeDash/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "106"
+                  endingLineNumber = "106"
+                  offsetFromSymbolStart = "572">
+               </Location>
+               <Location
+                  uuid = "C4D7CCD4-9D0B-4E87-A98A-6D253F3E30AA - 5afc5ff989ce69bd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #3 @Sendable () async -&gt; () in NativeDash.ContentView.body.getter : some"
+                  moduleName = "NativeDash"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Desktop/mad/NativeDash/NativeDash/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "106"
+                  endingLineNumber = "106"
+                  offsetFromSymbolStart = "1748">
+               </Location>
+               <Location
+                  uuid = "C4D7CCD4-9D0B-4E87-A98A-6D253F3E30AA - 869f729935e8adbf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #3 @Sendable () async -&gt; () in NativeDash.ContentView.body.getter : some"
+                  moduleName = "NativeDash"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Desktop/mad/NativeDash/NativeDash/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "106"
+                  endingLineNumber = "106"
+                  offsetFromSymbolStart = "1040">
+               </Location>
+               <Location
+                  uuid = "C4D7CCD4-9D0B-4E87-A98A-6D253F3E30AA - 5afc5ff989ce69bd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #3 @Sendable () async -&gt; () in NativeDash.ContentView.body.getter : some"
+                  moduleName = "NativeDash"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Desktop/mad/NativeDash/NativeDash/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "106"
+                  endingLineNumber = "106"
+                  offsetFromSymbolStart = "1760">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "735992E7-2949-446F-88E5-C1C09FD5C901"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NativeDash/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "todaySchedule"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "96A3721E-4D34-48BC-A79A-59983BD68BD7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CoreDataStore/StoredDayType+CoreDataClass.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "periodsArray"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "96A3721E-4D34-48BC-A79A-59983BD68BD7 - ed8e695ef8165f1c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NativeDash.StoredDayType.periodsArray.getter : Swift.Array&lt;NativeDash.Period&gt;"
+                  moduleName = "NativeDash"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Desktop/mad/NativeDash/CoreDataStore/StoredDayType+CoreDataClass.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "72">
+               </Location>
+               <Location
+                  uuid = "96A3721E-4D34-48BC-A79A-59983BD68BD7 - ed8e695ef8165f1c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NativeDash.StoredDayType.periodsArray.getter : Swift.Array&lt;NativeDash.Period&gt;"
+                  moduleName = "NativeDash"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Desktop/mad/NativeDash/CoreDataStore/StoredDayType+CoreDataClass.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "76">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F6752BBA-87D2-45CE-8414-2717AC9EAE5B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NativeDash/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "63DBCE96-6312-43B6-84D9-F0640082D86D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NativeDash/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "480FE451-B7C4-41C2-8726-D458948E3729"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NativeDash/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "todaySchedule"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

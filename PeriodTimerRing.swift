@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PeriodTimerRing: View {
-    @Binding var todaySchedule: DayType
+    @State var todaySchedule: DayType
     
     @State var progress: CGFloat = 0.0
     @State var timeLeftInPeriod: Duration = Duration.seconds(0)
@@ -90,5 +90,5 @@ struct PeriodTimerRing: View {
             .init(name: "Period 10", start: "15:45", end: "16:25")
         ]
     )
-    return PeriodTimerRing(todaySchedule: .constant(todaySchedule), progress: progress, timeLeftInPeriod: timeLeftInPeriod, periodRingShouldDisplay: true)
+    return PeriodTimerRing(todaySchedule: todaySchedule, progress: progress, timeLeftInPeriod: timeLeftInPeriod, periodRingShouldDisplay: true)
 }

@@ -77,12 +77,11 @@ func getSecondsToPeriodStartEnd(period: Period?, isEnd: Bool) -> Int {
     return Int(diff)
 }
 
-func getNextPeriod(schedule: DayType) -> Period? {
-    let date = Date()
+func getNextPeriod(schedule: DayType, atDate: Date = .now) -> Period? {
     let formatter = DateFormatter()
     // We need to be able to make a date object setting the end of the period as the time, so we need to get the current date and re-input it in the date constructor
     formatter.dateFormat = "yyyy/MM/dd ZZZZ"
-    let yearMonthDay = formatter.string(from: date)
+    let yearMonthDay = formatter.string(from: atDate)
     formatter.dateFormat = "yyyy/MM/dd ZZZZ HH:mm:ss"
     
     for (index, period) in schedule.periods.enumerated() {
@@ -130,4 +129,18 @@ public func getDayTypeFromApi(onDay: YearMonthDay? = nil) async throws -> ApiRes
         }
     }
     return nil
+}
+
+public func cleanStoredPeriods(viewContext: NSManagedObjectContext) {
+    let periodFetch = NSFetchRequest<StoredPeriod>(entityName: "StoredPeriod")
+    do {
+        var fetchedPeriods = try viewContext.fetch(periodFetch)
+        fetchedPeriods = fetchedPeriods.filter({$0.schedule != nil})
+        for period in fetchedPeriods {
+            viewContext.delete(period)
+        }
+        try viewContext.save()
+    } catch {
+        fatalError("Failed to clean periods: \(error)")
+    }
 }

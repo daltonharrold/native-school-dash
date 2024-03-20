@@ -42,17 +42,35 @@ struct SimpleEntry: TimelineEntry {
 }
 
 struct DashWidgetsEntryView : View {
+    @Environment(\.managedObjectContext) private var viewContext
     var entry: Provider.Entry
+    
     
     @FetchRequest(sortDescriptors: [])
     private var fetchedDayTypes: FetchedResults<StoredDayType>
     
+    @FetchRequest(sortDescriptors: [])
+    private var storedScheduleOnDate: FetchedResults<StoredScheduleOnDate>
+    
+    var todaySchedule: DayType? {
+        storedScheduleOnDate.first(where: {
+//        $0.date. == Date()
+            Calendar.current.isDate($0.date!, equalTo: Date.now, toGranularity: .day)
+        })?.schedule?.asDayType()
+    }
+    
+    var displayPeriod: Period? {
+        todaySchedule == nil ? nil : getNextPeriod(schedule: todaySchedule!, atDate: entry.date)
+    }
 
     var body: some View {
         VStack {
-            Text("DashWidget")
-            Text(fetchedDayTypes[0].periodsArray[0].name)
-            Text("\(fetchedDayTypes[0].periodsArray[0].start) - \(fetchedDayTypes[0].periodsArray[0].end)")
+            if displayPeriod != nil {
+                Text(displayPeriod!.name)
+                Text("\(displayPeriod!.start) - \(displayPeriod!.end)")
+            } else {
+                Text("Loading...")
+            }
         }
     }
 }

@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-// Candy
 @objc(StoredPeriod)
 public class StoredPeriod: NSManagedObject {
 

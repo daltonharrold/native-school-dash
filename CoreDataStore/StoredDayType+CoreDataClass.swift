@@ -45,6 +45,7 @@ public class StoredDayType: NSManagedObject {
 
     public var periodsArray: [Period] {
         var toReturn: [Period] = []
+        let debug = (type(of: periods))
         for period in periods?.array as! [StoredPeriod] {
             toReturn.append(Period(name: period.wrappedName, start: period.wrappedStart, end: period.wrappedEnd))
         }
