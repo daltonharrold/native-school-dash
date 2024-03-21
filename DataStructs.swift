@@ -65,12 +65,11 @@ public class YearMonthDay {
 
 // Get the number of seconds to the start or end of current period. Time must be between given period start or end
 // If isEnd = true, will return time to end, else will return time to start
-func getSecondsToPeriodStartEnd(period: Period?, isEnd: Bool) -> Int {
+func getSecondsToPeriodStartEnd(period: Period?, isEnd: Bool, atDate: Date = .now) -> Int {
     let nextPeriodEndTime = (isEnd ? (period?.end ?? "00:00") : (period?.start ?? "00:00")) + ":00"
-    let date = Date()
     let formatter = DateFormatter()
     formatter.dateFormat = "yyyy/MM/dd ZZZZ"
-    let yearMonthDay = formatter.string(from: date)
+    let yearMonthDay = formatter.string(from: atDate)
     formatter.dateFormat = "yyyy/MM/dd ZZZZ HH:mm:ss"
     let endOfPeriod = formatter.date(from: "\(yearMonthDay) \(nextPeriodEndTime)")
     let diff = abs(endOfPeriod!.timeIntervalSinceNow)
@@ -129,18 +128,4 @@ public func getDayTypeFromApi(onDay: YearMonthDay? = nil) async throws -> ApiRes
         }
     }
     return nil
-}
-
-public func cleanStoredPeriods(viewContext: NSManagedObjectContext) {
-    let periodFetch = NSFetchRequest<StoredPeriod>(entityName: "StoredPeriod")
-    do {
-        var fetchedPeriods = try viewContext.fetch(periodFetch)
-        fetchedPeriods = fetchedPeriods.filter({$0.schedule != nil})
-        for period in fetchedPeriods {
-            viewContext.delete(period)
-        }
-        try viewContext.save()
-    } catch {
-        fatalError("Failed to clean periods: \(error)")
-    }
 }
