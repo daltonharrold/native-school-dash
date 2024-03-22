@@ -505,8 +505,8 @@
             filePath = "DataStructs.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
             landmarkName = "unknown"
             landmarkType = "0">
             <Locations>
@@ -583,10 +583,8 @@
             filePath = "DashWidgets/DashWidgets.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            startingLineNumber = "136"
+            endingLineNumber = "136">
             <Locations>
                <Location
                   uuid = "F2C98A78-811F-4F6F-AE29-F180DCBF5A31 - bb56f612420e72ae"
@@ -646,10 +644,8 @@
             filePath = "DashWidgets/DashWidgets.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
-            landmarkName = "DashWidgets"
-            landmarkType = "14">
+            startingLineNumber = "138"
+            endingLineNumber = "138">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -662,10 +658,8 @@
             filePath = "DashWidgets/DashWidgets.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
-            landmarkName = "body"
-            landmarkType = "24">
+            startingLineNumber = "143"
+            endingLineNumber = "143">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -799,8 +793,8 @@
             filePath = "DataStructs.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
             landmarkName = "getDayTypeFromApi(onDay:)"
             landmarkType = "9">
          </BreakpointContent>
@@ -815,8 +809,8 @@
             filePath = "DataStructs.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
             landmarkName = "getDayTypeFromApi(onDay:)"
             landmarkType = "9">
             <Locations>
@@ -1303,6 +1297,102 @@
             endingLineNumber = "24"
             landmarkName = "todaySchedule"
             landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D226BA53-E5AD-4185-A6EB-58550F07DC6F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DashWidgets/DashWidgets.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "D226BA53-E5AD-4185-A6EB-58550F07DC6F - d241a8b433b99e50"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.StrokeShapeView&lt;SwiftUI.Circle, SwiftUI.Color, SwiftUI.EmptyView&gt;, SwiftUI.StrokeShapeView&lt;&lt;&lt;opaque return type of SwiftUI.Shape.trim(from: CoreGraphics.CGFloat, to: CoreGraphics.CGFloat) -&gt; some&gt;&gt;.0, SwiftUI.Color, SwiftUI.EmptyView&gt;, SwiftUI.Text)&gt; in closure #1 () -&gt; SwiftUI._ConditionalContent&lt;SwiftUI.ZStack&lt;SwiftUI.TupleView&lt;(SwiftUI.StrokeShapeView&lt;SwiftUI.Circle, SwiftUI.Color, SwiftUI.EmptyView&gt;, SwiftUI.StrokeShapeView&lt;&lt;&lt;opaque return type of SwiftUI.Shape.trim(from: CoreGraphics.CGFloat, to: CoreGraphics.CGFloat) -&gt; some&gt;&gt;.0, SwiftUI.Color, SwiftUI.EmptyView&gt;, SwiftUI.Text)&gt;&gt;, SwiftUI.Text&gt; in DashWidgetsExtension.DashWidgetsEntryView.body.getter : some"
+                  moduleName = "DashWidgetsExtension"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Desktop/mad/NativeDash/DashWidgets/DashWidgets.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "76"
+                  endingLineNumber = "76"
+                  offsetFromSymbolStart = "320">
+               </Location>
+               <Location
+                  uuid = "D226BA53-E5AD-4185-A6EB-58550F07DC6F - 818cf3312f873d2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI._ConditionalContent&lt;SwiftUI.ZStack&lt;SwiftUI.TupleView&lt;(SwiftUI.StrokeShapeView&lt;SwiftUI.Circle, SwiftUI.Color, SwiftUI.EmptyView&gt;, SwiftUI.StrokeShapeView&lt;&lt;&lt;opaque return type of SwiftUI.Shape.trim(from: CoreGraphics.CGFloat, to: CoreGraphics.CGFloat) -&gt; some&gt;&gt;.0, SwiftUI.Color, SwiftUI.EmptyView&gt;, SwiftUI.Text)&gt;&gt;, SwiftUI.Text&gt; in DashWidgetsExtension.DashWidgetsEntryView.body.getter : some"
+                  moduleName = "DashWidgetsExtension"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Desktop/mad/NativeDash/DashWidgets/DashWidgets.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "76"
+                  endingLineNumber = "76"
+                  offsetFromSymbolStart = "228">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CBB40374-6084-4BBC-AB12-F21FA1683AEF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DashWidgets/DashWidgets.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "getTimeline(in:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "CBB40374-6084-4BBC-AB12-F21FA1683AEF - 865d21e2c4219ad8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DashWidgetsExtension.Provider.getTimeline(in: WidgetKit.TimelineProviderContext, completion: (WidgetKit.Timeline&lt;DashWidgetsExtension.SimpleEntry&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "DashWidgetsExtension"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Desktop/mad/NativeDash/DashWidgets/DashWidgets.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "1504">
+               </Location>
+               <Location
+                  uuid = "CBB40374-6084-4BBC-AB12-F21FA1683AEF - 865d21e2c4219ad8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DashWidgetsExtension.Provider.getTimeline(in: WidgetKit.TimelineProviderContext, completion: (WidgetKit.Timeline&lt;DashWidgetsExtension.SimpleEntry&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "DashWidgetsExtension"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Desktop/mad/NativeDash/DashWidgets/DashWidgets.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "1544">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

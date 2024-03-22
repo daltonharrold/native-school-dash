@@ -9,14 +9,16 @@ import WidgetKit
 import SwiftUI
 
 struct Provider: TimelineProvider {
-    let testPeriod = Period(name: "Testing Period", start: "8:00", end: "10:00")
+//    let testPeriod = Period(name: "Testing Period", start: "8:00", end: "10:00")
     
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), displayPeriod: testPeriod)
+        // Feb 9, 2024 13:15:00 CST
+        SimpleEntry(date: Date(timeIntervalSince1970: TimeInterval(1707506100)))
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), displayPeriod: testPeriod)
+        // Feb 9, 2024 13:15:00 CST
+        let entry = SimpleEntry(date: Date(timeIntervalSince1970: TimeInterval(1707506100)))
         completion(entry)
     }
 
@@ -25,9 +27,10 @@ struct Provider: TimelineProvider {
 
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
         let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .minute, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, displayPeriod: testPeriod)
+        for minuteOffset in 0 ..< 5 {
+            let entryDate = Calendar.current.date(byAdding: .minute, value: minuteOffset, to: currentDate)!
+            print(entryDate)
+            let entry = SimpleEntry(date: entryDate)
             entries.append(entry)
         }
 
@@ -38,36 +41,55 @@ struct Provider: TimelineProvider {
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
-    let displayPeriod: Period
 }
 
 struct DashWidgetsEntryView : View {
     @Environment(\.managedObjectContext) private var viewContext
     var entry: Provider.Entry
     
-    
-    @FetchRequest(sortDescriptors: [])
-    private var fetchedDayTypes: FetchedResults<StoredDayType>
-    
     @FetchRequest(sortDescriptors: [])
     private var storedScheduleOnDate: FetchedResults<StoredScheduleOnDate>
     
+    
     var todaySchedule: DayType? {
         storedScheduleOnDate.first(where: {
-//        $0.date. == Date()
-            Calendar.current.isDate($0.date!, equalTo: Date.now, toGranularity: .day)
+            Calendar.current.isDate($0.date!, equalTo: entry.date, toGranularity: .day)
         })?.schedule?.asDayType()
     }
     
     var displayPeriod: Period? {
         todaySchedule == nil ? nil : getNextPeriod(schedule: todaySchedule!, atDate: entry.date)
     }
+    
+    var timeLeftInPeriod: Duration {
+        Duration.seconds(getSecondsToPeriodStartEnd(period: displayPeriod, isEnd: true, atDate: entry.date))
+    }
+    
+    var progress: CGFloat {
+        let secondsToStart = getSecondsToPeriodStartEnd(period: displayPeriod, isEnd: false, atDate: entry.date)
+        return CGFloat(secondsToStart) / CGFloat(Int(timeLeftInPeriod.components.seconds) + secondsToStart)
+    }
+    
+    
 
     var body: some View {
         VStack {
+            Text(entry.date, style: .time)
             if displayPeriod != nil {
-                Text(displayPeriod!.name)
-                Text("\(displayPeriod!.start) - \(displayPeriod!.end)")
+                ZStack {
+                    Circle()
+                        .stroke(Color("EmptyAccentColor"), style: StrokeStyle(lineWidth: 20))
+                    Circle()
+                        .rotation(Angle(degrees:(-(360*progress)-90)))
+                        .trim(from: 0, to: progress)
+                        .stroke(
+                            Color("AccentColor"),
+                            style: StrokeStyle(lineWidth: 20, lineCap: .round)
+                    )
+                    Text("\((timeLeftInPeriod.components.seconds / 60) + 1)")
+                        .fontWeight(.semibold)
+                        .font(.title)
+                }
             } else {
                 Text("Loading...")
             }
@@ -100,6 +122,6 @@ struct DashWidgets: Widget {
 #Preview(as: .systemSmall) {
     DashWidgets()
 } timeline: {
-    let previewPeriod = Period(name: "Testing Period", start: "8:00", end: "10:00")
-    SimpleEntry(date: .now, displayPeriod: previewPeriod)
+//    let previewPeriod = Period(name: "Testing Period", start: "8:00", end: "10:00")
+    SimpleEntry(date: .now)
 }
