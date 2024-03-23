@@ -34,6 +34,36 @@ public struct Period: Decodable {
     var name: String
     var start: String
     var end: String
+    
+    var twelveHrStart: String {
+        let hrMin = start.split(separator: ":")
+        var newHr = Int(hrMin[0])! % 12
+        newHr = newHr == 0 ? 12 : newHr
+        return "\(newHr):\(hrMin[1])"
+    }
+    
+    var twelveHrEnd: String {
+        let hrMin = end.split(separator: ":")
+        var newHr = Int(hrMin[0])! % 12
+        newHr = newHr == 0 ? 12 : newHr
+        return "\(newHr):\(hrMin[1])"
+    }
+    
+    public func getStartAsDate() -> Date {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd ZZZZ"
+        let yearMonthDay = formatter.string(from: .now)
+        formatter.dateFormat = "yyyy/MM/dd ZZZZ HH:mm:ss"
+        return formatter.date(from: "\(yearMonthDay) \(start):00")!
+    }
+    
+    public func getEndAsDate() -> Date {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd ZZZZ"
+        let yearMonthDay = formatter.string(from: .now)
+        formatter.dateFormat = "yyyy/MM/dd ZZZZ HH:mm:ss"
+        return formatter.date(from: "\(yearMonthDay) \(end):00")!
+    }
 }
 
 public struct ApiResponse: Decodable {

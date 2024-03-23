@@ -9,30 +9,48 @@ import WidgetKit
 import SwiftUI
 
 struct Provider: TimelineProvider {
-//    let testPeriod = Period(name: "Testing Period", start: "8:00", end: "10:00")
+    let placeholderTimeInSixthPeriod = Calendar.current.date(bySettingHour: 12, minute: 55, second: 00, of: .now)!
+    let placeholderSixthPeriod = Period(name: "Period 6", start: "12:39", end: "13:21")
     
     func placeholder(in context: Context) -> SimpleEntry {
-        // Feb 9, 2024 13:15:00 CST
-        SimpleEntry(date: Date(timeIntervalSince1970: TimeInterval(1707506100)))
+        return SimpleEntry(date: placeholderTimeInSixthPeriod, displayPeriod: placeholderSixthPeriod, scheduleName: "Regular Day")
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        // Feb 9, 2024 13:15:00 CST
-        let entry = SimpleEntry(date: Date(timeIntervalSince1970: TimeInterval(1707506100)))
+        if context.isPreview {
+            completion(placeholder(in: context))
+            return
+        }
+
+        let entry = SimpleEntry(date: placeholderTimeInSixthPeriod, displayPeriod: placeholderSixthPeriod, scheduleName: "Regular Day")
         completion(entry)
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         var entries: [SimpleEntry] = []
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for minuteOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .minute, value: minuteOffset, to: currentDate)!
-            print(entryDate)
-            let entry = SimpleEntry(date: entryDate)
-            entries.append(entry)
+        
+        let viewContext = PersistenceController.shared.container.viewContext
+        let scheduleFetch = StoredScheduleOnDate.fetchRequest()
+        
+        
+        do {
+            let storedSchedules = try viewContext.fetch(scheduleFetch)
+            
+            let currentDate = Date()
+            if let todaySchedule = storedSchedules.first(where: {
+                Calendar.current.isDate($0.date!, equalTo: currentDate, toGranularity: .day)
+            })?.schedule?.asDayType() {
+                for period in todaySchedule.periods {
+                    let periodStart = period.getStartAsDate()
+                    
+                    let entry = SimpleEntry(date: periodStart, displayPeriod: period, scheduleName: todaySchedule.name)
+                    entries.append(entry)
+                }
+            }
+        } catch {
+            fatalError("Could not fetch from Core Data for widget timeline. \(error)")
         }
+        
 
         let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)
@@ -41,59 +59,54 @@ struct Provider: TimelineProvider {
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
+    let displayPeriod: Period
+    let scheduleName: String
 }
 
 struct DashWidgetsEntryView : View {
-    @Environment(\.managedObjectContext) private var viewContext
     var entry: Provider.Entry
-    
-    @FetchRequest(sortDescriptors: [])
-    private var storedScheduleOnDate: FetchedResults<StoredScheduleOnDate>
-    
-    
-    var todaySchedule: DayType? {
-        storedScheduleOnDate.first(where: {
-            Calendar.current.isDate($0.date!, equalTo: entry.date, toGranularity: .day)
-        })?.schedule?.asDayType()
-    }
-    
-    var displayPeriod: Period? {
-        todaySchedule == nil ? nil : getNextPeriod(schedule: todaySchedule!, atDate: entry.date)
-    }
-    
-    var timeLeftInPeriod: Duration {
-        Duration.seconds(getSecondsToPeriodStartEnd(period: displayPeriod, isEnd: true, atDate: entry.date))
-    }
-    
-    var progress: CGFloat {
-        let secondsToStart = getSecondsToPeriodStartEnd(period: displayPeriod, isEnd: false, atDate: entry.date)
-        return CGFloat(secondsToStart) / CGFloat(Int(timeLeftInPeriod.components.seconds) + secondsToStart)
-    }
-    
     
 
     var body: some View {
-        VStack {
-            Text(entry.date, style: .time)
-            if displayPeriod != nil {
-                ZStack {
-                    Circle()
-                        .stroke(Color("EmptyAccentColor"), style: StrokeStyle(lineWidth: 20))
-                    Circle()
-                        .rotation(Angle(degrees:(-(360*progress)-90)))
-                        .trim(from: 0, to: progress)
-                        .stroke(
-                            Color("AccentColor"),
-                            style: StrokeStyle(lineWidth: 20, lineCap: .round)
-                    )
-                    Text("\((timeLeftInPeriod.components.seconds / 60) + 1)")
-                        .fontWeight(.semibold)
-                        .font(.title)
-                }
-            } else {
-                Text("Loading...")
-            }
+        VStack{
+            // Day type name
+            Text(entry.scheduleName)
+                .font(.footnote)
+//                .fontWeight(.semibold)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .id(entry.scheduleName)
+                .transition(.push(from: .top))
+//                .background(.blue)
+                
+                
+            // Timer
+            Text(entry.displayPeriod.getEndAsDate(), style: .timer)
+                .font(.system(size: 52, weight: .bold))
+                .fontWidth(.compressed)
+//                .frame(minHeight: 0)
+                .padding(0)
+                .dynamicTypeSize(.medium)
+                .minimumScaleFactor(0.8)
+                .id(entry.displayPeriod.getEndAsDate())
+//                .transition(.push(from: .leading))
+                .transition(.move(edge: .leading))
+//                .background(.red)
+            
+            Spacer()
+            
+            // Period information
+            Text("\(entry.displayPeriod.name)\n\(entry.displayPeriod.twelveHrStart)-\(entry.displayPeriod.twelveHrEnd)")
+                .lineLimit(2, reservesSpace: true)
+                .font(.callout)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .id(entry.displayPeriod.name)
+                .transition(.push(from: .bottom))
+//                .background(.green)
+    
+            
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+//        .background(.orange)
     }
 }
 
@@ -114,14 +127,15 @@ struct DashWidgets: Widget {
                     .environment(\.managedObjectContext, persistenceController.container.viewContext)
             }
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("Time Left in Period")
+        .description("A widget to display how much time is left in the current period at a glance.")
     }
 }
 
 #Preview(as: .systemSmall) {
     DashWidgets()
 } timeline: {
-//    let previewPeriod = Period(name: "Testing Period", start: "8:00", end: "10:00")
-    SimpleEntry(date: .now)
+    SimpleEntry(date: Calendar.current.date(bySettingHour: 12, minute: 55, second: 00, of: .now)!, displayPeriod: Period(name: "Period 6", start: "12:39", end: "13:21"), scheduleName: "Regular Day")
+    SimpleEntry(date: Calendar.current.date(bySettingHour: 13, minute: 42, second: 00, of: .now)!, displayPeriod: Period(name: "Period 7", start: "13:25", end: "14:07"), scheduleName: "Regular Day")
+    SimpleEntry(date: Calendar.current.date(bySettingHour: 13, minute: 42, second: 00, of: .now)!, displayPeriod: Period(name: "Period 7", start: "13:25", end: "14:07"), scheduleName: "Common Day")
 }
