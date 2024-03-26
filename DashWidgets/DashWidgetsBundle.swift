@@ -11,6 +11,7 @@ import SwiftUI
 @main
 struct DashWidgetsBundle: WidgetBundle {
     var body: some Widget {
-        DashWidgets()
+        TimerWidget()
+        EndTimeWidget()
     }
 }

@@ -24,7 +24,7 @@
 		3F5912502B752EED00BD42A0 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F59124F2B752EED00BD42A0 /* WidgetKit.framework */; };
 		3F5912522B752EED00BD42A0 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F5912512B752EED00BD42A0 /* SwiftUI.framework */; };
 		3F5912552B752EED00BD42A0 /* DashWidgetsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5912542B752EED00BD42A0 /* DashWidgetsBundle.swift */; };
-		3F5912572B752EED00BD42A0 /* DashWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5912562B752EED00BD42A0 /* DashWidgets.swift */; };
+		3F5912572B752EED00BD42A0 /* TimerWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5912562B752EED00BD42A0 /* TimerWidget.swift */; };
 		3F5912592B752EEF00BD42A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F5912582B752EEF00BD42A0 /* Assets.xcassets */; };
 		3F59125D2B752EEF00BD42A0 /* DashWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3F59124D2B752EED00BD42A0 /* DashWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3F8CA2A42B864B5700F13E25 /* DataStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB335DB2AF302B100028FC8 /* DataStructs.swift */; };
@@ -40,6 +40,7 @@
 		3FB335DC2AF302B100028FC8 /* DataStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB335DB2AF302B100028FC8 /* DataStructs.swift */; };
 		3FB335DD2AF302B100028FC8 /* DataStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB335DB2AF302B100028FC8 /* DataStructs.swift */; };
 		3FB54FE22AEFFAC000623592 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FB54FE12AEFFAC000623592 /* Launch Screen.storyboard */; };
+		3FD9FB942BB0A8C500ED3EB0 /* EndTimeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD9FB932BB0A8C400ED3EB0 /* EndTimeWidget.swift */; };
 		3FF726C62B0BB8450093E54C /* NativeDash.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726C42B0BB8450093E54C /* NativeDash.xcdatamodeld */; };
 		3FF726C82B0BB8950093E54C /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726C72B0BB8950093E54C /* Persistence.swift */; };
 		3FF726C92B0BDBCC0093E54C /* NativeDash.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726C42B0BB8450093E54C /* NativeDash.xcdatamodeld */; };
@@ -116,7 +117,7 @@
 		3F59124F2B752EED00BD42A0 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		3F5912512B752EED00BD42A0 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		3F5912542B752EED00BD42A0 /* DashWidgetsBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashWidgetsBundle.swift; sourceTree = "<group>"; };
-		3F5912562B752EED00BD42A0 /* DashWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashWidgets.swift; sourceTree = "<group>"; };
+		3F5912562B752EED00BD42A0 /* TimerWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerWidget.swift; sourceTree = "<group>"; };
 		3F5912582B752EEF00BD42A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F59125A2B752EEF00BD42A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F8CA2AB2B88EFEA00F13E25 /* NativeDash.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NativeDash.entitlements; sourceTree = "<group>"; };
@@ -124,6 +125,7 @@
 		3FAE55002B752F7500482F6B /* AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
 		3FB335DB2AF302B100028FC8 /* DataStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStructs.swift; sourceTree = "<group>"; };
 		3FB54FE12AEFFAC000623592 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		3FD9FB932BB0A8C400ED3EB0 /* EndTimeWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndTimeWidget.swift; sourceTree = "<group>"; };
 		3FF726C52B0BB8450093E54C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		3FF726C72B0BB8950093E54C /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		3FF726CB2B0BF9130093E54C /* StoredPeriod+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoredPeriod+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -242,7 +244,8 @@
 			isa = PBXGroup;
 			children = (
 				3F5912542B752EED00BD42A0 /* DashWidgetsBundle.swift */,
-				3F5912562B752EED00BD42A0 /* DashWidgets.swift */,
+				3F5912562B752EED00BD42A0 /* TimerWidget.swift */,
+				3FD9FB932BB0A8C400ED3EB0 /* EndTimeWidget.swift */,
 				3F5912582B752EEF00BD42A0 /* Assets.xcassets */,
 				3F59125A2B752EEF00BD42A0 /* Info.plist */,
 			);
@@ -436,13 +439,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F5912552B752EED00BD42A0 /* DashWidgetsBundle.swift in Sources */,
+				3FD9FB942BB0A8C500ED3EB0 /* EndTimeWidget.swift in Sources */,
 				3F8CA2AA2B864B6E00F13E25 /* StoredDayType+CoreDataProperties.swift in Sources */,
 				3F8CA2A52B864B6300F13E25 /* NativeDash.xcdatamodeld in Sources */,
 				3F8CA2A72B864B6800F13E25 /* StoredPeriod+CoreDataClass.swift in Sources */,
 				3FAE55032B752F7500482F6B /* AppGroup.swift in Sources */,
 				3F8CA2A62B864B6600F13E25 /* Persistence.swift in Sources */,
 				3F8CA2A42B864B5700F13E25 /* DataStructs.swift in Sources */,
-				3F5912572B752EED00BD42A0 /* DashWidgets.swift in Sources */,
+				3F5912572B752EED00BD42A0 /* TimerWidget.swift in Sources */,
 				3F8CA2A92B864B6C00F13E25 /* StoredDayType+CoreDataClass.swift in Sources */,
 				3F8CA2A82B864B6A00F13E25 /* StoredPeriod+CoreDataProperties.swift in Sources */,
 			);
@@ -514,6 +518,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -566,6 +571,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -654,9 +660,10 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -691,9 +698,10 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -725,7 +733,7 @@
 				INFOPLIST_FILE = DashWidgets/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = DashWidgets;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -760,7 +768,7 @@
 				INFOPLIST_FILE = DashWidgets/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = DashWidgets;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
