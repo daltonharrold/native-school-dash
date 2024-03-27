@@ -51,7 +51,6 @@ struct EndTimeProvider: TimelineProvider {
         let viewContext = PersistenceController.shared.container.viewContext
         let scheduleFetch = StoredScheduleOnDate.fetchRequest()
         
-        // TODO: Make it so that end of day and start of day show static start time for school tomorrow.
         do {
             let storedSchedules = try viewContext.fetch(scheduleFetch)
             
@@ -62,7 +61,6 @@ struct EndTimeProvider: TimelineProvider {
                 for index in 0..<todaySchedule.periods.count-1 {
                     let loopedPeriod = todaySchedule.periods[index]
                     
-                    // TODO: make it so that passing periods show next period's end
                     // Add the period to entries
                     
                     // Change at period end, so that passing periods will show as the end of next period
