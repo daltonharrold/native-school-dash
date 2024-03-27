@@ -59,22 +59,45 @@ struct EndTimeProvider: TimelineProvider {
             if let todaySchedule = storedSchedules.first(where: {
                 Calendar.current.isDate($0.date!, equalTo: currentDate, toGranularity: .day)
             })?.schedule?.asDayType() {
-                for index in 0..<todaySchedule.periods.count {
+                for index in 0..<todaySchedule.periods.count-1 {
                     let loopedPeriod = todaySchedule.periods[index]
                     
                     // TODO: make it so that passing periods show next period's end
                     // Add the period to entries
-                    let periodStart = loopedPeriod.getStartAsDate()
                     
-                    let entry = EndTimeEntry(date: periodStart, displayPeriod: loopedPeriod, scheduleName: todaySchedule.name)
+                    // Change at period end, so that passing periods will show as the end of next period
+                    // Note: This means that the first period needs to be scheduled seperately below
+                    let periodEnd = loopedPeriod.getEndAsDate()
+                    
+                    
+                    let entry = EndTimeEntry(date: periodEnd, displayPeriod: todaySchedule.periods[index+1], scheduleName: todaySchedule.name)
                     entries.append(entry)
                 }
+                
+                
+                // Have an entry at the end of the day to have the start time of the next day shown
+                if let tomorrowSchedule = storedSchedules.first(where: {
+                    Calendar.current.isDate($0.date!, equalTo: Calendar.current.date(byAdding: .day, value: 1, to: currentDate)!, toGranularity: .day)
+                })?.schedule?.asDayType() {
+                    // At EOD, show tomorrow's start
+                    let endOfDay: Date = todaySchedule.periods.last!.getEndAsDate()
+                    let overnightPeriod: Period = Period(name: "Night time", start: todaySchedule.periods.last!.end, end: tomorrowSchedule.periods.first!.start)
+                    let overnightEntry = EndTimeEntry(date: endOfDay, displayPeriod: overnightPeriod, scheduleName: tomorrowSchedule.name)
+                    
+                    entries.append(overnightEntry)
+                    
+                    // Schedule the first period of tomorrow
+                    let tomorrowFirstPeriod: Period = tomorrowSchedule.periods.first!
+                    let tomorrowFirstPeriodEntry: EndTimeEntry = EndTimeEntry(date: tomorrowFirstPeriod.getStartAsDate(), displayPeriod: tomorrowFirstPeriod, scheduleName: tomorrowSchedule.name)
+                    
+                    entries.append(tomorrowFirstPeriodEntry)
+                }
             }
+            
         } catch {
             fatalError("Could not fetch from Core Data for widget timeline. \(error)")
         }
         
-
         let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)
     }
