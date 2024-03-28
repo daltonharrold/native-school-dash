@@ -122,65 +122,92 @@ struct TimerEntry: TimelineEntry {
 
 struct DashWidgetsEntryView : View {
     var entry: TimerProvider.Entry
-    
+    @Environment(\.widgetFamily) var family
 
     var body: some View {
-        VStack{
-            // Day type name
+        switch family {
+        case .systemSmall:
+            VStack{
+                // Day type name
                 Text(entry.scheduleName)
                     .font(.footnote)
                 //                .fontWeight(.semibold)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .id(entry.scheduleName)
                     .transition(.push(from: .top))
-//                .background(.blue)
+                //                .background(.blue)
                 
                 
-            // Timer
-
-            if entry.tomorrowSchoolStart == nil {
-                Text(entry.displayPeriod.getEndAsDate(), style: .timer)
-                    .font(.system(size: 52, weight: .bold))
-                    .fontWidth(.compressed)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(0)
-                    .dynamicTypeSize(.medium)
-                    .minimumScaleFactor(0.8)
-                    .id(entry.displayPeriod.getEndAsDate())
-                //                .transition(.push(from: .leading))
-                    .transition(.move(edge: .leading))
+                // Timer
                 
-                //                .background(.red)
-            } else {
-                Text(entry.tomorrowSchoolStart!, style: .time)
-                    .font(.system(size: 52, weight: .bold))
-                    .fontWidth(.compressed)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(0)
-                    .dynamicTypeSize(.medium)
-                    .minimumScaleFactor(0.8)
-                    .id(entry.displayPeriod.getEndAsDate())
-                //                .transition(.push(from: .leading))
-                    .transition(.move(edge: .leading))
+                if entry.tomorrowSchoolStart == nil {
+                    Text(entry.displayPeriod.getEndAsDate(), style: .timer)
+                        .font(.system(size: 52, weight: .bold))
+                        .fontWidth(.compressed)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(0)
+                        .dynamicTypeSize(.medium)
+                        .minimumScaleFactor(0.8)
+                        .id(entry.displayPeriod.getEndAsDate())
+                    //                .transition(.push(from: .leading))
+                        .transition(.move(edge: .leading))
+                    
+                    //                .background(.red)
+                } else {
+                    Text(entry.tomorrowSchoolStart!, style: .time)
+                        .font(.system(size: 52, weight: .bold))
+                        .fontWidth(.compressed)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(0)
+                        .dynamicTypeSize(.medium)
+                        .minimumScaleFactor(0.8)
+                        .id(entry.displayPeriod.getEndAsDate())
+                    //                .transition(.push(from: .leading))
+                        .transition(.move(edge: .leading))
+                    
+                    //                .background(.red)
+                }
                 
-                //                .background(.red)
-            }
-            
-            Spacer()
-            
-            // Period information
+                Spacer()
+                
+                // Period information
                 Text("\(entry.displayPeriod.name)\n\(entry.displayPeriod.startInLocale)-\(entry.displayPeriod.endInLocale)")
                     .lineLimit(2, reservesSpace: true)
                     .font(.callout)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .id(entry.displayPeriod.name)
                     .transition(.push(from: .bottom))
-//                .background(.green)
-    
-            
+                //                .background(.green)
+                
+                
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+            //        .background(.orange)
+        case .accessoryRectangular:
+            VStack {
+                if entry.tomorrowSchoolStart == nil {
+                    Text(entry.displayPeriod.getEndAsDate(), style: .timer)
+                        .font(.system(size: 42, weight: .bold))
+                        .fontWidth(.compressed)
+                        .minimumScaleFactor(0.9)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                } else {
+                    Text(entry.tomorrowSchoolStart!, style: .time)
+                        .font(.system(size: 42, weight: .bold))
+                        .fontWidth(.compressed)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        
+                }
+            }
+            Text("\(entry.displayPeriod.name)")
+                .lineLimit(1, reservesSpace: true)
+                .font(.callout)
+                .fontWeight(.semibold)
+                .frame(maxWidth: .infinity, alignment: .leading)
+
+        default:
+            Spacer()
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-//        .background(.orange)
     }
 }
 
@@ -196,7 +223,7 @@ struct TimerWidget: Widget {
         }
         .configurationDisplayName("Time Left in Period")
         .description("A widget to display how much time is left in the current period at a glance.")
-        .supportedFamilies([.systemSmall])
+        .supportedFamilies([.systemSmall, .accessoryRectangular])
     }
 }
 

@@ -110,20 +110,23 @@ struct EndTimeEntry: TimelineEntry {
 struct EndTimeWidgetEntryView : View {
     var entry: EndTimeProvider.Entry
     
+    @Environment(\.widgetFamily) var family
 
     var body: some View {
-        VStack{
-            // Day type name
+        switch family {
+        case .systemSmall:
+            VStack{
+                // Day type name
                 Text(entry.scheduleName)
                     .font(.footnote)
                 //                .fontWeight(.semibold)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .id(entry.scheduleName)
                     .transition(.push(from: .top))
-//                .background(.blue)
+                //                .background(.blue)
                 
-            
-            // Timer
+                
+                // Timer
                 Text(entry.displayPeriod.getEndAsDate(), style: .time)
                     .font(.system(size: 52, weight: .bold))
                     .fontWidth(.compressed)
@@ -134,23 +137,40 @@ struct EndTimeWidgetEntryView : View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                 //                .transition(.push(from: .leading))
                     .transition(.move(edge: .leading))
-//                .background(.red)
-            
-            Spacer()
-            
-            // Period information
+                //                .background(.red)
+                
+                Spacer()
+                
+                // Period information
                 Text("\(entry.displayPeriod.name)\n\(entry.displayPeriod.startInLocale)-\(entry.displayPeriod.endInLocale)")
                     .lineLimit(2, reservesSpace: true)
                     .font(.callout)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .id(entry.displayPeriod.name)
                     .transition(.push(from: .bottom))
-//                .background(.green)
-    
-            
+                //                .background(.green)
+                
+                
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+            //        .background(.orange)
+        case .accessoryRectangular:
+            VStack{
+                // Timer
+                Text(entry.displayPeriod.getEndAsDate(), style: .time)
+                    .font(.system(size: 42, weight: .bold))
+                    .fontWidth(.compressed)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                Text("\(entry.displayPeriod.name)")
+                    .lineLimit(1, reservesSpace: true)
+                    .font(.callout)
+                    .fontWeight(.semibold)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+        default:
+            Spacer()
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-//        .background(.orange)
     }
 }
 
@@ -170,7 +190,7 @@ struct EndTimeWidget: Widget {
         }
         .configurationDisplayName("Period End Time")
         .description("A widget to display at what time the current period ends, for when you wnat to use your own clock")
-        .supportedFamilies([.systemSmall])
+        .supportedFamilies([.systemSmall, .accessoryRectangular])
     }
 }
 
