@@ -9,7 +9,7 @@ import SwiftUI
 
 
 struct SingleCard: View {
-    @State var schedule: DayType
+    var schedule: DayType
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 8)
@@ -24,13 +24,13 @@ struct SingleCard: View {
                     horizontalSpacing: 10.0,
                     verticalSpacing: 10.0
                 ) {
-                    ForEach(schedule.to12HourTime().periods, id: \.name) { period in
+                    ForEach(schedule.periods, id: \.name) { period in
                         GridRow {
                             Text(period.name)
                                 .multilineTextAlignment(.trailing)
                                 .gridColumnAlignment(.trailing)
                             Spacer().frame(width: 15, height: 1)
-                            Text("\(period.start) - \(period.end)")
+                            Text("\(period.startInLocale) - \(period.endInLocale)")
                                 .gridColumnAlignment(.leading)
                         }
                     }

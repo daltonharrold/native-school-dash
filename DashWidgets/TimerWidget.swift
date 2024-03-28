@@ -49,7 +49,7 @@ struct TimerProvider: TimelineProvider {
         let viewContext = PersistenceController.shared.container.viewContext
         let scheduleFetch = StoredScheduleOnDate.fetchRequest()
         
-        // TODO: Make it so that end of day and start of day show static start time for school tomorrow.
+       
         do {
             let storedSchedules = try viewContext.fetch(scheduleFetch)
             
@@ -76,6 +76,18 @@ struct TimerProvider: TimelineProvider {
                         entries.append(passingEntry)
                     }
                 }
+                // Have an entry at the end of the day to have the start time of the next day shown
+                if let tomorrowSchedule = storedSchedules.first(where: {
+                    Calendar.current.isDate($0.date!, equalTo: Calendar.current.date(byAdding: .day, value: 1, to: currentDate)!, toGranularity: .day)
+                })?.schedule?.asDayType() {
+                    // At EOD, show tomorrow's start
+                    let endOfDay: Date = todaySchedule.periods.last!.getEndAsDate()
+                    let overnightPeriod: Period = Period(name: "Night time", start: todaySchedule.periods.last!.end, end: tomorrowSchedule.periods.first!.start)
+                    let overnightEntry = TimerEntry(date: endOfDay, displayPeriod: overnightPeriod, scheduleName: tomorrowSchedule.name, tomorrowSchoolStart: tomorrowSchedule.periods.first!.getStartAsDate())
+                    
+                    entries.append(overnightEntry)
+
+                }
             }
         } catch {
             fatalError("Could not fetch from Core Data for widget timeline. \(error)")
@@ -91,6 +103,21 @@ struct TimerEntry: TimelineEntry {
     let date: Date
     let displayPeriod: Period
     let scheduleName: String
+    let tomorrowSchoolStart: Date?
+    
+    init(date: Date, displayPeriod: Period, scheduleName: String, tomorrowSchoolStart: Date?) {
+        self.date = date
+        self.displayPeriod = displayPeriod
+        self.scheduleName = scheduleName
+        self.tomorrowSchoolStart = tomorrowSchoolStart
+    }
+    
+    init(date: Date, displayPeriod: Period, scheduleName: String) {
+        self.date = date
+        self.displayPeriod = displayPeriod
+        self.scheduleName = scheduleName
+        self.tomorrowSchoolStart = nil
+    }
 }
 
 struct DashWidgetsEntryView : View {
@@ -111,23 +138,38 @@ struct DashWidgetsEntryView : View {
                 
             // Timer
 
+            if entry.tomorrowSchoolStart == nil {
                 Text(entry.displayPeriod.getEndAsDate(), style: .timer)
                     .font(.system(size: 52, weight: .bold))
                     .fontWidth(.compressed)
-                //                .frame(minHeight: 0)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(0)
                     .dynamicTypeSize(.medium)
                     .minimumScaleFactor(0.8)
                     .id(entry.displayPeriod.getEndAsDate())
                 //                .transition(.push(from: .leading))
                     .transition(.move(edge: .leading))
-        
-//                .background(.red)
+                
+                //                .background(.red)
+            } else {
+                Text(entry.tomorrowSchoolStart!, style: .time)
+                    .font(.system(size: 52, weight: .bold))
+                    .fontWidth(.compressed)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(0)
+                    .dynamicTypeSize(.medium)
+                    .minimumScaleFactor(0.8)
+                    .id(entry.displayPeriod.getEndAsDate())
+                //                .transition(.push(from: .leading))
+                    .transition(.move(edge: .leading))
+                
+                //                .background(.red)
+            }
             
             Spacer()
             
             // Period information
-                Text("\(entry.displayPeriod.name)\n\(entry.displayPeriod.twelveHrStart)-\(entry.displayPeriod.twelveHrEnd)")
+                Text("\(entry.displayPeriod.name)\n\(entry.displayPeriod.startInLocale)-\(entry.displayPeriod.endInLocale)")
                     .lineLimit(2, reservesSpace: true)
                     .font(.callout)
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -154,7 +196,7 @@ struct TimerWidget: Widget {
         }
         .configurationDisplayName("Time Left in Period")
         .description("A widget to display how much time is left in the current period at a glance.")
-//        .supportedFamilies([.systemSmall, .systemMedium])
+        .supportedFamilies([.systemSmall])
     }
 }
 

@@ -17,7 +17,6 @@
 		3F09BC502AB2161000924ACE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F09BC4F2AB2161000924ACE /* Assets.xcassets */; };
 		3F09BC532AB2161000924ACE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F09BC522AB2161000924ACE /* Preview Assets.xcassets */; };
 		3F2F8BE02AEC04F300393F60 /* SingleCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2F8BDF2AEC04F300393F60 /* SingleCard.swift */; };
-		3F2F8BE12AEC04F300393F60 /* SingleCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2F8BDF2AEC04F300393F60 /* SingleCard.swift */; };
 		3F2F8BE32AEF4EF700393F60 /* ScheduleStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2F8BE22AEF4EF700393F60 /* ScheduleStack.swift */; };
 		3F2F8BE52AEF4F3C00393F60 /* PeriodTimerRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2F8BE42AEF4F3C00393F60 /* PeriodTimerRing.swift */; };
 		3F2F8BE62AEF4F3C00393F60 /* PeriodTimerRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2F8BE42AEF4F3C00393F60 /* PeriodTimerRing.swift */; };
@@ -196,8 +195,8 @@
 				3F09BC392AB2160D00924ACE /* NativeDashApp.swift */,
 				3F09BC3B2AB2160D00924ACE /* ContentView.swift */,
 				3F2F8BE22AEF4EF700393F60 /* ScheduleStack.swift */,
-				3FB54FE12AEFFAC000623592 /* Launch Screen.storyboard */,
 				3F2F8BDF2AEC04F300393F60 /* SingleCard.swift */,
+				3FB54FE12AEFFAC000623592 /* Launch Screen.storyboard */,
 				3F09BC3D2AB2160F00924ACE /* Assets.xcassets */,
 				3F09BC3F2AB2160F00924ACE /* Preview Content */,
 			);
@@ -427,7 +426,6 @@
 				3FB335DD2AF302B100028FC8 /* DataStructs.swift in Sources */,
 				3FF726D62B0BF9130093E54C /* StoredDayType+CoreDataProperties.swift in Sources */,
 				3FAE55022B752F7500482F6B /* AppGroup.swift in Sources */,
-				3F2F8BE12AEC04F300393F60 /* SingleCard.swift in Sources */,
 				3FF726D02B0BF9130093E54C /* StoredPeriod+CoreDataClass.swift in Sources */,
 				3F09BC4C2AB2160F00924ACE /* NativeDashApp.swift in Sources */,
 				3FF726D42B0BF9130093E54C /* StoredDayType+CoreDataClass.swift in Sources */,

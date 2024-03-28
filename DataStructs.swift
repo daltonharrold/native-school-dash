@@ -35,18 +35,26 @@ public struct Period: Decodable {
     var start: String
     var end: String
     
-    var twelveHrStart: String {
-        let hrMin = start.split(separator: ":")
-        var newHr = Int(hrMin[0])! % 12
-        newHr = newHr == 0 ? 12 : newHr
-        return "\(newHr):\(hrMin[1])"
+    var startInLocale: String {
+        if usesAMPM() {
+            let hrMin = start.split(separator: ":")
+            var newHr = Int(hrMin[0])! % 12
+            newHr = newHr == 0 ? 12 : newHr
+            return "\(newHr):\(hrMin[1])"
+        } else {
+            return start
+        }
     }
     
-    var twelveHrEnd: String {
-        let hrMin = end.split(separator: ":")
-        var newHr = Int(hrMin[0])! % 12
-        newHr = newHr == 0 ? 12 : newHr
-        return "\(newHr):\(hrMin[1])"
+    var endInLocale: String {
+        if usesAMPM() {
+            let hrMin = end.split(separator: ":")
+            var newHr = Int(hrMin[0])! % 12
+            newHr = newHr == 0 ? 12 : newHr
+            return "\(newHr):\(hrMin[1])"
+        } else {
+            return end
+        }
     }
     
     public func getStartAsDate() -> Date {
@@ -63,6 +71,17 @@ public struct Period: Decodable {
         let yearMonthDay = formatter.string(from: .now)
         formatter.dateFormat = "yyyy/MM/dd ZZZZ HH:mm:ss"
         return formatter.date(from: "\(yearMonthDay) \(end):00")!
+    }
+}
+
+private func usesAMPM() -> Bool {
+    let locale = NSLocale.current
+    let dateFormat = DateFormatter.dateFormat(fromTemplate: "j", options: 0, locale: locale)!
+    if dateFormat.contains("a") {
+        return true
+    }
+    else {
+        return false
     }
 }
 

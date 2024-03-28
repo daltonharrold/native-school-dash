@@ -128,10 +128,10 @@ struct EndTimeWidgetEntryView : View {
                     .font(.system(size: 52, weight: .bold))
                     .fontWidth(.compressed)
                 //                .frame(minHeight: 0)
-                    .padding(0)
                     .dynamicTypeSize(.medium)
                     .minimumScaleFactor(0.8)
                     .id(entry.displayPeriod.getEndAsDate())
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 //                .transition(.push(from: .leading))
                     .transition(.move(edge: .leading))
 //                .background(.red)
@@ -139,7 +139,7 @@ struct EndTimeWidgetEntryView : View {
             Spacer()
             
             // Period information
-                Text("\(entry.displayPeriod.name)\n\(entry.displayPeriod.twelveHrStart)-\(entry.displayPeriod.twelveHrEnd)")
+                Text("\(entry.displayPeriod.name)\n\(entry.displayPeriod.startInLocale)-\(entry.displayPeriod.endInLocale)")
                     .lineLimit(2, reservesSpace: true)
                     .font(.callout)
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -170,7 +170,7 @@ struct EndTimeWidget: Widget {
         }
         .configurationDisplayName("Period End Time")
         .description("A widget to display at what time the current period ends, for when you wnat to use your own clock")
-//        .supportedFamilies([.systemSmall, .systemMedium])
+        .supportedFamilies([.systemSmall])
     }
 }
 
