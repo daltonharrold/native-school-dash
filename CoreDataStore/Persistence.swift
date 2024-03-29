@@ -32,7 +32,13 @@ struct PersistenceController {
     let container: NSPersistentContainer
 
     init(inMemory: Bool = false) {
+        let storeURL = AppGroup.dashManagement.containerURL.appendingPathComponent("NativeDash.sqlite")
+        let description = NSPersistentStoreDescription(url: storeURL)
+        
         container = NSPersistentContainer(name: "NativeDash")
+        container.persistentStoreDescriptions = [description]
+        
+        
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }

@@ -10,20 +10,15 @@ import BackgroundTasks
 
 @main
 struct NativeDashApp: App {
-    @State var todaySchedule: DayType = DayType(name: "Fetch Awaiting...", periods: [])
-    @State var schedules: [DayType] = []
-    
     let persistenceController = PersistenceController.shared
     var body: some Scene {
         WindowGroup {
-            ContentView(todaySchedule: $todaySchedule, schedules: schedules)
+            ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
-        
         }
     }
     init() {
-        self.todaySchedule = DayType(name: "Fetch Awaiting...", periods: [])
-        self.schedules = []
+
         /*
         // Register background task with the system
         BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.icloud-djharrold53.NativeDash.DayTypeUpdater", using: nil) { task in

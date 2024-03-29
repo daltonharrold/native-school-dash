@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ScheduleStack: View {
-    @Binding var schedules: [DayType]
+    @State var schedules: [DayType]
     var body: some View {
             VStack {
                 ForEach(schedules.indices, id: \.self) { index in
@@ -32,5 +32,5 @@ struct ScheduleStack: View {
             ]
         )
     ]
-    return ScheduleStack(schedules: $schedules)
+    return ScheduleStack(schedules: schedules)
 }
