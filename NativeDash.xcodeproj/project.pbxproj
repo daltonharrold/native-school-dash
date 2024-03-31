@@ -39,7 +39,6 @@
 		3FB335DD2AF302B100028FC8 /* DataStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB335DB2AF302B100028FC8 /* DataStructs.swift */; };
 		3FB54FE22AEFFAC000623592 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FB54FE12AEFFAC000623592 /* Launch Screen.storyboard */; };
 		3FBDD3392BB8EA4800FCD9D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBDD3382BB8EA4800FCD9D1 /* AppDelegate.swift */; };
-		3FBDD33A2BB8EA4800FCD9D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBDD3382BB8EA4800FCD9D1 /* AppDelegate.swift */; };
 		3FD9FB942BB0A8C500ED3EB0 /* EndTimeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD9FB932BB0A8C400ED3EB0 /* EndTimeWidget.swift */; };
 		3FF726C62B0BB8450093E54C /* NativeDash.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726C42B0BB8450093E54C /* NativeDash.xcdatamodeld */; };
 		3FF726C82B0BB8950093E54C /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726C72B0BB8950093E54C /* Persistence.swift */; };
@@ -439,7 +438,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3FBDD33A2BB8EA4800FCD9D1 /* AppDelegate.swift in Sources */,
 				3F5912552B752EED00BD42A0 /* DashWidgetsBundle.swift in Sources */,
 				3FD9FB942BB0A8C500ED3EB0 /* EndTimeWidget.swift in Sources */,
 				3F8CA2AA2B864B6E00F13E25 /* StoredDayType+CoreDataProperties.swift in Sources */,
