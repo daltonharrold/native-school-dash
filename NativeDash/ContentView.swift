@@ -106,6 +106,7 @@ struct ContentView: View {
 //                schedules = [DayType(name: "Schedule Fetch Error", periods: [])]
             }
         }
+ 
 
     }
 }
