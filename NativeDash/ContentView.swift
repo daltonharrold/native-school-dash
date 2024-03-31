@@ -12,31 +12,16 @@ import SwiftUI
 struct ContentView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(sortDescriptors: [])
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(key: "name", ascending: true)])
     private var todayScheduleStore: FetchedResults<StoredDayType>
 
 
     @FetchRequest(sortDescriptors: [])
     private var weeklyScheduleStore: FetchedResults<StoredScheduleOnDate>
     
-    private var todaySchedule: DayType? {
-        let scheduleFromWeeklyStore: [StoredScheduleOnDate] = weeklyScheduleStore.filter {Calendar.current.isDateInToday($0.date!)}
-        if scheduleFromWeeklyStore.count > 0 {
-            return scheduleFromWeeklyStore[0].schedule!.asDayType()
-        } else {
-            return nil
-        }
-    }
+    @State private var todaySchedule: DayType?
     
-    private var schedules: [DayType] {
-        var tmpSchedules: [DayType] = []
-        for dayType in todayScheduleStore {
-            tmpSchedules.append(DayType(name: dayType.wrappedName, periods: dayType.periodsArray))
-        }
-        return tmpSchedules
-    }
-
-    let calendar = Calendar(identifier: .iso8601)
+    @State private var schedules: [DayType]?
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
@@ -44,17 +29,30 @@ struct ContentView: View {
             if todaySchedule != nil {
                 PeriodTimerRing(todaySchedule: todaySchedule!)
             }
-            ScheduleStack(schedules: schedules)
-                .padding(.horizontal, 40)
+        
+            if schedules != nil {
+                ScheduleStack(schedules: schedules!)
+                    .padding(.horizontal, 40)
+            }
             
             Text("JBS Dash for iOS made with ❤️ by Dalton Harrold")
                 .font(.footnote)
                 .foregroundStyle(.gray)
                 .padding(.top, 20)
         }
-
+        // Before view loads, update schedules and todaySchedule
+        .onAppear(perform: {
+            let scheduleFromWeeklyStore = weeklyScheduleStore.first(where: {Calendar.current.isDateInToday($0.date!)})?.schedule?.asDayType()
+            todaySchedule = scheduleFromWeeklyStore
+            
+            var tmpSchedules: [DayType] = []
+            for dayType in todayScheduleStore {
+                tmpSchedules.append(dayType.asDayType())
+            }
+            tmpSchedules.move(fromOffsets: [tmpSchedules.firstIndex(where: {$0.name == todaySchedule?.name}) ?? 0], toOffset: 0)
+            schedules = tmpSchedules
+        })
         // Fetch schedule data from API to keep StoredDayType up to date
-        
         .task {
             do {
                 let fetchedSchedules = try await getDayTypeFromApi()
@@ -94,7 +92,7 @@ struct ContentView: View {
                 
                 for (index, date) in dates.enumerated() {
                     // Separate date object into components and get data from API
-                    let components = calendar.dateComponents([.year, .month, .day], from: date)
+                    let components = Calendar.current.dateComponents([.year, .month, .day], from: date)
                     let scheduleOnDate = try await getDayTypeFromApi(onDay: YearMonthDay(components: components))
                     
                     // Save schedules in Core Data for quick future reference
