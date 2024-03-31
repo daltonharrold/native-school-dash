@@ -19,7 +19,6 @@
 		3F2F8BE02AEC04F300393F60 /* SingleCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2F8BDF2AEC04F300393F60 /* SingleCard.swift */; };
 		3F2F8BE32AEF4EF700393F60 /* ScheduleStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2F8BE22AEF4EF700393F60 /* ScheduleStack.swift */; };
 		3F2F8BE52AEF4F3C00393F60 /* PeriodTimerRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2F8BE42AEF4F3C00393F60 /* PeriodTimerRing.swift */; };
-		3F2F8BE62AEF4F3C00393F60 /* PeriodTimerRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2F8BE42AEF4F3C00393F60 /* PeriodTimerRing.swift */; };
 		3F5912502B752EED00BD42A0 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F59124F2B752EED00BD42A0 /* WidgetKit.framework */; };
 		3F5912522B752EED00BD42A0 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F5912512B752EED00BD42A0 /* SwiftUI.framework */; };
 		3F5912552B752EED00BD42A0 /* DashWidgetsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5912542B752EED00BD42A0 /* DashWidgetsBundle.swift */; };
@@ -39,6 +38,8 @@
 		3FB335DC2AF302B100028FC8 /* DataStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB335DB2AF302B100028FC8 /* DataStructs.swift */; };
 		3FB335DD2AF302B100028FC8 /* DataStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB335DB2AF302B100028FC8 /* DataStructs.swift */; };
 		3FB54FE22AEFFAC000623592 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FB54FE12AEFFAC000623592 /* Launch Screen.storyboard */; };
+		3FBDD3392BB8EA4800FCD9D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBDD3382BB8EA4800FCD9D1 /* AppDelegate.swift */; };
+		3FBDD33A2BB8EA4800FCD9D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBDD3382BB8EA4800FCD9D1 /* AppDelegate.swift */; };
 		3FD9FB942BB0A8C500ED3EB0 /* EndTimeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD9FB932BB0A8C400ED3EB0 /* EndTimeWidget.swift */; };
 		3FF726C62B0BB8450093E54C /* NativeDash.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726C42B0BB8450093E54C /* NativeDash.xcdatamodeld */; };
 		3FF726C82B0BB8950093E54C /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726C72B0BB8950093E54C /* Persistence.swift */; };
@@ -124,6 +125,7 @@
 		3FAE55002B752F7500482F6B /* AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
 		3FB335DB2AF302B100028FC8 /* DataStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStructs.swift; sourceTree = "<group>"; };
 		3FB54FE12AEFFAC000623592 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		3FBDD3382BB8EA4800FCD9D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3FD9FB932BB0A8C400ED3EB0 /* EndTimeWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndTimeWidget.swift; sourceTree = "<group>"; };
 		3FF726C52B0BB8450093E54C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		3FF726C72B0BB8950093E54C /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -165,7 +167,6 @@
 			children = (
 				3F8CA2AC2B88F23900F13E25 /* DashWidgetsExtension.entitlements */,
 				3FF726D82B0BF95A0093E54C /* CoreDataStore */,
-				3F2F8BE42AEF4F3C00393F60 /* PeriodTimerRing.swift */,
 				3FB335DB2AF302B100028FC8 /* DataStructs.swift */,
 				3FAE55002B752F7500482F6B /* AppGroup.swift */,
 				3F399CCD2AFD492600A3505F /* APIreturn.json */,
@@ -193,7 +194,9 @@
 				3F8CA2AB2B88EFEA00F13E25 /* NativeDash.entitlements */,
 				3F399CCC2AFC479800A3505F /* Info.plist */,
 				3F09BC392AB2160D00924ACE /* NativeDashApp.swift */,
+				3FBDD3382BB8EA4800FCD9D1 /* AppDelegate.swift */,
 				3F09BC3B2AB2160D00924ACE /* ContentView.swift */,
+				3F2F8BE42AEF4F3C00393F60 /* PeriodTimerRing.swift */,
 				3F2F8BE22AEF4EF700393F60 /* ScheduleStack.swift */,
 				3F2F8BDF2AEC04F300393F60 /* SingleCard.swift */,
 				3FB54FE12AEFFAC000623592 /* Launch Screen.storyboard */,
@@ -402,6 +405,7 @@
 				3FF726C82B0BB8950093E54C /* Persistence.swift in Sources */,
 				3F2F8BE32AEF4EF700393F60 /* ScheduleStack.swift in Sources */,
 				3F2F8BE02AEC04F300393F60 /* SingleCard.swift in Sources */,
+				3FBDD3392BB8EA4800FCD9D1 /* AppDelegate.swift in Sources */,
 				3FF726C62B0BB8450093E54C /* NativeDash.xcdatamodeld in Sources */,
 				3FF726D52B0BF9130093E54C /* StoredDayType+CoreDataProperties.swift in Sources */,
 				3FAE55012B752F7500482F6B /* AppGroup.swift in Sources */,
@@ -418,7 +422,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F2F8BE62AEF4F3C00393F60 /* PeriodTimerRing.swift in Sources */,
 				3FF726D22B0BF9130093E54C /* StoredPeriod+CoreDataProperties.swift in Sources */,
 				3F09BC4E2AB2160F00924ACE /* ContentView.swift in Sources */,
 				3FF726C92B0BDBCC0093E54C /* NativeDash.xcdatamodeld in Sources */,
@@ -436,6 +439,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FBDD33A2BB8EA4800FCD9D1 /* AppDelegate.swift in Sources */,
 				3F5912552B752EED00BD42A0 /* DashWidgetsBundle.swift in Sources */,
 				3FD9FB942BB0A8C500ED3EB0 /* EndTimeWidget.swift in Sources */,
 				3F8CA2AA2B864B6E00F13E25 /* StoredDayType+CoreDataProperties.swift in Sources */,
