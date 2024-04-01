@@ -11,6 +11,7 @@ import BackgroundTasks
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     let appRefreshTaskId: String = "com.icloud-djharrold53.NativeDash.DayTypeUpdater"
+    let viewContext = PersistenceController.shared.container.viewContext
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -34,19 +35,19 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         UserDefaults.standard.setValue(count+1, forKey: "BG_task_run_count")
         print("[NativeDash BG Scheduler]: Running scheduled task...")
         
-        
-        
-        
-        task.expirationHandler = {
-            
+        let worker = Task {
+            await updateScheduleStores(viewContext:viewContext)
+            task.setTaskCompleted(success: true)
         }
         
-        task.setTaskCompleted(success: true)
+        task.expirationHandler = {
+            print("[NativeDash]: Cancelling background task...")
+            worker.cancel()
+        }
     }
     
     
     func scheduleTask() {
-        BGTaskScheduler.shared.cancelAllTaskRequests()
         // Manually triger task execution:
         // e -l objc -- (void)[[BGTaskScheduler sharedScheduler] _simulateLaunchForTaskWithIdentifier:@"com.icloud-djharrold53.NativeDash.DayTypeUpdater"]
         

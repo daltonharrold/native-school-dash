@@ -23,6 +23,11 @@ struct ContentView: View {
     
     @State private var schedules: [DayType]?
     
+    
+    @State private var showSpinner:Bool = false
+    @State private var degree:Int = 270
+    @State private var spinnerLength = 0.6
+    
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             Spacer().frame(height: 50)
@@ -33,6 +38,25 @@ struct ContentView: View {
             if schedules != nil {
                 ScheduleStack(schedules: schedules!)
                     .padding(.horizontal, 40)
+            } else {
+                VStack{
+                    Circle()
+                        .trim(from: 0.0,to: spinnerLength)
+                        .stroke(LinearGradient(colors: [.red,.blue], startPoint: .topLeading, endPoint: .bottomTrailing),style: StrokeStyle(lineWidth: 8.0,lineCap: .round,lineJoin:.round))
+                        .animation(Animation.easeIn(duration: 1.5).repeatForever(autoreverses: true))
+                        .frame(width: 60,height: 60)
+                        .rotationEffect(Angle(degrees: Double(degree)))
+                        .animation(Animation.linear(duration: 1).repeatForever(autoreverses: false))
+                        .onAppear{
+                            degree = 270 + 360
+                            spinnerLength = 0
+                        }
+                    Text("Loading...")
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .fontWeight(.bold)
+                        .font(.largeTitle)
+                }
+                
             }
             
             Text("JBS Dash for iOS made with ❤️ by Dalton Harrold")
@@ -42,24 +66,30 @@ struct ContentView: View {
         }
         // Before view loads, update schedules and todaySchedule
         .onAppear(perform: {
-            let scheduleFromWeeklyStore = weeklyScheduleStore.first(where: {Calendar.current.isDateInToday($0.date!)})?.schedule?.asDayType()
-            todaySchedule = scheduleFromWeeklyStore
-            
-            var tmpSchedules: [DayType] = []
-            if !todayScheduleStore.isEmpty {
-                for dayType in todayScheduleStore {
-                    tmpSchedules.append(dayType.asDayType())
-                }
-                
-                tmpSchedules.move(fromOffsets: [tmpSchedules.firstIndex(where: {$0.name == todaySchedule?.name}) ?? 0], toOffset: 0)
-                schedules = tmpSchedules
-            }
+            updateFromStores()
         })
         .task {
             await updateScheduleStores(viewContext: viewContext)
+            updateFromStores()
+        }
+    }
+    private func updateFromStores() {
+        let scheduleFromWeeklyStore = weeklyScheduleStore.first(where: {Calendar.current.isDateInToday($0.date!)})?.schedule?.asDayType()
+        todaySchedule = scheduleFromWeeklyStore
+        
+        var tmpSchedules: [DayType] = []
+        if !todayScheduleStore.isEmpty {
+            for dayType in todayScheduleStore {
+                tmpSchedules.append(dayType.asDayType())
+            }
+            
+            tmpSchedules.move(fromOffsets: [tmpSchedules.firstIndex(where: {$0.name == todaySchedule?.name}) ?? 0], toOffset: 0)
+            schedules = tmpSchedules
         }
     }
 }
+
+
 
 struct ContentView_Previews: PreviewProvider {
 //    static var schedules: [DayType] = [

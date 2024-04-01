@@ -300,8 +300,8 @@
             filePath = "NativeDash/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -332,8 +332,8 @@
             filePath = "NativeDash/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -342,92 +342,32 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "1732D49D-5CEA-408C-8A35-60598180FA32"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NativeDash/AppDelegate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
             landmarkName = "scheduleTask()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "1732D49D-5CEA-408C-8A35-60598180FA32 - b0b5de1dbb2be1f5"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Array&lt;__C.BGTaskRequest&gt;) -&gt; () in NativeDash.AppDelegate.scheduleTask() -&gt; ()"
-                  moduleName = "NativeDash"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/student/Desktop/mad/NativeDash/NativeDash/AppDelegate.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "66"
-                  endingLineNumber = "66">
-               </Location>
-               <Location
-                  uuid = "1732D49D-5CEA-408C-8A35-60598180FA32 - b0b5de1dbb2be079"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Array&lt;__C.BGTaskRequest&gt;) -&gt; () in NativeDash.AppDelegate.scheduleTask() -&gt; ()"
-                  moduleName = "NativeDash"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/student/Desktop/mad/NativeDash/NativeDash/AppDelegate.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "70"
-                  endingLineNumber = "70">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "BB018F90-4502-471D-BE5F-CD4D90672E4F"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NativeDash/AppDelegate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
             landmarkName = "handleTask(task:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "BB018F90-4502-471D-BE5F-CD4D90672E4F - 1994257b80a04eff"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "NativeDash.AppDelegate.handleTask(task: __C.BGProcessingTask) -&gt; ()"
-                  moduleName = "NativeDash"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/student/Desktop/mad/NativeDash/NativeDash/AppDelegate.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "33"
-                  endingLineNumber = "33">
-               </Location>
-               <Location
-                  uuid = "BB018F90-4502-471D-BE5F-CD4D90672E4F - 1994257b80a04e92"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "NativeDash.AppDelegate.handleTask(task: __C.BGProcessingTask) -&gt; ()"
-                  moduleName = "NativeDash"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/student/Desktop/mad/NativeDash/NativeDash/AppDelegate.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "36"
-                  endingLineNumber = "36">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -444,6 +384,96 @@
             endingLineNumber = "195"
             landmarkName = "getDayTypeFromApi(onDay:)"
             landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9F314083-F376-4C34-B276-0151B8A16D37"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DataStructs.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "276"
+            endingLineNumber = "276"
+            landmarkName = "updateScheduleStores(viewContext:)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "9F314083-F376-4C34-B276-0151B8A16D37 - c3e4484dba7da75e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for NativeDash.updateScheduleStores(viewContext: __C.NSManagedObjectContext) async -&gt; ()"
+                  moduleName = "NativeDash"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Desktop/mad/NativeDash/DataStructs.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "276"
+                  endingLineNumber = "276">
+               </Location>
+               <Location
+                  uuid = "9F314083-F376-4C34-B276-0151B8A16D37 - 2590b0690044e358"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(5) suspend resume partial function for NativeDash.updateScheduleStores(viewContext: __C.NSManagedObjectContext) async -&gt; ()"
+                  moduleName = "NativeDash"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Desktop/mad/NativeDash/DataStructs.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "276"
+                  endingLineNumber = "276">
+               </Location>
+               <Location
+                  uuid = "9F314083-F376-4C34-B276-0151B8A16D37 - 568b6598c2b74d59"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(6) suspend resume partial function for NativeDash.updateScheduleStores(viewContext: __C.NSManagedObjectContext) async -&gt; ()"
+                  moduleName = "NativeDash"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Desktop/mad/NativeDash/DataStructs.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "276"
+                  endingLineNumber = "276">
+               </Location>
+               <Location
+                  uuid = "9F314083-F376-4C34-B276-0151B8A16D37 - 87bd198a8da22f5a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(7) suspend resume partial function for NativeDash.updateScheduleStores(viewContext: __C.NSManagedObjectContext) async -&gt; ()"
+                  moduleName = "NativeDash"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Desktop/mad/NativeDash/DataStructs.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "276"
+                  endingLineNumber = "276">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4D10C0A2-DCA1-4E41-BB3A-751583CAA191"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NativeDash/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "body"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
