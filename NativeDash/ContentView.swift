@@ -42,11 +42,11 @@ struct ContentView: View {
                 VStack{
                     Circle()
                         .trim(from: 0.0,to: spinnerLength)
-                        .stroke(LinearGradient(colors: [.red,.blue], startPoint: .topLeading, endPoint: .bottomTrailing),style: StrokeStyle(lineWidth: 8.0,lineCap: .round,lineJoin:.round))
-                        .animation(Animation.easeIn(duration: 1.5).repeatForever(autoreverses: true))
+                        .stroke(Color("AccentColor"),style: StrokeStyle(lineWidth: 8.0,lineCap: .round,lineJoin:.round))
+                        .animation(Animation.easeIn(duration: 1.5).repeatForever(autoreverses: true), value: degree)
                         .frame(width: 60,height: 60)
                         .rotationEffect(Angle(degrees: Double(degree)))
-                        .animation(Animation.linear(duration: 1).repeatForever(autoreverses: false))
+                        .animation(.linear(duration: 1).repeatForever(autoreverses: false), value: spinnerLength)
                         .onAppear{
                             degree = 270 + 360
                             spinnerLength = 0

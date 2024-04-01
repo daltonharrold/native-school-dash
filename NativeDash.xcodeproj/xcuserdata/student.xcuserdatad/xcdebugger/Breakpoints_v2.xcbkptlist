@@ -400,64 +400,6 @@
             endingLineNumber = "276"
             landmarkName = "updateScheduleStores(viewContext:)"
             landmarkType = "9">
-            <Locations>
-               <Location
-                  uuid = "9F314083-F376-4C34-B276-0151B8A16D37 - c3e4484dba7da75e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for NativeDash.updateScheduleStores(viewContext: __C.NSManagedObjectContext) async -&gt; ()"
-                  moduleName = "NativeDash"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/student/Desktop/mad/NativeDash/DataStructs.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "276"
-                  endingLineNumber = "276">
-               </Location>
-               <Location
-                  uuid = "9F314083-F376-4C34-B276-0151B8A16D37 - 2590b0690044e358"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(5) suspend resume partial function for NativeDash.updateScheduleStores(viewContext: __C.NSManagedObjectContext) async -&gt; ()"
-                  moduleName = "NativeDash"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/student/Desktop/mad/NativeDash/DataStructs.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "276"
-                  endingLineNumber = "276">
-               </Location>
-               <Location
-                  uuid = "9F314083-F376-4C34-B276-0151B8A16D37 - 568b6598c2b74d59"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(6) suspend resume partial function for NativeDash.updateScheduleStores(viewContext: __C.NSManagedObjectContext) async -&gt; ()"
-                  moduleName = "NativeDash"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/student/Desktop/mad/NativeDash/DataStructs.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "276"
-                  endingLineNumber = "276">
-               </Location>
-               <Location
-                  uuid = "9F314083-F376-4C34-B276-0151B8A16D37 - 87bd198a8da22f5a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(7) suspend resume partial function for NativeDash.updateScheduleStores(viewContext: __C.NSManagedObjectContext) async -&gt; ()"
-                  moduleName = "NativeDash"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/student/Desktop/mad/NativeDash/DataStructs.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "276"
-                  endingLineNumber = "276">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
