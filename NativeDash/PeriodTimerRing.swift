@@ -58,13 +58,13 @@ struct PeriodTimerRing: View {
                     .fontWeight(.semibold)
                     .font(.title)
             }
-            .frame(idealWidth: 300, idealHeight: 300, alignment: .center)
-            Spacer().frame(height: 50)
+            .frame(idealWidth: 250, idealHeight: 250, alignment: .center)
+            Spacer().frame(height: 20)
             Text(displayPeriod!.name)
                 .font(.title)
                 .fontWeight(.bold)
-            Spacer().frame(height: 50)
-        } 
+            Spacer().frame(height: 20)
+        }
         
         Spacer()
             .frame(height: 0)

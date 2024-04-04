@@ -21,8 +21,8 @@ struct SingleCard: View {
                 Spacer().frame(height: 15)
                 Grid(
                     alignment: .leading,
-                    horizontalSpacing: 10.0,
-                    verticalSpacing: 10.0
+                    horizontalSpacing: 6.0,
+                    verticalSpacing: 6.0
                 ) {
                     ForEach(schedule.periods, id: \.name) { period in
                         GridRow {
