@@ -44,6 +44,7 @@ struct PeriodTimerRing: View {
      
     var body: some View {
         if displayPeriod != nil {
+            #if os(iOS)
             ZStack {
                 Circle()
                     .stroke(Color("EmptyAccentColor"), style: StrokeStyle(lineWidth: 20))
@@ -64,10 +65,45 @@ struct PeriodTimerRing: View {
                 .font(.title)
                 .fontWeight(.bold)
             Spacer().frame(height: 50)
-        } 
+            
+            #elseif os(watchOS)
+            
+            VStack {
+                ZStack {
+                    Circle()
+                        .stroke(Color("EmptyAccentColor"), style: StrokeStyle(lineWidth: 20))
+                        .frame(maxWidth: .infinity)
+//                        .background(.orange)
+                    Circle()
+                        .rotation(Angle(degrees:(-(360*progress)-90)))
+                        .trim(from: 0, to: progress)
+                        .stroke(
+                            Color("AccentColor"),
+                            style: StrokeStyle(lineWidth: 20, lineCap: .round)
+                        )
+//                        .background(.purple)
+                    Text(timeLeftInPeriod.formatted(.time(pattern: .minuteSecond(padMinuteToLength: 0))))
+                        .fontWeight(.semibold)
+                        .font(.title)
+//                        .background(.tertiary)
+                }
+                .padding(20)
+                
+                
+                Text(displayPeriod!.name)
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .lineLimit(1)
+                    .frame(maxWidth: .infinity)
+//                    .background(.green)
+            }
+            .ignoresSafeArea(.container)
+            
+            
+            #endif
+        }
         
-        Spacer()
-            .frame(height: 0)
+        EmptyView()
             // If the user re-enters the app after soft exiting it, update the display period
             .onChange(of: scenePhase, perform: { newPhase in
                 if newPhase == .active {

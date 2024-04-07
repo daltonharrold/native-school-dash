@@ -268,8 +268,8 @@
             filePath = "NativeDash/PeriodTimerRing.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
             landmarkName = "unknown"
             landmarkType = "0">
          </BreakpointContent>
@@ -316,8 +316,8 @@
             filePath = "NativeDash/PeriodTimerRing.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
             landmarkName = "changeDisplayPeriod()"
             landmarkType = "7">
          </BreakpointContent>
