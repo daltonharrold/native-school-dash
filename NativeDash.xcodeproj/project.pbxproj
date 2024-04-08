@@ -28,9 +28,19 @@
 		3F59125D2B752EEF00BD42A0 /* DashWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3F59124D2B752EED00BD42A0 /* DashWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3F5B8DA92BBD0E0300A89F06 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F59124F2B752EED00BD42A0 /* WidgetKit.framework */; };
 		3F5B8DAA2BBD0E0400A89F06 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F5912512B752EED00BD42A0 /* SwiftUI.framework */; };
-		3F5B8DAD2BBD0E0400A89F06 /* DashWatchWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5B8DAC2BBD0E0400A89F06 /* DashWatchWidgets.swift */; };
 		3F5B8DAF2BBD0E0600A89F06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F5B8DAE2BBD0E0600A89F06 /* Assets.xcassets */; };
 		3F5B8DB32BBD0E0600A89F06 /* DashWatchWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3F5B8DA82BBD0E0300A89F06 /* DashWatchWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3F6B59F92BC447C700EB4C1F /* DashWatchWidgetsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6B59F82BC447C700EB4C1F /* DashWatchWidgetsBundle.swift */; };
+		3F6B59FB2BC448E000EB4C1F /* TimerWatchWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6B59FA2BC448E000EB4C1F /* TimerWatchWidget.swift */; };
+		3F6B59FC2BC449C800EB4C1F /* NativeDash.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726C42B0BB8450093E54C /* NativeDash.xcdatamodeld */; };
+		3F6B59FD2BC449CB00EB4C1F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726C72B0BB8950093E54C /* Persistence.swift */; };
+		3F6B59FE2BC449CD00EB4C1F /* StoredPeriod+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CB2B0BF9130093E54C /* StoredPeriod+CoreDataClass.swift */; };
+		3F6B59FF2BC449CF00EB4C1F /* StoredPeriod+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CC2B0BF9130093E54C /* StoredPeriod+CoreDataProperties.swift */; };
+		3F6B5A002BC449D200EB4C1F /* StoredDayType+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CD2B0BF9130093E54C /* StoredDayType+CoreDataClass.swift */; };
+		3F6B5A012BC449D400EB4C1F /* StoredDayType+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CE2B0BF9130093E54C /* StoredDayType+CoreDataProperties.swift */; };
+		3F6B5A022BC449D700EB4C1F /* DataStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB335DB2AF302B100028FC8 /* DataStructs.swift */; };
+		3F6B5A032BC449DA00EB4C1F /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAE55002B752F7500482F6B /* AppGroup.swift */; };
+		3F6B5A052BC457F500EB4C1F /* EndTimeWatchWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6B5A042BC457F500EB4C1F /* EndTimeWatchWidget.swift */; };
 		3F8CA2A42B864B5700F13E25 /* DataStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB335DB2AF302B100028FC8 /* DataStructs.swift */; };
 		3F8CA2A52B864B6300F13E25 /* NativeDash.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726C42B0BB8450093E54C /* NativeDash.xcdatamodeld */; };
 		3F8CA2A62B864B6600F13E25 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726C72B0BB8950093E54C /* Persistence.swift */; };
@@ -144,9 +154,11 @@
 		3F5912582B752EEF00BD42A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F59125A2B752EEF00BD42A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F5B8DA82BBD0E0300A89F06 /* DashWatchWidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DashWatchWidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		3F5B8DAC2BBD0E0400A89F06 /* DashWatchWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashWatchWidgets.swift; sourceTree = "<group>"; };
 		3F5B8DAE2BBD0E0600A89F06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F5B8DB02BBD0E0600A89F06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F6B59F82BC447C700EB4C1F /* DashWatchWidgetsBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashWatchWidgetsBundle.swift; sourceTree = "<group>"; };
+		3F6B59FA2BC448E000EB4C1F /* TimerWatchWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerWatchWidget.swift; sourceTree = "<group>"; };
+		3F6B5A042BC457F500EB4C1F /* EndTimeWatchWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndTimeWatchWidget.swift; sourceTree = "<group>"; };
 		3F8CA2AB2B88EFEA00F13E25 /* NativeDash.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NativeDash.entitlements; sourceTree = "<group>"; };
 		3F8CA2AC2B88F23900F13E25 /* DashWidgetsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DashWidgetsExtension.entitlements; sourceTree = "<group>"; };
 		3FAE55002B752F7500482F6B /* AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
@@ -295,7 +307,9 @@
 		3F5B8DAB2BBD0E0400A89F06 /* DashWatchWidgets */ = {
 			isa = PBXGroup;
 			children = (
-				3F5B8DAC2BBD0E0400A89F06 /* DashWatchWidgets.swift */,
+				3F6B59F82BC447C700EB4C1F /* DashWatchWidgetsBundle.swift */,
+				3F6B5A042BC457F500EB4C1F /* EndTimeWatchWidget.swift */,
+				3F6B59FA2BC448E000EB4C1F /* TimerWatchWidget.swift */,
 				3F5B8DAE2BBD0E0600A89F06 /* Assets.xcassets */,
 				3F5B8DB02BBD0E0600A89F06 /* Info.plist */,
 			);
@@ -537,7 +551,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F5B8DAD2BBD0E0400A89F06 /* DashWatchWidgets.swift in Sources */,
+				3F6B59F92BC447C700EB4C1F /* DashWatchWidgetsBundle.swift in Sources */,
+				3F6B59FF2BC449CF00EB4C1F /* StoredPeriod+CoreDataProperties.swift in Sources */,
+				3F6B59FD2BC449CB00EB4C1F /* Persistence.swift in Sources */,
+				3F6B59FB2BC448E000EB4C1F /* TimerWatchWidget.swift in Sources */,
+				3F6B5A022BC449D700EB4C1F /* DataStructs.swift in Sources */,
+				3F6B5A052BC457F500EB4C1F /* EndTimeWatchWidget.swift in Sources */,
+				3F6B5A032BC449DA00EB4C1F /* AppGroup.swift in Sources */,
+				3F6B5A002BC449D200EB4C1F /* StoredDayType+CoreDataClass.swift in Sources */,
+				3F6B5A012BC449D400EB4C1F /* StoredDayType+CoreDataProperties.swift in Sources */,
+				3F6B59FC2BC449C800EB4C1F /* NativeDash.xcdatamodeld in Sources */,
+				3F6B59FE2BC449CD00EB4C1F /* StoredPeriod+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
