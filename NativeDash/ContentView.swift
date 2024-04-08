@@ -30,7 +30,7 @@ struct ContentView: View {
     
     var body: some View {
         ScrollView(.vertical) {
-            Spacer().frame(height: 50)
+            Spacer().frame(height: 20)
             if todaySchedule != nil {
                 PeriodTimerRing(todaySchedule: todaySchedule!)
             }
