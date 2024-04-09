@@ -131,12 +131,10 @@ struct DashWidgetsEntryView : View {
                 // Day type name
                 Text(entry.scheduleName)
                     .font(.footnote)
-                //                .fontWeight(.semibold)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .id(entry.scheduleName)
                     .transition(.push(from: .top))
-                //                .background(.blue)
-                
+
                 
                 // Timer
                 
@@ -151,8 +149,6 @@ struct DashWidgetsEntryView : View {
                         .id(entry.displayPeriod.getEndAsDate())
                     //                .transition(.push(from: .leading))
                         .transition(.move(edge: .leading))
-                    
-                    //                .background(.red)
                 } else {
                     Text(entry.tomorrowSchoolStart!, style: .time)
                         .font(.system(size: 52, weight: .bold))
@@ -164,8 +160,6 @@ struct DashWidgetsEntryView : View {
                         .id(entry.displayPeriod.getEndAsDate())
                     //                .transition(.push(from: .leading))
                         .transition(.move(edge: .leading))
-                    
-                    //                .background(.red)
                 }
                 
                 Spacer()
@@ -177,12 +171,10 @@ struct DashWidgetsEntryView : View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .id(entry.displayPeriod.name)
                     .transition(.push(from: .bottom))
-                //                .background(.green)
-                
                 
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-            //        .background(.orange)
+            
         case .accessoryRectangular:
             VStack {
                 if entry.tomorrowSchoolStart == nil {

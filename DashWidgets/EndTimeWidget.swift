@@ -119,25 +119,21 @@ struct EndTimeWidgetEntryView : View {
                 // Day type name
                 Text(entry.scheduleName)
                     .font(.footnote)
-                //                .fontWeight(.semibold)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .id(entry.scheduleName)
                     .transition(.push(from: .top))
-                //                .background(.blue)
                 
                 
                 // Timer
                 Text(entry.displayPeriod.getEndAsDate(), style: .time)
                     .font(.system(size: 52, weight: .bold))
                     .fontWidth(.compressed)
-                //                .frame(minHeight: 0)
                     .dynamicTypeSize(.medium)
                     .minimumScaleFactor(0.8)
                     .id(entry.displayPeriod.getEndAsDate())
                     .frame(maxWidth: .infinity, alignment: .leading)
-                //                .transition(.push(from: .leading))
+//                    .transition(.push(from: .leading))
                     .transition(.move(edge: .leading))
-                //                .background(.red)
                 
                 Spacer()
                 
@@ -148,12 +144,10 @@ struct EndTimeWidgetEntryView : View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .id(entry.displayPeriod.name)
                     .transition(.push(from: .bottom))
-                //                .background(.green)
-                
-                
+
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-            //        .background(.orange)
+
         case .accessoryRectangular:
             VStack{
                 // Timer
