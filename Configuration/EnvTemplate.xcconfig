@@ -1,0 +1,12 @@
+//
+//  EnvTemplate.xcconfig
+//  NativeDash
+//
+//  Created by Dalton Harrold on 4/9/24.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+API_ENDPOINT=api.example.com/api/v1
+API_KEY=Bearer l0k9j8h7g6f5d4s3a2q1
+SCHOOL_ID=q1w2e3r4t5y6u7i8o9p0

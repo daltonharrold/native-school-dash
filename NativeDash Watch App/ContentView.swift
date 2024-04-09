@@ -8,7 +8,11 @@
 import SwiftUI
 
 struct ContentView: View {
-    var todaySchedule = DayType(
+    @FetchRequest(sortDescriptors: [])
+    private var weeklyScheduleStore: FetchedResults<StoredScheduleOnDate>
+    
+    
+    @State var todaySchedule: DayType? = DayType(
         name: "Common Day",
         periods: [
             .init(name: "Assembly", start: "8:30", end: "8:37"),
@@ -27,8 +31,15 @@ struct ContentView: View {
     )
     
     var body: some View {
-        PeriodTimerRing(todaySchedule: todaySchedule)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        if todaySchedule != nil {
+            PeriodTimerRing(todaySchedule: todaySchedule!)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+        EmptyView()
+            .onAppear(perform: {
+                let scheduleFromWeeklyStore = weeklyScheduleStore.first(where: {Calendar.current.isDateInToday($0.date!)})?.schedule?.asDayType()
+                todaySchedule = scheduleFromWeeklyStore
+            })
     }
 }
 

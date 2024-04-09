@@ -129,7 +129,7 @@ struct EndTimeWatchWidgetEntryView : View {
 }
 
 struct EndTimeWatchWidget: Widget {
-    let kind: String = "EndTimeWidget"
+    let kind: String = "EndTimeWatchWidget"
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: EndTimeWatchProvider()) { entry in
