@@ -16,6 +16,14 @@
 		3F09BC4E2AB2160F00924ACE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F09BC4D2AB2160F00924ACE /* ContentView.swift */; };
 		3F09BC502AB2161000924ACE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F09BC4F2AB2161000924ACE /* Assets.xcassets */; };
 		3F09BC532AB2161000924ACE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F09BC522AB2161000924ACE /* Preview Assets.xcassets */; };
+		3F227B702BC57795001AC3F6 /* EnvTemplate.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3F227B6F2BC57795001AC3F6 /* EnvTemplate.xcconfig */; };
+		3F227B712BC57795001AC3F6 /* EnvTemplate.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3F227B6F2BC57795001AC3F6 /* EnvTemplate.xcconfig */; };
+		3F227B722BC57795001AC3F6 /* EnvTemplate.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3F227B6F2BC57795001AC3F6 /* EnvTemplate.xcconfig */; };
+		3F227B732BC57795001AC3F6 /* EnvTemplate.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3F227B6F2BC57795001AC3F6 /* EnvTemplate.xcconfig */; };
+		3F227B752BC577BF001AC3F6 /* EnvProduction.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3F227B742BC577BF001AC3F6 /* EnvProduction.xcconfig */; };
+		3F227B762BC577BF001AC3F6 /* EnvProduction.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3F227B742BC577BF001AC3F6 /* EnvProduction.xcconfig */; };
+		3F227B772BC577BF001AC3F6 /* EnvProduction.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3F227B742BC577BF001AC3F6 /* EnvProduction.xcconfig */; };
+		3F227B782BC577BF001AC3F6 /* EnvProduction.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3F227B742BC577BF001AC3F6 /* EnvProduction.xcconfig */; };
 		3F2F8BE02AEC04F300393F60 /* SingleCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2F8BDF2AEC04F300393F60 /* SingleCard.swift */; };
 		3F2F8BE32AEF4EF700393F60 /* ScheduleStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2F8BE22AEF4EF700393F60 /* ScheduleStack.swift */; };
 		3F2F8BE52AEF4F3C00393F60 /* PeriodTimerRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2F8BE42AEF4F3C00393F60 /* PeriodTimerRing.swift */; };
@@ -142,6 +150,9 @@
 		3F09BC4F2AB2161000924ACE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F09BC522AB2161000924ACE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3F227B682BC4DB0E001AC3F6 /* DashWatchWidgetsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DashWatchWidgetsExtension.entitlements; sourceTree = "<group>"; };
+		3F227B6F2BC57795001AC3F6 /* EnvTemplate.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = EnvTemplate.xcconfig; sourceTree = "<group>"; };
+		3F227B742BC577BF001AC3F6 /* EnvProduction.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = EnvProduction.xcconfig; sourceTree = "<group>"; };
+		3F227B792BC578B7001AC3F6 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		3F2F8BDF2AEC04F300393F60 /* SingleCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCard.swift; sourceTree = "<group>"; };
 		3F2F8BE22AEF4EF700393F60 /* ScheduleStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleStack.swift; sourceTree = "<group>"; };
 		3F2F8BE42AEF4F3C00393F60 /* PeriodTimerRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodTimerRing.swift; sourceTree = "<group>"; };
@@ -214,8 +225,10 @@
 		3F09BC2D2AB2160D00924ACE = {
 			isa = PBXGroup;
 			children = (
+				3F227B792BC578B7001AC3F6 /* .gitignore */,
 				3F227B682BC4DB0E001AC3F6 /* DashWatchWidgetsExtension.entitlements */,
 				3F8CA2AC2B88F23900F13E25 /* DashWidgetsExtension.entitlements */,
+				3F227B692BC57735001AC3F6 /* Configuration */,
 				3FF726D82B0BF95A0093E54C /* CoreDataStore */,
 				3FB335DB2AF302B100028FC8 /* DataStructs.swift */,
 				3FAE55002B752F7500482F6B /* AppGroup.swift */,
@@ -283,6 +296,15 @@
 				3F09BC522AB2161000924ACE /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		3F227B692BC57735001AC3F6 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				3F227B6F2BC57795001AC3F6 /* EnvTemplate.xcconfig */,
+				3F227B742BC577BF001AC3F6 /* EnvProduction.xcconfig */,
+			);
+			path = Configuration;
 			sourceTree = "<group>";
 		};
 		3F59124E2B752EED00BD42A0 /* Frameworks */ = {
@@ -458,6 +480,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F227B752BC577BF001AC3F6 /* EnvProduction.xcconfig in Resources */,
+				3F227B702BC57795001AC3F6 /* EnvTemplate.xcconfig in Resources */,
 				3FB54FE22AEFFAC000623592 /* Launch Screen.storyboard in Resources */,
 				3F09BC412AB2160F00924ACE /* Preview Assets.xcassets in Resources */,
 				3F09BC3E2AB2160F00924ACE /* Assets.xcassets in Resources */,
@@ -469,6 +493,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F09BC532AB2161000924ACE /* Preview Assets.xcassets in Resources */,
+				3F227B762BC577BF001AC3F6 /* EnvProduction.xcconfig in Resources */,
+				3F227B712BC57795001AC3F6 /* EnvTemplate.xcconfig in Resources */,
 				3F09BC502AB2161000924ACE /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -477,7 +503,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F227B722BC57795001AC3F6 /* EnvTemplate.xcconfig in Resources */,
 				3F5912592B752EEF00BD42A0 /* Assets.xcassets in Resources */,
+				3F227B772BC577BF001AC3F6 /* EnvProduction.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,7 +513,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F227B732BC57795001AC3F6 /* EnvTemplate.xcconfig in Resources */,
 				3F5B8DAF2BBD0E0600A89F06 /* Assets.xcassets in Resources */,
+				3F227B782BC577BF001AC3F6 /* EnvProduction.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

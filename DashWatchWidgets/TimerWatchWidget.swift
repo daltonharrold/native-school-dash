@@ -88,6 +88,8 @@ struct TimerWatchProvider: TimelineProvider {
                     entries.append(overnightEntry)
 
                 }
+            } else {
+                print("todaySchedule not found")
             }
         } catch {
             fatalError("Could not fetch from Core Data for widget timeline. \(error)")
@@ -148,7 +150,7 @@ struct TimerWatchWidgetEntryView : View {
 }
 
 struct TimerWatchWidget: Widget {
-    let kind: String = "TimerWidget"
+    let kind: String = "TimerWatchWidget"
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: TimerWatchProvider()) { entry in

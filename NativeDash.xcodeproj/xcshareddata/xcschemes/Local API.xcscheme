@@ -49,23 +49,6 @@
             ReferencedContainer = "container:NativeDash.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "API_ENDPOINT"
-            value = "YOUR UNSAFE LOCAL API ENDPOINT"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "SCHOOL_ID"
-            value = "YOUR UNSAFE SCHOOL ID"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "API_KEY"
-            value = "YOUR UNSAFE BEARER API KEY"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
       <LocationScenarioReference
          identifier = "com.apple.dt.IDEFoundation.CurrentLocationScenarioIdentifier"
          referenceType = "1">
