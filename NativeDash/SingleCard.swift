@@ -49,7 +49,7 @@ struct SingleCard: View {
 }
 
 #Preview {
-    var previewSchedule: DayType =
+    let previewSchedule: DayType =
         DayType(
             name: "Regular Schedule",
             periods: [

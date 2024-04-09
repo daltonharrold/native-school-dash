@@ -121,14 +121,6 @@ struct PeriodTimerRing: View {
                 }
                 progress += progrssInterval
                 timeLeftInPeriod -= .seconds(1)
-//            updateDisplayPeriodAndProgress()
-//            if let nextPeriod = getNextPeriod(schedule: todaySchedule) {
-//                periodRingShouldDisplay = true
-//                timeLeftInPeriod = Duration.seconds(getSecondsToPeriodStartEnd(period: nextPeriod, isEnd: true))
-//            } else {
-//                // If no period is found, do not display the ring
-//                periodRingShouldDisplay = false
-//            }
             })
     }
     

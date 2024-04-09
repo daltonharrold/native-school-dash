@@ -123,41 +123,6 @@ extension envError: CustomStringConvertible {
     }
 }
 
-
-
-//public class YearMonthDay {
-//    let year: Int
-//    let month: Int
-//    let day: Int
-//    func asDateComponents() -> DateComponents {
-//        return DateComponents(year: year, month: month, day: day)
-//    }
-//    
-//    func asDate() -> Date {
-//        var date = Date()
-//        date = Calendar.current.date(bySetting: .year, value: self.year, of: date)!
-//        date = Calendar.current.date(bySetting: .month, value: self.month, of: date)!
-//        date = Calendar.current.date(bySetting: .day, value: self.day, of: date)!
-//        return date
-//    }
-//
-//    init(year: Int, month: Int, day: Int) {
-//        self.year = year
-//        self.month = month
-//        self.day = day
-//    }
-//    init(components: DateComponents) {
-//        self.year = components.year!
-//        self.month = components.month!
-//        self.day = components.day!
-//    }
-//    init(date: Date) {
-//        self.year = Calendar.current.component(.year, from: date)
-//        self.month = Calendar.current.component(.month, from: date)
-//        self.day = Calendar.current.component(.day, from: date)
-//    }
-//}
-
 // Get the number of seconds to the start or end of current period. Time must be between given period start or end
 // If isEnd = true, will return time to end, else will return time to start
 func getSecondsToPeriodStartEnd(period: Period?, isEnd: Bool, atDate: Date = .now) -> Int {
