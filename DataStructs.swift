@@ -101,6 +101,30 @@ public struct FetchedResponse {
     }
 }
 
+enum envError: Error {
+    // if no Plist dictionary found
+    case noPlist
+    // if could not fetch a specific property
+    case couldNotGet
+    // throw unexpected, other errors
+    case unexpected(code: Int)
+}
+
+extension envError: CustomStringConvertible {
+    public var description: String {
+        switch self {
+        case .noPlist :
+            return "Could not get environment variable plist"
+        case .couldNotGet :
+            return "Could not get environment variable from list"
+        case .unexpected(_) :
+            return "Unexpected enviroment variable error"
+        }
+    }
+}
+
+
+
 //public class YearMonthDay {
 //    let year: Int
 //    let month: Int
@@ -181,11 +205,21 @@ func getNextPeriod(schedule: DayType, atDate: Date = .now) -> Period? {
     return nil
 }
 
+
+
 public func getDayTypeFromApi(onDay: Date = .now) async throws -> FetchedResponse? {
+    // Load environment varibles
+    guard let infoDictionary: [String: Any] = Bundle.main.infoDictionary else { throw envError.noPlist }
+    guard let env = infoDictionary["LSEnvironment"] as? Dictionary<String, Any> else { throw envError.noPlist}
+    guard let apiEndpoint: String = env["apiEndpoint"] as? String else { throw envError.couldNotGet }
+    guard let apiKey: String = env["apiKey"] as? String else { throw envError.couldNotGet }
+    guard let schoolID: String = env["schoolID"] as? String else { throw envError.couldNotGet }
+    
+    
     let calendarDate = Calendar.current.dateComponents([.day, .year, .month], from: onDay)
-    if let url = URL(string: "\(ProcessInfo.processInfo.environment["API_ENDPOINT"]!)/schools/\( ProcessInfo.processInfo.environment["SCHOOL_ID"]!)?includes=dayTypeOnDate&day=\(calendarDate.day!)&month=\(calendarDate.month!)&year=\(calendarDate.year!)") {
+    if let url = URL(string: "https://\(apiEndpoint)/schools/\( schoolID)?includes=dayTypeOnDate&day=\(calendarDate.day!)&month=\(calendarDate.month!)&year=\(calendarDate.year!)") {
         var request = URLRequest(url: url)
-        request.setValue(ProcessInfo.processInfo.environment["API_KEY"], forHTTPHeaderField: "authorization")
+        request.setValue(apiKey, forHTTPHeaderField: "authorization")
         let (data, _) = try await URLSession.shared.data(for: request)
         
         if let jsonString = String(data: data, encoding: .utf8) {

@@ -126,8 +126,8 @@
             filePath = "DataStructs.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
             landmarkName = "unknown"
             landmarkType = "0">
          </BreakpointContent>
@@ -188,8 +188,8 @@
             filePath = "DataStructs.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "192"
-            endingLineNumber = "192"
+            startingLineNumber = "226"
+            endingLineNumber = "226"
             landmarkName = "getDayTypeFromApi(onDay:)"
             landmarkType = "9">
          </BreakpointContent>
@@ -204,8 +204,8 @@
             filePath = "DataStructs.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "191"
-            endingLineNumber = "191"
+            startingLineNumber = "225"
+            endingLineNumber = "225"
             landmarkName = "getDayTypeFromApi(onDay:)"
             landmarkType = "9">
          </BreakpointContent>
@@ -220,8 +220,8 @@
             filePath = "DataStructs.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "189"
-            endingLineNumber = "189"
+            startingLineNumber = "223"
+            endingLineNumber = "223"
             landmarkName = "getDayTypeFromApi(onDay:)"
             landmarkType = "9">
          </BreakpointContent>
@@ -380,8 +380,8 @@
             filePath = "DataStructs.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "195"
-            endingLineNumber = "195"
+            startingLineNumber = "229"
+            endingLineNumber = "229"
             landmarkName = "getDayTypeFromApi(onDay:)"
             landmarkType = "9">
          </BreakpointContent>
@@ -396,8 +396,8 @@
             filePath = "DataStructs.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "276"
-            endingLineNumber = "276"
+            startingLineNumber = "310"
+            endingLineNumber = "310"
             landmarkName = "updateScheduleStores(viewContext:)"
             landmarkType = "9">
          </BreakpointContent>
@@ -624,6 +624,22 @@
             endingLineNumber = "76"
             landmarkName = "getTimeline(in:completion:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "89AF9064-7736-4AD3-B792-57A9ED19ADC2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DataStructs.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "213"
+            endingLineNumber = "213"
+            landmarkName = "getDayTypeFromApi(onDay:)"
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
