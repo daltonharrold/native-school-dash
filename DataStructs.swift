@@ -201,7 +201,10 @@ public func getDayTypeFromApi(onDay: Date = .now) async throws -> FetchedRespons
     return nil
 }
 
-public func updateScheduleStores(viewContext: NSManagedObjectContext) async {
+
+
+
+public func updateDayTypeOnlyStores(viewContext: NSManagedObjectContext) async -> FetchedResponse? {
     var todayFetch: FetchedResponse?
     do {
         todayFetch = try await getDayTypeFromApi()
@@ -229,12 +232,15 @@ public func updateScheduleStores(viewContext: NSManagedObjectContext) async {
     } catch {
         print("[NativeDash]: failed to update StoredDayTypes. \(error)")
     }
-    
+    return todayFetch
+}
+
+public func updateScheduleOnDateOnlyStores(viewContext: NSManagedObjectContext, todayFetch: FetchedResponse? = nil) async {
     // Fetch schedules for next week
     var nextWeekFetches: [FetchedResponse?] = [todayFetch]
     for i in 1...6 {
         do {
-            guard let fetchDate = Calendar.current.date(byAdding: .day, value: i, to: .now) 
+            guard let fetchDate = Calendar.current.date(byAdding: .day, value: i, to: .now)
             else {
                 nextWeekFetches.append(nil)
                 continue
@@ -276,4 +282,9 @@ public func updateScheduleStores(viewContext: NSManagedObjectContext) async {
     } catch {
         print("[NativeDash]: failed to update StoredScheduleOnDate. \(error)")
     }
+}
+
+public func updateScheduleStores(viewContext: NSManagedObjectContext) async {
+    let todayFetch = await updateDayTypeOnlyStores(viewContext: viewContext)
+    await updateScheduleOnDateOnlyStores(viewContext: viewContext, todayFetch: todayFetch)
 }
