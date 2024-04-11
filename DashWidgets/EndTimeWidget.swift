@@ -183,7 +183,7 @@ struct EndTimeWidget: Widget {
             }
         }
         .configurationDisplayName("Period End Time")
-        .description("A widget to display at what time the current period ends, for when you wnat to use your own clock")
+        .description("A widget to display at what time the current period ends, for when you want to use your own clock")
         .supportedFamilies([.systemSmall, .accessoryRectangular])
     }
 }
