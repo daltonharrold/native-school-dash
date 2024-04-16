@@ -38,23 +38,27 @@
 		3F6B59FF2BC449CF00EB4C1F /* StoredPeriod+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CC2B0BF9130093E54C /* StoredPeriod+CoreDataProperties.swift */; };
 		3F6B5A002BC449D200EB4C1F /* StoredDayType+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CD2B0BF9130093E54C /* StoredDayType+CoreDataClass.swift */; };
 		3F6B5A012BC449D400EB4C1F /* StoredDayType+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CE2B0BF9130093E54C /* StoredDayType+CoreDataProperties.swift */; };
-		3F6B5A022BC449D700EB4C1F /* DataStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB335DB2AF302B100028FC8 /* DataStructs.swift */; };
-		3F6B5A032BC449DA00EB4C1F /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAE55002B752F7500482F6B /* AppGroup.swift */; };
 		3F6B5A052BC457F500EB4C1F /* EndTimeWatchWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6B5A042BC457F500EB4C1F /* EndTimeWatchWidget.swift */; };
-		3F8CA2A42B864B5700F13E25 /* DataStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB335DB2AF302B100028FC8 /* DataStructs.swift */; };
 		3F8CA2A52B864B6300F13E25 /* NativeDash.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726C42B0BB8450093E54C /* NativeDash.xcdatamodeld */; };
 		3F8CA2A62B864B6600F13E25 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726C72B0BB8950093E54C /* Persistence.swift */; };
 		3F8CA2A72B864B6800F13E25 /* StoredPeriod+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CB2B0BF9130093E54C /* StoredPeriod+CoreDataClass.swift */; };
 		3F8CA2A82B864B6A00F13E25 /* StoredPeriod+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CC2B0BF9130093E54C /* StoredPeriod+CoreDataProperties.swift */; };
 		3F8CA2A92B864B6C00F13E25 /* StoredDayType+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CD2B0BF9130093E54C /* StoredDayType+CoreDataClass.swift */; };
 		3F8CA2AA2B864B6E00F13E25 /* StoredDayType+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CE2B0BF9130093E54C /* StoredDayType+CoreDataProperties.swift */; };
-		3FAE55012B752F7500482F6B /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAE55002B752F7500482F6B /* AppGroup.swift */; };
-		3FAE55022B752F7500482F6B /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAE55002B752F7500482F6B /* AppGroup.swift */; };
-		3FAE55032B752F7500482F6B /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAE55002B752F7500482F6B /* AppGroup.swift */; };
-		3FB335DC2AF302B100028FC8 /* DataStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB335DB2AF302B100028FC8 /* DataStructs.swift */; };
-		3FB335DD2AF302B100028FC8 /* DataStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB335DB2AF302B100028FC8 /* DataStructs.swift */; };
 		3FB54FE22AEFFAC000623592 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FB54FE12AEFFAC000623592 /* Launch Screen.storyboard */; };
 		3FBDD3392BB8EA4800FCD9D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBDD3382BB8EA4800FCD9D1 /* AppDelegate.swift */; };
+		3FD7ABF12BCE0472007CF2D9 /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD7ABED2BCE0472007CF2D9 /* AppGroup.swift */; };
+		3FD7ABF22BCE0472007CF2D9 /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD7ABED2BCE0472007CF2D9 /* AppGroup.swift */; };
+		3FD7ABF32BCE0472007CF2D9 /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD7ABED2BCE0472007CF2D9 /* AppGroup.swift */; };
+		3FD7ABF42BCE0472007CF2D9 /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD7ABED2BCE0472007CF2D9 /* AppGroup.swift */; };
+		3FD7ABF52BCE0472007CF2D9 /* DataStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD7ABEE2BCE0472007CF2D9 /* DataStructs.swift */; };
+		3FD7ABF62BCE0472007CF2D9 /* DataStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD7ABEE2BCE0472007CF2D9 /* DataStructs.swift */; };
+		3FD7ABF72BCE0472007CF2D9 /* DataStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD7ABEE2BCE0472007CF2D9 /* DataStructs.swift */; };
+		3FD7ABF82BCE0472007CF2D9 /* DataStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD7ABEE2BCE0472007CF2D9 /* DataStructs.swift */; };
+		3FD7ABF92BCE0472007CF2D9 /* FetchUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD7ABEF2BCE0472007CF2D9 /* FetchUtil.swift */; };
+		3FD7ABFA2BCE0472007CF2D9 /* FetchUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD7ABEF2BCE0472007CF2D9 /* FetchUtil.swift */; };
+		3FD7ABFB2BCE0472007CF2D9 /* FetchUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD7ABEF2BCE0472007CF2D9 /* FetchUtil.swift */; };
+		3FD7ABFC2BCE0472007CF2D9 /* FetchUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD7ABEF2BCE0472007CF2D9 /* FetchUtil.swift */; };
 		3FD9FB942BB0A8C500ED3EB0 /* EndTimeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD9FB932BB0A8C400ED3EB0 /* EndTimeWidget.swift */; };
 		3FF726C62B0BB8450093E54C /* NativeDash.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726C42B0BB8450093E54C /* NativeDash.xcdatamodeld */; };
 		3FF726C82B0BB8950093E54C /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726C72B0BB8950093E54C /* Persistence.swift */; };
@@ -165,10 +169,11 @@
 		3F6B5A042BC457F500EB4C1F /* EndTimeWatchWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndTimeWatchWidget.swift; sourceTree = "<group>"; };
 		3F8CA2AB2B88EFEA00F13E25 /* NativeDash.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NativeDash.entitlements; sourceTree = "<group>"; };
 		3F8CA2AC2B88F23900F13E25 /* DashWidgetsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DashWidgetsExtension.entitlements; sourceTree = "<group>"; };
-		3FAE55002B752F7500482F6B /* AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
-		3FB335DB2AF302B100028FC8 /* DataStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStructs.swift; sourceTree = "<group>"; };
 		3FB54FE12AEFFAC000623592 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		3FBDD3382BB8EA4800FCD9D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3FD7ABED2BCE0472007CF2D9 /* AppGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
+		3FD7ABEE2BCE0472007CF2D9 /* DataStructs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStructs.swift; sourceTree = "<group>"; };
+		3FD7ABEF2BCE0472007CF2D9 /* FetchUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchUtil.swift; sourceTree = "<group>"; };
 		3FD9FB932BB0A8C400ED3EB0 /* EndTimeWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndTimeWidget.swift; sourceTree = "<group>"; };
 		3FF726C52B0BB8450093E54C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		3FF726C72B0BB8950093E54C /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -220,8 +225,7 @@
 				3F227B792BC578B7001AC3F6 /* .gitignore */,
 				3F227B692BC57735001AC3F6 /* Configuration */,
 				3FF726D82B0BF95A0093E54C /* CoreDataStore */,
-				3FB335DB2AF302B100028FC8 /* DataStructs.swift */,
-				3FAE55002B752F7500482F6B /* AppGroup.swift */,
+				3FD7ABF02BCE0472007CF2D9 /* Models */,
 				3F399CCD2AFD492600A3505F /* APIreturn.json */,
 				3F09BC382AB2160D00924ACE /* NativeDash */,
 				3F09BC4A2AB2160F00924ACE /* NativeDash Watch App */,
@@ -331,6 +335,16 @@
 			);
 			path = DashWatchWidgets;
 			sourceTree = "<group>";
+		};
+		3FD7ABF02BCE0472007CF2D9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3FD7ABED2BCE0472007CF2D9 /* AppGroup.swift */,
+				3FD7ABEE2BCE0472007CF2D9 /* DataStructs.swift */,
+				3FD7ABEF2BCE0472007CF2D9 /* FetchUtil.swift */,
+			);
+			path = Models;
+			sourceTree = SOURCE_ROOT;
 		};
 		3FF726D82B0BF95A0093E54C /* CoreDataStore */ = {
 			isa = PBXGroup;
@@ -517,12 +531,13 @@
 				3FBDD3392BB8EA4800FCD9D1 /* AppDelegate.swift in Sources */,
 				3FF726C62B0BB8450093E54C /* NativeDash.xcdatamodeld in Sources */,
 				3FF726D52B0BF9130093E54C /* StoredDayType+CoreDataProperties.swift in Sources */,
-				3FAE55012B752F7500482F6B /* AppGroup.swift in Sources */,
 				3F09BC3A2AB2160D00924ACE /* NativeDashApp.swift in Sources */,
+				3FD7ABF92BCE0472007CF2D9 /* FetchUtil.swift in Sources */,
 				3FF726D32B0BF9130093E54C /* StoredDayType+CoreDataClass.swift in Sources */,
-				3FB335DC2AF302B100028FC8 /* DataStructs.swift in Sources */,
+				3FD7ABF12BCE0472007CF2D9 /* AppGroup.swift in Sources */,
 				3FF726D12B0BF9130093E54C /* StoredPeriod+CoreDataProperties.swift in Sources */,
 				3FF726CF2B0BF9130093E54C /* StoredPeriod+CoreDataClass.swift in Sources */,
+				3FD7ABF52BCE0472007CF2D9 /* DataStructs.swift in Sources */,
 				3F2F8BE52AEF4F3C00393F60 /* PeriodTimerRing.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -536,12 +551,13 @@
 				3F09BC4E2AB2160F00924ACE /* ContentView.swift in Sources */,
 				3FF726C92B0BDBCC0093E54C /* NativeDash.xcdatamodeld in Sources */,
 				3FF726CA2B0BDBEB0093E54C /* Persistence.swift in Sources */,
-				3FB335DD2AF302B100028FC8 /* DataStructs.swift in Sources */,
 				3FF726D62B0BF9130093E54C /* StoredDayType+CoreDataProperties.swift in Sources */,
-				3FAE55022B752F7500482F6B /* AppGroup.swift in Sources */,
+				3FD7ABF22BCE0472007CF2D9 /* AppGroup.swift in Sources */,
 				3FF726D02B0BF9130093E54C /* StoredPeriod+CoreDataClass.swift in Sources */,
+				3FD7ABFA2BCE0472007CF2D9 /* FetchUtil.swift in Sources */,
 				3F09BC4C2AB2160F00924ACE /* NativeDashApp.swift in Sources */,
 				3FF726D42B0BF9130093E54C /* StoredDayType+CoreDataClass.swift in Sources */,
+				3FD7ABF62BCE0472007CF2D9 /* DataStructs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,12 +570,13 @@
 				3F8CA2AA2B864B6E00F13E25 /* StoredDayType+CoreDataProperties.swift in Sources */,
 				3F8CA2A52B864B6300F13E25 /* NativeDash.xcdatamodeld in Sources */,
 				3F8CA2A72B864B6800F13E25 /* StoredPeriod+CoreDataClass.swift in Sources */,
-				3FAE55032B752F7500482F6B /* AppGroup.swift in Sources */,
 				3F8CA2A62B864B6600F13E25 /* Persistence.swift in Sources */,
-				3F8CA2A42B864B5700F13E25 /* DataStructs.swift in Sources */,
+				3FD7ABF32BCE0472007CF2D9 /* AppGroup.swift in Sources */,
 				3F5912572B752EED00BD42A0 /* TimerWidget.swift in Sources */,
+				3FD7ABFB2BCE0472007CF2D9 /* FetchUtil.swift in Sources */,
 				3F8CA2A92B864B6C00F13E25 /* StoredDayType+CoreDataClass.swift in Sources */,
 				3F8CA2A82B864B6A00F13E25 /* StoredPeriod+CoreDataProperties.swift in Sources */,
+				3FD7ABF72BCE0472007CF2D9 /* DataStructs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,13 +588,14 @@
 				3F6B59FF2BC449CF00EB4C1F /* StoredPeriod+CoreDataProperties.swift in Sources */,
 				3F6B59FD2BC449CB00EB4C1F /* Persistence.swift in Sources */,
 				3F6B59FB2BC448E000EB4C1F /* TimerWatchWidget.swift in Sources */,
-				3F6B5A022BC449D700EB4C1F /* DataStructs.swift in Sources */,
 				3F6B5A052BC457F500EB4C1F /* EndTimeWatchWidget.swift in Sources */,
-				3F6B5A032BC449DA00EB4C1F /* AppGroup.swift in Sources */,
+				3FD7ABF42BCE0472007CF2D9 /* AppGroup.swift in Sources */,
 				3F6B5A002BC449D200EB4C1F /* StoredDayType+CoreDataClass.swift in Sources */,
 				3F6B5A012BC449D400EB4C1F /* StoredDayType+CoreDataProperties.swift in Sources */,
+				3FD7ABFC2BCE0472007CF2D9 /* FetchUtil.swift in Sources */,
 				3F6B59FC2BC449C800EB4C1F /* NativeDash.xcdatamodeld in Sources */,
 				3F6B59FE2BC449CD00EB4C1F /* StoredPeriod+CoreDataClass.swift in Sources */,
+				3FD7ABF82BCE0472007CF2D9 /* DataStructs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -868,7 +886,7 @@
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = DashWidgetsExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Configuration/DashWidgetsExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = K5273GVYFN;
@@ -904,7 +922,7 @@
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = DashWidgetsExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Configuration/DashWidgetsExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = K5273GVYFN;
@@ -940,7 +958,7 @@
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = DashWatchWidgetsExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Configuration/DashWatchWidgetsExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = K5273GVYFN;
@@ -977,7 +995,7 @@
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = DashWatchWidgetsExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Configuration/DashWatchWidgetsExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = K5273GVYFN;

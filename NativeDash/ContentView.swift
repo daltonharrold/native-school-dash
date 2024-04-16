@@ -71,9 +71,9 @@ struct ContentView: View {
         .task {
             // Updating is done in two parts so that on initial app load, the app can render faster
             // Outside of rendering scope, updateScheduleStores() should be used
-            let todayFetch = await updateDayTypeOnlyStores(viewContext: viewContext)
+            await updateScheduleStores(viewContext: viewContext)
             updateFromStores()
-            await updateScheduleOnDateOnlyStores(viewContext: viewContext, todayFetch: todayFetch)
+            
         }
     }
     private func updateFromStores() {
