@@ -101,38 +101,27 @@ public struct FetchedResponse {
     }
 }
 
-//public class YearMonthDay {
-//    let year: Int
-//    let month: Int
-//    let day: Int
-//    func asDateComponents() -> DateComponents {
-//        return DateComponents(year: year, month: month, day: day)
-//    }
-//    
-//    func asDate() -> Date {
-//        var date = Date()
-//        date = Calendar.current.date(bySetting: .year, value: self.year, of: date)!
-//        date = Calendar.current.date(bySetting: .month, value: self.month, of: date)!
-//        date = Calendar.current.date(bySetting: .day, value: self.day, of: date)!
-//        return date
-//    }
-//
-//    init(year: Int, month: Int, day: Int) {
-//        self.year = year
-//        self.month = month
-//        self.day = day
-//    }
-//    init(components: DateComponents) {
-//        self.year = components.year!
-//        self.month = components.month!
-//        self.day = components.day!
-//    }
-//    init(date: Date) {
-//        self.year = Calendar.current.component(.year, from: date)
-//        self.month = Calendar.current.component(.month, from: date)
-//        self.day = Calendar.current.component(.day, from: date)
-//    }
-//}
+enum envError: Error {
+    // if no Plist dictionary found
+    case noPlist
+    // if could not fetch a specific property
+    case couldNotGet
+    // throw unexpected, other errors
+    case unexpected(code: Int)
+}
+
+extension envError: CustomStringConvertible {
+    public var description: String {
+        switch self {
+        case .noPlist :
+            return "Could not get environment variable plist"
+        case .couldNotGet :
+            return "Could not get environment variable from list"
+        case .unexpected(_) :
+            return "Unexpected enviroment variable error"
+        }
+    }
+}
 
 // Get the number of seconds to the start or end of current period. Time must be between given period start or end
 // If isEnd = true, will return time to end, else will return time to start
@@ -181,11 +170,21 @@ func getNextPeriod(schedule: DayType, atDate: Date = .now) -> Period? {
     return nil
 }
 
+
+
 public func getDayTypeFromApi(onDay: Date = .now) async throws -> FetchedResponse? {
+    // Load environment varibles
+    guard let infoDictionary: [String: Any] = Bundle.main.infoDictionary else { throw envError.noPlist }
+    guard let env = infoDictionary["LSEnvironment"] as? Dictionary<String, Any> else { throw envError.noPlist}
+    guard let apiEndpoint: String = env["apiEndpoint"] as? String else { throw envError.couldNotGet }
+    guard let apiKey: String = env["apiKey"] as? String else { throw envError.couldNotGet }
+    guard let schoolID: String = env["schoolID"] as? String else { throw envError.couldNotGet }
+    
+    
     let calendarDate = Calendar.current.dateComponents([.day, .year, .month], from: onDay)
-    if let url = URL(string: "\(ProcessInfo.processInfo.environment["API_ENDPOINT"]!)/schools/\( ProcessInfo.processInfo.environment["SCHOOL_ID"]!)?includes=dayTypeOnDate&day=\(calendarDate.day!)&month=\(calendarDate.month!)&year=\(calendarDate.year!)") {
+    if let url = URL(string: "https://\(apiEndpoint)/schools/\( schoolID)?includes=dayTypeOnDate&day=\(calendarDate.day!)&month=\(calendarDate.month!)&year=\(calendarDate.year!)") {
         var request = URLRequest(url: url)
-        request.setValue(ProcessInfo.processInfo.environment["API_KEY"], forHTTPHeaderField: "authorization")
+        request.setValue(apiKey, forHTTPHeaderField: "authorization")
         let (data, _) = try await URLSession.shared.data(for: request)
         
         if let jsonString = String(data: data, encoding: .utf8) {
@@ -202,7 +201,10 @@ public func getDayTypeFromApi(onDay: Date = .now) async throws -> FetchedRespons
     return nil
 }
 
-public func updateScheduleStores(viewContext: NSManagedObjectContext) async {
+
+
+
+public func updateDayTypeOnlyStores(viewContext: NSManagedObjectContext) async -> FetchedResponse? {
     var todayFetch: FetchedResponse?
     do {
         todayFetch = try await getDayTypeFromApi()
@@ -217,25 +219,38 @@ public func updateScheduleStores(viewContext: NSManagedObjectContext) async {
         let storedDayTypes = try viewContext.fetch(StoredDayType.fetchRequest())
 
         if todayFetch != nil {
-            // Delete previous local stores
-            storedDayTypes.forEach(viewContext.delete)
+            var newDayTypes: [DayType] = []
+            
+            // Remove duplicates
+            for schedule in todayFetch!.response.dayTypes {
+                if !newDayTypes.contains(where: {$0.name == schedule.name}) {
+                    newDayTypes.append(schedule)
+                }
+            }
             
             // Store new schedules that have been fetched
-            for schedule in todayFetch!.response.dayTypes {
+            for schedule in newDayTypes {
                 _ = schedule.toStoredDayType(context: viewContext)
             }
             
+            
+            // Delete previous local stores
+            storedDayTypes.forEach(viewContext.delete)
+            // Save the new stores
             try viewContext.save()
         }
     } catch {
         print("[NativeDash]: failed to update StoredDayTypes. \(error)")
     }
-    
+    return todayFetch
+}
+
+public func updateScheduleOnDateOnlyStores(viewContext: NSManagedObjectContext, todayFetch: FetchedResponse? = nil) async {
     // Fetch schedules for next week
     var nextWeekFetches: [FetchedResponse?] = [todayFetch]
     for i in 1...6 {
         do {
-            guard let fetchDate = Calendar.current.date(byAdding: .day, value: i, to: .now) 
+            guard let fetchDate = Calendar.current.date(byAdding: .day, value: i, to: .now)
             else {
                 nextWeekFetches.append(nil)
                 continue
@@ -277,4 +292,9 @@ public func updateScheduleStores(viewContext: NSManagedObjectContext) async {
     } catch {
         print("[NativeDash]: failed to update StoredScheduleOnDate. \(error)")
     }
+}
+
+public func updateScheduleStores(viewContext: NSManagedObjectContext) async {
+    let todayFetch = await updateDayTypeOnlyStores(viewContext: viewContext)
+    await updateScheduleOnDateOnlyStores(viewContext: viewContext, todayFetch: todayFetch)
 }

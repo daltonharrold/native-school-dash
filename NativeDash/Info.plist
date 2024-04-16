@@ -6,6 +6,15 @@
 	<array>
 		<string>com.icloud-djharrold53.NativeDash.DayTypeUpdater</string>
 	</array>
+	<key>LSEnvironment</key>
+	<dict>
+		<key>apiEndpoint</key>
+		<string>$(API_ENDPOINT)</string>
+		<key>apiKey</key>
+		<string>$(API_KEY)</string>
+		<key>schoolID</key>
+		<string>$(SCHOOL_ID)</string>
+	</dict>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>processing</string>

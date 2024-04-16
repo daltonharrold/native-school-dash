@@ -1,14 +1,14 @@
 //
-//  TimerWidget.swift
-//  DashWidgets
+//  TimerWatchWidget.swift
+//  DashWatchWidgetsExtension
 //
-//  Created by Dalton Harrold on 2/8/24.
+//  Created by Dalton Harrold on 4/8/24.
 //
 
 import WidgetKit
 import SwiftUI
 
-struct TimerProvider: TimelineProvider {
+struct TimerWatchProvider: TimelineProvider {
     
     var currentHour: Int {
         Calendar.current.component(.hour, from: .now)
@@ -29,22 +29,22 @@ struct TimerProvider: TimelineProvider {
         return Period(name: "Period 6", start: "00:00", end: "\(endHour):\(endMinute)")
     }
     
-    func placeholder(in context: Context) -> TimerEntry {
-        return TimerEntry(date: .now, displayPeriod: placeholderSixthPeriod, scheduleName: "Regular Day")
+    func placeholder(in context: Context) -> TimerWatchEntry {
+        return TimerWatchEntry(date: .now, displayPeriod: placeholderSixthPeriod, scheduleName: "Regular Day")
     }
 
-    func getSnapshot(in context: Context, completion: @escaping (TimerEntry) -> ()) {
+    func getSnapshot(in context: Context, completion: @escaping (TimerWatchEntry) -> ()) {
         if context.isPreview {
             completion(placeholder(in: context))
             return
         }
 
-        let entry = TimerEntry(date: .now, displayPeriod: placeholderSixthPeriod, scheduleName: "Regular Day")
+        let entry = TimerWatchEntry(date: .now, displayPeriod: placeholderSixthPeriod, scheduleName: "Regular Day")
         completion(entry)
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [TimerEntry] = []
+        var entries: [TimerWatchEntry] = []
         
         let viewContext = PersistenceController.shared.container.viewContext
         let scheduleFetch = StoredScheduleOnDate.fetchRequest()
@@ -63,7 +63,7 @@ struct TimerProvider: TimelineProvider {
                     // Add the period to entries
                     let periodStart = loopedPeriod.getStartAsDate()
                     
-                    let entry = TimerEntry(date: periodStart, displayPeriod: loopedPeriod, scheduleName: todaySchedule.name)
+                    let entry = TimerWatchEntry(date: periodStart, displayPeriod: loopedPeriod, scheduleName: todaySchedule.name)
                     entries.append(entry)
                     
                     // Add passing period after current loop period except last period
@@ -72,7 +72,7 @@ struct TimerProvider: TimelineProvider {
                         
                         let passingStart = passingPeriod.getStartAsDate()
                         
-                        let passingEntry = TimerEntry(date: passingStart, displayPeriod: passingPeriod, scheduleName: todaySchedule.name)
+                        let passingEntry = TimerWatchEntry(date: passingStart, displayPeriod: passingPeriod, scheduleName: todaySchedule.name)
                         entries.append(passingEntry)
                     }
                 }
@@ -83,11 +83,13 @@ struct TimerProvider: TimelineProvider {
                     // At EOD, show tomorrow's start
                     let endOfDay: Date = todaySchedule.periods.last!.getEndAsDate()
                     let overnightPeriod: Period = Period(name: "Night time", start: todaySchedule.periods.last!.end, end: tomorrowSchedule.periods.first!.start)
-                    let overnightEntry = TimerEntry(date: endOfDay, displayPeriod: overnightPeriod, scheduleName: tomorrowSchedule.name, tomorrowSchoolStart: tomorrowSchedule.periods.first!.getStartAsDate())
+                    let overnightEntry = TimerWatchEntry(date: endOfDay, displayPeriod: overnightPeriod, scheduleName: tomorrowSchedule.name, tomorrowSchoolStart: tomorrowSchedule.periods.first!.getStartAsDate())
                     
                     entries.append(overnightEntry)
 
                 }
+            } else {
+                print("todaySchedule not found")
             }
         } catch {
             fatalError("Could not fetch from Core Data for widget timeline. \(error)")
@@ -99,7 +101,7 @@ struct TimerProvider: TimelineProvider {
     }
 }
 
-struct TimerEntry: TimelineEntry {
+struct TimerWatchEntry: TimelineEntry {
     let date: Date
     let displayPeriod: Period
     let scheduleName: String
@@ -120,62 +122,10 @@ struct TimerEntry: TimelineEntry {
     }
 }
 
-struct DashWidgetsEntryView : View {
-    var entry: TimerProvider.Entry
-    @Environment(\.widgetFamily) var family
+struct TimerWatchWidgetEntryView : View {
+    var entry: TimerWatchProvider.Entry
 
     var body: some View {
-        switch family {
-        case .systemSmall:
-            VStack{
-                // Day type name
-                Text(entry.scheduleName)
-                    .font(.footnote)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .id(entry.scheduleName)
-                    .transition(.push(from: .top))
-
-                
-                // Timer
-                
-                if entry.tomorrowSchoolStart == nil {
-                    Text(entry.displayPeriod.getEndAsDate(), style: .timer)
-                        .font(.system(size: 52, weight: .bold))
-                        .fontWidth(.compressed)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(0)
-                        .dynamicTypeSize(.medium)
-                        .minimumScaleFactor(0.8)
-                        .id(entry.displayPeriod.getEndAsDate())
-                    //                .transition(.push(from: .leading))
-                        .transition(.move(edge: .leading))
-                } else {
-                    Text(entry.tomorrowSchoolStart!, style: .time)
-                        .font(.system(size: 52, weight: .bold))
-                        .fontWidth(.compressed)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(0)
-                        .dynamicTypeSize(.medium)
-                        .minimumScaleFactor(0.8)
-                        .id(entry.displayPeriod.getEndAsDate())
-                    //                .transition(.push(from: .leading))
-                        .transition(.move(edge: .leading))
-                }
-                
-                Spacer()
-                
-                // Period information
-                Text("\(entry.displayPeriod.name)\n\(entry.displayPeriod.startInLocale)-\(entry.displayPeriod.endInLocale)")
-                    .lineLimit(2, reservesSpace: true)
-                    .font(.callout)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .id(entry.displayPeriod.name)
-                    .transition(.push(from: .bottom))
-                
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-            
-        case .accessoryRectangular:
             VStack {
                 if entry.tomorrowSchoolStart == nil {
                     Text(entry.displayPeriod.getEndAsDate(), style: .timer)
@@ -196,34 +146,30 @@ struct DashWidgetsEntryView : View {
                 .font(.callout)
                 .fontWeight(.semibold)
                 .frame(maxWidth: .infinity, alignment: .leading)
-
-        default:
-            Spacer()
-        }
     }
 }
 
-struct TimerWidget: Widget {
-    let kind: String = "TimerWidget"
+struct TimerWatchWidget: Widget {
+    let kind: String = "TimerWatchWidget"
 
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: TimerProvider()) { entry in
+        StaticConfiguration(kind: kind, provider: TimerWatchProvider()) { entry in
     
-            DashWidgetsEntryView(entry: entry)
-                .containerBackground(.fill.tertiary, for: .widget)
+            TimerWatchWidgetEntryView(entry: entry)
+                .containerBackground(LinearGradient(colors: [Color("AccentColor"), Color("EmptyAccentColor")], startPoint: .topLeading, endPoint: .bottomTrailing), for: .widget)
 
         }
         .configurationDisplayName("Time Left in Period")
         .description("A widget to display how much time is left in the current period at a glance.")
-        .supportedFamilies([.systemSmall, .accessoryRectangular])
+        .supportedFamilies([.accessoryRectangular])
     }
 }
 
-#Preview(as: .systemSmall) {
-    TimerWidget()
+#Preview(as: .accessoryRectangular) {
+    TimerWatchWidget()
 } timeline: {
-    TimerEntry(date: Calendar.current.date(bySettingHour: 12, minute: 55, second: 00, of: .now)!, displayPeriod: Period(name: "Period 6", start: "12:39", end: "13:21"), scheduleName: "Regular Day")
-    TimerEntry(date: Calendar.current.date(bySettingHour: 13, minute: 42, second: 00, of: .now)!, displayPeriod: Period(name: "Period 6 → Period 7", start: "13:21", end: "13:25"), scheduleName: "Regular Day")
-    TimerEntry(date: Calendar.current.date(bySettingHour: 13, minute: 42, second: 00, of: .now)!, displayPeriod: Period(name: "Period 7", start: "13:25", end: "14:07"), scheduleName: "Regular Day")
-    TimerEntry(date: Calendar.current.date(bySettingHour: 13, minute: 42, second: 00, of: .now)!, displayPeriod: Period(name: "Period 8", start: "13:25", end: "14:07"), scheduleName: "Common Day")
+    TimerWatchEntry(date: Calendar.current.date(bySettingHour: 12, minute: 55, second: 00, of: .now)!, displayPeriod: Period(name: "Period 6", start: "12:39", end: "13:21"), scheduleName: "Regular Day")
+    TimerWatchEntry(date: Calendar.current.date(bySettingHour: 13, minute: 42, second: 00, of: .now)!, displayPeriod: Period(name: "Period 6 → Period 7", start: "13:21", end: "13:25"), scheduleName: "Regular Day")
+    TimerWatchEntry(date: Calendar.current.date(bySettingHour: 13, minute: 42, second: 00, of: .now)!, displayPeriod: Period(name: "Period 7", start: "13:25", end: "14:07"), scheduleName: "Regular Day")
+    TimerWatchEntry(date: Calendar.current.date(bySettingHour: 13, minute: 42, second: 00, of: .now)!, displayPeriod: Period(name: "Period 8", start: "13:25", end: "14:07"), scheduleName: "Common Day")
 }
