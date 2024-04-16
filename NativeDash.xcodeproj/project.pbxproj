@@ -218,8 +218,6 @@
 			isa = PBXGroup;
 			children = (
 				3F227B792BC578B7001AC3F6 /* .gitignore */,
-				3F227B682BC4DB0E001AC3F6 /* DashWatchWidgetsExtension.entitlements */,
-				3F8CA2AC2B88F23900F13E25 /* DashWidgetsExtension.entitlements */,
 				3F227B692BC57735001AC3F6 /* Configuration */,
 				3FF726D82B0BF95A0093E54C /* CoreDataStore */,
 				3FB335DB2AF302B100028FC8 /* DataStructs.swift */,
@@ -293,6 +291,8 @@
 		3F227B692BC57735001AC3F6 /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
+				3F8CA2AC2B88F23900F13E25 /* DashWidgetsExtension.entitlements */,
+				3F227B682BC4DB0E001AC3F6 /* DashWatchWidgetsExtension.entitlements */,
 				3F227B6F2BC57795001AC3F6 /* EnvTemplate.xcconfig */,
 				3F227B742BC577BF001AC3F6 /* EnvProduction.xcconfig */,
 			);

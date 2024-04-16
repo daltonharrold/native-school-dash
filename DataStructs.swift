@@ -219,14 +219,24 @@ public func updateDayTypeOnlyStores(viewContext: NSManagedObjectContext) async -
         let storedDayTypes = try viewContext.fetch(StoredDayType.fetchRequest())
 
         if todayFetch != nil {
-            // Delete previous local stores
-            storedDayTypes.forEach(viewContext.delete)
+            var newDayTypes: [DayType] = []
+            
+            // Remove duplicates
+            for schedule in todayFetch!.response.dayTypes {
+                if !newDayTypes.contains(where: {$0.name == schedule.name}) {
+                    newDayTypes.append(schedule)
+                }
+            }
             
             // Store new schedules that have been fetched
-            for schedule in todayFetch!.response.dayTypes {
+            for schedule in newDayTypes {
                 _ = schedule.toStoredDayType(context: viewContext)
             }
             
+            
+            // Delete previous local stores
+            storedDayTypes.forEach(viewContext.delete)
+            // Save the new stores
             try viewContext.save()
         }
     } catch {
