@@ -66,7 +66,16 @@ struct ContentView: View {
         }
         // Before view loads, update schedules and todaySchedule
         .onAppear(perform: {
+            print("App loading!")
             updateFromStores()
+//            testing()
+            let ints = 0...6
+            var dates: [Date] = []
+            for num in ints {
+                dates.append(Calendar.current.date(byAdding: .day, value: num, to: .now)!)
+            }
+            downloadUrls(dates: dates, completion: {stuff in
+            print("Complete fetches!")})
         })
         .task {
             // Updating is done in two parts so that on initial app load, the app can render faster
