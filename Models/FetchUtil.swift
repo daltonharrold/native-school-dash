@@ -124,20 +124,43 @@ public func updateScheduleStores(viewContext: NSManagedObjectContext) async {
 }
 
 
-struct FetchUtil {
+class FetchUtil {
+    var context: NSManagedObjectContext
+    var completion: (() -> ())? = nil
     
+    init(context: NSManagedObjectContext) {
+        self.context = context
+    }
+    
+    func updateStores() {
+        let fetchOperation = FetchOperation(numDatesInFuture: 6, context: context)
+        let storeOperation = StoreOperation(context: context)
+        let queue = OperationQueue()
+        
+        let adapter = BlockOperation() { [unowned fetchOperation, unowned storeOperation] in
+            print("Fetches complete. Adapting...")
+            storeOperation.fetchedResponses = fetchOperation.fetchResponses
+        }
+        
+        queue.addOperation(fetchOperation)
+        
+        adapter.addDependency(fetchOperation)
+        queue.addOperation(adapter)
+        
+        storeOperation.addDependency(adapter)
+        storeOperation.completionBlock = {self.completion?()}
+        queue.addOperation(storeOperation)
+    }
 }
 
 
 class GenericAsyncOperation: Operation {
     private let stateQueue = DispatchQueue(label: "com.icloud-djharrold53.NativeDash.AsyncOperationState", attributes: .concurrent)
 
-    fileprivate let viewContext: NSManagedObjectContext
-    let dayOffset: Int
+    private(set) var context: NSManagedObjectContext
     
-    init(context: NSManagedObjectContext = PersistenceController.shared.container.viewContext, dayOffset: Int = 0) {
-        self.viewContext = context
-        self.dayOffset = dayOffset
+    init(context: NSManagedObjectContext) {
+        self.context = context
     }
     
     enum State: String {
@@ -193,77 +216,211 @@ class GenericAsyncOperation: Operation {
     
 }
 public func testing() {
-    let fo = FetchOperation()
+    let fo = FetchOperation(numDatesInFuture: 6, context: PersistenceController.shared.container.viewContext)
     let queue = OperationQueue()
     print("Starting Operation")
     queue.addOperations([fo], waitUntilFinished: true)
     print("Finished Operation")
-    print("Operation outputs:" + (fo.fetchResponse?.response.name ?? "no output..."))
+    print("fo: \(String(describing: fo.fetchResponses))")
 }
 
 class FetchOperation: GenericAsyncOperation {
-    var fetchResponse: FetchedResponse?
+    var fetchResponses: [FetchedResponse]? = nil
+    var dates: [Date]
+    
+    init(dates: [Date], context: NSManagedObjectContext) {
+        self.dates = dates
+        super.init(context: context)
+    }
+    
+    init(numDatesInFuture: Int, context: NSManagedObjectContext) {
+        self.dates = []
+        let ints = 0...numDatesInFuture
+        for num in ints {
+            self.dates.append(Calendar.current.date(byAdding: .day, value: num, to: .now)!)
+        }
+        super.init(context: context)
+    }
     
     override func main() {
-        // Create ability to hold thread until fetch complete
-        if isCancelled {self.state = .finished; return}
-        let sephamore = DispatchSemaphore(value: 0)
-        Task(priority: .medium) {
-            do {
-                
-                fetchResponse = try await getDayTypeFromApi()
-                self.state = .finished
-            } catch {
-                print("[NativeDash]: failed to get today's schedule in FetchOperation. \(error)")
-                fetchResponse = nil
+        if isCancelled {
+            state = .finished
+            return
+        }
+        
+        var subjectCollection: [FetchedResponse] = []
+        let urlDownloadQueue = DispatchQueue(label: "com.urlDownloader.urlqueue")
+        let urlDownloadGroup = DispatchGroup()
+
+        var fetchRequests: Dictionary<Date, URLRequest> = [:]
+        
+        for date in dates {
+            let calendarDate = Calendar.current.dateComponents([.day, .year, .month], from: date)
+            if let url = URL(string: "\(ProcessInfo.processInfo.environment["API_ENDPOINT"]!)/schools/\( ProcessInfo.processInfo.environment["SCHOOL_ID"]!)?includes=dayTypeOnDate&day=\(calendarDate.day!)&month=\(calendarDate.month!)&year=\(calendarDate.year!)") {
+                var req = URLRequest(url: url)
+                req.setValue(ProcessInfo.processInfo.environment["API_KEY"], forHTTPHeaderField: "authorization")
+                fetchRequests[date] = req
             }
         }
-        sephamore.wait()
-    }
-}
-
-func downloadUrls(dates: [Date], completion: @escaping ([FetchedResponse]) -> Void) {
-    var subjectCollection: [FetchedResponse] = []
-    let urlDownloadQueue = DispatchQueue(label: "com.urlDownloader.urlqueue")
-    let urlDownloadGroup = DispatchGroup()
-
-    var fetchRequests: Dictionary<Date, URLRequest> = [:]
-    
-    for date in dates {
-        let calendarDate = Calendar.current.dateComponents([.day, .year, .month], from: date)
-        if let url = URL(string: "\(ProcessInfo.processInfo.environment["API_ENDPOINT"]!)/schools/\( ProcessInfo.processInfo.environment["SCHOOL_ID"]!)?includes=dayTypeOnDate&day=\(calendarDate.day!)&month=\(calendarDate.month!)&year=\(calendarDate.year!)") {
-            var req = URLRequest(url: url)
-            req.setValue(ProcessInfo.processInfo.environment["API_KEY"], forHTTPHeaderField: "authorization")
-            fetchRequests[date] = req
-        }
-    }
-    
-    fetchRequests.forEach {(request) in
-        print("Fetch started for \(request.key.ISO8601Format())")
-        urlDownloadGroup.enter()
-    
-        URLSession.shared.dataTask(with: request.value, completionHandler: { (data, response, error) in
-//            print("Data" + String(describing: data) + "Response:" + String(describing: response) + "error" + String(describing: error))
-            guard let data = data,
-                let subject = try? JSONDecoder().decode(ApiResponse.self, from: data) else {
-                // handle error
+        // Check if cancelled
+        if self.isCancelled {self.state = .finished; return}
+        
+        fetchRequests.forEach {(request) in
+            print("Fetch started for \(request.key.ISO8601Format())")
+            urlDownloadGroup.enter()
+        
+            URLSession.shared.dataTask(with: request.value, completionHandler: { (data, response, error) in
+    //            print("Data" + String(describing: data) + "Response:" + String(describing: response) + "error" + String(describing: error))
+                guard let data = data,
+                    let subject = try? JSONDecoder().decode(ApiResponse.self, from: data) else {
+                    // handle error
+                    urlDownloadQueue.async {
+                        print("[NativeDash]: Error in decoding fetchedJSON. \(String(describing: error))")
+                        urlDownloadGroup.leave()
+                    }
+                    return
+                }
+            
                 urlDownloadQueue.async {
-                    print("[NativeDash]: Error in decoding fetchedJSON. \(String(describing: error))")
+                    if self.isCancelled {self.state = .finished; return}
+                    let returnData = FetchedResponse(onDate: request.key, response: subject)
+                    print("Fetch completed for \(returnData.onDate.ISO8601Format())")
+                    subjectCollection.append(returnData)
                     urlDownloadGroup.leave()
                 }
-                return
-            }
-        
-            urlDownloadQueue.async {
-                let returnData = FetchedResponse(onDate: request.key, response: subject)
-                print("Fetch completed for \(returnData.onDate.ISO8601Format())")
-                subjectCollection.append(returnData)
-                urlDownloadGroup.leave()
-            }
-        }).resume()
-    }
+            }).resume()
+        }
 
-    urlDownloadGroup.notify(queue: DispatchQueue.global()) {
-        completion(subjectCollection)
+        urlDownloadGroup.notify(queue: DispatchQueue.global()) {
+            self.fetchResponses = subjectCollection
+            self.state = .finished
+        }
     }
 }
+
+class StoreOperation: GenericAsyncOperation {
+    var fetchedResponses: [FetchedResponse]? = nil
+    
+    override init(context: NSManagedObjectContext) {
+        super.init(context: context)
+    }
+    
+    private func rollback() {
+        print("Store operation cancelled. Rolling back...")
+        context.rollback()
+        self.state = .finished
+    }
+    
+    override func main() {
+        if self.isCancelled {self.state = .finished; return}
+        
+        guard let fetchedResponses = fetchedResponses, !fetchedResponses.isEmpty else {
+            print("Responses not fetched for storing.")
+            self.state = .finished
+            return
+        }
+        
+        print("Updating StoredDayTypes...")
+        // Update StoredDayTypes
+        do {
+            // Get current data from Core Data to manage it
+            let storedDayTypes = try context.fetch(StoredDayType.fetchRequest())
+            
+            // Delete previous local stores
+            storedDayTypes.forEach(context.delete)
+                
+            // Store new schedules that have been fetched
+            for schedule in fetchedResponses.first!.response.dayTypes {
+                _ = schedule.toStoredDayType(context: context)
+            }
+                
+            if self.isCancelled {rollback(); return}
+            
+        } catch {
+            print("[NativeDash]: failed to update StoredDayTypes. \(error)")
+        }
+        
+        print("Updating StoredScheduleOnDate...")
+        // Insert next week's schedules into stores
+        do {
+            if self.isCancelled {rollback(); return}
+            let storedScheduleOnDates = try context.fetch(StoredScheduleOnDate.fetchRequest())
+            let storedDayTypes = try context.fetch(StoredDayType.fetchRequest())
+            
+            // Delete stores for past dates
+            storedScheduleOnDates.filter({schedule in
+                return schedule.date!.timeIntervalSinceNow < 0 && !Calendar.current.isDateInToday(schedule.date!)
+            }).forEach(context.delete)
+            
+            
+            for scheduleResponse in fetchedResponses {
+                if self.isCancelled {rollback(); return}
+  
+                // Delete old store for looped date
+                if let oldStore = storedScheduleOnDates.first(where: {Calendar.current.isDate($0.date!, inSameDayAs: scheduleResponse.onDate)}) {
+                    context.delete(oldStore)
+                }
+                
+                // Insert schedule into Core Data
+                let storedSchedule = StoredScheduleOnDate(context: context)
+                storedSchedule.date = scheduleResponse.onDate
+                let possibleSchedule = storedDayTypes.first(where: {$0.name == scheduleResponse.response.dayTypeOnDate.name})
+                storedSchedule.schedule = possibleSchedule ?? storedDayTypes.first
+            }
+            
+            if self.isCancelled {rollback(); return}
+            try context.save()
+        } catch {
+            print("[NativeDash]: failed to update StoredScheduleOnDate. \(error)")
+        }
+        
+        print("Finished updating stores!")
+        self.state = .finished
+    }
+}
+
+//func downloadUrls(dates: [Date], completion: @escaping ([FetchedResponse]) -> Void) {
+//    var subjectCollection: [FetchedResponse] = []
+//    let urlDownloadQueue = DispatchQueue(label: "com.urlDownloader.urlqueue")
+//    let urlDownloadGroup = DispatchGroup()
+//
+//    var fetchRequests: Dictionary<Date, URLRequest> = [:]
+//    
+//    for date in dates {
+//        let calendarDate = Calendar.current.dateComponents([.day, .year, .month], from: date)
+//        if let url = URL(string: "\(ProcessInfo.processInfo.environment["API_ENDPOINT"]!)/schools/\( ProcessInfo.processInfo.environment["SCHOOL_ID"]!)?includes=dayTypeOnDate&day=\(calendarDate.day!)&month=\(calendarDate.month!)&year=\(calendarDate.year!)") {
+//            var req = URLRequest(url: url)
+//            req.setValue(ProcessInfo.processInfo.environment["API_KEY"], forHTTPHeaderField: "authorization")
+//            fetchRequests[date] = req
+//        }
+//    }
+//    
+//    fetchRequests.forEach {(request) in
+//        print("Fetch started for \(request.key.ISO8601Format())")
+//        urlDownloadGroup.enter()
+//    
+//        URLSession.shared.dataTask(with: request.value, completionHandler: { (data, response, error) in
+////            print("Data" + String(describing: data) + "Response:" + String(describing: response) + "error" + String(describing: error))
+//            guard let data = data,
+//                let subject = try? JSONDecoder().decode(ApiResponse.self, from: data) else {
+//                // handle error
+//                urlDownloadQueue.async {
+//                    print("[NativeDash]: Error in decoding fetchedJSON. \(String(describing: error))")
+//                    urlDownloadGroup.leave()
+//                }
+//                return
+//            }
+//        
+//            urlDownloadQueue.async {
+//                let returnData = FetchedResponse(onDate: request.key, response: subject)
+//                print("Fetch completed for \(returnData.onDate.ISO8601Format())")
+//                subjectCollection.append(returnData)
+//                urlDownloadGroup.leave()
+//            }
+//        }).resume()
+//    }
+//
+//    urlDownloadGroup.notify(queue: DispatchQueue.global()) {
+//        completion(subjectCollection)
+//    }
+//}

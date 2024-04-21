@@ -68,20 +68,19 @@ struct ContentView: View {
         .onAppear(perform: {
             print("App loading!")
             updateFromStores()
-//            testing()
-            let ints = 0...6
-            var dates: [Date] = []
-            for num in ints {
-                dates.append(Calendar.current.date(byAdding: .day, value: num, to: .now)!)
-            }
-            downloadUrls(dates: dates, completion: {stuff in
-            print("Complete fetches!")})
+//            let ints = 0...6
+//            var dates: [Date] = []
+//            for num in ints {
+//                dates.append(Calendar.current.date(byAdding: .day, value: num, to: .now)!)
+//            }
+//            downloadUrls(dates: dates, completion: {stuff in
+//            print("Complete fetches!")})
         })
         .task {
-            // Updating is done in two parts so that on initial app load, the app can render faster
-            // Outside of rendering scope, updateScheduleStores() should be used
-            await updateScheduleStores(viewContext: viewContext)
-            updateFromStores()
+            let fu = FetchUtil(context: viewContext)
+            fu.completion = updateFromStores
+            fu.updateStores()
+//            await updateScheduleStores(viewContext: viewContext)
             
         }
     }
