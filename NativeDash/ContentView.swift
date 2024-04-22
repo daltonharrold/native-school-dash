@@ -29,7 +29,7 @@ struct ContentView: View {
     @State private var spinnerLength = 0.6
     
     var body: some View {
-        ScrollView(.vertical) {
+        ScrollView(.vertical, showsIndicators: false) {
             Spacer().frame(height: 20)
             if todaySchedule != nil {
                 PeriodTimerRing(todaySchedule: todaySchedule!)
@@ -64,15 +64,16 @@ struct ContentView: View {
                 .foregroundStyle(.gray)
                 .padding(.top, 20)
         }
+        
         // Before view loads, update schedules and todaySchedule
         .onAppear(perform: {
+            print("App loading!")
             updateFromStores()
         })
         .task {
-            // Updating is done in two parts so that on initial app load, the app can render faster
-            // Outside of rendering scope, updateScheduleStores() should be used
-            await updateScheduleStores(viewContext: viewContext)
-            updateFromStores()
+            let fu = FetchUtil(context: viewContext)
+            fu.completion = {_ in updateFromStores()}
+            fu.updater.start()
             
         }
     }
