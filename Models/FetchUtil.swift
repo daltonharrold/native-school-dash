@@ -29,18 +29,32 @@ class FetchUtil {
     var context: NSManagedObjectContext
     var completion: ((Error?) -> ())? = nil {
         didSet {
-            self.updater.completion = self.completion
+            self.updateOp.completion = self.completion
         }
     }
     var error: FetchError? = nil
     var urlSession: URLSession
-    var updater: UpdateOperation
+    private var updateOp: UpdateOperation
+    private let updateOpQueue = OperationQueue()
     
+    var updater: UpdaterInterface
+    
+    struct UpdaterInterface {
+        let op: Operation
+        let q: OperationQueue
+        func start() {
+            q.addOperation(op)
+        }
+        func cancel() {
+            op.cancel()
+        }
+    }
     
     init(context: NSManagedObjectContext, urlSession: URLSession) {
         self.context = context
         self.urlSession = urlSession
-        self.updater = UpdateOperation(context: context, urlSession: urlSession)
+        self.updateOp = UpdateOperation(context: context, urlSession: urlSession)
+        self.updater = UpdaterInterface(op: updateOp, q: updateOpQueue)
     }
     
     convenience init(context: NSManagedObjectContext) {
@@ -216,9 +230,13 @@ class FetchOperation: GenericAsyncOperation {
         
         for date in dates {
             let calendarDate = Calendar.current.dateComponents([.day, .year, .month], from: date)
-            if let url = URL(string: "\(ProcessInfo.processInfo.environment["API_ENDPOINT"]!)/schools/\( ProcessInfo.processInfo.environment["SCHOOL_ID"]!)?includes=dayTypeOnDate&day=\(calendarDate.day!)&month=\(calendarDate.month!)&year=\(calendarDate.year!)") {
+            guard let envDict = Bundle.main.object(forInfoDictionaryKey: "LSEnvironment") as? Dictionary<String, String> else {
+                fatalError("Could not get plist Env values")
+            }
+            if let url = URL(string: "https://\(envDict["API_ENDPOINT"]!)/schools/\( envDict["SCHOOL_ID"]!)?includes=dayTypeOnDate&day=\(calendarDate.day!)&month=\(calendarDate.month!)&year=\(calendarDate.year!)") {
+                
                 var req = URLRequest(url: url)
-                req.setValue(ProcessInfo.processInfo.environment["API_KEY"], forHTTPHeaderField: "authorization")
+                req.setValue(envDict["API_KEY"]!, forHTTPHeaderField: "authorization")
                 fetchRequests[date] = req
             }
         }
