@@ -35,14 +35,21 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         UserDefaults.standard.setValue(count+1, forKey: "BG_task_run_count")
         print("[NativeDash BG Scheduler]: Running scheduled task...")
         
-        let worker = Task {
-            await updateScheduleStores(viewContext:viewContext)
+        let session = URLSession(configuration: .background(withIdentifier: "com.icloud-djharrold53.NativeDash.BGURLSession"))
+        
+        let fu = FetchUtil(context: viewContext, urlSession: session)
+        fu.completion = { error in
+            guard error == nil else {
+                task.setTaskCompleted(success: false)
+                return
+            }
             task.setTaskCompleted(success: true)
         }
+        fu.updater.start()
         
         task.expirationHandler = {
             print("[NativeDash]: Cancelling background task...")
-            worker.cancel()
+            fu.updater.cancel()
         }
     }
     
