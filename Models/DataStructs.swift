@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import SwiftUI
 
 public struct DayType: Decodable {
     let name: String
@@ -85,7 +86,21 @@ private func usesAMPM() -> Bool {
     }
 }
 
-
+extension Date {
+    /// Gets the user clock
+    func asUserClockTime(includeAmPm: Bool = true) -> String {
+        let hour = Calendar.current.component(.hour, from: self)
+        let minute = Calendar.current.component(.minute, from: self)
+        if usesAMPM() {
+            let newHour = hour%12 == 0 ? 12 : hour%12
+            let amPm = !includeAmPm ? "" : hour < 12 ? " AM" : " PM"
+            return "\(newHour):\(minute)\(amPm)"
+        } else {
+            let newHour = hour < 10 ? "0\(hour)" : "\(hour)"
+            return "\(newHour):\(minute)"
+        }
+    }
+}
 
 // Get the number of seconds to the start or end of current period. Time must be between given period start or end
 // If isEnd = true, will return time to end, else will return time to start
@@ -133,4 +148,5 @@ func getNextPeriod(schedule: DayType, atDate: Date = .now) -> Period? {
     }
     return nil
 }
+
 
