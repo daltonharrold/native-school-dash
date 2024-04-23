@@ -57,8 +57,24 @@ struct TimerProvider: TimelineProvider {
             if let todaySchedule = storedSchedules.first(where: {
                 Calendar.current.isDate($0.date!, equalTo: currentDate, toGranularity: .day)
             })?.schedule?.asDayType() {
+                // Have an entry at midnight when schedules are needed
+                let morningStart = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: .now)!
+                let morningPeriod = Period(name: "Good morning", start: "00:00", end: todaySchedule.periods.first!.start)
+                let morningEntry = TimerEntry(date: morningStart, displayPeriod: morningPeriod, scheduleName: todaySchedule.name, tomorrowSchoolStart: todaySchedule.periods.first!.getStartAsDate())
+                entries.append(morningEntry)
+                
+                // Have an entry to countdown before school
+                let countdownStart = todaySchedule.periods.first!.getStartAsDate().addingTimeInterval(TimeInterval(-15*60))
+                let countdownPeriod = Period(name: "School starting...", start: countdownStart.asUserClockTime(includeAmPm: false), end: todaySchedule.periods.first!.start)
+                let countdownEntry = TimerEntry(date: countdownStart, displayPeriod: countdownPeriod, scheduleName: todaySchedule.name)
+                entries.append(countdownEntry)
+                
                 for index in 0..<todaySchedule.periods.count {
                     let loopedPeriod = todaySchedule.periods[index]
+                    
+                    
+                    
+                    entries.append(countdownEntry)
                     
                     // Add the period to entries
                     let periodStart = loopedPeriod.getStartAsDate()
@@ -82,11 +98,11 @@ struct TimerProvider: TimelineProvider {
                 })?.schedule?.asDayType() {
                     // At EOD, show tomorrow's start
                     let endOfDay: Date = todaySchedule.periods.last!.getEndAsDate()
-                    let overnightPeriod: Period = Period(name: "Night time", start: todaySchedule.periods.last!.end, end: tomorrowSchedule.periods.first!.start)
+                    let overnightPeriod: Period = Period(name: "Good night", start: todaySchedule.periods.last!.end, end:"00:00")
                     let overnightEntry = TimerEntry(date: endOfDay, displayPeriod: overnightPeriod, scheduleName: tomorrowSchedule.name, tomorrowSchoolStart: tomorrowSchedule.periods.first!.getStartAsDate())
                     
                     entries.append(overnightEntry)
-
+                    
                 }
             }
         } catch {
@@ -146,9 +162,10 @@ struct DashWidgetsEntryView : View {
                         .padding(0)
                         .dynamicTypeSize(.medium)
                         .minimumScaleFactor(0.8)
-                        .id(entry.displayPeriod.getEndAsDate())
-                    //                .transition(.push(from: .leading))
-                        .transition(.move(edge: .leading))
+                        .id(entry.displayPeriod.getStartAsDate())
+//                        .transition(.push(from: .leading))
+//                        .transition(.move(edge: .leading).combined(with: .opacity))
+                        .transition(.asymmetric(insertion: .move(edge: .leading).animation(.easeIn(duration: 4)), removal: .move(edge: .trailing).combined(with: .opacity).animation(.easeOut(duration: 3))))
                 } else {
                     Text(entry.tomorrowSchoolStart!, style: .time)
                         .font(.system(size: 52, weight: .bold))
@@ -157,9 +174,10 @@ struct DashWidgetsEntryView : View {
                         .padding(0)
                         .dynamicTypeSize(.medium)
                         .minimumScaleFactor(0.8)
-                        .id(entry.displayPeriod.getEndAsDate())
+                        .id(entry.displayPeriod.getStartAsDate())
                     //                .transition(.push(from: .leading))
-                        .transition(.move(edge: .leading))
+//                        .transition(.move(edge: .leading))
+                        .transition(.asymmetric(insertion: .move(edge: .leading).animation(.easeIn(duration: 4)), removal: .move(edge: .trailing).combined(with: .opacity).animation(.easeOut(duration: 3))))
                 }
                 
                 Spacer()

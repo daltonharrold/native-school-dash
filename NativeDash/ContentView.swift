@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WidgetKit
 
 
 
@@ -69,12 +70,13 @@ struct ContentView: View {
         .onAppear(perform: {
             print("App loading!")
             updateFromStores()
+            WidgetCenter.shared.reloadAllTimelines()
         })
         .task {
             let fu = FetchUtil(context: viewContext)
             fu.completion = {_ in updateFromStores()}
             fu.updater.start()
-            
+            WidgetCenter.shared.reloadAllTimelines()
         }
     }
     private func updateFromStores() {
