@@ -11,7 +11,9 @@ import WidgetKit
 @main
 struct DashWatchWidgetsBundle: WidgetBundle {
     var body: some Widget {
-        TimerWatchWidget()
-        EndTimeWatchWidget()
+//        TimerWatchWidget()
+//        EndTimeWatchWidget()
+        TimerWidget()
+        EndTimeWidget()
     }
 }

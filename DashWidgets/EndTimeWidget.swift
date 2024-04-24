@@ -204,10 +204,15 @@ struct EndTimeWidget: Widget {
         }
         .configurationDisplayName("Period End Time")
         .description("A widget to display at what time the current period ends, for when you want to use your own clock")
+        #if os(iOS)
         .supportedFamilies([.systemSmall, .accessoryRectangular])
+        #else
+        .supportedFamilies([.accessoryRectangular])
+        #endif
     }
 }
 
+#if os(iOS)
 #Preview(as: .systemSmall) {
     EndTimeWidget()
 } timeline: {
@@ -216,3 +221,13 @@ struct EndTimeWidget: Widget {
     EndTimeEntry(date: Calendar.current.date(bySettingHour: 13, minute: 42, second: 00, of: .now)!, displayPeriod: Period(name: "Period 7", start: "13:25", end: "14:07"), scheduleName: "Regular Day")
     EndTimeEntry(date: Calendar.current.date(bySettingHour: 13, minute: 42, second: 00, of: .now)!, displayPeriod: Period(name: "Period 8", start: "13:25", end: "14:07"), scheduleName: "Common Day")
 }
+#else
+#Preview(as: .accessoryRectangular) {
+    EndTimeWidget()
+} timeline: {
+    EndTimeEntry(date: Calendar.current.date(bySettingHour: 12, minute: 55, second: 00, of: .now)!, displayPeriod: Period(name: "Period 6", start: "12:39", end: "13:21"), scheduleName: "Regular Day")
+    EndTimeEntry(date: Calendar.current.date(bySettingHour: 13, minute: 42, second: 00, of: .now)!, displayPeriod: Period(name: "Period 6 → Period 7", start: "13:21", end: "13:25"), scheduleName: "Regular Day")
+    EndTimeEntry(date: Calendar.current.date(bySettingHour: 13, minute: 42, second: 00, of: .now)!, displayPeriod: Period(name: "Period 7", start: "13:25", end: "14:07"), scheduleName: "Regular Day")
+    EndTimeEntry(date: Calendar.current.date(bySettingHour: 13, minute: 42, second: 00, of: .now)!, displayPeriod: Period(name: "Period 8", start: "13:25", end: "14:07"), scheduleName: "Common Day")
+}
+#endif
