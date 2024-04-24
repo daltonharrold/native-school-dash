@@ -39,6 +39,8 @@
 		3F6B5A002BC449D200EB4C1F /* StoredDayType+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CD2B0BF9130093E54C /* StoredDayType+CoreDataClass.swift */; };
 		3F6B5A012BC449D400EB4C1F /* StoredDayType+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CE2B0BF9130093E54C /* StoredDayType+CoreDataProperties.swift */; };
 		3F6B5A052BC457F500EB4C1F /* EndTimeWatchWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6B5A042BC457F500EB4C1F /* EndTimeWatchWidget.swift */; };
+		3F8C84582BD8BBB500D49C89 /* TimerWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5912562B752EED00BD42A0 /* TimerWidget.swift */; };
+		3F8C84592BD8BBB800D49C89 /* EndTimeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD9FB932BB0A8C400ED3EB0 /* EndTimeWidget.swift */; };
 		3F8CA2A52B864B6300F13E25 /* NativeDash.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726C42B0BB8450093E54C /* NativeDash.xcdatamodeld */; };
 		3F8CA2A62B864B6600F13E25 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726C72B0BB8950093E54C /* Persistence.swift */; };
 		3F8CA2A72B864B6800F13E25 /* StoredPeriod+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CB2B0BF9130093E54C /* StoredPeriod+CoreDataClass.swift */; };
@@ -593,8 +595,10 @@
 				3F6B5A002BC449D200EB4C1F /* StoredDayType+CoreDataClass.swift in Sources */,
 				3F6B5A012BC449D400EB4C1F /* StoredDayType+CoreDataProperties.swift in Sources */,
 				3FD7ABFC2BCE0472007CF2D9 /* FetchUtil.swift in Sources */,
+				3F8C84582BD8BBB500D49C89 /* TimerWidget.swift in Sources */,
 				3F6B59FC2BC449C800EB4C1F /* NativeDash.xcdatamodeld in Sources */,
 				3F6B59FE2BC449CD00EB4C1F /* StoredPeriod+CoreDataClass.swift in Sources */,
+				3F8C84592BD8BBB800D49C89 /* EndTimeWidget.swift in Sources */,
 				3FD7ABF82BCE0472007CF2D9 /* DataStructs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
