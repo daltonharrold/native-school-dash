@@ -128,7 +128,7 @@ class FetchUtil {
 class GenericAsyncOperation: Operation {
     private let stateQueue = DispatchQueue(label: "com.icloud-djharrold53.NativeDash.AsyncOperationState", attributes: .concurrent)
 
-    private(set) var context: NSManagedObjectContext
+    let context: NSManagedObjectContext
     var error: FetchUtil.FetchError? = nil
     
     init(context: NSManagedObjectContext) {
@@ -187,14 +187,7 @@ class GenericAsyncOperation: Operation {
     }
     
 }
-public func testing() {
-    let fo = FetchOperation(numDatesInFuture: 6, context: PersistenceController.shared.container.viewContext, urlSession: URLSession.shared)
-    let queue = OperationQueue()
-    print("Starting Operation")
-    queue.addOperations([fo], waitUntilFinished: true)
-    print("Finished Operation")
-    print("fo: \(String(describing: fo.fetchResponses))")
-}
+
 
 class FetchOperation: GenericAsyncOperation {
     var fetchResponses: [FetchedResponse]? = nil
