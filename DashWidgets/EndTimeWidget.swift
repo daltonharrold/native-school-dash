@@ -58,6 +58,13 @@ struct EndTimeProvider: TimelineProvider {
             if let todaySchedule = storedSchedules.first(where: {
                 Calendar.current.isDate($0.date!, equalTo: currentDate, toGranularity: .day)
             })?.schedule?.asDayType() {
+                
+                // Have an entry at midnight when schedules are needed
+                let morningStart = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: .now)!
+                let morningPeriod = Period(name: "Good morning", start: "00:00", end: todaySchedule.periods.first!.start)
+                let morningEntry = EndTimeEntry(date: morningStart, displayPeriod: morningPeriod, scheduleName: todaySchedule.name)
+                entries.append(morningEntry)
+                
                 for index in 0..<todaySchedule.periods.count-1 {
                     let loopedPeriod = todaySchedule.periods[index]
                     
@@ -79,16 +86,10 @@ struct EndTimeProvider: TimelineProvider {
                 })?.schedule?.asDayType() {
                     // At EOD, show tomorrow's start
                     let endOfDay: Date = todaySchedule.periods.last!.getEndAsDate()
-                    let overnightPeriod: Period = Period(name: "Night time", start: todaySchedule.periods.last!.end, end: tomorrowSchedule.periods.first!.start)
-                    let overnightEntry = EndTimeEntry(date: endOfDay, displayPeriod: overnightPeriod, scheduleName: tomorrowSchedule.name)
+                    let overnightPeriod: Period = Period(name: "Good night", start: todaySchedule.periods.last!.end, end: "00:00")
+                    let overnightEntry = EndTimeEntry(date: endOfDay, displayPeriod: overnightPeriod, scheduleName: tomorrowSchedule.name, overrideDisplayDate: tomorrowSchedule.periods.first!.getStartAsDate())
                     
                     entries.append(overnightEntry)
-                    
-                    // Schedule the first period of tomorrow
-                    let tomorrowFirstPeriod: Period = tomorrowSchedule.periods.first!
-                    let tomorrowFirstPeriodEntry: EndTimeEntry = EndTimeEntry(date: tomorrowFirstPeriod.getStartAsDate(), displayPeriod: tomorrowFirstPeriod, scheduleName: tomorrowSchedule.name)
-                    
-                    entries.append(tomorrowFirstPeriodEntry)
                 }
             }
             
@@ -105,11 +106,29 @@ struct EndTimeEntry: TimelineEntry {
     let date: Date
     let displayPeriod: Period
     let scheduleName: String
+    let overrideDisplayDate: Date?
+    init(date: Date, displayPeriod: Period, scheduleName: String, overrideDisplayDate: Date) {
+        self.date = date
+        self.displayPeriod = displayPeriod
+        self.scheduleName = scheduleName
+        self.overrideDisplayDate = overrideDisplayDate
+    }
+    init(date: Date, displayPeriod: Period, scheduleName: String) {
+        self.date = date
+        self.displayPeriod = displayPeriod
+        self.scheduleName = scheduleName
+        self.overrideDisplayDate = nil
+    }
 }
 
 struct EndTimeWidgetEntryView : View {
     var entry: EndTimeProvider.Entry
+    let displayDate: Date
     
+    init(entry: EndTimeProvider.Entry) {
+        self.entry = entry
+        self.displayDate = entry.overrideDisplayDate ?? entry.displayPeriod.getEndAsDate()
+    }
     @Environment(\.widgetFamily) var family
 
     var body: some View {
@@ -125,7 +144,7 @@ struct EndTimeWidgetEntryView : View {
                 
                 
                 // Timer
-                Text(entry.displayPeriod.getEndAsDate(), style: .time)
+                Text(displayDate, style: .time)
                     .font(.system(size: 52, weight: .bold))
                     .fontWidth(.compressed)
                     .dynamicTypeSize(.medium)
@@ -133,7 +152,8 @@ struct EndTimeWidgetEntryView : View {
                     .id(entry.displayPeriod.getEndAsDate())
                     .frame(maxWidth: .infinity, alignment: .leading)
 //                    .transition(.push(from: .leading))
-                    .transition(.move(edge: .leading))
+//                    .transition(.move(edge: .leading))
+                    .transition(.asymmetric(insertion: .move(edge: .leading).animation(.easeIn(duration: 4)), removal: .move(edge: .trailing).combined(with: .opacity).animation(.easeOut(duration: 3))))
                 
                 Spacer()
                 
