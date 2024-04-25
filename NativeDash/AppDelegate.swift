@@ -58,14 +58,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         task.setTaskCompleted(success: true)
     }
     
-    func application(_: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
-        print("handleEventsForBackgroundURLSession for \(identifier)")
-//        guard let url = url else {return}
-//        guard let data = try? Data(contentsOf: url) else {return}
-//        guard let urlResponse = urlResponse else {return}
-//        try? FetchUtil.storeRawFetch(data: (data, urlResponse), context: self.viewContext, storesDayType: shouldStoreDayTypes)
-        completionHandler()
-    }
     
     
     func scheduleTask() {
