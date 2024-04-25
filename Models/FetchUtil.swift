@@ -436,17 +436,12 @@ class StoreOperation: GenericAsyncOperation {
 }
 
 class BackgroundFetchUtil: NSObject, URLSessionDelegate, URLSessionDownloadDelegate {
-    let context: NSManagedObjectContext
+    var context: NSManagedObjectContext
     init(context: NSManagedObjectContext) {
         self.context = context
-        opQueue = OperationQueue()
-        opQueue.maxConcurrentOperationCount = 1
-        opQueue.qualityOfService = .background
-        
     }
     
     static let shared = BackgroundFetchUtil(context: PersistenceController.shared.container.viewContext)
-    let opQueue: OperationQueue
     
 
     
@@ -464,52 +459,31 @@ class BackgroundFetchUtil: NSObject, URLSessionDelegate, URLSessionDownloadDeleg
     }
     
     static func storeRawFetch(data: (Data, URLResponse), context: NSManagedObjectContext, storesDayType: Bool) throws {
-        let storeOp = StoreRawFetchOperation(data: data, context: context, storesDayType: storesDayType)
-        BackgroundFetchUtil.shared.opQueue.addOperation(storeOp)
-    }
-    
-    class StoreRawFetchOperation: GenericAsyncOperation {
-        
-        init(data: (Data, URLResponse), context: NSManagedObjectContext, storesDayType: Bool) {
-            self.data = data
-            self.storesDayType = storesDayType
-            
-            let urlComponents = URLComponents(url: data.1.url!, resolvingAgainstBaseURL: true)!
-            var components = DateComponents()
-            components.day = Int((urlComponents.queryItems?.first(where: { $0.name == "day" })?.value)!)
-            components.month = Int((urlComponents.queryItems?.first(where: { $0.name == "month" })?.value)!)
-            components.year = Int((urlComponents.queryItems?.first(where: { $0.name == "year" })?.value)!)
-            self.onDate = Calendar(identifier: .gregorian).date(from: components)!
-            super.init(context: context)
-        }
-        
-        let data: (Data, URLResponse)
-        let storesDayType: Bool
-        
-        
-        let onDate: Date
         
         var response: FetchedResponse?
         
+        let urlComponents = URLComponents(url: data.1.url!, resolvingAgainstBaseURL: true)!
+        var components = DateComponents()
+        components.day = Int((urlComponents.queryItems?.first(where: { $0.name == "day" })?.value)!)
+        components.month = Int((urlComponents.queryItems?.first(where: { $0.name == "month" })?.value)!)
+        components.year = Int((urlComponents.queryItems?.first(where: { $0.name == "year" })?.value)!)
+        let onDate = Calendar(identifier: .gregorian).date(from: components)!
         
-        override func main() {
-            defer {
-                self.state = .finished
-            }
-            
-            if let jsonString = String(data: data.0, encoding: .utf8) {
-                do {
-                    let jsonData = jsonString.data(using: .utf8)!
-                    let res = try JSONDecoder().decode(ApiResponse.self, from: jsonData)
-                    response = FetchedResponse(onDate: onDate, response: res)
-                } catch {
-                    print("[NativeDash]: Error while decoding JSON. \(error)")
-                    return
-                }
-            }
-            guard let response = response else {
+        if let jsonString = String(data: data.0, encoding: .utf8) {
+            do {
+                let jsonData = jsonString.data(using: .utf8)!
+                let res = try JSONDecoder().decode(ApiResponse.self, from: jsonData)
+                response = FetchedResponse(onDate: onDate, response: res)
+            } catch {
+                print("[NativeDash]: Error while decoding JSON. \(error)")
                 return
             }
+        }
+        guard let response = response else {
+            return
+        }
+        
+        context.perform {
             if storesDayType {
                 do {
                     // Get current data from Core Data to manage it
@@ -564,4 +538,5 @@ class BackgroundFetchUtil: NSObject, URLSessionDelegate, URLSessionDownloadDeleg
             print("Updated using background")
         }
     }
+    
 }
