@@ -25,6 +25,34 @@ public struct FetchedResponse {
     }
 }
 
+enum FetchError: Error {
+    case cancelled
+    case decodingError
+    case notFetched
+    case couldNotStore
+    case noPlist
+    case other
+}
+
+extension FetchError: CustomStringConvertible {
+    var description: String {
+        switch self {
+        case .cancelled:
+            return "Operation cancelled by user or system"
+        case .decodingError:
+            return "There was an error decoding fetched JSON content"
+        case .notFetched:
+            return "The content was not fetched from the API and could not be stored"
+        case .couldNotStore:
+            return "There was an error storing the fetched data in Core Data. (Rolled back)"
+        case .noPlist:
+            return "There was an error trying to read plist environment variables"
+        default:
+            return "An unknown error occured when fetching"
+        }
+    }
+}
+
 class FetchUtil {
     var context: NSManagedObjectContext
     var completion: ((Error?) -> ())? = nil {
@@ -36,6 +64,28 @@ class FetchUtil {
     var urlSession: URLSession
     private var updateOp: UpdateOperation
     private let updateOpQueue = OperationQueue()
+    
+    static func getEndpointUrl(onDate: Date) throws -> URL {
+        guard let infoDictionary: [String: Any] = Bundle.main.infoDictionary else { throw FetchError.noPlist }
+        guard let env = infoDictionary["LSEnvironment"] as? Dictionary<String, Any> else { throw FetchError.noPlist}
+        guard let apiEndpoint: String = env["API_ENDPOINT"] as? String else { throw FetchError.noPlist }
+        guard let schoolID: String = env["SCHOOL_ID"] as? String else { throw FetchError.noPlist }
+        
+        
+        let calendarDate = Calendar.current.dateComponents([.day, .year, .month], from: onDate)
+        if let url = URL(string: "https://\(apiEndpoint)/schools/\( schoolID)?includes=dayTypeOnDate&day=\(calendarDate.day!)&month=\(calendarDate.month!)&year=\(calendarDate.year!)") {
+            return url
+        } else {
+            throw FetchError.other
+        }
+    }
+    
+    static func getApiKey() throws -> String {
+        guard let infoDictionary: [String: Any] = Bundle.main.infoDictionary else { throw FetchError.noPlist }
+        guard let env = infoDictionary["LSEnvironment"] as? Dictionary<String, Any> else { throw FetchError.noPlist}
+        guard let apiKey: String = env["API_KEY"] as? String else { throw FetchError.noPlist }
+        return apiKey
+    }
     
     var updater: UpdaterInterface
     
@@ -62,13 +112,6 @@ class FetchUtil {
         self.init(context: context, urlSession: session)
     }
     
-    enum FetchError: Error {
-        case cancelled
-        case decodingError
-        case notFetched
-        case couldNotStore
-        case other
-    }
     
     
     class UpdateOperation: GenericAsyncOperation {
@@ -85,7 +128,7 @@ class FetchUtil {
         
         private func handleCancel() {
             queue.cancelAllOperations()
-            error = .cancelled
+            error = FetchError.cancelled
             state = .finished
         }
         
@@ -123,13 +166,47 @@ class FetchUtil {
         }
     }
     
+    
+    
+//    /// Used for background tasks, where the app must be lightweight instead of fast. This does not store to Core Data.
+//    /// This function uses async/await API instead of OperationQueues, meaning all requests run on one thread
+//    static func backgroundApiGet(onDate: Date = .now, urlSession: URLSession) async throws -> FetchedResponse? {
+//        // Load environment varibles
+//        guard let infoDictionary: [String: Any] = Bundle.main.infoDictionary else { throw FetchError.noPlist }
+//        guard let env = infoDictionary["LSEnvironment"] as? Dictionary<String, Any> else { throw FetchError.noPlist}
+//        guard let apiEndpoint: String = env["apiEndpoint"] as? String else { throw FetchError.noPlist }
+//        guard let apiKey: String = env["apiKey"] as? String else { throw FetchError.noPlist }
+//        guard let schoolID: String = env["schoolID"] as? String else { throw FetchError.noPlist }
+//        
+//        
+//        let calendarDate = Calendar.current.dateComponents([.day, .year, .month], from: onDate)
+//        if let url = URL(string: "https://\(apiEndpoint)/schools/\( schoolID)?includes=dayTypeOnDate&day=\(calendarDate.day!)&month=\(calendarDate.month!)&year=\(calendarDate.year!)") {
+//            var request = URLRequest(url: url)
+//            request.setValue(apiKey, forHTTPHeaderField: "authorization")
+//            let (data, _) = try await urlSession.data(for: request)
+//            
+//            if let jsonString = String(data: data, encoding: .utf8) {
+//                do {
+//                    let jsonData = jsonString.data(using: .utf8)!
+//                    let response = try JSONDecoder().decode(ApiResponse.self, from: jsonData)
+//                    let returnData = FetchedResponse(onDate: onDate, response: response)
+//                    return returnData
+//                } catch {
+//                    print("[NativeDash]: Error while decoding JSON. \(error)")
+//                    throw FetchError.noPlist
+//                }
+//            }
+//        }
+//        return nil
+//    }
+
 }
     
 class GenericAsyncOperation: Operation {
     private let stateQueue = DispatchQueue(label: "com.icloud-djharrold53.NativeDash.AsyncOperationState", attributes: .concurrent)
 
     let context: NSManagedObjectContext
-    var error: FetchUtil.FetchError? = nil
+    var error: FetchError? = nil
     
     init(context: NSManagedObjectContext) {
         self.context = context
@@ -355,5 +432,136 @@ class StoreOperation: GenericAsyncOperation {
         
         print("Finished updating stores!")
         self.state = .finished
+    }
+}
+
+class BackgroundFetchUtil: NSObject, URLSessionDelegate, URLSessionDownloadDelegate {
+    let context: NSManagedObjectContext
+    init(context: NSManagedObjectContext) {
+        self.context = context
+        opQueue = OperationQueue()
+        opQueue.maxConcurrentOperationCount = 1
+        opQueue.qualityOfService = .background
+        
+    }
+    
+    static let shared = BackgroundFetchUtil(context: PersistenceController.shared.container.viewContext)
+    let opQueue: OperationQueue
+    
+
+    
+    func urlSession(_: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+        print("Download finished: \(location.absoluteString)")
+        guard let data = try? Data(contentsOf: location) else {return}
+        guard let urlResponse = downloadTask.response else {return}
+        try? BackgroundFetchUtil.storeRawFetch(data: (data, urlResponse), context: self.context, storesDayType: true)
+    }
+
+    func urlSession(_: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        if let error = error {
+            print("Download error: \(String(describing: error))")
+        }
+    }
+    
+    static func storeRawFetch(data: (Data, URLResponse), context: NSManagedObjectContext, storesDayType: Bool) throws {
+        let storeOp = StoreRawFetchOperation(data: data, context: context, storesDayType: storesDayType)
+        BackgroundFetchUtil.shared.opQueue.addOperation(storeOp)
+    }
+    
+    class StoreRawFetchOperation: GenericAsyncOperation {
+        
+        init(data: (Data, URLResponse), context: NSManagedObjectContext, storesDayType: Bool) {
+            self.data = data
+            self.storesDayType = storesDayType
+            
+            let urlComponents = URLComponents(url: data.1.url!, resolvingAgainstBaseURL: true)!
+            var components = DateComponents()
+            components.day = Int((urlComponents.queryItems?.first(where: { $0.name == "day" })?.value)!)
+            components.month = Int((urlComponents.queryItems?.first(where: { $0.name == "month" })?.value)!)
+            components.year = Int((urlComponents.queryItems?.first(where: { $0.name == "year" })?.value)!)
+            self.onDate = Calendar(identifier: .gregorian).date(from: components)!
+            super.init(context: context)
+        }
+        
+        let data: (Data, URLResponse)
+        let storesDayType: Bool
+        
+        
+        let onDate: Date
+        
+        var response: FetchedResponse?
+        
+        
+        override func main() {
+            defer {
+                self.state = .finished
+            }
+            
+            if let jsonString = String(data: data.0, encoding: .utf8) {
+                do {
+                    let jsonData = jsonString.data(using: .utf8)!
+                    let res = try JSONDecoder().decode(ApiResponse.self, from: jsonData)
+                    response = FetchedResponse(onDate: onDate, response: res)
+                } catch {
+                    print("[NativeDash]: Error while decoding JSON. \(error)")
+                    return
+                }
+            }
+            guard let response = response else {
+                return
+            }
+            if storesDayType {
+                do {
+                    // Get current data from Core Data to manage it
+                    let storedDayTypes = try context.fetch(StoredDayType.fetchRequest())
+                    
+                    
+                    // Delete previous local stores
+                    storedDayTypes.forEach(context.delete)
+                    
+                    // Store new schedules that have been fetched
+                    for schedule in response.response.dayTypes {
+                        _ = schedule.toStoredDayType(context: context)
+                    }
+                    
+                    try context.save()
+                    
+                } catch {
+                    print("[NativeDash]: failed to update StoredDayTypes. \(error)")
+                    context.rollback()
+                    return
+                }
+            }
+            
+            //         Insert next week's schedules into stores
+            do {
+                let storedScheduleOnDates = try context.fetch(StoredScheduleOnDate.fetchRequest())
+                let storedDayTypes = try context.fetch(StoredDayType.fetchRequest())
+                
+                // Delete stores for past dates
+                storedScheduleOnDates.filter({schedule in
+                    return schedule.date!.timeIntervalSinceNow < 0 && !Calendar.current.isDateInToday(schedule.date!)
+                }).forEach(context.delete)
+                
+                
+                // Delete old store for looped date
+                if let oldStore = storedScheduleOnDates.first(where: {Calendar.current.isDate($0.date!, inSameDayAs: response.onDate)}) {
+                    context.delete(oldStore)
+                }
+                
+                // Insert schedule into Core Data
+                let storedSchedule = StoredScheduleOnDate(context: context)
+                storedSchedule.date = response.onDate
+                let possibleSchedule = storedDayTypes.first(where: {$0.name == response.response.dayTypeOnDate.name})
+                storedSchedule.schedule = possibleSchedule ?? storedDayTypes.first
+                
+                try context.save()
+            } catch {
+                print("[NativeDash]: failed to update StoredScheduleOnDate. \(error)")
+                context.rollback()
+                return
+            }
+            print("Updated using background")
+        }
     }
 }
