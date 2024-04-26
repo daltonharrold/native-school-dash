@@ -30,6 +30,13 @@ struct PersistenceController {
     }()
     
     let container: NSPersistentContainer
+    var viewContext: NSManagedObjectContext {
+        get {
+            container.viewContext
+        }
+    }
+    let backgroundContext: NSManagedObjectContext
+    
 
     init(inMemory: Bool = false) {
         let storeURL = AppGroup.dashManagement.containerURL.appendingPathComponent("NativeDash.sqlite")
@@ -37,6 +44,8 @@ struct PersistenceController {
         
         container = NSPersistentContainer(name: "NativeDash")
         container.persistentStoreDescriptions = [description]
+        
+
         
         
         if inMemory {
@@ -59,5 +68,8 @@ struct PersistenceController {
             }
         })
         container.viewContext.automaticallyMergesChangesFromParent = true
+        backgroundContext = container.newBackgroundContext()
     }
 }
+
+

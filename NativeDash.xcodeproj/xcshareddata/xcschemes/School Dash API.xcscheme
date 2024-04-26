@@ -49,21 +49,27 @@
             ReferencedContainer = "container:NativeDash.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "com.apple.CoreData.ConcurrencyDebug"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "API_ENDPOINT"
             value = "https://schooldash.site/api"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </EnvironmentVariable>
          <EnvironmentVariable
             key = "API_KEY"
             value = "Bearer uKnRKEpWjljtYC9MgsnOQfnHaIoYrKkW"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </EnvironmentVariable>
          <EnvironmentVariable
             key = "SCHOOL_ID"
             value = "625cbc1bd8bc5e5a5ebca452"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </EnvironmentVariable>
          <EnvironmentVariable
             key = "IDEPreferLogStreaming"

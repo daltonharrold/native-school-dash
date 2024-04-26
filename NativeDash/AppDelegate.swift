@@ -9,9 +9,10 @@ import Foundation
 import UIKit
 import BackgroundTasks
 
-class AppDelegate: NSObject, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
     let appRefreshTaskId: String = "com.icloud-djharrold53.NativeDash.DayTypeUpdater"
     let viewContext = PersistenceController.shared.container.viewContext
+    var sessionSendsLaunchEvents = true
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -35,23 +36,28 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         UserDefaults.standard.setValue(count+1, forKey: "BG_task_run_count")
         print("[NativeDash BG Scheduler]: Running scheduled task...")
         
-        let session = URLSession(configuration: .background(withIdentifier: "com.icloud-djharrold53.NativeDash.BGURLSession"))
+        let config = URLSessionConfiguration.background(withIdentifier: "com.icloud-djharrold53.NativeDash.BGURLSession")
+        config.sessionSendsLaunchEvents = true
+        let session = URLSession(configuration: config, delegate: BackgroundFetchUtil.shared, delegateQueue: OperationQueue())
         
-        let fu = FetchUtil(context: viewContext, urlSession: session)
-        fu.completion = { error in
-            guard error == nil else {
-                task.setTaskCompleted(success: false)
-                return
-            }
-            task.setTaskCompleted(success: true)
-        }
-        fu.updater.start()
         
-        task.expirationHandler = {
-            print("[NativeDash]: Cancelling background task...")
-            fu.updater.cancel()
+        
+        var _dates: [Date] = []
+        for i in 0...6 {_dates.append(Calendar.current.date(byAdding: .day, value: i, to: .now)!)}
+        let dates = _dates
+        
+        for date in dates {
+            let url = try! FetchUtil.getEndpointUrl(onDate: date)
+            var req = URLRequest(url: url)
+            let apiKey: String = try! FetchUtil.getApiKey()
+            req.setValue(apiKey, forHTTPHeaderField: "authorization")
+            
+            let downloadTask = session.downloadTask(with: req)
+            downloadTask.resume()
         }
+        task.setTaskCompleted(success: true)
     }
+    
     
     
     func scheduleTask() {
@@ -82,3 +88,4 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 
 }
+

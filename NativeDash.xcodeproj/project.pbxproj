@@ -62,6 +62,10 @@
 		3FD7ABFB2BCE0472007CF2D9 /* FetchUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD7ABEF2BCE0472007CF2D9 /* FetchUtil.swift */; };
 		3FD7ABFC2BCE0472007CF2D9 /* FetchUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD7ABEF2BCE0472007CF2D9 /* FetchUtil.swift */; };
 		3FD9FB942BB0A8C500ED3EB0 /* EndTimeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD9FB932BB0A8C400ED3EB0 /* EndTimeWidget.swift */; };
+		3FEBD9DC2BDAC83700C580D5 /* EnvProduction.xcconfig in Sources */ = {isa = PBXBuildFile; fileRef = 3F227B742BC577BF001AC3F6 /* EnvProduction.xcconfig */; };
+		3FEBD9DD2BDAC90300C580D5 /* EnvProduction.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3F227B742BC577BF001AC3F6 /* EnvProduction.xcconfig */; };
+		3FEBD9DE2BDAC90300C580D5 /* EnvProduction.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3F227B742BC577BF001AC3F6 /* EnvProduction.xcconfig */; };
+		3FEBD9DF2BDAC90400C580D5 /* EnvProduction.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3F227B742BC577BF001AC3F6 /* EnvProduction.xcconfig */; };
 		3FF726C62B0BB8450093E54C /* NativeDash.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726C42B0BB8450093E54C /* NativeDash.xcdatamodeld */; };
 		3FF726C82B0BB8950093E54C /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726C72B0BB8950093E54C /* Persistence.swift */; };
 		3FF726C92B0BDBCC0093E54C /* NativeDash.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726C42B0BB8450093E54C /* NativeDash.xcdatamodeld */; };
@@ -154,7 +158,7 @@
 		3F2F8BDF2AEC04F300393F60 /* SingleCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCard.swift; sourceTree = "<group>"; };
 		3F2F8BE22AEF4EF700393F60 /* ScheduleStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleStack.swift; sourceTree = "<group>"; };
 		3F2F8BE42AEF4F3C00393F60 /* PeriodTimerRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodTimerRing.swift; sourceTree = "<group>"; };
-		3F399CCC2AFC479800A3505F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		3F399CCC2AFC479800A3505F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F399CCD2AFD492600A3505F /* APIreturn.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = APIreturn.json; sourceTree = "<group>"; };
 		3F59124D2B752EED00BD42A0 /* DashWidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DashWidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F59124F2B752EED00BD42A0 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -502,6 +506,7 @@
 			files = (
 				3F09BC532AB2161000924ACE /* Preview Assets.xcassets in Resources */,
 				3F09BC502AB2161000924ACE /* Assets.xcassets in Resources */,
+				3FEBD9DD2BDAC90300C580D5 /* EnvProduction.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,6 +515,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F5912592B752EEF00BD42A0 /* Assets.xcassets in Resources */,
+				3FEBD9DE2BDAC90300C580D5 /* EnvProduction.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,6 +524,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F5B8DAF2BBD0E0600A89F06 /* Assets.xcassets in Resources */,
+				3FEBD9DF2BDAC90400C580D5 /* EnvProduction.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,6 +535,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FEBD9DC2BDAC83700C580D5 /* EnvProduction.xcconfig in Sources */,
 				3F09BC3C2AB2160D00924ACE /* ContentView.swift in Sources */,
 				3FF726C82B0BB8950093E54C /* Persistence.swift in Sources */,
 				3F2F8BE32AEF4EF700393F60 /* ScheduleStack.swift in Sources */,
@@ -677,6 +685,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -731,6 +740,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
