@@ -49,6 +49,12 @@
             ReferencedContainer = "container:NativeDash.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "com.apple.CoreData.ConcurrencyDebug"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "API_ENDPOINT"
