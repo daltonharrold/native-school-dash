@@ -78,6 +78,10 @@
 		3FF726D42B0BF9130093E54C /* StoredDayType+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CD2B0BF9130093E54C /* StoredDayType+CoreDataClass.swift */; };
 		3FF726D52B0BF9130093E54C /* StoredDayType+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CE2B0BF9130093E54C /* StoredDayType+CoreDataProperties.swift */; };
 		3FF726D62B0BF9130093E54C /* StoredDayType+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CE2B0BF9130093E54C /* StoredDayType+CoreDataProperties.swift */; };
+		3FFECC862BDC16B800310950 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 3F8C845A2BD8BD9800D49C89 /* PrivacyInfo.xcprivacy */; };
+		3FFECC872BDC16B800310950 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 3F8C845A2BD8BD9800D49C89 /* PrivacyInfo.xcprivacy */; };
+		3FFECC882BDC16B900310950 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 3F8C845A2BD8BD9800D49C89 /* PrivacyInfo.xcprivacy */; };
+		3FFECC892BDC16B900310950 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 3F8C845A2BD8BD9800D49C89 /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -496,6 +500,7 @@
 			files = (
 				3FB54FE22AEFFAC000623592 /* Launch Screen.storyboard in Resources */,
 				3F09BC412AB2160F00924ACE /* Preview Assets.xcassets in Resources */,
+				3FFECC862BDC16B800310950 /* PrivacyInfo.xcprivacy in Resources */,
 				3F09BC3E2AB2160F00924ACE /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -506,6 +511,7 @@
 			files = (
 				3F09BC532AB2161000924ACE /* Preview Assets.xcassets in Resources */,
 				3F09BC502AB2161000924ACE /* Assets.xcassets in Resources */,
+				3FFECC872BDC16B800310950 /* PrivacyInfo.xcprivacy in Resources */,
 				3FEBD9DD2BDAC90300C580D5 /* EnvProduction.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -514,6 +520,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FFECC882BDC16B900310950 /* PrivacyInfo.xcprivacy in Resources */,
 				3F5912592B752EEF00BD42A0 /* Assets.xcassets in Resources */,
 				3FEBD9DE2BDAC90300C580D5 /* EnvProduction.xcconfig in Resources */,
 			);
@@ -523,6 +530,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FFECC892BDC16B900310950 /* PrivacyInfo.xcprivacy in Resources */,
 				3F5B8DAF2BBD0E0600A89F06 /* Assets.xcassets in Resources */,
 				3FEBD9DF2BDAC90400C580D5 /* EnvProduction.xcconfig in Resources */,
 			);
