@@ -154,18 +154,23 @@ class FetchUtil {
                 storeOperation.fetchedResponses = fetchOperation.fetchResponses
             }
             
+            
+            
             queue.addOperation(fetchOperation)
             
             adapter.addDependency(fetchOperation)
             queue.addOperation(adapter)
             
-            storeOperation.addDependency(adapter)
-            storeOperation.completionBlock = {
+            adapter.completionBlock = {
+                self.context.performAndWait {
+//                    print("Starting storeOperation on thread \(Thread.current)")
+                    storeOperation.main()
+                }
                 self.error = storeOperation.error
                 self.completion?(storeOperation.error)
                 self.state = .finished
             }
-            serialQueue.addOperation(storeOperation)
+
             if self.isCancelled {
                 handleCancel()
                 return
@@ -293,6 +298,7 @@ class FetchOperation: GenericAsyncOperation {
     }
     
     override func main() {
+
         if isCancelled {
             state = .finished
             super.error = .cancelled
@@ -323,7 +329,6 @@ class FetchOperation: GenericAsyncOperation {
         fetchRequests.forEach {(request) in
             print("Fetch started for \(request.key.ISO8601Format())")
             urlDownloadGroup.enter()
-        
             urlSession.dataTask(with: request.value, completionHandler: { (data, response, error) in
     //            print("Data" + String(describing: data) + "Response:" + String(describing: response) + "error" + String(describing: error))
                 guard let data = data,
@@ -370,6 +375,7 @@ class StoreOperation: GenericAsyncOperation {
     }
     
     override func main() {
+//        print("Running StoreOperation on thread \(Thread.current)")
         if self.isCancelled {rollback(); return}
         
         guard let fetchedResponses = fetchedResponses, !fetchedResponses.isEmpty else {
@@ -450,7 +456,7 @@ class BackgroundFetchUtil: NSObject, URLSessionDelegate, URLSessionDownloadDeleg
         self.context = context
     }
     
-    static let shared = BackgroundFetchUtil(context: PersistenceController.shared.container.viewContext)
+    static let shared = BackgroundFetchUtil(context: PersistenceController.shared.backgroundContext)
     
 
     
@@ -493,7 +499,6 @@ class BackgroundFetchUtil: NSObject, URLSessionDelegate, URLSessionDownloadDeleg
         }
         
         context.perform {
-            print("Is context on main thread? \(Thread.isMainThread)")
             if storesDayType {
                 do {
                     // Get current data from Core Data to manage it

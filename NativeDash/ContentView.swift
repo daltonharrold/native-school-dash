@@ -12,14 +12,6 @@ import WidgetKit
 
 struct ContentView: View {
     
-    @Environment(\.managedObjectContext) public var viewContext
-    @FetchRequest(sortDescriptors: [NSSortDescriptor(key: "name", ascending: true)])
-    private var todayScheduleStore: FetchedResults<StoredDayType>
-
-
-    @FetchRequest(sortDescriptors: [])
-    private var weeklyScheduleStore: FetchedResults<StoredScheduleOnDate>
-    
     @State private var todaySchedule: DayType?
     
     @State private var schedules: [DayType]?
@@ -73,19 +65,26 @@ struct ContentView: View {
             WidgetCenter.shared.reloadAllTimelines()
         })
         .task {
-            let fu = FetchUtil(context: viewContext)
+            
+            let fu = FetchUtil(context: PersistenceController.shared.backgroundContext)
             fu.completion = {_ in updateFromStores()}
             fu.updater.start()
             WidgetCenter.shared.reloadAllTimelines()
         }
     }
     private func updateFromStores() {
-        let scheduleFromWeeklyStore = weeklyScheduleStore.first(where: {Calendar.current.isDateInToday($0.date!)})?.schedule?.asDayType()
+        let viewContext = PersistenceController.shared.viewContext
+        let weeklyScheduleStore = try? viewContext.fetch(StoredScheduleOnDate.fetchRequest())
+        let dayTypesReq = StoredDayType.fetchRequest()
+        dayTypesReq.sortDescriptors?.append(NSSortDescriptor(key: "name", ascending: true))
+        let todayScheduleStore = try? viewContext.fetch(dayTypesReq)
+        
+        let scheduleFromWeeklyStore = weeklyScheduleStore?.first(where: {Calendar.current.isDateInToday($0.date!)})?.schedule?.asDayType()
         todaySchedule = scheduleFromWeeklyStore
         
         var tmpSchedules: [DayType] = []
-        if !todayScheduleStore.isEmpty {
-            for dayType in todayScheduleStore {
+        if !(todayScheduleStore?.isEmpty ?? true) {
+            for dayType in todayScheduleStore! {
                 tmpSchedules.append(dayType.asDayType())
             }
             
