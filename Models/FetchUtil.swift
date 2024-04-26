@@ -8,6 +8,7 @@
 import Foundation
 import CoreData
 import SwiftUI
+import WidgetKit
 
 public struct ApiResponse: Decodable {
     let dayTypeOnDate: DayType
@@ -118,16 +119,22 @@ class FetchUtil {
         let urlSession: URLSession
         var completion: ((Error?) -> ())? = nil
         
-        let queue = OperationQueue()
+        let queue: OperationQueue
+        let serialQueue: OperationQueue
         
         init(context: NSManagedObjectContext, urlSession: URLSession, completion: ( (Error?) -> Void)? = nil) {
             self.urlSession = urlSession
             self.completion = completion
+            
+            self.queue = OperationQueue()
+            self.serialQueue = OperationQueue()
+            serialQueue.maxConcurrentOperationCount = 1
             super.init(context: context)
         }
         
         private func handleCancel() {
             queue.cancelAllOperations()
+            serialQueue.cancelAllOperations()
             error = FetchError.cancelled
             state = .finished
         }
@@ -158,7 +165,7 @@ class FetchUtil {
                 self.completion?(storeOperation.error)
                 self.state = .finished
             }
-            queue.addOperation(storeOperation)
+            serialQueue.addOperation(storeOperation)
             if self.isCancelled {
                 handleCancel()
                 return
@@ -373,6 +380,8 @@ class StoreOperation: GenericAsyncOperation {
         }
         
         print("Updating StoredDayTypes...")
+        
+        var newStoredDayTypes: [StoredDayType] = []
         // Update StoredDayTypes
         do {
             // Get current data from Core Data to manage it
@@ -383,7 +392,7 @@ class StoreOperation: GenericAsyncOperation {
                 
             // Store new schedules that have been fetched
             for schedule in fetchedResponses.first!.response.dayTypes {
-                _ = schedule.toStoredDayType(context: context)
+                newStoredDayTypes.append(schedule.toStoredDayType(context: context))
             }
                 
             if self.isCancelled {rollback(); return}
@@ -399,7 +408,7 @@ class StoreOperation: GenericAsyncOperation {
         do {
             if self.isCancelled {rollback(); return}
             let storedScheduleOnDates = try context.fetch(StoredScheduleOnDate.fetchRequest())
-            let storedDayTypes = try context.fetch(StoredDayType.fetchRequest())
+            
             
             // Delete stores for past dates
             storedScheduleOnDates.filter({schedule in
@@ -418,8 +427,8 @@ class StoreOperation: GenericAsyncOperation {
                 // Insert schedule into Core Data
                 let storedSchedule = StoredScheduleOnDate(context: context)
                 storedSchedule.date = scheduleResponse.onDate
-                let possibleSchedule = storedDayTypes.first(where: {$0.name == scheduleResponse.response.dayTypeOnDate.name})
-                storedSchedule.schedule = possibleSchedule ?? storedDayTypes.first
+                let possibleSchedule = newStoredDayTypes.first(where: {$0.name == scheduleResponse.response.dayTypeOnDate.name})
+                storedSchedule.schedule = possibleSchedule ?? newStoredDayTypes.first
             }
             
             if self.isCancelled {rollback(); return}
@@ -484,6 +493,7 @@ class BackgroundFetchUtil: NSObject, URLSessionDelegate, URLSessionDownloadDeleg
         }
         
         context.perform {
+            print("Is context on main thread? \(Thread.isMainThread)")
             if storesDayType {
                 do {
                     // Get current data from Core Data to manage it
@@ -536,6 +546,7 @@ class BackgroundFetchUtil: NSObject, URLSessionDelegate, URLSessionDownloadDeleg
                 return
             }
             print("Updated using background")
+            WidgetCenter.shared.reloadAllTimelines()
         }
     }
     
