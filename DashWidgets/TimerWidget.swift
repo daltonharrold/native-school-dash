@@ -46,12 +46,12 @@ struct TimerProvider: TimelineProvider {
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         var entries: [TimerEntry] = []
         
-        let viewContext = PersistenceController.shared.container.viewContext
+        let context = PersistenceController.shared.backgroundContext
         let scheduleFetch = StoredScheduleOnDate.fetchRequest()
         
        
         do {
-            let storedSchedules = try viewContext.fetch(scheduleFetch)
+            let storedSchedules = try context.fetch(scheduleFetch)
             
             let currentDate = Date()
             if let todaySchedule = storedSchedules.first(where: {

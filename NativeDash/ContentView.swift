@@ -21,6 +21,8 @@ struct ContentView: View {
     @State private var degree:Int = 270
     @State private var spinnerLength = 0.6
     
+    static var runningFetchUtil: FetchUtil?
+    
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             Spacer().frame(height: 20)
@@ -58,17 +60,20 @@ struct ContentView: View {
                 .padding(.top, 20)
         }
         
-        // Before view loads, update schedules and todaySchedule
+        EmptyView()
         .onAppear(perform: {
             print("App loading!")
             updateFromStores()
             WidgetCenter.shared.reloadAllTimelines()
         })
+        EmptyView()
         .task {
-            
-            let fu = FetchUtil(context: PersistenceController.shared.backgroundContext)
-            fu.completion = {_ in updateFromStores()}
-            fu.updater.start()
+            ContentView.runningFetchUtil = FetchUtil(context: PersistenceController.shared.backgroundContext)
+            ContentView.runningFetchUtil!.completion = {_ in
+                ContentView.runningFetchUtil = nil
+                updateFromStores()
+            }
+            ContentView.runningFetchUtil!.updater.start()
             WidgetCenter.shared.reloadAllTimelines()
         }
     }
