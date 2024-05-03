@@ -120,21 +120,18 @@ class FetchUtil {
         var completion: ((Error?) -> ())? = nil
         
         let queue: OperationQueue
-        let serialQueue: OperationQueue
+
         
         init(context: NSManagedObjectContext, urlSession: URLSession, completion: ( (Error?) -> Void)? = nil) {
             self.urlSession = urlSession
             self.completion = completion
             
             self.queue = OperationQueue()
-            self.serialQueue = OperationQueue()
-            serialQueue.maxConcurrentOperationCount = 1
             super.init(context: context)
         }
         
         private func handleCancel() {
             queue.cancelAllOperations()
-            serialQueue.cancelAllOperations()
             error = FetchError.cancelled
             state = .finished
         }
