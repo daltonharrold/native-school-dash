@@ -59,19 +59,13 @@ public struct Period: Decodable {
     }
     
     public func getStartAsDate() -> Date {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy/MM/dd ZZZZ"
-        let yearMonthDay = formatter.string(from: .now)
-        formatter.dateFormat = "yyyy/MM/dd ZZZZ HH:mm:ss"
-        return formatter.date(from: "\(yearMonthDay) \(start):00")!
+        let components = start.split(separator: ":").map({Int($0)!})
+        return Calendar.current.date(bySettingHour: components[0]%24, minute: components[1]%60, second: 0, of: .now)!
     }
     
     public func getEndAsDate() -> Date {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy/MM/dd ZZZZ"
-        let yearMonthDay = formatter.string(from: .now)
-        formatter.dateFormat = "yyyy/MM/dd ZZZZ HH:mm:ss"
-        return formatter.date(from: "\(yearMonthDay) \(end):00")!
+        let components = end.split(separator: ":").map({Int($0)!})
+        return Calendar.current.date(bySettingHour: components[0]%24, minute: components[1]%60, second: 0, of: .now)!
     }
 }
 

@@ -90,6 +90,14 @@ struct EndTimeProvider: TimelineProvider {
                     let overnightEntry = EndTimeEntry(date: endOfDay, displayPeriod: overnightPeriod, scheduleName: tomorrowSchedule.name, overrideDisplayDate: tomorrowSchedule.periods.first!.getStartAsDate())
                     
                     entries.append(overnightEntry)
+                    
+                    // Add tomorrow's pre-morning period so that there's overlap and the system can make proper refresh event determinations
+                    let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: .now)!
+                    let tomorrowMorning = Calendar.current.date(bySettingHour: 0, minute: 0, second: 1, of: tomorrow)!
+                    let tomorrowPeriod: Period = Period(name: "Good morning", start: "00:00", end: tomorrowSchedule.periods.first!.start)
+                    let tomorrowMorningEntry = EndTimeEntry(date: tomorrowMorning, displayPeriod: tomorrowPeriod, scheduleName: tomorrowSchedule.name)
+                    
+                    entries.append(tomorrowMorningEntry)
                 }
             }
             
@@ -149,7 +157,7 @@ struct EndTimeWidgetEntryView : View {
                     .fontWidth(.compressed)
                     .dynamicTypeSize(.medium)
                     .minimumScaleFactor(0.8)
-                    .id(entry.displayPeriod.getEndAsDate())
+                    .id(displayDate)
                     .frame(maxWidth: .infinity, alignment: .leading)
 //                    .transition(.push(from: .leading))
 //                    .transition(.move(edge: .leading))
