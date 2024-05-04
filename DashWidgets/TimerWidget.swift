@@ -103,6 +103,14 @@ struct TimerProvider: TimelineProvider {
                     
                     entries.append(overnightEntry)
                     
+                    // Add tomorrow's pre-morning period so that there's overlap and the system can make proper refresh event determinations
+                    let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: .now)!
+                    let tomorrowMorning = Calendar.current.date(bySettingHour: 0, minute: 0, second: 1, of: tomorrow)!
+                    let tomorrowPeriod: Period = Period(name: "Good morning", start: "00:00", end: tomorrowSchedule.periods.first!.start)
+                    let tomorrowMorningEntry = TimerEntry(date: tomorrowMorning, displayPeriod: tomorrowPeriod, scheduleName: tomorrowSchedule.name, tomorrowSchoolStart: tomorrowSchedule.periods.first!.getStartAsDate())
+                    
+                    entries.append(tomorrowMorningEntry)
+                    
                 }
             }
         } catch {
@@ -174,7 +182,7 @@ struct DashWidgetsEntryView : View {
                         .padding(0)
                         .dynamicTypeSize(.medium)
                         .minimumScaleFactor(0.8)
-                        .id(entry.displayPeriod.getStartAsDate())
+                        .id(entry.tomorrowSchoolStart!)
                     //                .transition(.push(from: .leading))
 //                        .transition(.move(edge: .leading))
                         .transition(.asymmetric(insertion: .move(edge: .leading).animation(.easeIn(duration: 4)), removal: .move(edge: .trailing).combined(with: .opacity).animation(.easeOut(duration: 3))))

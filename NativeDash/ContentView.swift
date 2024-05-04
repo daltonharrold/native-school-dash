@@ -60,13 +60,12 @@ struct ContentView: View {
                 .padding(.top, 20)
         }
         
-        EmptyView()
+        Spacer()
         .onAppear(perform: {
             print("App loading!")
             updateFromStores()
             WidgetCenter.shared.reloadAllTimelines()
         })
-        EmptyView()
         .task {
             ContentView.runningFetchUtil = FetchUtil(context: PersistenceController.shared.backgroundContext)
             ContentView.runningFetchUtil!.completion = {_ in
