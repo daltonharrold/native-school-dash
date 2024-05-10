@@ -16,6 +16,8 @@ struct ContentView: View {
     
     @State private var schedules: [DayType]?
     
+    @State private var debugMsg: Text?
+    
     
     @State private var showSpinner:Bool = false
     @State private var degree:Int = 270
@@ -58,13 +60,18 @@ struct ContentView: View {
                 .font(.footnote)
                 .foregroundStyle(.gray)
                 .padding(.top, 20)
+            
+            debugMsg
         }
         
         Spacer()
         .onAppear(perform: {
             print("App loading!")
             updateFromStores()
-            WidgetCenter.shared.reloadAllTimelines()
+        })
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification), perform: {_ in
+            print("App entering foreground")
+            updateFromStores()
         })
         .task {
             ContentView.runningFetchUtil = FetchUtil(context: PersistenceController.shared.backgroundContext)
@@ -84,6 +91,7 @@ struct ContentView: View {
         let todayScheduleStore = try? viewContext.fetch(dayTypesReq)
         
         let scheduleFromWeeklyStore = weeklyScheduleStore?.first(where: {Calendar.current.isDateInToday($0.date!)})?.schedule?.asDayType()
+        debugMsg = Text("scheduleFromWeeklyStore is " + String(describing: scheduleFromWeeklyStore))
         todaySchedule = scheduleFromWeeklyStore
         
         var tmpSchedules: [DayType] = []
