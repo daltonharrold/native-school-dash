@@ -2,14 +2,13 @@
 //  StoredDayType+CoreDataClass.swift
 //  NativeDash
 //
-//  Created by Dalton Harrold on 11/20/23.
+//  Created by Dalton Harrold on 5/9/24.
 //
 //
 
 import Foundation
 import CoreData
 
-// Country
 @objc(StoredDayType)
 public class StoredDayType: NSManagedObject {
     public var wrappedName: String {
@@ -32,7 +31,7 @@ public class StoredDayType: NSManagedObject {
     
     func to12HourTime() -> DayType {
         var newDayType = DayType(name: self.name ?? "Unknown period", periods: [])
-        for period in self.periods?.array as! [Period] {
+        for period in self.periods?.allObjects as! [Period] {
             let newStartHour = (Int(period.start.split(separator: ":")[0]) ?? 0) % 12
             let newEndHour = (Int(period.end.split(separator: ":")[0]) ?? 0) % 12
             let newStart = "\(newStartHour == 0 ? 12 : newStartHour):\(period.start.split(separator: ":")[1])"
@@ -45,7 +44,7 @@ public class StoredDayType: NSManagedObject {
 
     public var periodsArray: [Period] {
         var toReturn: [Period] = []
-        for period in periods?.array as! [StoredPeriod] {
+        for period in periods?.allObjects as! [StoredPeriod] {
             toReturn.append(Period(name: period.wrappedName, start: period.wrappedStart, end: period.wrappedEnd))
         }
         return toReturn

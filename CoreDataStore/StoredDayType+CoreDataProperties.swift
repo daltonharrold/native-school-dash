@@ -2,7 +2,7 @@
 //  StoredDayType+CoreDataProperties.swift
 //  NativeDash
 //
-//  Created by Dalton Harrold on 11/20/23.
+//  Created by Dalton Harrold on 5/9/24.
 //
 //
 
@@ -17,30 +17,13 @@ extension StoredDayType {
     }
 
     @NSManaged public var name: String?
-    @NSManaged public var periods: NSOrderedSet?
-    
+    @NSManaged public var periods: NSSet?
+    @NSManaged public var daysWithSchedule: NSSet?
+
 }
 
 // MARK: Generated accessors for periods
 extension StoredDayType {
-
-    @objc(insertObject:inPeriodsAtIndex:)
-    @NSManaged public func insertIntoPeriods(_ value: StoredPeriod, at idx: Int)
-
-    @objc(removeObjectFromPeriodsAtIndex:)
-    @NSManaged public func removeFromPeriods(at idx: Int)
-
-    @objc(insertPeriods:atIndexes:)
-    @NSManaged public func insertIntoPeriods(_ values: [StoredPeriod], at indexes: NSIndexSet)
-
-    @objc(removePeriodsAtIndexes:)
-    @NSManaged public func removeFromPeriods(at indexes: NSIndexSet)
-
-    @objc(replaceObjectInPeriodsAtIndex:withObject:)
-    @NSManaged public func replacePeriods(at idx: Int, with value: StoredPeriod)
-
-    @objc(replacePeriodsAtIndexes:withPeriods:)
-    @NSManaged public func replacePeriods(at indexes: NSIndexSet, with values: [StoredPeriod])
 
     @objc(addPeriodsObject:)
     @NSManaged public func addToPeriods(_ value: StoredPeriod)
@@ -49,10 +32,27 @@ extension StoredDayType {
     @NSManaged public func removeFromPeriods(_ value: StoredPeriod)
 
     @objc(addPeriods:)
-    @NSManaged public func addToPeriods(_ values: NSOrderedSet)
+    @NSManaged public func addToPeriods(_ values: NSSet)
 
     @objc(removePeriods:)
-    @NSManaged public func removeFromPeriods(_ values: NSOrderedSet)
+    @NSManaged public func removeFromPeriods(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for daysWithSchedule
+extension StoredDayType {
+
+    @objc(addDaysWithScheduleObject:)
+    @NSManaged public func addToDaysWithSchedule(_ value: StoredScheduleOnDate)
+
+    @objc(removeDaysWithScheduleObject:)
+    @NSManaged public func removeFromDaysWithSchedule(_ value: StoredScheduleOnDate)
+
+    @objc(addDaysWithSchedule:)
+    @NSManaged public func addToDaysWithSchedule(_ values: NSSet)
+
+    @objc(removeDaysWithSchedule:)
+    @NSManaged public func removeFromDaysWithSchedule(_ values: NSSet)
 
 }
 

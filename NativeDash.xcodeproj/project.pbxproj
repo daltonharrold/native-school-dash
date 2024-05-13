@@ -34,19 +34,29 @@
 		3F6B59FB2BC448E000EB4C1F /* TimerWatchWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6B59FA2BC448E000EB4C1F /* TimerWatchWidget.swift */; };
 		3F6B59FC2BC449C800EB4C1F /* NativeDash.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726C42B0BB8450093E54C /* NativeDash.xcdatamodeld */; };
 		3F6B59FD2BC449CB00EB4C1F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726C72B0BB8950093E54C /* Persistence.swift */; };
-		3F6B59FE2BC449CD00EB4C1F /* StoredPeriod+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CB2B0BF9130093E54C /* StoredPeriod+CoreDataClass.swift */; };
-		3F6B59FF2BC449CF00EB4C1F /* StoredPeriod+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CC2B0BF9130093E54C /* StoredPeriod+CoreDataProperties.swift */; };
-		3F6B5A002BC449D200EB4C1F /* StoredDayType+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CD2B0BF9130093E54C /* StoredDayType+CoreDataClass.swift */; };
-		3F6B5A012BC449D400EB4C1F /* StoredDayType+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CE2B0BF9130093E54C /* StoredDayType+CoreDataProperties.swift */; };
 		3F6B5A052BC457F500EB4C1F /* EndTimeWatchWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6B5A042BC457F500EB4C1F /* EndTimeWatchWidget.swift */; };
 		3F8C84582BD8BBB500D49C89 /* TimerWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5912562B752EED00BD42A0 /* TimerWidget.swift */; };
 		3F8C84592BD8BBB800D49C89 /* EndTimeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD9FB932BB0A8C400ED3EB0 /* EndTimeWidget.swift */; };
 		3F8CA2A52B864B6300F13E25 /* NativeDash.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726C42B0BB8450093E54C /* NativeDash.xcdatamodeld */; };
 		3F8CA2A62B864B6600F13E25 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726C72B0BB8950093E54C /* Persistence.swift */; };
-		3F8CA2A72B864B6800F13E25 /* StoredPeriod+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CB2B0BF9130093E54C /* StoredPeriod+CoreDataClass.swift */; };
-		3F8CA2A82B864B6A00F13E25 /* StoredPeriod+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CC2B0BF9130093E54C /* StoredPeriod+CoreDataProperties.swift */; };
-		3F8CA2A92B864B6C00F13E25 /* StoredDayType+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CD2B0BF9130093E54C /* StoredDayType+CoreDataClass.swift */; };
-		3F8CA2AA2B864B6E00F13E25 /* StoredDayType+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CE2B0BF9130093E54C /* StoredDayType+CoreDataProperties.swift */; };
+		3F9A50612BEDB5C70015B263 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F9A50602BEDB5C70015B263 /* CoreData.framework */; };
+		3F9A50632BEDB5D10015B263 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F9A50622BEDB5D10015B263 /* CloudKit.framework */; };
+		3F9A50692BEDCCDD0015B263 /* StoredDayType+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A50652BEDCCDD0015B263 /* StoredDayType+CoreDataClass.swift */; };
+		3F9A506A2BEDCCDD0015B263 /* StoredDayType+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A50662BEDCCDD0015B263 /* StoredDayType+CoreDataProperties.swift */; };
+		3F9A506B2BEDCCDD0015B263 /* StoredPeriod+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A50672BEDCCDD0015B263 /* StoredPeriod+CoreDataClass.swift */; };
+		3F9A506C2BEDCCDD0015B263 /* StoredPeriod+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A50682BEDCCDD0015B263 /* StoredPeriod+CoreDataProperties.swift */; };
+		3F9A506D2BEDCCDD0015B263 /* StoredDayType+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A50652BEDCCDD0015B263 /* StoredDayType+CoreDataClass.swift */; };
+		3F9A506E2BEDCCDD0015B263 /* StoredDayType+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A50662BEDCCDD0015B263 /* StoredDayType+CoreDataProperties.swift */; };
+		3F9A506F2BEDCCDD0015B263 /* StoredPeriod+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A50672BEDCCDD0015B263 /* StoredPeriod+CoreDataClass.swift */; };
+		3F9A50702BEDCCDD0015B263 /* StoredPeriod+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A50682BEDCCDD0015B263 /* StoredPeriod+CoreDataProperties.swift */; };
+		3F9A50712BEDCCDD0015B263 /* StoredDayType+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A50652BEDCCDD0015B263 /* StoredDayType+CoreDataClass.swift */; };
+		3F9A50722BEDCCDD0015B263 /* StoredDayType+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A50662BEDCCDD0015B263 /* StoredDayType+CoreDataProperties.swift */; };
+		3F9A50732BEDCCDD0015B263 /* StoredPeriod+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A50672BEDCCDD0015B263 /* StoredPeriod+CoreDataClass.swift */; };
+		3F9A50742BEDCCDD0015B263 /* StoredPeriod+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A50682BEDCCDD0015B263 /* StoredPeriod+CoreDataProperties.swift */; };
+		3F9A50752BEDCCDD0015B263 /* StoredDayType+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A50652BEDCCDD0015B263 /* StoredDayType+CoreDataClass.swift */; };
+		3F9A50762BEDCCDD0015B263 /* StoredDayType+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A50662BEDCCDD0015B263 /* StoredDayType+CoreDataProperties.swift */; };
+		3F9A50772BEDCCDD0015B263 /* StoredPeriod+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A50672BEDCCDD0015B263 /* StoredPeriod+CoreDataClass.swift */; };
+		3F9A50782BEDCCDD0015B263 /* StoredPeriod+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A50682BEDCCDD0015B263 /* StoredPeriod+CoreDataProperties.swift */; };
 		3FB54FE22AEFFAC000623592 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FB54FE12AEFFAC000623592 /* Launch Screen.storyboard */; };
 		3FBDD3392BB8EA4800FCD9D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBDD3382BB8EA4800FCD9D1 /* AppDelegate.swift */; };
 		3FD7ABF12BCE0472007CF2D9 /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD7ABED2BCE0472007CF2D9 /* AppGroup.swift */; };
@@ -70,14 +80,6 @@
 		3FF726C82B0BB8950093E54C /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726C72B0BB8950093E54C /* Persistence.swift */; };
 		3FF726C92B0BDBCC0093E54C /* NativeDash.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726C42B0BB8450093E54C /* NativeDash.xcdatamodeld */; };
 		3FF726CA2B0BDBEB0093E54C /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726C72B0BB8950093E54C /* Persistence.swift */; };
-		3FF726CF2B0BF9130093E54C /* StoredPeriod+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CB2B0BF9130093E54C /* StoredPeriod+CoreDataClass.swift */; };
-		3FF726D02B0BF9130093E54C /* StoredPeriod+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CB2B0BF9130093E54C /* StoredPeriod+CoreDataClass.swift */; };
-		3FF726D12B0BF9130093E54C /* StoredPeriod+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CC2B0BF9130093E54C /* StoredPeriod+CoreDataProperties.swift */; };
-		3FF726D22B0BF9130093E54C /* StoredPeriod+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CC2B0BF9130093E54C /* StoredPeriod+CoreDataProperties.swift */; };
-		3FF726D32B0BF9130093E54C /* StoredDayType+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CD2B0BF9130093E54C /* StoredDayType+CoreDataClass.swift */; };
-		3FF726D42B0BF9130093E54C /* StoredDayType+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CD2B0BF9130093E54C /* StoredDayType+CoreDataClass.swift */; };
-		3FF726D52B0BF9130093E54C /* StoredDayType+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CE2B0BF9130093E54C /* StoredDayType+CoreDataProperties.swift */; };
-		3FF726D62B0BF9130093E54C /* StoredDayType+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CE2B0BF9130093E54C /* StoredDayType+CoreDataProperties.swift */; };
 		3FFECC862BDC16B800310950 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 3F8C845A2BD8BD9800D49C89 /* PrivacyInfo.xcprivacy */; };
 		3FFECC872BDC16B800310950 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 3F8C845A2BD8BD9800D49C89 /* PrivacyInfo.xcprivacy */; };
 		3FFECC882BDC16B900310950 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 3F8C845A2BD8BD9800D49C89 /* PrivacyInfo.xcprivacy */; };
@@ -180,6 +182,14 @@
 		3F8C845A2BD8BD9800D49C89 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = DashWidgets/PrivacyInfo.xcprivacy; sourceTree = SOURCE_ROOT; };
 		3F8CA2AB2B88EFEA00F13E25 /* NativeDash.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NativeDash.entitlements; sourceTree = "<group>"; };
 		3F8CA2AC2B88F23900F13E25 /* DashWidgetsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DashWidgetsExtension.entitlements; sourceTree = "<group>"; };
+		3F9A505F2BEDB5840015B263 /* NativeDash Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "NativeDash Watch App.entitlements"; sourceTree = "<group>"; };
+		3F9A50602BEDB5C70015B263 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS10.4.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
+		3F9A50622BEDB5D10015B263 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS10.4.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
+		3F9A50642BEDC8140015B263 /* NativeDash-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "NativeDash-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
+		3F9A50652BEDCCDD0015B263 /* StoredDayType+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoredDayType+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3F9A50662BEDCCDD0015B263 /* StoredDayType+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoredDayType+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3F9A50672BEDCCDD0015B263 /* StoredPeriod+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoredPeriod+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3F9A50682BEDCCDD0015B263 /* StoredPeriod+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoredPeriod+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3FB54FE12AEFFAC000623592 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		3FBDD3382BB8EA4800FCD9D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3FD7ABED2BCE0472007CF2D9 /* AppGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
@@ -188,10 +198,6 @@
 		3FD9FB932BB0A8C400ED3EB0 /* EndTimeWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndTimeWidget.swift; sourceTree = "<group>"; };
 		3FF726C52B0BB8450093E54C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		3FF726C72B0BB8950093E54C /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		3FF726CB2B0BF9130093E54C /* StoredPeriod+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoredPeriod+CoreDataClass.swift"; sourceTree = "<group>"; };
-		3FF726CC2B0BF9130093E54C /* StoredPeriod+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoredPeriod+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		3FF726CD2B0BF9130093E54C /* StoredDayType+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoredDayType+CoreDataClass.swift"; sourceTree = "<group>"; };
-		3FF726CE2B0BF9130093E54C /* StoredDayType+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoredDayType+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +212,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F9A50612BEDB5C70015B263 /* CoreData.framework in Frameworks */,
+				3F9A50632BEDB5D10015B263 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +295,8 @@
 		3F09BC4A2AB2160F00924ACE /* NativeDash Watch App */ = {
 			isa = PBXGroup;
 			children = (
+				3F9A50642BEDC8140015B263 /* NativeDash-Watch-App-Info.plist */,
+				3F9A505F2BEDB5840015B263 /* NativeDash Watch App.entitlements */,
 				3F09BC4B2AB2160F00924ACE /* NativeDashApp.swift */,
 				3F09BC4D2AB2160F00924ACE /* ContentView.swift */,
 				3F09BC4F2AB2161000924ACE /* Assets.xcassets */,
@@ -318,6 +328,8 @@
 		3F59124E2B752EED00BD42A0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3F9A50622BEDB5D10015B263 /* CloudKit.framework */,
+				3F9A50602BEDB5C70015B263 /* CoreData.framework */,
 				3F59124F2B752EED00BD42A0 /* WidgetKit.framework */,
 				3F5912512B752EED00BD42A0 /* SwiftUI.framework */,
 			);
@@ -362,11 +374,11 @@
 			isa = PBXGroup;
 			children = (
 				3FF726C42B0BB8450093E54C /* NativeDash.xcdatamodeld */,
+				3F9A50652BEDCCDD0015B263 /* StoredDayType+CoreDataClass.swift */,
+				3F9A50662BEDCCDD0015B263 /* StoredDayType+CoreDataProperties.swift */,
+				3F9A50672BEDCCDD0015B263 /* StoredPeriod+CoreDataClass.swift */,
+				3F9A50682BEDCCDD0015B263 /* StoredPeriod+CoreDataProperties.swift */,
 				3FF726C72B0BB8950093E54C /* Persistence.swift */,
-				3FF726CB2B0BF9130093E54C /* StoredPeriod+CoreDataClass.swift */,
-				3FF726CC2B0BF9130093E54C /* StoredPeriod+CoreDataProperties.swift */,
-				3FF726CD2B0BF9130093E54C /* StoredDayType+CoreDataClass.swift */,
-				3FF726CE2B0BF9130093E54C /* StoredDayType+CoreDataProperties.swift */,
 			);
 			path = CoreDataStore;
 			sourceTree = "<group>";
@@ -543,6 +555,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F9A50692BEDCCDD0015B263 /* StoredDayType+CoreDataClass.swift in Sources */,
+				3F9A506A2BEDCCDD0015B263 /* StoredDayType+CoreDataProperties.swift in Sources */,
+				3F9A506B2BEDCCDD0015B263 /* StoredPeriod+CoreDataClass.swift in Sources */,
+				3F9A506C2BEDCCDD0015B263 /* StoredPeriod+CoreDataProperties.swift in Sources */,
 				3FEBD9DC2BDAC83700C580D5 /* EnvProduction.xcconfig in Sources */,
 				3F09BC3C2AB2160D00924ACE /* ContentView.swift in Sources */,
 				3FF726C82B0BB8950093E54C /* Persistence.swift in Sources */,
@@ -550,13 +566,9 @@
 				3F2F8BE02AEC04F300393F60 /* SingleCard.swift in Sources */,
 				3FBDD3392BB8EA4800FCD9D1 /* AppDelegate.swift in Sources */,
 				3FF726C62B0BB8450093E54C /* NativeDash.xcdatamodeld in Sources */,
-				3FF726D52B0BF9130093E54C /* StoredDayType+CoreDataProperties.swift in Sources */,
 				3F09BC3A2AB2160D00924ACE /* NativeDashApp.swift in Sources */,
 				3FD7ABF92BCE0472007CF2D9 /* FetchUtil.swift in Sources */,
-				3FF726D32B0BF9130093E54C /* StoredDayType+CoreDataClass.swift in Sources */,
 				3FD7ABF12BCE0472007CF2D9 /* AppGroup.swift in Sources */,
-				3FF726D12B0BF9130093E54C /* StoredPeriod+CoreDataProperties.swift in Sources */,
-				3FF726CF2B0BF9130093E54C /* StoredPeriod+CoreDataClass.swift in Sources */,
 				3FD7ABF52BCE0472007CF2D9 /* DataStructs.swift in Sources */,
 				3F2F8BE52AEF4F3C00393F60 /* PeriodTimerRing.swift in Sources */,
 			);
@@ -566,17 +578,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3FF726D22B0BF9130093E54C /* StoredPeriod+CoreDataProperties.swift in Sources */,
 				3F323D602BBB363700EF9E44 /* PeriodTimerRing.swift in Sources */,
 				3F09BC4E2AB2160F00924ACE /* ContentView.swift in Sources */,
 				3FF726C92B0BDBCC0093E54C /* NativeDash.xcdatamodeld in Sources */,
 				3FF726CA2B0BDBEB0093E54C /* Persistence.swift in Sources */,
-				3FF726D62B0BF9130093E54C /* StoredDayType+CoreDataProperties.swift in Sources */,
 				3FD7ABF22BCE0472007CF2D9 /* AppGroup.swift in Sources */,
-				3FF726D02B0BF9130093E54C /* StoredPeriod+CoreDataClass.swift in Sources */,
+				3F9A506D2BEDCCDD0015B263 /* StoredDayType+CoreDataClass.swift in Sources */,
+				3F9A506E2BEDCCDD0015B263 /* StoredDayType+CoreDataProperties.swift in Sources */,
+				3F9A506F2BEDCCDD0015B263 /* StoredPeriod+CoreDataClass.swift in Sources */,
+				3F9A50702BEDCCDD0015B263 /* StoredPeriod+CoreDataProperties.swift in Sources */,
 				3FD7ABFA2BCE0472007CF2D9 /* FetchUtil.swift in Sources */,
 				3F09BC4C2AB2160F00924ACE /* NativeDashApp.swift in Sources */,
-				3FF726D42B0BF9130093E54C /* StoredDayType+CoreDataClass.swift in Sources */,
 				3FD7ABF62BCE0472007CF2D9 /* DataStructs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -587,15 +599,15 @@
 			files = (
 				3F5912552B752EED00BD42A0 /* DashWidgetsBundle.swift in Sources */,
 				3FD9FB942BB0A8C500ED3EB0 /* EndTimeWidget.swift in Sources */,
-				3F8CA2AA2B864B6E00F13E25 /* StoredDayType+CoreDataProperties.swift in Sources */,
 				3F8CA2A52B864B6300F13E25 /* NativeDash.xcdatamodeld in Sources */,
-				3F8CA2A72B864B6800F13E25 /* StoredPeriod+CoreDataClass.swift in Sources */,
 				3F8CA2A62B864B6600F13E25 /* Persistence.swift in Sources */,
 				3FD7ABF32BCE0472007CF2D9 /* AppGroup.swift in Sources */,
 				3F5912572B752EED00BD42A0 /* TimerWidget.swift in Sources */,
+				3F9A50712BEDCCDD0015B263 /* StoredDayType+CoreDataClass.swift in Sources */,
+				3F9A50722BEDCCDD0015B263 /* StoredDayType+CoreDataProperties.swift in Sources */,
+				3F9A50732BEDCCDD0015B263 /* StoredPeriod+CoreDataClass.swift in Sources */,
+				3F9A50742BEDCCDD0015B263 /* StoredPeriod+CoreDataProperties.swift in Sources */,
 				3FD7ABFB2BCE0472007CF2D9 /* FetchUtil.swift in Sources */,
-				3F8CA2A92B864B6C00F13E25 /* StoredDayType+CoreDataClass.swift in Sources */,
-				3F8CA2A82B864B6A00F13E25 /* StoredPeriod+CoreDataProperties.swift in Sources */,
 				3FD7ABF72BCE0472007CF2D9 /* DataStructs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -605,17 +617,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F6B59F92BC447C700EB4C1F /* DashWatchWidgetsBundle.swift in Sources */,
-				3F6B59FF2BC449CF00EB4C1F /* StoredPeriod+CoreDataProperties.swift in Sources */,
+				3F9A50752BEDCCDD0015B263 /* StoredDayType+CoreDataClass.swift in Sources */,
+				3F9A50762BEDCCDD0015B263 /* StoredDayType+CoreDataProperties.swift in Sources */,
+				3F9A50772BEDCCDD0015B263 /* StoredPeriod+CoreDataClass.swift in Sources */,
+				3F9A50782BEDCCDD0015B263 /* StoredPeriod+CoreDataProperties.swift in Sources */,
 				3F6B59FD2BC449CB00EB4C1F /* Persistence.swift in Sources */,
 				3F6B59FB2BC448E000EB4C1F /* TimerWatchWidget.swift in Sources */,
 				3F6B5A052BC457F500EB4C1F /* EndTimeWatchWidget.swift in Sources */,
 				3FD7ABF42BCE0472007CF2D9 /* AppGroup.swift in Sources */,
-				3F6B5A002BC449D200EB4C1F /* StoredDayType+CoreDataClass.swift in Sources */,
-				3F6B5A012BC449D400EB4C1F /* StoredDayType+CoreDataProperties.swift in Sources */,
 				3FD7ABFC2BCE0472007CF2D9 /* FetchUtil.swift in Sources */,
 				3F8C84582BD8BBB500D49C89 /* TimerWidget.swift in Sources */,
 				3F6B59FC2BC449C800EB4C1F /* NativeDash.xcdatamodeld in Sources */,
-				3F6B59FE2BC449CD00EB4C1F /* StoredPeriod+CoreDataClass.swift in Sources */,
 				3F8C84592BD8BBB800D49C89 /* EndTimeWidget.swift in Sources */,
 				3FD7ABF82BCE0472007CF2D9 /* DataStructs.swift in Sources */,
 			);
@@ -764,12 +776,14 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "NativeDash Watch App/NativeDash Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"NativeDash Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = K5273GVYFN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "NativeDash-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = NativeDash;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "com.icloud-djharrold53.NativeDash";
@@ -796,12 +810,14 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "NativeDash Watch App/NativeDash Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"NativeDash Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = K5273GVYFN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "NativeDash-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = NativeDash;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "com.icloud-djharrold53.NativeDash";

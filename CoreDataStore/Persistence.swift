@@ -29,7 +29,7 @@ struct PersistenceController {
         return result
     }()
     
-    let container: NSPersistentContainer
+    let container: NSPersistentCloudKitContainer
     var viewContext: NSManagedObjectContext {
         get {
             container.viewContext
@@ -39,11 +39,20 @@ struct PersistenceController {
     
 
     init(inMemory: Bool = false) {
-        let storeURL = AppGroup.dashManagement.containerURL.appendingPathComponent("NativeDash.sqlite")
-        let description = NSPersistentStoreDescription(url: storeURL)
+        let baseURL: URL = AppGroup.dashManagement.containerURL
+    
+        let localStoreUrl = baseURL.appendingPathComponent("NativeDashLocal.sqlite")
+        let localDescription = NSPersistentStoreDescription(url: localStoreUrl)
+        localDescription.configuration = "Default"
+    
+        let cloudStoreUrl = baseURL.appendingPathComponent("NativeDashCloud.sqlite")
+        let cloudDescription = NSPersistentStoreDescription(url: cloudStoreUrl)
+        cloudDescription.configuration = "Cloud"
+        cloudDescription.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.com.icloud-djharrold53.NativeDash")
         
-        container = NSPersistentContainer(name: "NativeDash")
-        container.persistentStoreDescriptions = [description]
+        
+        container = NSPersistentCloudKitContainer(name: "NativeDash")
+        container.persistentStoreDescriptions = [localDescription, cloudDescription]
         
 
         

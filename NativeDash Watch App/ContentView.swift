@@ -6,40 +6,53 @@
 //
 
 import SwiftUI
+import WatchKit
+import Foundation
 
 struct ContentView: View {
-    @FetchRequest(sortDescriptors: [])
-    private var weeklyScheduleStore: FetchedResults<StoredScheduleOnDate>
+    
+    @State private var schedules: [DayType]?
+    @State private var todaySchedule: DayType?
     
     
-    @State var todaySchedule: DayType? = DayType(
-        name: "Common Day",
-        periods: [
-            .init(name: "Assembly", start: "8:30", end: "8:37"),
-            .init(name: "Period 1", start: "8:41", end: "9:20"),
-            .init(name: "Period 2", start: "9:24", end: "10:03"),
-            .init(name: "Period 3", start: "10:07", end: "10:46"),
-            .init(name: "Common", start: "10:50", end: "11:17"),
-            .init(name: "Period 4", start: "11:21", end: "12:01"),
-            .init(name: "Period 5", start: "12:05", end: "12:45"),
-            .init(name: "Period 6", start: "12:49", end: "13:29"),
-            .init(name: "Period 7", start: "13:33", end: "14:13"),
-            .init(name: "Period 8", start: "14:17", end: "14:57"),
-            .init(name: "Period 9", start: "15:01", end: "15:41"),
-            .init(name: "Period 10", start: "15:45", end: "16:25")
-        ]
-    )
     
     var body: some View {
+        Text("Hello")
         if todaySchedule != nil {
             PeriodTimerRing(todaySchedule: todaySchedule!)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         EmptyView()
             .onAppear(perform: {
-                let scheduleFromWeeklyStore = weeklyScheduleStore.first(where: {Calendar.current.isDateInToday($0.date!)})?.schedule?.asDayType()
-                todaySchedule = scheduleFromWeeklyStore
+                print("App loading!")
+                updateFromStores()
             })
+            .onReceive(NotificationCenter.default.publisher(for: WKApplication.didBecomeActiveNotification)) {_ in
+                print("App entering foreground!")
+                updateFromStores()
+            }
+    }
+    
+    private func updateFromStores() {
+        let viewContext = PersistenceController.shared.viewContext
+        let weeklyScheduleStore = try? viewContext.fetch(StoredScheduleOnDate.fetchRequest())
+        let dayTypesReq = StoredDayType.fetchRequest()
+        dayTypesReq.sortDescriptors?.append(NSSortDescriptor(key: "name", ascending: true))
+        let todayScheduleStore = try? viewContext.fetch(dayTypesReq)
+        
+        let scheduleFromWeeklyStore = weeklyScheduleStore?.first(where: {Calendar.current.isDateInToday($0.date!)})?.schedule?.asDayType()
+        print("Setting todaySchedule to \(String(describing: scheduleFromWeeklyStore))")
+        todaySchedule = scheduleFromWeeklyStore
+        
+        var tmpSchedules: [DayType] = []
+        if !(todayScheduleStore?.isEmpty ?? true) {
+            for dayType in todayScheduleStore! {
+                tmpSchedules.append(dayType.asDayType())
+            }
+            
+            tmpSchedules.move(fromOffsets: [tmpSchedules.firstIndex(where: {$0.name == todaySchedule?.name}) ?? 0], toOffset: 0)
+            schedules = tmpSchedules
+        }
     }
 }
 

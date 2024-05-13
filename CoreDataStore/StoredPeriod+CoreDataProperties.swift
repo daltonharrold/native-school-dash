@@ -2,7 +2,7 @@
 //  StoredPeriod+CoreDataProperties.swift
 //  NativeDash
 //
-//  Created by Dalton Harrold on 11/20/23.
+//  Created by Dalton Harrold on 5/9/24.
 //
 //
 
@@ -16,11 +16,11 @@ extension StoredPeriod {
         return NSFetchRequest<StoredPeriod>(entityName: "StoredPeriod")
     }
 
+    @NSManaged public var end: String?
     @NSManaged public var name: String?
     @NSManaged public var start: String?
-    @NSManaged public var end: String?
     @NSManaged public var schedule: StoredDayType?
-
+    
     public var wrappedName: String {
         name ?? "Unknown period"
     }
@@ -30,6 +30,7 @@ extension StoredPeriod {
     public var wrappedEnd: String {
         end ?? "00:00"
     }
+
 }
 
 extension StoredPeriod : Identifiable {
