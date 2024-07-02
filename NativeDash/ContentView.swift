@@ -16,9 +16,6 @@ struct ContentView: View {
     
     @State private var schedules: [DayType]?
     
-    @State private var debugMsg: Text?
-    
-    
     @State private var showSpinner:Bool = false
     @State private var degree:Int = 270
     @State private var spinnerLength = 0.6
@@ -61,7 +58,6 @@ struct ContentView: View {
                 .foregroundStyle(.gray)
                 .padding(.top, 20)
             
-            debugMsg
         }
         
         Spacer()
@@ -91,7 +87,6 @@ struct ContentView: View {
         let todayScheduleStore = try? viewContext.fetch(dayTypesReq)
         
         let scheduleFromWeeklyStore = weeklyScheduleStore?.first(where: {Calendar.current.isDateInToday($0.date!)})?.schedule?.asDayType()
-        debugMsg = Text("scheduleFromWeeklyStore is " + String(describing: scheduleFromWeeklyStore))
         todaySchedule = scheduleFromWeeklyStore
         
         var tmpSchedules: [DayType] = []
