@@ -65,17 +65,15 @@ struct EndTimeProvider: TimelineProvider {
                 let morningEntry = EndTimeEntry(date: morningStart, displayPeriod: morningPeriod, scheduleName: todaySchedule.name)
                 entries.append(morningEntry)
                 
-                for index in 0..<todaySchedule.periods.count-1 {
-                    let loopedPeriod = todaySchedule.periods[index]
-                    
-                    // Add the period to entries
-                    
-                    // Change at period end, so that passing periods will show as the end of next period
-                    // Note: This means that the first period needs to be scheduled seperately below
-                    let periodEnd = loopedPeriod.getEndAsDate()
-                    
-                    
-                    let entry = EndTimeEntry(date: periodEnd, displayPeriod: todaySchedule.periods[index+1], scheduleName: todaySchedule.name)
+                // Passing periods should show the next full period's end time.
+                // This means that an entry's date should be the past period's end, or the start in the first period's case.
+                
+                let firstPeriod = todaySchedule.periods.first!
+                let firstPeriodEntry = EndTimeEntry(date: firstPeriod.getStartAsDate(), displayPeriod: firstPeriod, scheduleName: todaySchedule.name)
+                entries.append(firstPeriodEntry)
+                
+                for index in 1..<todaySchedule.periods.count {
+                    let entry = EndTimeEntry(date: todaySchedule.periods[index-1].getEndAsDate(), displayPeriod: todaySchedule.periods[index], scheduleName: todaySchedule.name)
                     entries.append(entry)
                 }
                 
@@ -90,22 +88,14 @@ struct EndTimeProvider: TimelineProvider {
                     let overnightEntry = EndTimeEntry(date: endOfDay, displayPeriod: overnightPeriod, scheduleName: tomorrowSchedule.name, overrideDisplayDate: tomorrowSchedule.periods.first!.getStartAsDate())
                     
                     entries.append(overnightEntry)
-                    
-                    // Add tomorrow's pre-morning period so that there's overlap and the system can make proper refresh event determinations
-                    let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: .now)!
-                    let tomorrowMorning = Calendar.current.date(bySettingHour: 0, minute: 0, second: 1, of: tomorrow)!
-                    let tomorrowPeriod: Period = Period(name: "Good morning", start: "00:00", end: tomorrowSchedule.periods.first!.start)
-                    let tomorrowMorningEntry = EndTimeEntry(date: tomorrowMorning, displayPeriod: tomorrowPeriod, scheduleName: tomorrowSchedule.name)
-                    
-                    entries.append(tomorrowMorningEntry)
                 }
             }
             
         } catch {
             fatalError("Could not fetch from Core Data for widget timeline. \(error)")
         }
-        
-        let timeline = Timeline(entries: entries, policy: .atEnd)
+        let tomorrowMorning = Calendar.current.date(bySettingHour: 0, minute: 1, second: 0, of: Calendar.current.date(byAdding: .day, value: 1, to: .now)!)!
+        let timeline = Timeline(entries: entries, policy: .after(tomorrowMorning))
         completion(timeline)
     }
 }
