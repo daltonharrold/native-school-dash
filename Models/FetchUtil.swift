@@ -453,9 +453,7 @@ class BackgroundFetchUtil: NSObject, URLSessionDelegate, URLSessionDownloadDeleg
         self.context = context
     }
     
-    static let shared = BackgroundFetchUtil(context: PersistenceController.shared.backgroundContext)
-    
-
+//    static let shared = BackgroundFetchUtil(context: PersistenceController.shared.backgroundContext)
     
     func urlSession(_: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         print("Download finished: \(location.absoluteString)")
