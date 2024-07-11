@@ -38,7 +38,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let config = URLSessionConfiguration.background(withIdentifier: "com.icloud-djharrold53.NativeDash.BGURLSession")
         config.sessionSendsLaunchEvents = true
-        let session = URLSession(configuration: config, delegate: BackgroundFetchUtil(context: PersistenceController.shared.backgroundContext), delegateQueue: OperationQueue())
+        let bgFetchUtil = BackgroundFetchUtil()
+        let session = URLSession(configuration: config, delegate: bgFetchUtil, delegateQueue: OperationQueue())
+        task.expirationHandler = {bgFetchUtil.cancel()}
         
         
         

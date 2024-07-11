@@ -38,7 +38,7 @@ struct ContentView: View {
         EmptyView()
             .onAppear(perform: {
                 let scheduleFromWeeklyStore = weeklyScheduleStore.first(where: {Calendar.current.isDateInToday($0.date!)})?.schedule?.asDayType()
-                todaySchedule = scheduleFromWeeklyStore
+                todaySchedule = todaySchedule ?? scheduleFromWeeklyStore
             })
     }
 }
