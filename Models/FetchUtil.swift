@@ -447,10 +447,15 @@ class StoreOperation: GenericAsyncOperation {
     }
 }
 
-class BackgroundFetchUtil: NSObject, URLSessionDelegate, URLSessionDownloadDelegate {
-    var context: NSManagedObjectContext
-    init(context: NSManagedObjectContext) {
-        self.context = context
+class BackgroundFetchUtil: GenericAsyncOperation, URLSessionDelegate, URLSessionDownloadDelegate {
+    convenience init() {
+        self.init(context: PersistenceController.shared.backgroundContext)
+    }
+    
+    func cancelDBOps() {
+        context.rollback()
+        state = .finished
+        return
     }
     
 //    static let shared = BackgroundFetchUtil(context: PersistenceController.shared.backgroundContext)
@@ -459,7 +464,7 @@ class BackgroundFetchUtil: NSObject, URLSessionDelegate, URLSessionDownloadDeleg
         print("Download finished: \(location.absoluteString)")
         guard let data = try? Data(contentsOf: location) else {return}
         guard let urlResponse = downloadTask.response else {return}
-        try? BackgroundFetchUtil.storeRawFetch(data: (data, urlResponse), context: self.context, storesDayType: true)
+        try? storeRawFetch(data: (data, urlResponse), context: self.context, storesDayType: true)
     }
 
     func urlSession(_: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
@@ -468,8 +473,8 @@ class BackgroundFetchUtil: NSObject, URLSessionDelegate, URLSessionDownloadDeleg
         }
     }
     
-    static func storeRawFetch(data: (Data, URLResponse), context: NSManagedObjectContext, storesDayType: Bool) throws {
-        
+    func storeRawFetch(data: (Data, URLResponse), context: NSManagedObjectContext, storesDayType: Bool) throws {
+        guard isCancelled == false else {cancelDBOps(); return}
         var response: FetchedResponse?
         
         let urlComponents = URLComponents(url: data.1.url!, resolvingAgainstBaseURL: true)!
@@ -507,7 +512,7 @@ class BackgroundFetchUtil: NSObject, URLSessionDelegate, URLSessionDownloadDeleg
                     for schedule in response.response.dayTypes {
                         _ = schedule.toStoredDayType(context: context)
                     }
-                    
+                    guard self.isCancelled == false else {self.cancelDBOps(); return}
                     try context.save()
                     
                 } catch {
@@ -539,6 +544,7 @@ class BackgroundFetchUtil: NSObject, URLSessionDelegate, URLSessionDownloadDeleg
                 let possibleSchedule = storedDayTypes.first(where: {$0.name == response.response.dayTypeOnDate.name})
                 storedSchedule.schedule = possibleSchedule ?? storedDayTypes.first
                 
+                guard self.isCancelled == false else {self.cancelDBOps(); return}
                 try context.save()
             } catch {
                 print("[NativeDash]: failed to update StoredScheduleOnDate. \(error)")
