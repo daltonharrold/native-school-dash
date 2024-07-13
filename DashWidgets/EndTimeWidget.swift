@@ -8,6 +8,7 @@
 import Foundation
 import WidgetKit
 import SwiftUI
+import OSLog
 
 struct EndTimeProvider: TimelineProvider {
     
@@ -46,6 +47,7 @@ struct EndTimeProvider: TimelineProvider {
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+        Logger.widget.info("Getting timeline for end time widget...")
         var entries: [EndTimeEntry] = []
         
         let context = PersistenceController.shared.backgroundContext
@@ -92,10 +94,12 @@ struct EndTimeProvider: TimelineProvider {
             }
             
         } catch {
-            fatalError("Could not fetch from Core Data for widget timeline. \(error)")
+            Logger.widget.error("Could not fetch from Core Data for widget timeline. \(error)")
         }
         let tomorrowMorning = Calendar.current.date(bySettingHour: 0, minute: 1, second: 0, of: Calendar.current.date(byAdding: .day, value: 1, to: .now)!)!
         let timeline = Timeline(entries: entries, policy: .after(tomorrowMorning))
+        UserDefaults.standard.setValue(Date.now.ISO8601Format(), forKey: "WIDGETS_LAST_UPDATED")
+        Logger.widget.info("Successfuly refreshed timeline for end time widget")
         completion(timeline)
     }
 }

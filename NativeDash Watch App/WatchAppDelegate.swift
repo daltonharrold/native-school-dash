@@ -7,14 +7,14 @@
 
 import Foundation
 import WatchKit
-
+import OSLog
 
 class WatchAppDelegate: NSObject, WKApplicationDelegate {
     func applicationWillEnterForeground() {
         // Schedule background application data refresh
         let preferredDate = Date().addingTimeInterval(24 * 60 * 60)// One day later
         WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: preferredDate, userInfo: "com.icloud-djharrold53.NativeDash.watchkitapp.DayTypeUpdater" as NSSecureCoding & NSObjectProtocol) { (error) in guard error == nil else {
-            print("Couldn't schedule background refresh.")
+            Logger.background.error("Couldn't schedule background refresh.")
             return
         }
             // Manually triger task execution:
@@ -22,12 +22,12 @@ class WatchAppDelegate: NSObject, WKApplicationDelegate {
             
             // Manually cancel a task during execution
             // e -l objc -- (void)[[BGTaskScheduler sharedScheduler] _simulateExpirationForTaskWithIdentifier:@"com.icloud-djharrold53.NativeDash.watchkitapp.DayTypeUpdater"]
-            print("Scheduled next background update task for: \(preferredDate)")
+            Logger.background.info("Scheduled next background update task for: \(preferredDate)")
         }
     }
     
     func handle(_ backgroundTasks: Set<WKRefreshBackgroundTask>) {
-        print("Starting WK background fetch")
+        Logger.background.info("Starting WK background fetch")
         let configuration = URLSessionConfiguration.background(withIdentifier: "com.icloud-djharrold53.NativeDash.watchkitapp.BGURLSession")
         configuration.isDiscretionary = true
         configuration.sessionSendsLaunchEvents = true

@@ -6,6 +6,7 @@
 //
 
 import CoreData
+import OSLog
 
 struct PersistenceController {
     // Switch to inMemory: false for production
@@ -64,7 +65,8 @@ struct PersistenceController {
                  * The store could not be migrated to the current model version.
                  Check the error message to determine what the actual problem was.
                  */
-                fatalError("Unresolved error \(error), \(error.userInfo)")
+                
+                Logger.coreData.fault("Error in loading persistent store '\(storeDescription)'. Error: \(error)")
             }
         })
         container.viewContext.automaticallyMergesChangesFromParent = true

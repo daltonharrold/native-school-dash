@@ -9,6 +9,7 @@ import Foundation
 import CoreData
 import SwiftUI
 import WidgetKit
+import OSLog
 
 public struct ApiResponse: Decodable {
     let dayTypeOnDate: DayType
@@ -61,7 +62,13 @@ class FetchUtil {
             self.updateOp.completion = self.completion
         }
     }
-    var error: FetchError? = nil
+    var error: FetchError? = nil {
+        didSet {
+            if self.error != nil {
+                Logger.fetch.error("An error occured in FetchUtil. \(self.error!.description)")
+            }
+        }
+    }
     var urlSession: URLSession
     private var updateOp: UpdateOperation
     private let updateOpQueue = OperationQueue()
@@ -77,6 +84,7 @@ class FetchUtil {
         if let url = URL(string: "https://\(apiEndpoint)/schools/\( schoolID)?includes=dayTypeOnDate&day=\(calendarDate.day!)&month=\(calendarDate.month!)&year=\(calendarDate.year!)") {
             return url
         } else {
+            Logger.fetch.error("Could not form URL in FetchUtil")
             throw FetchError.other
         }
     }
@@ -215,7 +223,13 @@ class GenericAsyncOperation: Operation {
     private let stateQueue = DispatchQueue(label: "com.icloud-djharrold53.NativeDash.AsyncOperationState", attributes: .concurrent)
 
     let context: NSManagedObjectContext
-    var error: FetchError? = nil
+    var error: FetchError? = nil {
+        didSet {
+            if error != nil {
+                Logger.fetch.error("Error in GenericAsyncOperation. \(self.error!.description)")
+            }
+        }
+    }
     
     init(context: NSManagedObjectContext) {
         self.context = context
@@ -324,7 +338,7 @@ class FetchOperation: GenericAsyncOperation {
         if self.isCancelled {self.state = .finished; super.error = .cancelled; return}
         
         fetchRequests.forEach {(request) in
-            print("Fetch started for \(request.key.ISO8601Format())")
+            Logger.fetch.info("Fetch started for \(request.key.ISO8601Format())")
             urlDownloadGroup.enter()
             urlSession.dataTask(with: request.value, completionHandler: { (data, response, error) in
     //            print("Data" + String(describing: data) + "Response:" + String(describing: response) + "error" + String(describing: error))
@@ -332,7 +346,7 @@ class FetchOperation: GenericAsyncOperation {
                     let subject = try? JSONDecoder().decode(ApiResponse.self, from: data) else {
                     // handle error
                     urlDownloadQueue.async {
-                        print("[NativeDash]: Error in decoding fetchedJSON. \(String(describing: error))")
+                        Logger.fetch.error("[NativeDash]: Error in decoding fetchedJSON. \(String(describing: error))")
                         super.error = .decodingError
                         urlDownloadGroup.leave()
                     }
@@ -342,7 +356,7 @@ class FetchOperation: GenericAsyncOperation {
                 urlDownloadQueue.async {
                     if self.isCancelled {self.state = .finished; super.error = .cancelled; return}
                     let returnData = FetchedResponse(onDate: request.key, response: subject)
-                    print("Fetch completed for \(returnData.onDate.ISO8601Format())")
+                    Logger.fetch.info("Fetch completed for \(returnData.onDate.ISO8601Format())")
                     subjectCollection.append(returnData)
                     urlDownloadGroup.leave()
                 }
@@ -365,7 +379,7 @@ class StoreOperation: GenericAsyncOperation {
     }
     
     private func rollback() {
-        print("Store operation cancelled. Rolling back...")
+        Logger.fetch.error("Store operation cancelled. Rolling back...")
         context.rollback()
         super.error = .cancelled
         self.state = .finished
@@ -376,13 +390,13 @@ class StoreOperation: GenericAsyncOperation {
         if self.isCancelled {rollback(); return}
         
         guard let fetchedResponses = fetchedResponses, !fetchedResponses.isEmpty else {
-            print("Responses not fetched for storing.")
+            Logger.coreData.error("Responses not fetched for storing.")
             super.error = .notFetched
             self.state = .finished
             return
         }
         
-        print("Updating StoredDayTypes...")
+        Logger.coreData.info("Updating StoredDayTypes...")
         
         var newStoredDayTypes: [StoredDayType] = []
         // Update StoredDayTypes
@@ -401,12 +415,12 @@ class StoreOperation: GenericAsyncOperation {
             if self.isCancelled {rollback(); return}
             
         } catch {
-            print("[NativeDash]: failed to update StoredDayTypes. \(error)")
+            Logger.coreData.error("[NativeDash]: failed to update StoredDayTypes. \(error)")
             context.rollback()
             super.error = .couldNotStore
         }
         
-        print("Updating StoredScheduleOnDate...")
+        Logger.coreData.info("Updating StoredScheduleOnDate...")
         // Insert next week's schedules into stores
         do {
             if self.isCancelled {rollback(); return}
@@ -437,12 +451,13 @@ class StoreOperation: GenericAsyncOperation {
             if self.isCancelled {rollback(); return}
             try context.save()
         } catch {
-            print("[NativeDash]: failed to update StoredScheduleOnDate. \(error)")
+            Logger.coreData.error("[NativeDash]: failed to update StoredScheduleOnDate. \(error)")
             context.rollback()
             super.error = .couldNotStore
         }
         
-        print("Finished updating stores!")
+        UserDefaults.standard.setValue(Date.now.ISO8601Format(), forKey: "STORES_LAST_UPDATED")
+        Logger.coreData.info("Finished updating stores!")
         self.state = .finished
     }
 }
@@ -453,6 +468,7 @@ class BackgroundFetchUtil: GenericAsyncOperation, URLSessionDelegate, URLSession
     }
     
     func cancelDBOps() {
+        Logger.coreData.error("DB Operations cancelled. Rolling back...")
         context.rollback()
         state = .finished
         return
@@ -461,7 +477,7 @@ class BackgroundFetchUtil: GenericAsyncOperation, URLSessionDelegate, URLSession
 //    static let shared = BackgroundFetchUtil(context: PersistenceController.shared.backgroundContext)
     
     func urlSession(_: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
-        print("Download finished: \(location.absoluteString)")
+        Logger.fetch.info("Download finished: \(location.absoluteString)")
         guard let data = try? Data(contentsOf: location) else {return}
         guard let urlResponse = downloadTask.response else {return}
         try? storeRawFetch(data: (data, urlResponse), context: self.context, storesDayType: true)
@@ -469,7 +485,7 @@ class BackgroundFetchUtil: GenericAsyncOperation, URLSessionDelegate, URLSession
 
     func urlSession(_: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         if let error = error {
-            print("Download error: \(String(describing: error))")
+            Logger.fetch.error("Download error: \(String(describing: error))")
         }
     }
     
@@ -490,7 +506,7 @@ class BackgroundFetchUtil: GenericAsyncOperation, URLSessionDelegate, URLSession
                 let res = try JSONDecoder().decode(ApiResponse.self, from: jsonData)
                 response = FetchedResponse(onDate: onDate, response: res)
             } catch {
-                print("[NativeDash]: Error while decoding JSON. \(error)")
+                Logger.fetch.error("[NativeDash]: Error while decoding JSON. \(error)")
                 return
             }
         }
@@ -516,7 +532,7 @@ class BackgroundFetchUtil: GenericAsyncOperation, URLSessionDelegate, URLSession
                     try context.save()
                     
                 } catch {
-                    print("[NativeDash]: failed to update StoredDayTypes. \(error)")
+                    Logger.coreData.error("[NativeDash]: failed to update StoredDayTypes. \(error)")
                     context.rollback()
                     return
                 }
@@ -547,11 +563,11 @@ class BackgroundFetchUtil: GenericAsyncOperation, URLSessionDelegate, URLSession
                 guard self.isCancelled == false else {self.cancelDBOps(); return}
                 try context.save()
             } catch {
-                print("[NativeDash]: failed to update StoredScheduleOnDate. \(error)")
+                Logger.coreData.error("[NativeDash]: failed to update StoredScheduleOnDate. \(error)")
                 context.rollback()
                 return
             }
-            print("Updated using background")
+            Logger.coreData.error("Updated using background")
             WidgetCenter.shared.reloadAllTimelines()
         }
     }

@@ -7,6 +7,7 @@
 
 import WidgetKit
 import SwiftUI
+import OSLog
 
 struct TimerProvider: TimelineProvider {
     
@@ -44,6 +45,7 @@ struct TimerProvider: TimelineProvider {
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+        Logger.widget.info("Getting timeline for timer widget...")
         var entries: [TimerEntry] = []
         
         let context = PersistenceController.shared.backgroundContext
@@ -101,11 +103,12 @@ struct TimerProvider: TimelineProvider {
                 }
             }
         } catch {
-            fatalError("Could not fetch from Core Data for widget timeline. \(error)")
+            Logger.widget.error("Could not fetch from Core Data for widget timeline. \(error)")
         }
         
         let tomorrowMorning = Calendar.current.date(bySettingHour: 0, minute: 1, second: 0, of: Calendar.current.date(byAdding: .day, value: 1, to: .now)!)!
         let timeline = Timeline(entries: entries, policy: .after(tomorrowMorning))
+        Logger.widget.info("Successfuly refreshed timeline for timer widget")
         completion(timeline)
     }
 }
