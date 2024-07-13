@@ -7,6 +7,7 @@
 
 import WidgetKit
 import SwiftUI
+import OSLog
 
 struct TimerWatchProvider: TimelineProvider {
     
@@ -89,7 +90,7 @@ struct TimerWatchProvider: TimelineProvider {
 
                 }
             } else {
-                print("todaySchedule not found")
+                Logger.widget.error("todaySchedule not found")
             }
         } catch {
             fatalError("Could not fetch from Core Data for widget timeline. \(error)")

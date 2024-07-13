@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import BackgroundTasks
+import OSLog
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
     let appRefreshTaskId: String = "com.icloud-djharrold53.NativeDash.DayTypeUpdater"
@@ -24,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
         
         let count = UserDefaults.standard.integer(forKey: "BG_task_run_count")
-        print("[NativeDash BG Scheduler]: task has run \(count) times")
+        Logger.background.info("[NativeDash BG Scheduler]: task has run \(count) times")
        
         scheduleTask()
         
@@ -34,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func handleTask(task: BGProcessingTask) {
         let count = UserDefaults.standard.integer(forKey: "BG_task_run_count")
         UserDefaults.standard.setValue(count+1, forKey: "BG_task_run_count")
-        print("[NativeDash BG Scheduler]: Running scheduled task...")
+        Logger.background.info("[NativeDash BG Scheduler]: Running scheduled task...")
         
         let config = URLSessionConfiguration.background(withIdentifier: "com.icloud-djharrold53.NativeDash.BGURLSession")
         config.sessionSendsLaunchEvents = true
@@ -57,6 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let downloadTask = session.downloadTask(with: req)
             downloadTask.resume()
         }
+        UserDefaults.standard.setValue(Date.now.ISO8601Format(), forKey: "STORES_LAST_UPDATED")
         task.setTaskCompleted(success: true)
     }
     
@@ -70,7 +72,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // e -l objc -- (void)[[BGTaskScheduler sharedScheduler] _simulateExpirationForTaskWithIdentifier:@"com.icloud-djharrold53.NativeDash.DayTypeUpdater"]
         
         BGTaskScheduler.shared.getPendingTaskRequests { requests in
-            print("[NativeDash BG Scheduler]: \(requests.count) tasks scheduled")
             guard requests.isEmpty else {return}
             //Submit a task to be scheduled
             do {
@@ -79,9 +80,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 newTask.requiresNetworkConnectivity = true
                 
                 try BGTaskScheduler.shared.submit(newTask)
-                print("[NativeDash BG Scheduler]: new task successfully scheduled")
+                Logger.background.info("[NativeDash BG Scheduler]: new task successfully scheduled")
             } catch {
-                print("Task failed to schedule. \(error)")
+                Logger.other.error("Task failed to schedule. \(error)")
             }
         }
         
