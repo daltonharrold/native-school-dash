@@ -567,8 +567,7 @@ class BackgroundFetchUtil: GenericAsyncOperation, URLSessionDelegate, URLSession
                 context.rollback()
                 return
             }
-            Logger.coreData.error("Updated using background")
-            WidgetCenter.shared.reloadAllTimelines()
+            Logger.coreData.info("Updated core data stores using background")
         }
     }
     
