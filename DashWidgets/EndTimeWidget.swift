@@ -106,7 +106,6 @@ struct EndTimeProvider: TimelineProvider {
         Logger.widget.info("Reached debug point G")
         let tomorrowMorning = Calendar.current.date(bySettingHour: 0, minute: 1, second: 0, of: Calendar.current.date(byAdding: .day, value: 1, to: .now)!)!
         let timeline = Timeline(entries: entries, policy: .after(tomorrowMorning))
-        UserDefaults.standard.setValue(Date.now.ISO8601Format(), forKey: "WIDGETS_LAST_UPDATED")
         Logger.widget.info("Successfuly refreshed timeline for end time widget")
         completion(timeline)
     }

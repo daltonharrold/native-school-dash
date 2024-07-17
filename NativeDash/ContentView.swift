@@ -16,24 +16,11 @@ struct ContentView: View {
     
     @State private var schedules: [DayType]?
     
-    //DEBUGGING ONLY
-    @State private var storesLastUpdated: String = UserDefaults.standard.string(forKey: "STORES_LAST_UPDATED") ?? "never"
-    private func storesUpdated() {
-        Thread.sleep(forTimeInterval: 20)
-        widgetsLastUpdated = UserDefaults.standard.string(forKey: "STORES_LAST_UPDATED") ?? "Never"
-    }
-    @State private var widgetsLastUpdated: String = UserDefaults.standard.string(forKey: "WIDGETS_LAST_UPDATED") ?? "never"
-    private func widgetsUpdated() {
-        Thread.sleep(forTimeInterval: 0.1)
-        widgetsLastUpdated = UserDefaults.standard.string(forKey: "WIDGETS_LAST_UPDATED") ?? "Never"
-    }
-    @State private var storedScheduleOnDates: [StoredScheduleOnDate]? = try? PersistenceController.shared.viewContext.fetch(StoredScheduleOnDate.fetchRequest())
-    
     @State private var showSpinner:Bool = false
     @State private var degree:Int = 270
     @State private var spinnerLength = 0.6
     
-    static var runningFetchUtil: FetchUtil?
+    @State private var runningFetchUtil: FetchUtil?
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
@@ -70,43 +57,8 @@ struct ContentView: View {
                 .font(.footnote)
                 .foregroundStyle(.gray)
                 .padding(.top, 20)
-            
-            // MARK: DEBUGGING ONLY
-            HStack {
-                Button(action: {
-                    Logger.widget.debug("Widget refresh manually requested")
-                    WidgetCenter.shared.reloadAllTimelines()
-                    widgetsUpdated()
-                }, label: {
-                    Text("Reload Widgets")
-                })
-                Button(action: {
-                    ContentView.runningFetchUtil = FetchUtil(context: PersistenceController.shared.backgroundContext)
-                    ContentView.runningFetchUtil!.completion = {_ in
-                        ContentView.runningFetchUtil = nil
-                        updateFromStores()
-                    }
-                    ContentView.runningFetchUtil!.updater.start()
-                    storesUpdated()
-                }, label: {
-                    Text("Re-fetch Core Data")
-                })
-            }
-            Text("Last Core data fetch: \(storesLastUpdated)")
-            Text("Last widget update: \(widgetsLastUpdated)")
-            Spacer()
-                .frame(height: 100)
-            Text("Current Core Data:")
-            Text("TodaySchedule: " + String(describing: todaySchedule))
-            Spacer()
-                .frame(height: 100)
-            Text("Stored Schedules on Dates:" + String(describing: storedScheduleOnDates?.map({"\($0.date ?? Date(timeIntervalSince1970: 0)): \($0.schedule?.name ?? "Null schedule")"})))
-            Spacer()
-                .frame(height: 100)
-            Text("Schedule types: " + String(describing: schedules))
         }
-        
-
+    
         Spacer()
         .onAppear(perform: {
             Logger.other.info("App loading!")
@@ -116,15 +68,15 @@ struct ContentView: View {
             Logger.other.info("App entering foreground")
             updateFromStores()
         })
-//        .task {
-//            ContentView.runningFetchUtil = FetchUtil(context: PersistenceController.shared.backgroundContext)
-//            ContentView.runningFetchUtil!.completion = {_ in
-//                ContentView.runningFetchUtil = nil
-//                updateFromStores()
-//            }
-//            ContentView.runningFetchUtil!.updater.start()
-//            WidgetCenter.shared.reloadAllTimelines()
-//        }
+        .task {
+            self.runningFetchUtil = FetchUtil(context: PersistenceController.shared.backgroundContext)
+            self.runningFetchUtil!.completion = {_ in
+                self.runningFetchUtil = nil
+                updateFromStores()
+            }
+            self.runningFetchUtil!.updater.start()
+            WidgetCenter.shared.reloadAllTimelines()
+        }
     }
     private func updateFromStores() {
         let viewContext = PersistenceController.shared.viewContext

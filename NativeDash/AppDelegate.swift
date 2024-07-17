@@ -58,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let downloadTask = session.downloadTask(with: req)
             downloadTask.resume()
         }
-        UserDefaults.standard.setValue(Date.now.ISO8601Format(), forKey: "STORES_LAST_UPDATED")
+        
         task.setTaskCompleted(success: true)
     }
     
