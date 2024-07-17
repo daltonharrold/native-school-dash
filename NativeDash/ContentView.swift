@@ -27,6 +27,7 @@ struct ContentView: View {
         Thread.sleep(forTimeInterval: 0.1)
         widgetsLastUpdated = UserDefaults.standard.string(forKey: "WIDGETS_LAST_UPDATED") ?? "Never"
     }
+    @State private var storedScheduleOnDates: [StoredScheduleOnDate]? = try? PersistenceController.shared.viewContext.fetch(StoredScheduleOnDate.fetchRequest())
     
     @State private var showSpinner:Bool = false
     @State private var degree:Int = 270
@@ -99,7 +100,10 @@ struct ContentView: View {
             Text("TodaySchedule: " + String(describing: todaySchedule))
             Spacer()
                 .frame(height: 100)
-            Text("schedules: " + String(describing: schedules))
+            Text("Stored Schedules on Dates:" + String(describing: storedScheduleOnDates?.map({"\($0.date ?? Date(timeIntervalSince1970: 0)): \($0.schedule?.name ?? "Null schedule")"})))
+            Spacer()
+                .frame(height: 100)
+            Text("Schedule types: " + String(describing: schedules))
         }
         
 
