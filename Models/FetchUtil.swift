@@ -456,7 +456,6 @@ class StoreOperation: GenericAsyncOperation {
             super.error = .couldNotStore
         }
         
-        UserDefaults.standard.setValue(Date.now.ISO8601Format(), forKey: "STORES_LAST_UPDATED")
         Logger.coreData.info("Finished updating stores!")
         self.state = .finished
     }

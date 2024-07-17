@@ -620,8 +620,8 @@
             filePath = "NativeDash/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
             landmarkName = "updateFromStores()"
             landmarkType = "7">
          </BreakpointContent>
@@ -796,8 +796,8 @@
             filePath = "Models/FetchUtil.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "492"
-            endingLineNumber = "492"
+            startingLineNumber = "491"
+            endingLineNumber = "491"
             landmarkName = "storeRawFetch(data:context:storesDayType:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -892,8 +892,8 @@
             filePath = "NativeDash/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
             landmarkName = "updateFromStores()"
             landmarkType = "7">
          </BreakpointContent>
@@ -908,8 +908,8 @@
             filePath = "NativeDash/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "updateFromStores()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1020,8 +1020,8 @@
             filePath = "Models/FetchUtil.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "480"
-            endingLineNumber = "480"
+            startingLineNumber = "479"
+            endingLineNumber = "479"
             landmarkName = "urlSession(_:downloadTask:didFinishDownloadingTo:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1036,8 +1036,8 @@
             filePath = "Models/FetchUtil.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "494"
-            endingLineNumber = "494"
+            startingLineNumber = "493"
+            endingLineNumber = "493"
             landmarkName = "storeRawFetch(data:context:storesDayType:)"
             landmarkType = "7">
          </BreakpointContent>
