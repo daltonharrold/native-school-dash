@@ -2,12 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>BGTaskSchedulerPermittedIdentifiers</key>
-	<array>
-		<string>com.icloud-djharrold53.NativeDash.DayTypeUpdater</string>
-	</array>
-	<key>ITSAppUsesNonExemptEncryption</key>
-	<false/>
 	<key>LSEnvironment</key>
 	<dict>
 		<key>API_ENDPOINT</key>
@@ -17,10 +11,5 @@
 		<key>SCHOOL_ID</key>
 		<string>$(SCHOOL_ID)</string>
 	</dict>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>processing</string>
-		<string>remote-notification</string>
-	</array>
 </dict>
 </plist>
