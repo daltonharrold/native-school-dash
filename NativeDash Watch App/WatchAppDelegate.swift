@@ -32,6 +32,17 @@ class WatchAppDelegate: NSObject, WKApplicationDelegate {
         configuration.isDiscretionary = true
         configuration.sessionSendsLaunchEvents = true
         let bgFetchUtil = BackgroundFetchUtil()
+        bgFetchUtil.completionBlock = {
+            for task in backgroundTasks {
+                let preferredDate = Date().addingTimeInterval(24 * 60 * 60)// One day later
+                WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: preferredDate, userInfo: "com.icloud-djharrold53.NativeDash.watchkitapp.DayTypeUpdater" as NSSecureCoding & NSObjectProtocol) { (error) in guard error == nil else {
+                    Logger.background.error("Couldn't schedule background refresh.")
+                    return
+                }
+                }
+                task.setTaskCompletedWithSnapshot(true)
+            }
+        }
         let session = URLSession(configuration: configuration, delegate: bgFetchUtil, delegateQueue: nil)
         
         for task in backgroundTasks {
@@ -51,6 +62,7 @@ class WatchAppDelegate: NSObject, WKApplicationDelegate {
             let downloadTask = session.downloadTask(with: req)
             downloadTask.resume()
         }
+        
     
     }
 

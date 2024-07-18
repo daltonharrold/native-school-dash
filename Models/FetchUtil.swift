@@ -566,6 +566,7 @@ class BackgroundFetchUtil: GenericAsyncOperation, URLSessionDelegate, URLSession
                 context.rollback()
                 return
             }
+            self.state = .finished
             Logger.coreData.info("Updated core data stores using background")
         }
     }

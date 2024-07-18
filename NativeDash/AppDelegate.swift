@@ -40,6 +40,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let config = URLSessionConfiguration.background(withIdentifier: "com.icloud-djharrold53.NativeDash.BGURLSession")
         config.sessionSendsLaunchEvents = true
         let bgFetchUtil = BackgroundFetchUtil()
+        bgFetchUtil.completionBlock = {
+            self.scheduleTask()
+            if bgFetchUtil.error == nil {
+                task.setTaskCompleted(success: true)
+            } else {
+                task.setTaskCompleted(success: false)
+            }
+        }
         let session = URLSession(configuration: config, delegate: bgFetchUtil, delegateQueue: OperationQueue())
         task.expirationHandler = {bgFetchUtil.cancel()}
         
@@ -59,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             downloadTask.resume()
         }
         
-        task.setTaskCompleted(success: true)
+
     }
     
     
