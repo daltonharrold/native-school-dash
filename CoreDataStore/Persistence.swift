@@ -30,7 +30,7 @@ struct PersistenceController {
         return result
     }()
     
-    let container: NSPersistentContainer
+    let container: NSPersistentCloudKitContainer
     var viewContext: NSManagedObjectContext {
         get {
             container.viewContext
@@ -43,7 +43,7 @@ struct PersistenceController {
         let storeURL = AppGroup.dashManagement.containerURL.appendingPathComponent("NativeDash.sqlite")
         let description = NSPersistentStoreDescription(url: storeURL)
         
-        container = NSPersistentContainer(name: "NativeDash")
+        container = NSPersistentCloudKitContainer(name: "NativeDash")
         container.persistentStoreDescriptions = [description]
         
 
