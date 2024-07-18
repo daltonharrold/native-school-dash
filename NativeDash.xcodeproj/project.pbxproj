@@ -47,6 +47,11 @@
 		3F8CA2A82B864B6A00F13E25 /* StoredPeriod+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CC2B0BF9130093E54C /* StoredPeriod+CoreDataProperties.swift */; };
 		3F8CA2A92B864B6C00F13E25 /* StoredDayType+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CD2B0BF9130093E54C /* StoredDayType+CoreDataClass.swift */; };
 		3F8CA2AA2B864B6E00F13E25 /* StoredDayType+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CE2B0BF9130093E54C /* StoredDayType+CoreDataProperties.swift */; };
+		3F930F852C3F46A600539EFE /* WatchAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F930F842C3F46A600539EFE /* WatchAppDelegate.swift */; };
+		3F930F892C43092D00539EFE /* LoggingConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F930F882C43092D00539EFE /* LoggingConfiguration.swift */; };
+		3F930F8A2C43092D00539EFE /* LoggingConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F930F882C43092D00539EFE /* LoggingConfiguration.swift */; };
+		3F930F8B2C43092D00539EFE /* LoggingConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F930F882C43092D00539EFE /* LoggingConfiguration.swift */; };
+		3F930F8C2C43092D00539EFE /* LoggingConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F930F882C43092D00539EFE /* LoggingConfiguration.swift */; };
 		3FB54FE22AEFFAC000623592 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FB54FE12AEFFAC000623592 /* Launch Screen.storyboard */; };
 		3FBDD3392BB8EA4800FCD9D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBDD3382BB8EA4800FCD9D1 /* AppDelegate.swift */; };
 		3FD7ABF12BCE0472007CF2D9 /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD7ABED2BCE0472007CF2D9 /* AppGroup.swift */; };
@@ -180,6 +185,8 @@
 		3F8C845A2BD8BD9800D49C89 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = DashWidgets/PrivacyInfo.xcprivacy; sourceTree = SOURCE_ROOT; };
 		3F8CA2AB2B88EFEA00F13E25 /* NativeDash.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NativeDash.entitlements; sourceTree = "<group>"; };
 		3F8CA2AC2B88F23900F13E25 /* DashWidgetsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DashWidgetsExtension.entitlements; sourceTree = "<group>"; };
+		3F930F842C3F46A600539EFE /* WatchAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchAppDelegate.swift; sourceTree = "<group>"; };
+		3F930F882C43092D00539EFE /* LoggingConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingConfiguration.swift; sourceTree = "<group>"; };
 		3FB54FE12AEFFAC000623592 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		3FBDD3382BB8EA4800FCD9D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3FD7ABED2BCE0472007CF2D9 /* AppGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
@@ -288,6 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				3F09BC4B2AB2160F00924ACE /* NativeDashApp.swift */,
+				3F930F842C3F46A600539EFE /* WatchAppDelegate.swift */,
 				3F09BC4D2AB2160F00924ACE /* ContentView.swift */,
 				3F09BC4F2AB2161000924ACE /* Assets.xcassets */,
 				3F09BC512AB2161000924ACE /* Preview Content */,
@@ -311,6 +319,7 @@
 				3F227B682BC4DB0E001AC3F6 /* DashWatchWidgetsExtension.entitlements */,
 				3F227B6F2BC57795001AC3F6 /* EnvTemplate.xcconfig */,
 				3F227B742BC577BF001AC3F6 /* EnvProduction.xcconfig */,
+				3F930F882C43092D00539EFE /* LoggingConfiguration.swift */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -555,6 +564,7 @@
 				3FD7ABF92BCE0472007CF2D9 /* FetchUtil.swift in Sources */,
 				3FF726D32B0BF9130093E54C /* StoredDayType+CoreDataClass.swift in Sources */,
 				3FD7ABF12BCE0472007CF2D9 /* AppGroup.swift in Sources */,
+				3F930F892C43092D00539EFE /* LoggingConfiguration.swift in Sources */,
 				3FF726D12B0BF9130093E54C /* StoredPeriod+CoreDataProperties.swift in Sources */,
 				3FF726CF2B0BF9130093E54C /* StoredPeriod+CoreDataClass.swift in Sources */,
 				3FD7ABF52BCE0472007CF2D9 /* DataStructs.swift in Sources */,
@@ -569,12 +579,14 @@
 				3FF726D22B0BF9130093E54C /* StoredPeriod+CoreDataProperties.swift in Sources */,
 				3F323D602BBB363700EF9E44 /* PeriodTimerRing.swift in Sources */,
 				3F09BC4E2AB2160F00924ACE /* ContentView.swift in Sources */,
+				3F930F852C3F46A600539EFE /* WatchAppDelegate.swift in Sources */,
 				3FF726C92B0BDBCC0093E54C /* NativeDash.xcdatamodeld in Sources */,
 				3FF726CA2B0BDBEB0093E54C /* Persistence.swift in Sources */,
 				3FF726D62B0BF9130093E54C /* StoredDayType+CoreDataProperties.swift in Sources */,
 				3FD7ABF22BCE0472007CF2D9 /* AppGroup.swift in Sources */,
 				3FF726D02B0BF9130093E54C /* StoredPeriod+CoreDataClass.swift in Sources */,
 				3FD7ABFA2BCE0472007CF2D9 /* FetchUtil.swift in Sources */,
+				3F930F8A2C43092D00539EFE /* LoggingConfiguration.swift in Sources */,
 				3F09BC4C2AB2160F00924ACE /* NativeDashApp.swift in Sources */,
 				3FF726D42B0BF9130093E54C /* StoredDayType+CoreDataClass.swift in Sources */,
 				3FD7ABF62BCE0472007CF2D9 /* DataStructs.swift in Sources */,
@@ -593,6 +605,7 @@
 				3F8CA2A62B864B6600F13E25 /* Persistence.swift in Sources */,
 				3FD7ABF32BCE0472007CF2D9 /* AppGroup.swift in Sources */,
 				3F5912572B752EED00BD42A0 /* TimerWidget.swift in Sources */,
+				3F930F8B2C43092D00539EFE /* LoggingConfiguration.swift in Sources */,
 				3FD7ABFB2BCE0472007CF2D9 /* FetchUtil.swift in Sources */,
 				3F8CA2A92B864B6C00F13E25 /* StoredDayType+CoreDataClass.swift in Sources */,
 				3F8CA2A82B864B6A00F13E25 /* StoredPeriod+CoreDataProperties.swift in Sources */,
@@ -613,6 +626,7 @@
 				3F6B5A002BC449D200EB4C1F /* StoredDayType+CoreDataClass.swift in Sources */,
 				3F6B5A012BC449D400EB4C1F /* StoredDayType+CoreDataProperties.swift in Sources */,
 				3FD7ABFC2BCE0472007CF2D9 /* FetchUtil.swift in Sources */,
+				3F930F8C2C43092D00539EFE /* LoggingConfiguration.swift in Sources */,
 				3F8C84582BD8BBB500D49C89 /* TimerWidget.swift in Sources */,
 				3F6B59FC2BC449C800EB4C1F /* NativeDash.xcdatamodeld in Sources */,
 				3F6B59FE2BC449CD00EB4C1F /* StoredPeriod+CoreDataClass.swift in Sources */,
@@ -773,6 +787,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = NativeDash;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "com.icloud-djharrold53.NativeDash";
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -805,6 +820,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = NativeDash;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "com.icloud-djharrold53.NativeDash";
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

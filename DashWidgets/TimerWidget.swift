@@ -7,6 +7,7 @@
 
 import WidgetKit
 import SwiftUI
+import OSLog
 
 struct TimerProvider: TimelineProvider {
     
@@ -44,6 +45,7 @@ struct TimerProvider: TimelineProvider {
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+        Logger.widget.info("Getting timeline for timer widget...")
         var entries: [TimerEntry] = []
         
         let context = PersistenceController.shared.backgroundContext
@@ -53,7 +55,7 @@ struct TimerProvider: TimelineProvider {
         do {
             let storedSchedules = try context.fetch(scheduleFetch)
             
-            let currentDate = Date()
+            let currentDate = Date.now
             if let todaySchedule = storedSchedules.first(where: {
                 Calendar.current.isDate($0.date!, equalTo: currentDate, toGranularity: .day)
             })?.schedule?.asDayType() {
@@ -71,10 +73,6 @@ struct TimerProvider: TimelineProvider {
                 
                 for index in 0..<todaySchedule.periods.count {
                     let loopedPeriod = todaySchedule.periods[index]
-                    
-                    
-                    
-                    entries.append(countdownEntry)
                     
                     // Add the period to entries
                     let periodStart = loopedPeriod.getStartAsDate()
@@ -102,23 +100,15 @@ struct TimerProvider: TimelineProvider {
                     let overnightEntry = TimerEntry(date: endOfDay, displayPeriod: overnightPeriod, scheduleName: tomorrowSchedule.name, tomorrowSchoolStart: tomorrowSchedule.periods.first!.getStartAsDate())
                     
                     entries.append(overnightEntry)
-                    
-                    // Add tomorrow's pre-morning period so that there's overlap and the system can make proper refresh event determinations
-                    let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: .now)!
-                    let tomorrowMorning = Calendar.current.date(bySettingHour: 0, minute: 0, second: 1, of: tomorrow)!
-                    let tomorrowPeriod: Period = Period(name: "Good morning", start: "00:00", end: tomorrowSchedule.periods.first!.start)
-                    let tomorrowMorningEntry = TimerEntry(date: tomorrowMorning, displayPeriod: tomorrowPeriod, scheduleName: tomorrowSchedule.name, tomorrowSchoolStart: tomorrowSchedule.periods.first!.getStartAsDate())
-                    
-                    entries.append(tomorrowMorningEntry)
-                    
                 }
             }
         } catch {
-            fatalError("Could not fetch from Core Data for widget timeline. \(error)")
+            Logger.widget.error("Could not fetch from Core Data for widget timeline. \(error)")
         }
         
-
-        let timeline = Timeline(entries: entries, policy: .atEnd)
+        let tomorrowMorning = Calendar.current.date(bySettingHour: 0, minute: 1, second: 0, of: Calendar.current.date(byAdding: .day, value: 1, to: .now)!)!
+        let timeline = Timeline(entries: entries, policy: .after(tomorrowMorning))
+        Logger.widget.info("Successfuly refreshed timeline for timer widget")
         completion(timeline)
     }
 }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 import WidgetKit
-
+import OSLog
 
 
 struct ContentView: View {
@@ -16,12 +16,11 @@ struct ContentView: View {
     
     @State private var schedules: [DayType]?
     
-    
     @State private var showSpinner:Bool = false
     @State private var degree:Int = 270
     @State private var spinnerLength = 0.6
     
-    static var runningFetchUtil: FetchUtil?
+    @State private var runningFetchUtil: FetchUtil?
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
@@ -59,20 +58,23 @@ struct ContentView: View {
                 .foregroundStyle(.gray)
                 .padding(.top, 20)
         }
-        
+    
         Spacer()
         .onAppear(perform: {
-            print("App loading!")
+            Logger.other.info("App loading!")
             updateFromStores()
-            WidgetCenter.shared.reloadAllTimelines()
+        })
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification), perform: {_ in
+            Logger.other.info("App entering foreground")
+            updateFromStores()
         })
         .task {
-            ContentView.runningFetchUtil = FetchUtil(context: PersistenceController.shared.backgroundContext)
-            ContentView.runningFetchUtil!.completion = {_ in
-                ContentView.runningFetchUtil = nil
+            self.runningFetchUtil = FetchUtil(context: PersistenceController.shared.backgroundContext)
+            self.runningFetchUtil!.completion = {_ in
+                self.runningFetchUtil = nil
                 updateFromStores()
             }
-            ContentView.runningFetchUtil!.updater.start()
+            self.runningFetchUtil!.updater.start()
             WidgetCenter.shared.reloadAllTimelines()
         }
     }

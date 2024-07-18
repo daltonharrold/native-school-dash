@@ -12,7 +12,6 @@
 			<key>NSPrivacyAccessedAPIType</key>
 			<string>NSPrivacyAccessedAPICategoryUserDefaults</string>
 		</dict>
-		<dict/>
 	</array>
 </dict>
 </plist>

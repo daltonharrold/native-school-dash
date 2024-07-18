@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import WatchKit
 
 @main
 struct NativeDash_Watch_AppApp: App {
+    @WKApplicationDelegateAdaptor var appDelegate: WatchAppDelegate
     var body: some Scene {
         WindowGroup {
             ContentView()
