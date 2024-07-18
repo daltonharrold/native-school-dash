@@ -55,8 +55,6 @@ struct EndTimeProvider: TimelineProvider {
         
         do {
             let storedSchedules = try context.fetch(scheduleFetch)
-            Logger.widget.info("Reached debug point A")
-            print("StoredSchedules: \(String(describing: storedSchedules))")
             
             let currentDate = Date()
             if let todaySchedule = storedSchedules.first(where: {
@@ -68,7 +66,6 @@ struct EndTimeProvider: TimelineProvider {
                 let morningPeriod = Period(name: "Good morning", start: "00:00", end: todaySchedule.periods.first!.start)
                 let morningEntry = EndTimeEntry(date: morningStart, displayPeriod: morningPeriod, scheduleName: todaySchedule.name)
                 entries.append(morningEntry)
-                Logger.widget.info("Reached debug point B")
                 
                 // Passing periods should show the next full period's end time.
                 // This means that an entry's date should be the past period's end, or the start in the first period's case.
@@ -77,23 +74,19 @@ struct EndTimeProvider: TimelineProvider {
                 let firstPeriodEntry = EndTimeEntry(date: firstPeriod.getStartAsDate(), displayPeriod: firstPeriod, scheduleName: todaySchedule.name)
                 entries.append(firstPeriodEntry)
                 
-                Logger.widget.info("Reached debug point C")
                 for index in 1..<todaySchedule.periods.count {
                     let entry = EndTimeEntry(date: todaySchedule.periods[index-1].getEndAsDate(), displayPeriod: todaySchedule.periods[index], scheduleName: todaySchedule.name)
                     entries.append(entry)
                 }
-                Logger.widget.info("Reached debug point D")
                 
                 // Have an entry at the end of the day to have the start time of the next day shown
                 if let tomorrowSchedule = storedSchedules.first(where: {
                     Calendar.current.isDate($0.date!, equalTo: Calendar.current.date(byAdding: .day, value: 1, to: currentDate)!, toGranularity: .day)
                 })?.schedule?.asDayType() {
-                    Logger.widget.info("Reached debug point E")
                     // At EOD, show tomorrow's start
                     let endOfDay: Date = todaySchedule.periods.last!.getEndAsDate()
                     let overnightPeriod: Period = Period(name: "Good night", start: todaySchedule.periods.last!.end, end: "00:00")
                     let overnightEntry = EndTimeEntry(date: endOfDay, displayPeriod: overnightPeriod, scheduleName: tomorrowSchedule.name, overrideDisplayDate: tomorrowSchedule.periods.first!.getStartAsDate())
-                    Logger.widget.info("Reached debug point F")
                     entries.append(overnightEntry)
                 }
             } else {
@@ -103,7 +96,6 @@ struct EndTimeProvider: TimelineProvider {
         } catch {
             Logger.widget.error("Could not fetch from Core Data for widget timeline. \(error)")
         }
-        Logger.widget.info("Reached debug point G")
         let tomorrowMorning = Calendar.current.date(bySettingHour: 0, minute: 1, second: 0, of: Calendar.current.date(byAdding: .day, value: 1, to: .now)!)!
         let timeline = Timeline(entries: entries, policy: .after(tomorrowMorning))
         Logger.widget.info("Successfuly refreshed timeline for end time widget")
