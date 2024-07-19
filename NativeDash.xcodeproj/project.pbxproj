@@ -31,14 +31,12 @@
 		3F5B8DAF2BBD0E0600A89F06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F5B8DAE2BBD0E0600A89F06 /* Assets.xcassets */; };
 		3F5B8DB32BBD0E0600A89F06 /* DashWatchWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3F5B8DA82BBD0E0300A89F06 /* DashWatchWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3F6B59F92BC447C700EB4C1F /* DashWatchWidgetsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6B59F82BC447C700EB4C1F /* DashWatchWidgetsBundle.swift */; };
-		3F6B59FB2BC448E000EB4C1F /* TimerWatchWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6B59FA2BC448E000EB4C1F /* TimerWatchWidget.swift */; };
 		3F6B59FC2BC449C800EB4C1F /* NativeDash.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726C42B0BB8450093E54C /* NativeDash.xcdatamodeld */; };
 		3F6B59FD2BC449CB00EB4C1F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726C72B0BB8950093E54C /* Persistence.swift */; };
 		3F6B59FE2BC449CD00EB4C1F /* StoredPeriod+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CB2B0BF9130093E54C /* StoredPeriod+CoreDataClass.swift */; };
 		3F6B59FF2BC449CF00EB4C1F /* StoredPeriod+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CC2B0BF9130093E54C /* StoredPeriod+CoreDataProperties.swift */; };
 		3F6B5A002BC449D200EB4C1F /* StoredDayType+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CD2B0BF9130093E54C /* StoredDayType+CoreDataClass.swift */; };
 		3F6B5A012BC449D400EB4C1F /* StoredDayType+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CE2B0BF9130093E54C /* StoredDayType+CoreDataProperties.swift */; };
-		3F6B5A052BC457F500EB4C1F /* EndTimeWatchWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6B5A042BC457F500EB4C1F /* EndTimeWatchWidget.swift */; };
 		3F8C84582BD8BBB500D49C89 /* TimerWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5912562B752EED00BD42A0 /* TimerWidget.swift */; };
 		3F8C84592BD8BBB800D49C89 /* EndTimeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD9FB932BB0A8C400ED3EB0 /* EndTimeWidget.swift */; };
 		3F8CA2A52B864B6300F13E25 /* NativeDash.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726C42B0BB8450093E54C /* NativeDash.xcdatamodeld */; };
@@ -182,8 +180,6 @@
 		3F5B8DAE2BBD0E0600A89F06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F5B8DB02BBD0E0600A89F06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F6B59F82BC447C700EB4C1F /* DashWatchWidgetsBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashWatchWidgetsBundle.swift; sourceTree = "<group>"; };
-		3F6B59FA2BC448E000EB4C1F /* TimerWatchWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerWatchWidget.swift; sourceTree = "<group>"; };
-		3F6B5A042BC457F500EB4C1F /* EndTimeWatchWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndTimeWatchWidget.swift; sourceTree = "<group>"; };
 		3F8C845A2BD8BD9800D49C89 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = DashWidgets/PrivacyInfo.xcprivacy; sourceTree = SOURCE_ROOT; };
 		3F8CA2AB2B88EFEA00F13E25 /* NativeDash.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NativeDash.entitlements; sourceTree = "<group>"; };
 		3F8CA2AC2B88F23900F13E25 /* DashWidgetsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DashWidgetsExtension.entitlements; sourceTree = "<group>"; };
@@ -353,8 +349,6 @@
 			isa = PBXGroup;
 			children = (
 				3F6B59F82BC447C700EB4C1F /* DashWatchWidgetsBundle.swift */,
-				3F6B5A042BC457F500EB4C1F /* EndTimeWatchWidget.swift */,
-				3F6B59FA2BC448E000EB4C1F /* TimerWatchWidget.swift */,
 				3F5B8DAE2BBD0E0600A89F06 /* Assets.xcassets */,
 				3F5B8DB02BBD0E0600A89F06 /* Info.plist */,
 			);
@@ -624,8 +618,6 @@
 				3F6B59F92BC447C700EB4C1F /* DashWatchWidgetsBundle.swift in Sources */,
 				3F6B59FF2BC449CF00EB4C1F /* StoredPeriod+CoreDataProperties.swift in Sources */,
 				3F6B59FD2BC449CB00EB4C1F /* Persistence.swift in Sources */,
-				3F6B59FB2BC448E000EB4C1F /* TimerWatchWidget.swift in Sources */,
-				3F6B5A052BC457F500EB4C1F /* EndTimeWatchWidget.swift in Sources */,
 				3FD7ABF42BCE0472007CF2D9 /* AppGroup.swift in Sources */,
 				3F6B5A002BC449D200EB4C1F /* StoredDayType+CoreDataClass.swift in Sources */,
 				3F6B5A012BC449D400EB4C1F /* StoredDayType+CoreDataProperties.swift in Sources */,
