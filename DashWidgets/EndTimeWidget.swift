@@ -47,6 +47,7 @@ struct EndTimeProvider: TimelineProvider {
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+        
         Logger.widget.info("Getting timeline for end time widget...")
         var entries: [EndTimeEntry] = []
         
@@ -55,7 +56,7 @@ struct EndTimeProvider: TimelineProvider {
         
         do {
             let storedSchedules = try context.fetch(scheduleFetch)
-            
+        
             let currentDate = Date()
             if let todaySchedule = storedSchedules.first(where: {
                 Calendar.current.isDate($0.date!, equalTo: currentDate, toGranularity: .day)
@@ -76,6 +77,7 @@ struct EndTimeProvider: TimelineProvider {
                 
                 for index in 1..<todaySchedule.periods.count {
                     let entry = EndTimeEntry(date: todaySchedule.periods[index-1].getEndAsDate(), displayPeriod: todaySchedule.periods[index], scheduleName: todaySchedule.name)
+                    Logger.widget.info("Made an entry for \(todaySchedule.periods[index-1].getEndAsDate(), privacy: .public) with Period \(String(describing: todaySchedule.periods[index]), privacy: .public)")
                     entries.append(entry)
                 }
                 
@@ -86,7 +88,7 @@ struct EndTimeProvider: TimelineProvider {
                     // At EOD, show tomorrow's start
                     let endOfDay: Date = todaySchedule.periods.last!.getEndAsDate()
                     let overnightPeriod: Period = Period(name: "Good night", start: todaySchedule.periods.last!.end, end: "00:00")
-                    let overnightEntry = EndTimeEntry(date: endOfDay, displayPeriod: overnightPeriod, scheduleName: tomorrowSchedule.name, overrideDisplayDate: tomorrowSchedule.periods.first!.getStartAsDate())
+                    let overnightEntry = EndTimeEntry(date: endOfDay, displayPeriod: overnightPeriod, scheduleName: tomorrowSchedule.name, overrideDisplayDate: Calendar.current.date(byAdding: .day, value: 1, to: tomorrowSchedule.periods.first!.getStartAsDate())!)
                     entries.append(overnightEntry)
                 }
             } else {
@@ -100,6 +102,7 @@ struct EndTimeProvider: TimelineProvider {
         let timeline = Timeline(entries: entries, policy: .after(tomorrowMorning))
         Logger.widget.info("Successfuly refreshed timeline for end time widget")
         completion(timeline)
+
     }
 }
 
@@ -125,15 +128,23 @@ struct EndTimeEntry: TimelineEntry {
 struct EndTimeWidgetEntryView : View {
     var entry: EndTimeProvider.Entry
     let displayDate: Date
+
     
     init(entry: EndTimeProvider.Entry) {
         self.entry = entry
-        self.displayDate = entry.overrideDisplayDate ?? entry.displayPeriod.getEndAsDate()
+        var dispDate = entry.overrideDisplayDate ?? entry.displayPeriod.getEndAsDate()
+        
+        if dispDate.timeIntervalSinceNow <= 0 {
+            dispDate = .now
+        }
+        self.displayDate = dispDate
     }
     @Environment(\.widgetFamily) var family
+    @Environment(\.showsWidgetContainerBackground) var showsBackground
 
     var body: some View {
         switch family {
+            // iOS
         case .systemSmall:
             VStack{
                 // Day type name
@@ -168,7 +179,10 @@ struct EndTimeWidgetEntryView : View {
 
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+            // Add padding to standBy widget
+            .padding(showsBackground ? 0 : 8)
 
+            // iOS and watchOS
         case .accessoryRectangular:
             VStack{
                 // Timer
@@ -183,6 +197,27 @@ struct EndTimeWidgetEntryView : View {
                     .fontWeight(.semibold)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
+            
+            // watchOS
+        case .accessoryCircular:
+            ProgressView(timerInterval: entry.date...displayDate, countsDown: false){}currentValueLabel: {
+                Text(displayDate, style: .time)
+            }
+                .tint(Color("AccentColor"))
+                .progressViewStyle(.circular)
+                .widgetLabel(entry.displayPeriod.name)
+            // watchOS
+        case .accessoryCorner:
+            Text(displayDate, style: .time)
+                .widgetCurvesContent(true)
+                .widgetLabel {
+                    ProgressView(timerInterval: entry.date...displayDate, countsDown: false)
+                        .tint(Color("AccentColor"))
+                }
+
+            // iOS and watchOS
+        case .accessoryInline:
+            Text(displayDate, style: .time) + Text("  |  ") + Text(entry.displayPeriod.name)
         default:
             Spacer()
         }
@@ -206,29 +241,20 @@ struct EndTimeWidget: Widget {
         .configurationDisplayName("Period End Time")
         .description("A widget to display at what time the current period ends, for when you want to use your own clock")
         #if os(iOS)
-        .supportedFamilies([.systemSmall, .accessoryRectangular])
+        .supportedFamilies([.systemSmall, .accessoryRectangular, .accessoryInline])
         #else
-        .supportedFamilies([.accessoryRectangular])
+        .supportedFamilies([.accessoryRectangular, .accessoryCircular, .accessoryCorner, .accessoryInline])
         #endif
     }
 }
 
-#if os(iOS)
-#Preview(as: .systemSmall) {
-    EndTimeWidget()
-} timeline: {
-    EndTimeEntry(date: Calendar.current.date(bySettingHour: 12, minute: 55, second: 00, of: .now)!, displayPeriod: Period(name: "Period 6", start: "12:39", end: "13:21"), scheduleName: "Regular Day")
-    EndTimeEntry(date: Calendar.current.date(bySettingHour: 13, minute: 42, second: 00, of: .now)!, displayPeriod: Period(name: "Period 6 → Period 7", start: "13:21", end: "13:25"), scheduleName: "Regular Day")
-    EndTimeEntry(date: Calendar.current.date(bySettingHour: 13, minute: 42, second: 00, of: .now)!, displayPeriod: Period(name: "Period 7", start: "13:25", end: "14:07"), scheduleName: "Regular Day")
-    EndTimeEntry(date: Calendar.current.date(bySettingHour: 13, minute: 42, second: 00, of: .now)!, displayPeriod: Period(name: "Period 8", start: "13:25", end: "14:07"), scheduleName: "Common Day")
-}
-#else
+
 #Preview(as: .accessoryRectangular) {
     EndTimeWidget()
 } timeline: {
     EndTimeEntry(date: Calendar.current.date(bySettingHour: 12, minute: 55, second: 00, of: .now)!, displayPeriod: Period(name: "Period 6", start: "12:39", end: "13:21"), scheduleName: "Regular Day")
-    EndTimeEntry(date: Calendar.current.date(bySettingHour: 13, minute: 42, second: 00, of: .now)!, displayPeriod: Period(name: "Period 6 → Period 7", start: "13:21", end: "13:25"), scheduleName: "Regular Day")
+    EndTimeEntry(date: Calendar.current.date(bySettingHour: 13, minute: 22, second: 00, of: .now)!, displayPeriod: Period(name: "Period 6 → Period 7", start: "13:21", end: "13:25"), scheduleName: "Regular Day")
     EndTimeEntry(date: Calendar.current.date(bySettingHour: 13, minute: 42, second: 00, of: .now)!, displayPeriod: Period(name: "Period 7", start: "13:25", end: "14:07"), scheduleName: "Regular Day")
     EndTimeEntry(date: Calendar.current.date(bySettingHour: 13, minute: 42, second: 00, of: .now)!, displayPeriod: Period(name: "Period 8", start: "13:25", end: "14:07"), scheduleName: "Common Day")
 }
-#endif
+
