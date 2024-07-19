@@ -36,7 +36,7 @@ class WatchAppDelegate: NSObject, WKApplicationDelegate {
             for task in backgroundTasks {
                 let preferredDate = Date().addingTimeInterval(24 * 60 * 60)// One day later
                 WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: preferredDate, userInfo: "com.icloud-djharrold53.NativeDash.watchkitapp.DayTypeUpdater" as NSSecureCoding & NSObjectProtocol) { (error) in guard error == nil else {
-                    Logger.background.error("Couldn't schedule background refresh.")
+                    Logger.background.error("Couldn't schedule background refresh. \(error)")
                     return
                 }
                 }

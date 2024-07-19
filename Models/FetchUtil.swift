@@ -479,7 +479,7 @@ class BackgroundFetchUtil: GenericAsyncOperation, URLSessionDelegate, URLSession
         Logger.fetch.info("Download finished: \(location.absoluteString)")
         guard let data = try? Data(contentsOf: location) else {return}
         guard let urlResponse = downloadTask.response else {return}
-        try? storeRawFetch(data: (data, urlResponse), context: self.context, storesDayType: true)
+        try? storeRawFetch(data: (data, urlResponse), context: self.context)
     }
 
     func urlSession(_: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
@@ -488,7 +488,7 @@ class BackgroundFetchUtil: GenericAsyncOperation, URLSessionDelegate, URLSession
         }
     }
     
-    func storeRawFetch(data: (Data, URLResponse), context: NSManagedObjectContext, storesDayType: Bool) throws {
+    func storeRawFetch(data: (Data, URLResponse), context: NSManagedObjectContext) throws {
         guard isCancelled == false else {cancelDBOps(); return}
         var response: FetchedResponse?
         
@@ -514,55 +514,71 @@ class BackgroundFetchUtil: GenericAsyncOperation, URLSessionDelegate, URLSession
         }
         
         context.perform {
-            if storesDayType {
-                do {
-                    // Get current data from Core Data to manage it
-                    let storedDayTypes = try context.fetch(StoredDayType.fetchRequest())
-                    
-                    
-                    // Delete previous local stores
-                    storedDayTypes.forEach(context.delete)
-                    
-                    // Store new schedules that have been fetched
-                    for schedule in response.response.dayTypes {
-                        _ = schedule.toStoredDayType(context: context)
-                    }
-                    guard self.isCancelled == false else {self.cancelDBOps(); return}
-                    try context.save()
-                    
-                } catch {
-                    Logger.coreData.error("[NativeDash]: failed to update StoredDayTypes. \(error)")
-                    context.rollback()
-                    return
-                }
-            }
-            
-            //         Insert next week's schedules into stores
+            var newStoredDayTypes: [StoredDayType] = []
+           
             do {
+                // Pull old DayTypeOnDates from stores
                 let storedScheduleOnDates = try context.fetch(StoredScheduleOnDate.fetchRequest())
-                let storedDayTypes = try context.fetch(StoredDayType.fetchRequest())
+                
+                // MARK: Update the StoredDayTypes
+                
+                // Get current data from Core Data to manage it
+                let oldStoredDayTypes = try context.fetch(StoredDayType.fetchRequest())
+                    
+                // Delete previous local stores
+                oldStoredDayTypes.forEach(context.delete)
+                    
+                // Store new schedules that have been fetched
+                for schedule in response.response.dayTypes {
+                    newStoredDayTypes.append(schedule.toStoredDayType(context: context))
+                }
+                guard self.isCancelled == false else {self.cancelDBOps(); return}
+        
+                    
+                
+                
+                // MARK: Update the request's StoredDayTypeOnDate
+                
+                
                 
                 // Delete stores for past dates
                 storedScheduleOnDates.filter({schedule in
                     return schedule.date!.timeIntervalSinceNow < 0 && !Calendar.current.isDateInToday(schedule.date!)
                 }).forEach(context.delete)
                 
-                
                 // Delete old store for looped date
                 if let oldStore = storedScheduleOnDates.first(where: {Calendar.current.isDate($0.date!, inSameDayAs: response.onDate)}) {
                     context.delete(oldStore)
                 }
                 
+                // Match all StoredDayTypeOnDate to corresponding DayType
+                // This step is needed because as the DayTypes are updated, the DayTypeOnDates lose their links
+                for scheduleOnDate in storedScheduleOnDates {
+                    scheduleOnDate.schedule = newStoredDayTypes.first(where: {
+                        $0.name == scheduleOnDate.schedule?.name
+                    })
+                    if scheduleOnDate.schedule == nil {
+                        Logger.background.error("Could not find new schedule for a StoredScheduleOnDate in background. Deleting...")
+                        context.delete(scheduleOnDate)
+                    }
+                }
+                
                 // Insert schedule into Core Data
                 let storedSchedule = StoredScheduleOnDate(context: context)
                 storedSchedule.date = response.onDate
-                let possibleSchedule = storedDayTypes.first(where: {$0.name == response.response.dayTypeOnDate.name})
-                storedSchedule.schedule = possibleSchedule ?? storedDayTypes.first
                 
-                guard self.isCancelled == false else {self.cancelDBOps(); return}
+                // Match new StoredDayTypeOnDate with corresponding StoredDayType
+                let possibleSchedule = newStoredDayTypes.first(where: {$0.name == response.response.dayTypeOnDate.name})
+                storedSchedule.schedule = possibleSchedule
+                if storedSchedule.schedule == nil {
+                    Logger.background.error("Could not find StoredDayType for new stored schedule. Using first and throwing...")
+                    storedSchedule.schedule = newStoredDayTypes.first
+                    self.error = .couldNotStore
+                }
+                
                 try context.save()
             } catch {
-                Logger.coreData.error("[NativeDash]: failed to update StoredScheduleOnDate. \(error)")
+                Logger.coreData.error("[NativeDash]: failed to update stores in background. \(error)")
                 context.rollback()
                 return
             }

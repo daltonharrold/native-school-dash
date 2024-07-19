@@ -77,7 +77,6 @@ struct EndTimeProvider: TimelineProvider {
                 
                 for index in 1..<todaySchedule.periods.count {
                     let entry = EndTimeEntry(date: todaySchedule.periods[index-1].getEndAsDate(), displayPeriod: todaySchedule.periods[index], scheduleName: todaySchedule.name)
-                    Logger.widget.info("Made an entry for \(todaySchedule.periods[index-1].getEndAsDate(), privacy: .public) with Period \(String(describing: todaySchedule.periods[index]), privacy: .public)")
                     entries.append(entry)
                 }
                 
