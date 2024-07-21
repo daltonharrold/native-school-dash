@@ -252,8 +252,8 @@
             filePath = "NativeDash/PeriodTimerRing.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -284,8 +284,8 @@
             filePath = "NativeDash/PeriodTimerRing.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -1230,7 +1230,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "026D75C2-B0B5-4045-B76D-BC3C76BEA630"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Models/FetchUtil.swift"
@@ -1246,7 +1246,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "725319F1-D7DA-425D-9B7D-A5464C959FF8"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Models/FetchUtil.swift"
@@ -1257,20 +1257,6 @@
             landmarkName = "storeRawFetch(data:context:)"
             landmarkType = "7">
             <Locations>
-               <Location
-                  uuid = "725319F1-D7DA-425D-9B7D-A5464C959FF8 - b845b741d1d8c3ff"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #3 (NativeDash_Watch_App.StoredDayType) -&gt; Swift.Bool in closure #4 () -&gt; () in NativeDash_Watch_App.BackgroundFetchUtil.storeRawFetch(data: (Foundation.Data, __C.NSURLResponse), context: __C.NSManagedObjectContext) throws -&gt; ()"
-                  moduleName = "NativeDash Watch App"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/student/stuff/NativeDash/Models/FetchUtil.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "557"
-                  endingLineNumber = "557">
-               </Location>
                <Location
                   uuid = "725319F1-D7DA-425D-9B7D-A5464C959FF8 - 97b1cc2c914b8994"
                   shouldBeEnabled = "Yes"
@@ -1306,7 +1292,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "B22A0E32-A9AA-4AEA-8095-3F1485CB678B"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Models/FetchUtil.swift"
@@ -1316,6 +1302,35 @@
             endingLineNumber = "567"
             landmarkName = "storeRawFetch(data:context:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
+         <BreakpointContent
+            uuid = "66D16CF8-4B38-4415-96D2-A073B552A419"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            symbolName = ""
+            moduleName = "">
+            <Locations>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "09109026-517D-4BA4-9A68-3075E4AE6949"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NativeDash/PeriodTimerRing.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
+            landmarkName = "body"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
