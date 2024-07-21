@@ -46,7 +46,7 @@ struct EndTimeProvider: TimelineProvider {
         completion(entry)
     }
 
-    func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+    func getTimeline(in timelineContext: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         
         Logger.widget.info("Getting timeline for end time widget...")
         var entries: [EndTimeEntry] = []
@@ -90,8 +90,30 @@ struct EndTimeProvider: TimelineProvider {
                     let overnightEntry = EndTimeEntry(date: endOfDay, displayPeriod: overnightPeriod, scheduleName: tomorrowSchedule.name, overrideDisplayDate: Calendar.current.date(byAdding: .day, value: 1, to: tomorrowSchedule.periods.first!.getStartAsDate())!)
                     entries.append(overnightEntry)
                 }
-            } else {
-                Logger.widget.error("Could not find a Core Data entry for today")
+            }  else {
+                // Could not find entry for today, so re-fetch and then re-try to make timeline
+                Logger.widget.info("Couldn't find stores for widget. Updating in background...")
+                let config = URLSessionConfiguration.background(withIdentifier: "com.icloud-djharrold53.NativeDash.BGURLSession")
+                config.sessionSendsLaunchEvents = true
+                config.isDiscretionary = false
+                
+
+                let bgFetchUtil = BackgroundFetchUtil(withSessionConfig: config, daysAhead: 1)
+                var numFetchesBack = 0
+                
+                bgFetchUtil.afterEveryFetch =  {
+                    numFetchesBack += 1
+                    if bgFetchUtil.error == nil {
+                        Logger.background.info("Updated background from widget call")
+                        if numFetchesBack == 2 {
+                            completion(Timeline(entries: [], policy: .after(.now)))
+                        }
+                    } else {
+                        Logger.background.error("Error when trying to update info in background for widget. \(bgFetchUtil.error!.description)")
+                    }
+                }
+                bgFetchUtil.start()
+                return
             }
             
         } catch {

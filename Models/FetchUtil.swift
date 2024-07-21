@@ -461,9 +461,36 @@ class StoreOperation: GenericAsyncOperation {
     }
 }
 
+
+
+
 class BackgroundFetchUtil: GenericAsyncOperation, URLSessionDelegate, URLSessionDownloadDelegate {
-    convenience init() {
-        self.init(context: PersistenceController.shared.backgroundContext)
+    
+    let sessionConfig: URLSessionConfiguration
+    let daysAhead: Int
+    var afterEveryFetch: (() -> Void)?
+    
+    init(withSessionConfig: URLSessionConfiguration, daysAhead: Int = 6) {
+        self.sessionConfig = withSessionConfig
+        self.daysAhead = daysAhead
+        super.init(context: PersistenceController.shared.backgroundContext)
+    }
+    
+    override func main() {
+        var _dates: [Date] = []
+        for i in 0...self.daysAhead {_dates.append(Calendar.current.date(byAdding: .day, value: i, to: .now)!)}
+        let dates = _dates
+        
+        for date in dates {
+            let url = try! FetchUtil.getEndpointUrl(onDate: date)
+            var req = URLRequest(url: url)
+            let apiKey: String = try! FetchUtil.getApiKey()
+            req.setValue(apiKey, forHTTPHeaderField: "authorization")
+            
+            let urlSession = URLSession(configuration: sessionConfig, delegate: self, delegateQueue: nil)
+            let downloadTask = urlSession.downloadTask(with: req)
+            downloadTask.resume()
+        }
     }
     
     func cancelDBOps() {
@@ -582,8 +609,11 @@ class BackgroundFetchUtil: GenericAsyncOperation, URLSessionDelegate, URLSession
                 context.rollback()
                 return
             }
+            
             self.state = .finished
             Logger.coreData.info("Updated core data stores using background")
+            
+            if self.afterEveryFetch != nil {self.afterEveryFetch!()}
         }
     }
     

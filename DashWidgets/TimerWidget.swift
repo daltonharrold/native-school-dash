@@ -44,7 +44,7 @@ struct TimerProvider: TimelineProvider {
         completion(entry)
     }
 
-    func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+    func getTimeline(in timelineContext: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         Logger.widget.info("Getting timeline for timer widget...")
         var entries: [TimerEntry] = []
         
@@ -101,6 +101,30 @@ struct TimerProvider: TimelineProvider {
                     
                     entries.append(overnightEntry)
                 }
+            } else {
+                // Could not find entry for today, so re-fetch and then re-try to make timeline
+                Logger.widget.info("Couldn't find stores for widget. Updating in background...")
+                let config = URLSessionConfiguration.background(withIdentifier: "com.icloud-djharrold53.NativeDash.BGURLSession")
+                config.sessionSendsLaunchEvents = true
+                config.isDiscretionary = false
+                
+
+                let bgFetchUtil = BackgroundFetchUtil(withSessionConfig: config, daysAhead: 1)
+                var numFetchesBack = 0
+                
+                bgFetchUtil.afterEveryFetch =  {
+                    numFetchesBack += 1
+                    if bgFetchUtil.error == nil {
+                        Logger.background.info("Updated background from widget call")
+                        if numFetchesBack == 2 {
+                            completion(Timeline(entries: [], policy: .after(.now)))
+                        }
+                    } else {
+                        Logger.background.error("Error when trying to update info in background for widget. \(bgFetchUtil.error!.description)")
+                    }
+                }
+                bgFetchUtil.start()
+                return
             }
         } catch {
             Logger.widget.error("Could not fetch from Core Data for widget timeline. \(error)")

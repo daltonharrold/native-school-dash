@@ -39,8 +39,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let config = URLSessionConfiguration.background(withIdentifier: "com.icloud-djharrold53.NativeDash.BGURLSession")
         config.sessionSendsLaunchEvents = true
-        let bgFetchUtil = BackgroundFetchUtil()
-        bgFetchUtil.completionBlock = {
+        let bgFetchUtil = BackgroundFetchUtil(withSessionConfig: config)
+        bgFetchUtil.afterEveryFetch = {
             self.scheduleTask()
             if bgFetchUtil.error == nil {
                 task.setTaskCompleted(success: true)
@@ -48,24 +48,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 task.setTaskCompleted(success: false)
             }
         }
-        let session = URLSession(configuration: config, delegate: bgFetchUtil, delegateQueue: OperationQueue())
+
         task.expirationHandler = {bgFetchUtil.cancel()}
         
         
         
-        var _dates: [Date] = []
-        for i in 0...6 {_dates.append(Calendar.current.date(byAdding: .day, value: i, to: .now)!)}
-        let dates = _dates
-        
-        for date in dates {
-            let url = try! FetchUtil.getEndpointUrl(onDate: date)
-            var req = URLRequest(url: url)
-            let apiKey: String = try! FetchUtil.getApiKey()
-            req.setValue(apiKey, forHTTPHeaderField: "authorization")
-            
-            let downloadTask = session.downloadTask(with: req)
-            downloadTask.resume()
-        }
+        bgFetchUtil.start()
         
 
     }
