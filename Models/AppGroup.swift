@@ -13,7 +13,11 @@ public enum AppGroup: String {
     public var containerURL: URL {
         switch self {
         case .dashManagement:
+            #if os(macOS)
+            return FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: (Bundle.main.object(forInfoDictionaryKey: "LSEnvironment") as! Dictionary<String, String>)["TEAM_IDENTIFIER_PREFIX"]!)!
+            #else
             return FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: self.rawValue)!
+            #endif
         }
     }
 }

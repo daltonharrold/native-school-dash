@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>NSExtension</key>
+	<dict>
+		<key>NSExtensionPointIdentifier</key>
+		<string>com.apple.widgetkit-extension</string>
+	</dict>
+	<key>LSEnvironment</key>
+	<dict>
+		<key>TEAM_IDENTIFIER_PREFIX</key>
+		<string>$(TeamIdentifierPrefix)</string>
+		<key>API_ENDPOINT</key>
+		<string>$(API_ENDPOINT)</string>
+		<key>API_KEY</key>
+		<string>$(API_KEY)</string>
+		<key>SCHOOL_ID</key>
+		<string>$(SCHOOL_ID)</string>
+	</dict>
+</dict>
+</plist>

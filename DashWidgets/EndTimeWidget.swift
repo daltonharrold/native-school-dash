@@ -165,7 +165,7 @@ struct EndTimeWidgetEntryView : View {
 
     var body: some View {
         switch family {
-            // iOS
+            // iOS and macOS
         case .systemSmall:
             VStack{
                 // Day type name
@@ -226,15 +226,19 @@ struct EndTimeWidgetEntryView : View {
             }
                 .tint(Color("AccentColor"))
                 .progressViewStyle(.circular)
+            #if os(watchOS)
                 .widgetLabel(entry.displayPeriod.name)
+            #endif
             // watchOS
         case .accessoryCorner:
+            #if os(watchOS)
             Text(displayDate, style: .time)
                 .widgetCurvesContent(true)
                 .widgetLabel {
                     ProgressView(timerInterval: entry.date...displayDate, countsDown: false)
                         .tint(Color("AccentColor"))
                 }
+            #endif
 
             // iOS and watchOS
         case .accessoryInline:
@@ -247,7 +251,7 @@ struct EndTimeWidgetEntryView : View {
 
 struct EndTimeWidget: Widget {
     let kind: String = "EndTimeWidget"
-
+    
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: EndTimeProvider()) { entry in
             if #available(iOS 17.0, *) {
@@ -263,19 +267,31 @@ struct EndTimeWidget: Widget {
         .description("A widget to display at what time the current period ends, for when you want to use your own clock")
         #if os(iOS)
         .supportedFamilies([.systemSmall, .accessoryRectangular, .accessoryInline])
-        #else
+        #elseif os(watchOS)
         .supportedFamilies([.accessoryRectangular, .accessoryCircular, .accessoryCorner, .accessoryInline])
+        #elseif os(macOS)
+        .supportedFamilies([.systemSmall])
         #endif
     }
 }
 
+#if os(iOS) || os(macOS)
+#Preview(as: .systemSmall) {
+TimerWidget()
+} timeline: {
+TimerEntry(date: Calendar.current.date(bySettingHour: 12, minute: 55, second: 00, of: .now)!, displayPeriod: Period(name: "Period 6", start: "12:39", end: "13:21"), scheduleName: "Regular Day")
+TimerEntry(date: Calendar.current.date(bySettingHour: 13, minute: 22, second: 00, of: .now)!, displayPeriod: Period(name: "Period 6 → Period 7", start: "13:21", end: "13:25"), scheduleName: "Regular Day")
+TimerEntry(date: Calendar.current.date(bySettingHour: 13, minute: 42, second: 00, of: .now)!, displayPeriod: Period(name: "Period 7", start: "13:25", end: "14:07"), scheduleName: "Regular Day")
+TimerEntry(date: Calendar.current.date(bySettingHour: 13, minute: 42, second: 00, of: .now)!, displayPeriod: Period(name: "Period 8", start: "13:25", end: "14:07"), scheduleName: "Common Day")
+}
+#elseif os(watchOS)
 
 #Preview(as: .accessoryRectangular) {
-    EndTimeWidget()
+TimerWidget()
 } timeline: {
-    EndTimeEntry(date: Calendar.current.date(bySettingHour: 12, minute: 55, second: 00, of: .now)!, displayPeriod: Period(name: "Period 6", start: "12:39", end: "13:21"), scheduleName: "Regular Day")
-    EndTimeEntry(date: Calendar.current.date(bySettingHour: 13, minute: 22, second: 00, of: .now)!, displayPeriod: Period(name: "Period 6 → Period 7", start: "13:21", end: "13:25"), scheduleName: "Regular Day")
-    EndTimeEntry(date: Calendar.current.date(bySettingHour: 13, minute: 42, second: 00, of: .now)!, displayPeriod: Period(name: "Period 7", start: "13:25", end: "14:07"), scheduleName: "Regular Day")
-    EndTimeEntry(date: Calendar.current.date(bySettingHour: 13, minute: 42, second: 00, of: .now)!, displayPeriod: Period(name: "Period 8", start: "13:25", end: "14:07"), scheduleName: "Common Day")
+TimerEntry(date: Calendar.current.date(bySettingHour: 12, minute: 55, second: 00, of: .now)!, displayPeriod: Period(name: "Period 6", start: "12:39", end: "13:21"), scheduleName: "Regular Day")
+TimerEntry(date: Calendar.current.date(bySettingHour: 13, minute: 22, second: 00, of: .now)!, displayPeriod: Period(name: "Period 6 → Period 7", start: "13:21", end: "13:25"), scheduleName: "Regular Day")
+TimerEntry(date: Calendar.current.date(bySettingHour: 13, minute: 42, second: 00, of: .now)!, displayPeriod: Period(name: "Period 7", start: "13:25", end: "14:07"), scheduleName: "Regular Day")
+TimerEntry(date: Calendar.current.date(bySettingHour: 13, minute: 42, second: 00, of: .now)!, displayPeriod: Period(name: "Period 8", start: "13:25", end: "14:07"), scheduleName: "Common Day")
 }
-
+#endif
