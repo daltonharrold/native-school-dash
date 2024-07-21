@@ -44,7 +44,7 @@ struct TimerProvider: TimelineProvider {
         completion(entry)
     }
 
-    func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+    func getTimeline(in timelineContext: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         Logger.widget.info("Getting timeline for timer widget...")
         var entries: [TimerEntry] = []
         
@@ -97,10 +97,34 @@ struct TimerProvider: TimelineProvider {
                     // At EOD, show tomorrow's start
                     let endOfDay: Date = todaySchedule.periods.last!.getEndAsDate()
                     let overnightPeriod: Period = Period(name: "Good night", start: todaySchedule.periods.last!.end, end:"00:00")
-                    let overnightEntry = TimerEntry(date: endOfDay, displayPeriod: overnightPeriod, scheduleName: tomorrowSchedule.name, tomorrowSchoolStart: tomorrowSchedule.periods.first!.getStartAsDate())
+                    let overnightEntry = TimerEntry(date: endOfDay, displayPeriod: overnightPeriod, scheduleName: tomorrowSchedule.name, tomorrowSchoolStart: Calendar.current.date(byAdding: .day, value: 1, to: tomorrowSchedule.periods.first!.getStartAsDate())!)
                     
                     entries.append(overnightEntry)
                 }
+            } else {
+                // Could not find entry for today, so re-fetch and then re-try to make timeline
+                Logger.widget.info("Couldn't find stores for widget. Updating in background...")
+                let config = URLSessionConfiguration.background(withIdentifier: "com.icloud-djharrold53.NativeDash.BGURLSession")
+                config.sessionSendsLaunchEvents = true
+                config.isDiscretionary = false
+                
+
+                let bgFetchUtil = BackgroundFetchUtil(withSessionConfig: config, daysAhead: 1)
+                var numFetchesBack = 0
+                
+                bgFetchUtil.afterEveryFetch =  {
+                    numFetchesBack += 1
+                    if bgFetchUtil.error == nil {
+                        Logger.background.info("Updated background from widget call")
+                        if numFetchesBack == 2 {
+                            completion(Timeline(entries: [], policy: .after(.now)))
+                        }
+                    } else {
+                        Logger.background.error("Error when trying to update info in background for widget. \(bgFetchUtil.error!.description)")
+                    }
+                }
+                bgFetchUtil.start()
+                return
             }
         } catch {
             Logger.widget.error("Could not fetch from Core Data for widget timeline. \(error)")
@@ -148,7 +172,7 @@ struct DashWidgetsEntryView : View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .id(entry.scheduleName)
                     .transition(.push(from: .top))
-
+                
                 
                 // Timer
                 
@@ -161,8 +185,8 @@ struct DashWidgetsEntryView : View {
                         .dynamicTypeSize(.medium)
                         .minimumScaleFactor(0.8)
                         .id(entry.displayPeriod.getStartAsDate())
-//                        .transition(.push(from: .leading))
-//                        .transition(.move(edge: .leading).combined(with: .opacity))
+                    //                        .transition(.push(from: .leading))
+                    //                        .transition(.move(edge: .leading).combined(with: .opacity))
                         .transition(.asymmetric(insertion: .move(edge: .leading).animation(.easeIn(duration: 4)), removal: .move(edge: .trailing).combined(with: .opacity).animation(.easeOut(duration: 3))))
                 } else {
                     Text(entry.tomorrowSchoolStart!, style: .time)
@@ -174,7 +198,7 @@ struct DashWidgetsEntryView : View {
                         .minimumScaleFactor(0.8)
                         .id(entry.tomorrowSchoolStart!)
                     //                .transition(.push(from: .leading))
-//                        .transition(.move(edge: .leading))
+                    //                        .transition(.move(edge: .leading))
                         .transition(.asymmetric(insertion: .move(edge: .leading).animation(.easeIn(duration: 4)), removal: .move(edge: .trailing).combined(with: .opacity).animation(.easeOut(duration: 3))))
                 }
                 
@@ -204,7 +228,7 @@ struct DashWidgetsEntryView : View {
                         .font(.system(size: 42, weight: .bold))
                         .fontWidth(.compressed)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        
+                    
                 }
             }
             Text("\(entry.displayPeriod.name)")
@@ -212,7 +236,48 @@ struct DashWidgetsEntryView : View {
                 .font(.callout)
                 .fontWeight(.semibold)
                 .frame(maxWidth: .infinity, alignment: .leading)
-
+            
+        case .accessoryCircular:
+            if entry.tomorrowSchoolStart == nil {
+                ProgressView(timerInterval: entry.date...entry.displayPeriod.getEndAsDate(), countsDown: false){}currentValueLabel: {
+                    Text(entry.displayPeriod.getEndAsDate(), style: .timer)
+                        .lineLimit(2)
+                }
+                .tint(Color("AccentColor"))
+                .progressViewStyle(.circular)
+                .widgetLabel(entry.displayPeriod.name)
+            } else {
+                ProgressView(timerInterval: entry.date...entry.tomorrowSchoolStart!, countsDown: false){}currentValueLabel: {
+                    Text(entry.tomorrowSchoolStart!, style: .time)
+                }
+                .tint(Color("AccentColor"))
+                .progressViewStyle(.circular)
+                .widgetLabel(entry.displayPeriod.name)
+            }
+        case .accessoryCorner:
+            if entry.tomorrowSchoolStart == nil {
+                Text(entry.displayPeriod.getEndAsDate(), style: .timer)
+                    .widgetCurvesContent(true)
+                    .widgetLabel {
+                        ProgressView(timerInterval: entry.date...entry.displayPeriod.getEndAsDate(), countsDown: false)
+                            .tint(Color("AccentColor"))
+                    }
+            } else {
+                Text(entry.tomorrowSchoolStart!, style: .time)
+                    .widgetCurvesContent(true)
+                    .widgetLabel {
+                        ProgressView(timerInterval: entry.date...entry.tomorrowSchoolStart!, countsDown: false)
+                            .tint(Color("AccentColor"))
+                    }
+            }
+            
+        case .accessoryInline:
+            if entry.tomorrowSchoolStart == nil {
+                Text(entry.displayPeriod.getEndAsDate(), style: .timer) + Text("  |  ") + Text(entry.displayPeriod.name)
+            } else  {
+                Text(entry.tomorrowSchoolStart!, style: .time) + Text("  |  ") + Text(entry.displayPeriod.name)
+            }
+            
         default:
             Spacer()
         }
@@ -232,29 +297,19 @@ struct TimerWidget: Widget {
         .configurationDisplayName("Time Left in Period")
         .description("A widget to display how much time is left in the current period at a glance.")
         #if os(iOS)
-            .supportedFamilies([.systemSmall, .accessoryRectangular])
+        .supportedFamilies([.systemSmall, .accessoryRectangular, .accessoryInline])
         #else
-            .supportedFamilies([.accessoryRectangular])
+        .supportedFamilies([.accessoryRectangular, .accessoryCircular, .accessoryCorner, .accessoryInline])
         #endif
     }
 }
 
-#if os(iOS)
-#Preview(as: .systemSmall) {
-    TimerWidget()
-} timeline: {
-    TimerEntry(date: Calendar.current.date(bySettingHour: 12, minute: 55, second: 00, of: .now)!, displayPeriod: Period(name: "Period 6", start: "12:39", end: "13:21"), scheduleName: "Regular Day")
-    TimerEntry(date: Calendar.current.date(bySettingHour: 13, minute: 42, second: 00, of: .now)!, displayPeriod: Period(name: "Period 6 → Period 7", start: "13:21", end: "13:25"), scheduleName: "Regular Day")
-    TimerEntry(date: Calendar.current.date(bySettingHour: 13, minute: 42, second: 00, of: .now)!, displayPeriod: Period(name: "Period 7", start: "13:25", end: "14:07"), scheduleName: "Regular Day")
-    TimerEntry(date: Calendar.current.date(bySettingHour: 13, minute: 42, second: 00, of: .now)!, displayPeriod: Period(name: "Period 8", start: "13:25", end: "14:07"), scheduleName: "Common Day")
-}
-#else
 #Preview(as: .accessoryRectangular) {
     TimerWidget()
 } timeline: {
     TimerEntry(date: Calendar.current.date(bySettingHour: 12, minute: 55, second: 00, of: .now)!, displayPeriod: Period(name: "Period 6", start: "12:39", end: "13:21"), scheduleName: "Regular Day")
-    TimerEntry(date: Calendar.current.date(bySettingHour: 13, minute: 42, second: 00, of: .now)!, displayPeriod: Period(name: "Period 6 → Period 7", start: "13:21", end: "13:25"), scheduleName: "Regular Day")
+    TimerEntry(date: Calendar.current.date(bySettingHour: 13, minute: 22, second: 00, of: .now)!, displayPeriod: Period(name: "Period 6 → Period 7", start: "13:21", end: "13:25"), scheduleName: "Regular Day")
     TimerEntry(date: Calendar.current.date(bySettingHour: 13, minute: 42, second: 00, of: .now)!, displayPeriod: Period(name: "Period 7", start: "13:25", end: "14:07"), scheduleName: "Regular Day")
     TimerEntry(date: Calendar.current.date(bySettingHour: 13, minute: 42, second: 00, of: .now)!, displayPeriod: Period(name: "Period 8", start: "13:25", end: "14:07"), scheduleName: "Common Day")
 }
-#endif
+

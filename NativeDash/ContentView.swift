@@ -16,7 +16,6 @@ struct ContentView: View {
     
     @State private var schedules: [DayType]?
     
-    @State private var showSpinner:Bool = false
     @State private var degree:Int = 270
     @State private var spinnerLength = 0.6
     
@@ -73,9 +72,9 @@ struct ContentView: View {
             self.runningFetchUtil!.completion = {_ in
                 self.runningFetchUtil = nil
                 updateFromStores()
+                WidgetCenter.shared.reloadAllTimelines()
             }
             self.runningFetchUtil!.updater.start()
-            WidgetCenter.shared.reloadAllTimelines()
         }
     }
     private func updateFromStores() {

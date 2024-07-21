@@ -43,8 +43,9 @@ struct PeriodTimerRing: View {
     
      
     var body: some View {
+        
+#if os(iOS)
         if displayPeriod != nil {
-            #if os(iOS)
             ZStack {
                 Circle()
                     .stroke(Color("EmptyAccentColor"), style: StrokeStyle(lineWidth: 20))
@@ -65,15 +66,15 @@ struct PeriodTimerRing: View {
                 .font(.title)
                 .fontWeight(.bold)
             Spacer().frame(height: 50)
-            
-            #elseif os(watchOS)
-            
+        }
+#elseif os(watchOS)
+        if displayPeriod != nil {
             VStack {
                 ZStack {
                     Circle()
                         .stroke(Color("EmptyAccentColor"), style: StrokeStyle(lineWidth: 20))
                         .frame(maxWidth: .infinity)
-//                        .background(.orange)
+                    //                        .background(.orange)
                     Circle()
                         .rotation(Angle(degrees:(-(360*progress)-90)))
                         .trim(from: 0, to: progress)
@@ -81,11 +82,11 @@ struct PeriodTimerRing: View {
                             Color("AccentColor"),
                             style: StrokeStyle(lineWidth: 20, lineCap: .round)
                         )
-//                        .background(.purple)
+                    //                        .background(.purple)
                     Text(timeLeftInPeriod.formatted(.time(pattern: .minuteSecond(padMinuteToLength: 0))))
                         .fontWeight(.semibold)
                         .font(.title)
-//                        .background(.tertiary)
+                    //                        .background(.tertiary)
                 }
                 .padding(20)
                 
@@ -95,13 +96,20 @@ struct PeriodTimerRing: View {
                     .fontWeight(.bold)
                     .lineLimit(1)
                     .frame(maxWidth: .infinity)
-//                    .background(.green)
+                //                    .background(.green)
             }
             .ignoresSafeArea(.container)
             
-            
-            #endif
+        } else {
+            Text("School not in session!")
+                .font(.title)
+                .fontWeight(.bold)
+                .lineLimit(2, reservesSpace: true)
+                .frame(maxWidth: .infinity)
+                .multilineTextAlignment(.center)
         }
+            #endif
+        
         
         EmptyView()
             // If the user re-enters the app after soft exiting it, update the display period
