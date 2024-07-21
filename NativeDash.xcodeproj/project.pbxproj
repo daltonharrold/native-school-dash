@@ -26,6 +26,10 @@
 		3F5912572B752EED00BD42A0 /* TimerWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5912562B752EED00BD42A0 /* TimerWidget.swift */; };
 		3F5912592B752EEF00BD42A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F5912582B752EEF00BD42A0 /* Assets.xcassets */; };
 		3F59125D2B752EEF00BD42A0 /* DashWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3F59124D2B752EED00BD42A0 /* DashWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3F5B06782C4CB4B600195292 /* NativeDash_Mac_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5B06772C4CB4B600195292 /* NativeDash_Mac_App.swift */; };
+		3F5B067F2C4CB4B700195292 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F5B067E2C4CB4B700195292 /* Preview Assets.xcassets */; };
+		3F5B06872C4CB59A00195292 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F5B06852C4CB59A00195292 /* Assets.xcassets */; };
+		3F5B068C2C4CB63600195292 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F5B068B2C4CB63600195292 /* Launch Screen.storyboard */; };
 		3F5B8DA92BBD0E0300A89F06 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F59124F2B752EED00BD42A0 /* WidgetKit.framework */; };
 		3F5B8DAA2BBD0E0400A89F06 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F5912512B752EED00BD42A0 /* SwiftUI.framework */; };
 		3F5B8DAF2BBD0E0600A89F06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F5B8DAE2BBD0E0600A89F06 /* Assets.xcassets */; };
@@ -176,6 +180,13 @@
 		3F5912562B752EED00BD42A0 /* TimerWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerWidget.swift; sourceTree = "<group>"; };
 		3F5912582B752EEF00BD42A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F59125A2B752EEF00BD42A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F5B06752C4CB4B600195292 /* NativeDash Mac App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NativeDash Mac App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F5B06772C4CB4B600195292 /* NativeDash_Mac_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeDash_Mac_App.swift; sourceTree = "<group>"; };
+		3F5B067E2C4CB4B700195292 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3F5B06802C4CB4B700195292 /* NativeDash_Mac_App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NativeDash_Mac_App.entitlements; sourceTree = "<group>"; };
+		3F5B06852C4CB59A00195292 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3F5B068B2C4CB63600195292 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		3F5B068D2C4CBB7C00195292 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F5B8DA82BBD0E0300A89F06 /* DashWatchWidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DashWatchWidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F5B8DAE2BBD0E0600A89F06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F5B8DB02BBD0E0600A89F06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -223,6 +234,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3F5B06722C4CB4B600195292 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3F5B8DA52BBD0E0300A89F06 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -247,6 +265,7 @@
 				3F09BC4A2AB2160F00924ACE /* NativeDash Watch App */,
 				3F5912532B752EED00BD42A0 /* DashWidgets */,
 				3F5B8DAB2BBD0E0400A89F06 /* DashWatchWidgets */,
+				3F5B06762C4CB4B600195292 /* NativeDash Mac App */,
 				3F59124E2B752EED00BD42A0 /* Frameworks */,
 				3F09BC372AB2160D00924ACE /* Products */,
 			);
@@ -259,6 +278,7 @@
 				3F09BC462AB2160F00924ACE /* NativeDash Watch App.app */,
 				3F59124D2B752EED00BD42A0 /* DashWidgetsExtension.appex */,
 				3F5B8DA82BBD0E0300A89F06 /* DashWatchWidgetsExtension.appex */,
+				3F5B06752C4CB4B600195292 /* NativeDash Mac App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -343,6 +363,27 @@
 				3F59125A2B752EEF00BD42A0 /* Info.plist */,
 			);
 			path = DashWidgets;
+			sourceTree = "<group>";
+		};
+		3F5B06762C4CB4B600195292 /* NativeDash Mac App */ = {
+			isa = PBXGroup;
+			children = (
+				3F5B06772C4CB4B600195292 /* NativeDash_Mac_App.swift */,
+				3F5B06802C4CB4B700195292 /* NativeDash_Mac_App.entitlements */,
+				3F5B068B2C4CB63600195292 /* Launch Screen.storyboard */,
+				3F5B06852C4CB59A00195292 /* Assets.xcassets */,
+				3F5B068D2C4CBB7C00195292 /* Info.plist */,
+				3F5B067D2C4CB4B700195292 /* Preview Content */,
+			);
+			path = "NativeDash Mac App";
+			sourceTree = "<group>";
+		};
+		3F5B067D2C4CB4B700195292 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				3F5B067E2C4CB4B700195292 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		3F5B8DAB2BBD0E0400A89F06 /* DashWatchWidgets */ = {
@@ -438,6 +479,23 @@
 			productReference = 3F59124D2B752EED00BD42A0 /* DashWidgetsExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		3F5B06742C4CB4B600195292 /* NativeDash Mac App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3F5B06812C4CB4B700195292 /* Build configuration list for PBXNativeTarget "NativeDash Mac App" */;
+			buildPhases = (
+				3F5B06712C4CB4B600195292 /* Sources */,
+				3F5B06722C4CB4B600195292 /* Frameworks */,
+				3F5B06732C4CB4B600195292 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "NativeDash Mac App";
+			productName = "NativeDash Mac App";
+			productReference = 3F5B06752C4CB4B600195292 /* NativeDash Mac App.app */;
+			productType = "com.apple.product-type.application";
+		};
 		3F5B8DA72BBD0E0300A89F06 /* DashWatchWidgetsExtension */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3F5B8DB72BBD0E0600A89F06 /* Build configuration list for PBXNativeTarget "DashWatchWidgetsExtension" */;
@@ -462,7 +520,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1530;
+				LastSwiftUpdateCheck = 1540;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					3F09BC352AB2160D00924ACE = {
@@ -473,6 +531,9 @@
 					};
 					3F59124C2B752EED00BD42A0 = {
 						CreatedOnToolsVersion = 15.2;
+					};
+					3F5B06742C4CB4B600195292 = {
+						CreatedOnToolsVersion = 15.4;
 					};
 					3F5B8DA72BBD0E0300A89F06 = {
 						CreatedOnToolsVersion = 15.3;
@@ -496,6 +557,7 @@
 				3F09BC452AB2160F00924ACE /* NativeDash Watch App */,
 				3F59124C2B752EED00BD42A0 /* DashWidgetsExtension */,
 				3F5B8DA72BBD0E0300A89F06 /* DashWatchWidgetsExtension */,
+				3F5B06742C4CB4B600195292 /* NativeDash Mac App */,
 			);
 		};
 /* End PBXProject section */
@@ -530,6 +592,16 @@
 				3FFECC882BDC16B900310950 /* PrivacyInfo.xcprivacy in Resources */,
 				3F5912592B752EEF00BD42A0 /* Assets.xcassets in Resources */,
 				3FEBD9DE2BDAC90300C580D5 /* EnvProduction.xcconfig in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F5B06732C4CB4B600195292 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F5B068C2C4CB63600195292 /* Launch Screen.storyboard in Resources */,
+				3F5B06872C4CB59A00195292 /* Assets.xcassets in Resources */,
+				3F5B067F2C4CB4B700195292 /* Preview Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -608,6 +680,14 @@
 				3F8CA2A92B864B6C00F13E25 /* StoredDayType+CoreDataClass.swift in Sources */,
 				3F8CA2A82B864B6A00F13E25 /* StoredPeriod+CoreDataProperties.swift in Sources */,
 				3FD7ABF72BCE0472007CF2D9 /* DataStructs.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F5B06712C4CB4B600195292 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F5B06782C4CB4B600195292 /* NativeDash_Mac_App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -989,6 +1069,79 @@
 			};
 			name = Release;
 		};
+		3F5B06822C4CB4B700195292 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "NativeDash Mac App/NativeDash_Mac_App.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"NativeDash Mac App/Preview Content\"";
+				DEVELOPMENT_TEAM = K5273GVYFN;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "JBS Dash";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.icloud-djharrold53.NativeDash-Mac-App";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		3F5B06832C4CB4B700195292 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "NativeDash Mac App/NativeDash_Mac_App.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"NativeDash Mac App/Preview Content\"";
+				DEVELOPMENT_TEAM = K5273GVYFN;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "JBS Dash";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.icloud-djharrold53.NativeDash-Mac-App";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		3F5B8DB52BBD0E0600A89F06 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3F227B742BC577BF001AC3F6 /* EnvProduction.xcconfig */;
@@ -1098,6 +1251,15 @@
 			buildConfigurations = (
 				3F59125F2B752EEF00BD42A0 /* Debug */,
 				3F5912602B752EEF00BD42A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3F5B06812C4CB4B700195292 /* Build configuration list for PBXNativeTarget "NativeDash Mac App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F5B06822C4CB4B700195292 /* Debug */,
+				3F5B06832C4CB4B700195292 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

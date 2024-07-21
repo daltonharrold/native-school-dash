@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22690"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="PEd-7d-5j0">
+            <objects>
+                <viewController id="bU7-R8-ocO" sceneMemberID="viewController">
+                    <view key="view" autoresizesSubviews="NO" wantsLayer="YES" id="tOy-S4-hL0">
+                        <rect key="frame" x="0.0" y="0.0" width="172" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <box fixedFrame="YES" boxType="custom" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="zaq-VS-1vz">
+                                <rect key="frame" x="0.0" y="0.0" width="172" height="300"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <view key="contentView" id="b1c-rW-uhC">
+                                    <rect key="frame" x="1" y="1" width="170" height="298"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jjn-wO-liW">
+                                            <rect key="frame" x="29" y="102" width="113" height="33"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" controlSize="large" lineBreakMode="clipping" alignment="center" title="JBS Dash" id="7BU-8i-0i5">
+                                                <font key="font" metaFont="systemBold" size="24"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oWI-f6-6ce">
+                                            <rect key="frame" x="22" y="131" width="127" height="127"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <imageCell key="cell" controlSize="large" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="BellImage" id="WdK-Uz-i05"/>
+                                        </imageView>
+                                    </subviews>
+                                </view>
+                                <color key="fillColor" red="0.36862745098039218" green="0.54509803921568623" blue="0.68235294117647061" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </box>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="9uD-mB-xHs" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-378" y="60"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="BellImage" width="1024" height="1024"/>
+    </resources>
+</document>
