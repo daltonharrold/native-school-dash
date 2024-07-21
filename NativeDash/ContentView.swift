@@ -9,7 +9,6 @@ import SwiftUI
 import WidgetKit
 import OSLog
 
-
 struct ContentView: View {
     
     @State private var todaySchedule: DayType?
@@ -51,11 +50,17 @@ struct ContentView: View {
                 }
                 
             }
-            
+            #if os(iOS)
             Text("JBS Dash for iOS made with ❤️ by Dalton Harrold")
                 .font(.footnote)
                 .foregroundStyle(.gray)
                 .padding(.top, 20)
+            #elseif os(macOS)
+            Text("JBS Dash for macOS made with ❤️ by Dalton Harrold")
+                .font(.footnote)
+                .foregroundStyle(.gray)
+                .padding(.top, 20)
+            #endif
         }
     
         Spacer()
@@ -63,10 +68,12 @@ struct ContentView: View {
             Logger.other.info("App loading!")
             updateFromStores()
         })
+        #if os(iOS)
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification), perform: {_ in
             Logger.other.info("App entering foreground")
             updateFromStores()
         })
+        #endif
         .task {
             self.runningFetchUtil = FetchUtil(context: PersistenceController.shared.backgroundContext)
             self.runningFetchUtil!.completion = {_ in

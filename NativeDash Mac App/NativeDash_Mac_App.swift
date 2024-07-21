@@ -11,7 +11,10 @@ import SwiftUI
 struct NativeDash_Mac_App: App {
     var body: some Scene {
         WindowGroup {
-            
+            ContentView()
+                .environment(\.managedObjectContext, PersistenceController.shared.viewContext)
+                .frame(width: 400)
         }
+        .windowResizability(.contentSize)
     }
 }
