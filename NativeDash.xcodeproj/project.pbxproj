@@ -9,12 +9,10 @@
 /* Begin PBXBuildFile section */
 		3F09BC3A2AB2160D00924ACE /* NativeDashApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F09BC392AB2160D00924ACE /* NativeDashApp.swift */; };
 		3F09BC3C2AB2160D00924ACE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F09BC3B2AB2160D00924ACE /* ContentView.swift */; };
-		3F09BC3E2AB2160F00924ACE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F09BC3D2AB2160F00924ACE /* Assets.xcassets */; };
 		3F09BC412AB2160F00924ACE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F09BC402AB2160F00924ACE /* Preview Assets.xcassets */; };
 		3F09BC472AB2160F00924ACE /* NativeDash Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 3F09BC462AB2160F00924ACE /* NativeDash Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3F09BC4C2AB2160F00924ACE /* NativeDashApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F09BC4B2AB2160F00924ACE /* NativeDashApp.swift */; };
 		3F09BC4E2AB2160F00924ACE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F09BC4D2AB2160F00924ACE /* ContentView.swift */; };
-		3F09BC502AB2161000924ACE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F09BC4F2AB2161000924ACE /* Assets.xcassets */; };
 		3F09BC532AB2161000924ACE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F09BC522AB2161000924ACE /* Preview Assets.xcassets */; };
 		3F2F8BE02AEC04F300393F60 /* SingleCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2F8BDF2AEC04F300393F60 /* SingleCard.swift */; };
 		3F2F8BE32AEF4EF700393F60 /* ScheduleStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2F8BE22AEF4EF700393F60 /* ScheduleStack.swift */; };
@@ -45,6 +43,28 @@
 		3F5B06AD2C4CBF2700195292 /* LoggingConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F930F882C43092D00539EFE /* LoggingConfiguration.swift */; };
 		3F5B06AE2C4CBF2B00195292 /* EnvProduction.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3F227B742BC577BF001AC3F6 /* EnvProduction.xcconfig */; };
 		3F5B06B02C4CC65900195292 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F09BC3B2AB2160D00924ACE /* ContentView.swift */; };
+		3F5B06CF2C4CC7E500195292 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F59124F2B752EED00BD42A0 /* WidgetKit.framework */; };
+		3F5B06D02C4CC7E500195292 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F5912512B752EED00BD42A0 /* SwiftUI.framework */; };
+		3F5B06DC2C4CC7E500195292 /* DashMacWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3F5B06CE2C4CC7E500195292 /* DashMacWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3F5B06E72C4CC81700195292 /* DashMacWidgetsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5B06E22C4CC81700195292 /* DashMacWidgetsBundle.swift */; };
+		3F5B06EA2C4CC81700195292 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F5B06E62C4CC81700195292 /* Assets.xcassets */; };
+		3F5B06EB2C4CC84000195292 /* TimerWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5912562B752EED00BD42A0 /* TimerWidget.swift */; };
+		3F5B06EC2C4CC84300195292 /* EndTimeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD9FB932BB0A8C400ED3EB0 /* EndTimeWidget.swift */; };
+		3F5B06ED2C4CC8F700195292 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 3F8C845A2BD8BD9800D49C89 /* PrivacyInfo.xcprivacy */; };
+		3F5B06EE2C4CC8F800195292 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 3F8C845A2BD8BD9800D49C89 /* PrivacyInfo.xcprivacy */; };
+		3F5B06EF2C4CC8FE00195292 /* EnvProduction.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3F227B742BC577BF001AC3F6 /* EnvProduction.xcconfig */; };
+		3F5B06F02C4CC90000195292 /* LoggingConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F930F882C43092D00539EFE /* LoggingConfiguration.swift */; };
+		3F5B06F12C4CC90300195292 /* NativeDash.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726C42B0BB8450093E54C /* NativeDash.xcdatamodeld */; };
+		3F5B06F22C4CC90800195292 /* StoredPeriod+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CB2B0BF9130093E54C /* StoredPeriod+CoreDataClass.swift */; };
+		3F5B06F32C4CC90800195292 /* StoredPeriod+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CC2B0BF9130093E54C /* StoredPeriod+CoreDataProperties.swift */; };
+		3F5B06F42C4CC90800195292 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726C72B0BB8950093E54C /* Persistence.swift */; };
+		3F5B06F52C4CC90800195292 /* StoredDayType+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CD2B0BF9130093E54C /* StoredDayType+CoreDataClass.swift */; };
+		3F5B06F62C4CC90800195292 /* StoredDayType+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF726CE2B0BF9130093E54C /* StoredDayType+CoreDataProperties.swift */; };
+		3F5B06F72C4CC90D00195292 /* DataStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD7ABEE2BCE0472007CF2D9 /* DataStructs.swift */; };
+		3F5B06F82C4CC90D00195292 /* FetchUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD7ABEF2BCE0472007CF2D9 /* FetchUtil.swift */; };
+		3F5B06F92C4CC90D00195292 /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD7ABED2BCE0472007CF2D9 /* AppGroup.swift */; };
+		3F5B06FA2C4CCF4900195292 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F09BC3D2AB2160F00924ACE /* Assets.xcassets */; };
+		3F5B06FB2C4CCF7400195292 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F09BC4F2AB2161000924ACE /* Assets.xcassets */; };
 		3F5B8DA92BBD0E0300A89F06 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F59124F2B752EED00BD42A0 /* WidgetKit.framework */; };
 		3F5B8DAA2BBD0E0400A89F06 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F5912512B752EED00BD42A0 /* SwiftUI.framework */; };
 		3F5B8DAF2BBD0E0600A89F06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F5B8DAE2BBD0E0600A89F06 /* Assets.xcassets */; };
@@ -121,6 +141,13 @@
 			remoteGlobalIDString = 3F59124C2B752EED00BD42A0;
 			remoteInfo = DashWidgetsExtension;
 		};
+		3F5B06DA2C4CC7E500195292 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3F09BC2E2AB2160D00924ACE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3F5B06CD2C4CC7E500195292;
+			remoteInfo = DashMacWidgetsExtension;
+		};
 		3F5B8DB12BBD0E0600A89F06 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3F09BC2E2AB2160D00924ACE /* Project object */;
@@ -149,6 +176,17 @@
 			dstSubfolderSpec = 13;
 			files = (
 				3F59125D2B752EEF00BD42A0 /* DashWidgetsExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F5B06DD2C4CC7E500195292 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				3F5B06DC2C4CC7E500195292 /* DashMacWidgetsExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -195,13 +233,18 @@
 		3F5912562B752EED00BD42A0 /* TimerWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerWidget.swift; sourceTree = "<group>"; };
 		3F5912582B752EEF00BD42A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F59125A2B752EEF00BD42A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3F5B06752C4CB4B600195292 /* NativeDash Mac App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NativeDash Mac App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F5B06752C4CB4B600195292 /* JBS Dash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JBS Dash.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F5B06772C4CB4B600195292 /* NativeDash_Mac_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeDash_Mac_App.swift; sourceTree = "<group>"; };
 		3F5B067E2C4CB4B700195292 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3F5B06802C4CB4B700195292 /* NativeDash_Mac_App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NativeDash_Mac_App.entitlements; sourceTree = "<group>"; };
 		3F5B06852C4CB59A00195292 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F5B068B2C4CB63600195292 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		3F5B068D2C4CBB7C00195292 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F5B06CE2C4CC7E500195292 /* DashMacWidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DashMacWidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F5B06E22C4CC81700195292 /* DashMacWidgetsBundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashMacWidgetsBundle.swift; sourceTree = "<group>"; };
+		3F5B06E32C4CC81700195292 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F5B06E52C4CC81700195292 /* DashMacWidgets.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = DashMacWidgets.entitlements; sourceTree = "<group>"; };
+		3F5B06E62C4CC81700195292 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F5B8DA82BBD0E0300A89F06 /* DashWatchWidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DashWatchWidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F5B8DAE2BBD0E0600A89F06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F5B8DB02BBD0E0600A89F06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -256,6 +299,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3F5B06CB2C4CC7E500195292 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F5B06D02C4CC7E500195292 /* SwiftUI.framework in Frameworks */,
+				3F5B06CF2C4CC7E500195292 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3F5B8DA52BBD0E0300A89F06 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -281,6 +333,7 @@
 				3F5912532B752EED00BD42A0 /* DashWidgets */,
 				3F5B8DAB2BBD0E0400A89F06 /* DashWatchWidgets */,
 				3F5B06762C4CB4B600195292 /* NativeDash Mac App */,
+				3F5B06D12C4CC7E500195292 /* DashMacWidgets */,
 				3F59124E2B752EED00BD42A0 /* Frameworks */,
 				3F09BC372AB2160D00924ACE /* Products */,
 			);
@@ -293,7 +346,8 @@
 				3F09BC462AB2160F00924ACE /* NativeDash Watch App.app */,
 				3F59124D2B752EED00BD42A0 /* DashWidgetsExtension.appex */,
 				3F5B8DA82BBD0E0300A89F06 /* DashWatchWidgetsExtension.appex */,
-				3F5B06752C4CB4B600195292 /* NativeDash Mac App.app */,
+				3F5B06752C4CB4B600195292 /* JBS Dash.app */,
+				3F5B06CE2C4CC7E500195292 /* DashMacWidgetsExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -401,6 +455,17 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		3F5B06D12C4CC7E500195292 /* DashMacWidgets */ = {
+			isa = PBXGroup;
+			children = (
+				3F5B06E62C4CC81700195292 /* Assets.xcassets */,
+				3F5B06E52C4CC81700195292 /* DashMacWidgets.entitlements */,
+				3F5B06E22C4CC81700195292 /* DashMacWidgetsBundle.swift */,
+				3F5B06E32C4CC81700195292 /* Info.plist */,
+			);
+			path = DashMacWidgets;
+			sourceTree = "<group>";
+		};
 		3F5B8DAB2BBD0E0400A89F06 /* DashWatchWidgets */ = {
 			isa = PBXGroup;
 			children = (
@@ -501,15 +566,34 @@
 				3F5B06712C4CB4B600195292 /* Sources */,
 				3F5B06722C4CB4B600195292 /* Frameworks */,
 				3F5B06732C4CB4B600195292 /* Resources */,
+				3F5B06DD2C4CC7E500195292 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3F5B06DB2C4CC7E500195292 /* PBXTargetDependency */,
+			);
+			name = "NativeDash Mac App";
+			productName = "NativeDash Mac App";
+			productReference = 3F5B06752C4CB4B600195292 /* JBS Dash.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3F5B06CD2C4CC7E500195292 /* DashMacWidgetsExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3F5B06E02C4CC7E500195292 /* Build configuration list for PBXNativeTarget "DashMacWidgetsExtension" */;
+			buildPhases = (
+				3F5B06CA2C4CC7E500195292 /* Sources */,
+				3F5B06CB2C4CC7E500195292 /* Frameworks */,
+				3F5B06CC2C4CC7E500195292 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "NativeDash Mac App";
-			productName = "NativeDash Mac App";
-			productReference = 3F5B06752C4CB4B600195292 /* NativeDash Mac App.app */;
-			productType = "com.apple.product-type.application";
+			name = DashMacWidgetsExtension;
+			productName = DashMacWidgetsExtension;
+			productReference = 3F5B06CE2C4CC7E500195292 /* DashMacWidgetsExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 		3F5B8DA72BBD0E0300A89F06 /* DashWatchWidgetsExtension */ = {
 			isa = PBXNativeTarget;
@@ -550,6 +634,10 @@
 					3F5B06742C4CB4B600195292 = {
 						CreatedOnToolsVersion = 15.4;
 					};
+					3F5B06CD2C4CC7E500195292 = {
+						CreatedOnToolsVersion = 15.4;
+						LastSwiftMigration = 1540;
+					};
 					3F5B8DA72BBD0E0300A89F06 = {
 						CreatedOnToolsVersion = 15.3;
 					};
@@ -573,6 +661,7 @@
 				3F59124C2B752EED00BD42A0 /* DashWidgetsExtension */,
 				3F5B8DA72BBD0E0300A89F06 /* DashWatchWidgetsExtension */,
 				3F5B06742C4CB4B600195292 /* NativeDash Mac App */,
+				3F5B06CD2C4CC7E500195292 /* DashMacWidgetsExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -582,10 +671,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F5B06FA2C4CCF4900195292 /* Assets.xcassets in Resources */,
 				3FB54FE22AEFFAC000623592 /* Launch Screen.storyboard in Resources */,
 				3F09BC412AB2160F00924ACE /* Preview Assets.xcassets in Resources */,
 				3FFECC862BDC16B800310950 /* PrivacyInfo.xcprivacy in Resources */,
-				3F09BC3E2AB2160F00924ACE /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,8 +682,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F5B06FB2C4CCF7400195292 /* Assets.xcassets in Resources */,
 				3F09BC532AB2161000924ACE /* Preview Assets.xcassets in Resources */,
-				3F09BC502AB2161000924ACE /* Assets.xcassets in Resources */,
 				3FFECC872BDC16B800310950 /* PrivacyInfo.xcprivacy in Resources */,
 				3FEBD9DD2BDAC90300C580D5 /* EnvProduction.xcconfig in Resources */,
 			);
@@ -617,7 +706,18 @@
 				3F5B068C2C4CB63600195292 /* Launch Screen.storyboard in Resources */,
 				3F5B06AE2C4CBF2B00195292 /* EnvProduction.xcconfig in Resources */,
 				3F5B06872C4CB59A00195292 /* Assets.xcassets in Resources */,
+				3F5B06ED2C4CC8F700195292 /* PrivacyInfo.xcprivacy in Resources */,
 				3F5B067F2C4CB4B700195292 /* Preview Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F5B06CC2C4CC7E500195292 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F5B06EE2C4CC8F800195292 /* PrivacyInfo.xcprivacy in Resources */,
+				3F5B06EA2C4CC81700195292 /* Assets.xcassets in Resources */,
+				3F5B06EF2C4CC8FE00195292 /* EnvProduction.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -721,6 +821,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3F5B06CA2C4CC7E500195292 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F5B06F02C4CC90000195292 /* LoggingConfiguration.swift in Sources */,
+				3F5B06F12C4CC90300195292 /* NativeDash.xcdatamodeld in Sources */,
+				3F5B06EC2C4CC84300195292 /* EndTimeWidget.swift in Sources */,
+				3F5B06E72C4CC81700195292 /* DashMacWidgetsBundle.swift in Sources */,
+				3F5B06F22C4CC90800195292 /* StoredPeriod+CoreDataClass.swift in Sources */,
+				3F5B06F32C4CC90800195292 /* StoredPeriod+CoreDataProperties.swift in Sources */,
+				3F5B06F42C4CC90800195292 /* Persistence.swift in Sources */,
+				3F5B06F52C4CC90800195292 /* StoredDayType+CoreDataClass.swift in Sources */,
+				3F5B06F72C4CC90D00195292 /* DataStructs.swift in Sources */,
+				3F5B06F82C4CC90D00195292 /* FetchUtil.swift in Sources */,
+				3F5B06F92C4CC90D00195292 /* AppGroup.swift in Sources */,
+				3F5B06F62C4CC90800195292 /* StoredDayType+CoreDataProperties.swift in Sources */,
+				3F5B06EB2C4CC84000195292 /* TimerWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3F5B8DA42BBD0E0300A89F06 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -753,6 +873,11 @@
 			isa = PBXTargetDependency;
 			target = 3F59124C2B752EED00BD42A0 /* DashWidgetsExtension */;
 			targetProxy = 3F59125B2B752EEF00BD42A0 /* PBXContainerItemProxy */;
+		};
+		3F5B06DB2C4CC7E500195292 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3F5B06CD2C4CC7E500195292 /* DashMacWidgetsExtension */;
+			targetProxy = 3F5B06DA2C4CC7E500195292 /* PBXContainerItemProxy */;
 		};
 		3F5B8DB22BBD0E0600A89F06 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1102,9 +1227,11 @@
 		3F5B06822C4CB4B700195292 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "NativeDash Mac App/NativeDash_Mac_App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1129,7 +1256,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.icloud-djharrold53.NativeDash-Mac-App";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "JBS Dash";
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1140,9 +1267,11 @@
 		3F5B06832C4CB4B700195292 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "NativeDash Mac App/NativeDash_Mac_App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1167,9 +1296,83 @@
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.icloud-djharrold53.NativeDash-Mac-App";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "JBS Dash";
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		3F5B06DE2C4CC7E500195292 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = DashMacWidgets/DashMacWidgets.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K5273GVYFN;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DashMacWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DashMacWidgets;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.icloud-djharrold53.NativeDash-Mac-App.DashMacWidgets";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "DashMacWidgets/DashMacWidgetsExtension-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		3F5B06DF2C4CC7E500195292 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = DashMacWidgets/DashMacWidgets.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K5273GVYFN;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DashMacWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DashMacWidgets;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.icloud-djharrold53.NativeDash-Mac-App.DashMacWidgets";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "DashMacWidgets/DashMacWidgetsExtension-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -1292,6 +1495,15 @@
 			buildConfigurations = (
 				3F5B06822C4CB4B700195292 /* Debug */,
 				3F5B06832C4CB4B700195292 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3F5B06E02C4CC7E500195292 /* Build configuration list for PBXNativeTarget "DashMacWidgetsExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F5B06DE2C4CC7E500195292 /* Debug */,
+				3F5B06DF2C4CC7E500195292 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

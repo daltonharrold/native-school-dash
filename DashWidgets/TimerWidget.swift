@@ -245,16 +245,21 @@ struct DashWidgetsEntryView : View {
                 }
                 .tint(Color("AccentColor"))
                 .progressViewStyle(.circular)
+                #if os(watchOS)
                 .widgetLabel(entry.displayPeriod.name)
+                #endif
             } else {
                 ProgressView(timerInterval: entry.date...entry.tomorrowSchoolStart!, countsDown: false){}currentValueLabel: {
                     Text(entry.tomorrowSchoolStart!, style: .time)
                 }
                 .tint(Color("AccentColor"))
                 .progressViewStyle(.circular)
+                #if os(watchOS)
                 .widgetLabel(entry.displayPeriod.name)
+                #endif
             }
         case .accessoryCorner:
+            #if os(watchOS)
             if entry.tomorrowSchoolStart == nil {
                 Text(entry.displayPeriod.getEndAsDate(), style: .timer)
                     .widgetCurvesContent(true)
@@ -270,7 +275,7 @@ struct DashWidgetsEntryView : View {
                             .tint(Color("AccentColor"))
                     }
             }
-            
+            #endif
         case .accessoryInline:
             if entry.tomorrowSchoolStart == nil {
                 Text(entry.displayPeriod.getEndAsDate(), style: .timer) + Text("  |  ") + Text(entry.displayPeriod.name)
@@ -298,11 +303,24 @@ struct TimerWidget: Widget {
         .description("A widget to display how much time is left in the current period at a glance.")
         #if os(iOS)
         .supportedFamilies([.systemSmall, .accessoryRectangular, .accessoryInline])
-        #else
+        #elseif os(watchOS)
         .supportedFamilies([.accessoryRectangular, .accessoryCircular, .accessoryCorner, .accessoryInline])
+        #elseif os(macOS)
+        .supportedFamilies([.systemSmall])
         #endif
     }
 }
+
+#if os(iOS) || os(macOS)
+#Preview(as: .systemSmall) {
+    TimerWidget()
+} timeline: {
+    TimerEntry(date: Calendar.current.date(bySettingHour: 12, minute: 55, second: 00, of: .now)!, displayPeriod: Period(name: "Period 6", start: "12:39", end: "13:21"), scheduleName: "Regular Day")
+    TimerEntry(date: Calendar.current.date(bySettingHour: 13, minute: 22, second: 00, of: .now)!, displayPeriod: Period(name: "Period 6 → Period 7", start: "13:21", end: "13:25"), scheduleName: "Regular Day")
+    TimerEntry(date: Calendar.current.date(bySettingHour: 13, minute: 42, second: 00, of: .now)!, displayPeriod: Period(name: "Period 7", start: "13:25", end: "14:07"), scheduleName: "Regular Day")
+    TimerEntry(date: Calendar.current.date(bySettingHour: 13, minute: 42, second: 00, of: .now)!, displayPeriod: Period(name: "Period 8", start: "13:25", end: "14:07"), scheduleName: "Common Day")
+}
+#elseif os(watchOS)
 
 #Preview(as: .accessoryRectangular) {
     TimerWidget()
@@ -312,4 +330,4 @@ struct TimerWidget: Widget {
     TimerEntry(date: Calendar.current.date(bySettingHour: 13, minute: 42, second: 00, of: .now)!, displayPeriod: Period(name: "Period 7", start: "13:25", end: "14:07"), scheduleName: "Regular Day")
     TimerEntry(date: Calendar.current.date(bySettingHour: 13, minute: 42, second: 00, of: .now)!, displayPeriod: Period(name: "Period 8", start: "13:25", end: "14:07"), scheduleName: "Common Day")
 }
-
+#endif
