@@ -6,7 +6,7 @@
 	<true/>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>$(TeamIdentifierPrefix)</string>
+		<string>$(TeamIdentifierPrefix)com.icloud-djharrold53.NativeDash</string>
 	</array>
 	<key>com.apple.security.files.user-selected.read-write</key>
 	<true/>

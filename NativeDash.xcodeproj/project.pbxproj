@@ -18,6 +18,7 @@
 		3F2F8BE32AEF4EF700393F60 /* ScheduleStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2F8BE22AEF4EF700393F60 /* ScheduleStack.swift */; };
 		3F2F8BE52AEF4F3C00393F60 /* PeriodTimerRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2F8BE42AEF4F3C00393F60 /* PeriodTimerRing.swift */; };
 		3F323D602BBB363700EF9E44 /* PeriodTimerRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2F8BE42AEF4F3C00393F60 /* PeriodTimerRing.swift */; };
+		3F36D0932C6E6C5F00E57F65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F36D0922C6E6C5F00E57F65 /* AppDelegate.swift */; };
 		3F5912502B752EED00BD42A0 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F59124F2B752EED00BD42A0 /* WidgetKit.framework */; };
 		3F5912522B752EED00BD42A0 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F5912512B752EED00BD42A0 /* SwiftUI.framework */; };
 		3F5912552B752EED00BD42A0 /* DashWidgetsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5912542B752EED00BD42A0 /* DashWidgetsBundle.swift */; };
@@ -225,6 +226,7 @@
 		3F2F8BDF2AEC04F300393F60 /* SingleCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCard.swift; sourceTree = "<group>"; };
 		3F2F8BE22AEF4EF700393F60 /* ScheduleStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleStack.swift; sourceTree = "<group>"; };
 		3F2F8BE42AEF4F3C00393F60 /* PeriodTimerRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodTimerRing.swift; sourceTree = "<group>"; };
+		3F36D0922C6E6C5F00E57F65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F399CCD2AFD492600A3505F /* APIreturn.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = APIreturn.json; sourceTree = "<group>"; };
 		3F59124D2B752EED00BD42A0 /* DashWidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DashWidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F59124F2B752EED00BD42A0 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -438,6 +440,7 @@
 			isa = PBXGroup;
 			children = (
 				3F5B06772C4CB4B600195292 /* NativeDash_Mac_App.swift */,
+				3F36D0922C6E6C5F00E57F65 /* AppDelegate.swift */,
 				3F5B06802C4CB4B700195292 /* NativeDash_Mac_App.entitlements */,
 				3F5B068B2C4CB63600195292 /* Launch Screen.storyboard */,
 				3F5B06852C4CB59A00195292 /* Assets.xcassets */,
@@ -811,6 +814,7 @@
 				3F5B06A12C4CBEFA00195292 /* SingleCard.swift in Sources */,
 				3F5B06A72C4CBF1000195292 /* StoredDayType+CoreDataProperties.swift in Sources */,
 				3F5B06AB2C4CBF1A00195292 /* Persistence.swift in Sources */,
+				3F36D0932C6E6C5F00E57F65 /* AppDelegate.swift in Sources */,
 				3F5B06AD2C4CBF2700195292 /* LoggingConfiguration.swift in Sources */,
 				3F5B06A32C4CBEFA00195292 /* ScheduleStack.swift in Sources */,
 				3F5B06AC2C4CBF1C00195292 /* NativeDash.xcdatamodeld in Sources */,
@@ -1092,6 +1096,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
 				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -1105,6 +1110,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.icloud-djharrold53.NativeDash";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1132,6 +1141,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
 				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -1145,6 +1155,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.icloud-djharrold53.NativeDash";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1233,6 +1247,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "NativeDash Mac App/NativeDash_Mac_App.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1255,7 +1270,7 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.icloud-djharrold53.NativeDash-Mac-App";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.icloud-djharrold53.NativeDash.Mac-App";
 				PRODUCT_NAME = "JBS Dash";
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
@@ -1273,6 +1288,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "NativeDash Mac App/NativeDash_Mac_App.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1295,7 +1311,7 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.icloud-djharrold53.NativeDash-Mac-App";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.icloud-djharrold53.NativeDash.Mac-App";
 				PRODUCT_NAME = "JBS Dash";
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1329,7 +1345,7 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.icloud-djharrold53.NativeDash-Mac-App.DashMacWidgets";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.icloud-djharrold53.NativeDash.Mac-App.DashMacWidgets";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -1367,7 +1383,7 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.icloud-djharrold53.NativeDash-Mac-App.DashMacWidgets";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.icloud-djharrold53.NativeDash.Mac-App.DashMacWidgets";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;

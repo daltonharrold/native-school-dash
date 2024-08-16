@@ -223,6 +223,7 @@ struct EndTimeWidgetEntryView : View {
         case .accessoryCircular:
             ProgressView(timerInterval: entry.date...displayDate, countsDown: false){}currentValueLabel: {
                 Text(displayDate, style: .time)
+                    .lineLimit(1)
             }
                 .tint(Color("AccentColor"))
                 .progressViewStyle(.circular)

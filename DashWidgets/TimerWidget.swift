@@ -241,7 +241,7 @@ struct DashWidgetsEntryView : View {
             if entry.tomorrowSchoolStart == nil {
                 ProgressView(timerInterval: entry.date...entry.displayPeriod.getEndAsDate(), countsDown: false){}currentValueLabel: {
                     Text(entry.displayPeriod.getEndAsDate(), style: .timer)
-                        .lineLimit(2)
+                        .lineLimit(1)
                 }
                 .tint(Color("AccentColor"))
                 .progressViewStyle(.circular)
@@ -251,6 +251,7 @@ struct DashWidgetsEntryView : View {
             } else {
                 ProgressView(timerInterval: entry.date...entry.tomorrowSchoolStart!, countsDown: false){}currentValueLabel: {
                     Text(entry.tomorrowSchoolStart!, style: .time)
+                        .lineLimit(1)
                 }
                 .tint(Color("AccentColor"))
                 .progressViewStyle(.circular)

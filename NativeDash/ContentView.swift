@@ -20,6 +20,9 @@ struct ContentView: View {
     
     @State private var runningFetchUtil: FetchUtil?
     
+    // MARK: Debug only
+//    let viewContext = PersistenceController.init(inMemory: true).viewContext
+    
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             Spacer().frame(height: 20)
@@ -76,6 +79,8 @@ struct ContentView: View {
         #endif
         .task {
             self.runningFetchUtil = FetchUtil(context: PersistenceController.shared.backgroundContext)
+            // MARK: Debug only
+//            self.runningFetchUtil = FetchUtil(context: viewContext)
             self.runningFetchUtil!.completion = {_ in
                 self.runningFetchUtil = nil
                 updateFromStores()
@@ -86,6 +91,7 @@ struct ContentView: View {
     }
     private func updateFromStores() {
         let viewContext = PersistenceController.shared.viewContext
+        
         let weeklyScheduleStore = try? viewContext.fetch(StoredScheduleOnDate.fetchRequest())
         let dayTypesReq = StoredDayType.fetchRequest()
         dayTypesReq.sortDescriptors?.append(NSSortDescriptor(key: "name", ascending: true))

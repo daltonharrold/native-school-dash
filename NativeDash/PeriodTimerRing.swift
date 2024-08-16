@@ -44,7 +44,7 @@ struct PeriodTimerRing: View {
      
     var body: some View {
         
-#if os(iOS)
+#if os(iOS) || os(macOS)
         if displayPeriod != nil {
             ZStack {
                 Circle()
