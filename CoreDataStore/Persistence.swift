@@ -66,7 +66,7 @@ struct PersistenceController {
                  Check the error message to determine what the actual problem was.
                  */
                 
-                Logger.coreData.fault("Error in loading persistent store '\(storeDescription)'. Error: \(error)")
+                Logger.coreData.fault("Error in loading persistent store '\(storeDescription, privacy: .public)'. Error: \(error, privacy: .public)")
             }
         })
         container.viewContext.automaticallyMergesChangesFromParent = true

@@ -85,10 +85,17 @@ struct EndTimeProvider: TimelineProvider {
                     Calendar.current.isDate($0.date!, equalTo: Calendar.current.date(byAdding: .day, value: 1, to: currentDate)!, toGranularity: .day)
                 })?.schedule?.asDayType() {
                     // At EOD, show tomorrow's start
+                    
+                    let tomorrowStart: Date = Calendar.current.date(byAdding: .day, value: 1, to: tomorrowSchedule.periods.first!.getStartAsDate())!
                     let endOfDay: Date = todaySchedule.periods.last!.getEndAsDate()
                     let overnightPeriod: Period = Period(name: "Good night", start: todaySchedule.periods.last!.end, end: "00:00")
-                    let overnightEntry = EndTimeEntry(date: endOfDay, displayPeriod: overnightPeriod, scheduleName: tomorrowSchedule.name, overrideDisplayDate: Calendar.current.date(byAdding: .day, value: 1, to: tomorrowSchedule.periods.first!.getStartAsDate())!)
+                    let overnightEntry = EndTimeEntry(date: endOfDay, displayPeriod: overnightPeriod, scheduleName: tomorrowSchedule.name, overrideDisplayDate: tomorrowStart)
                     entries.append(overnightEntry)
+                    
+                    let midnight = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Calendar.current.date(byAdding: .day, value: 1, to: .now)!)!
+                    let tomorrowMorningPeriod: Period = Period(name: "Good morning", start: "00:00", end: tomorrowSchedule.periods.first!.start)
+                    let tomorrowMorningEntry = EndTimeEntry(date: midnight, displayPeriod: tomorrowMorningPeriod, scheduleName: tomorrowSchedule.name, overrideDisplayDate: tomorrowStart)
+                    entries.append(tomorrowMorningEntry)
                 }
             }  else {
                 // Could not find entry for today, so re-fetch and then re-try to make timeline

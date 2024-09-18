@@ -18,6 +18,8 @@
 	<array>
 		<string>$(TeamIdentifierPrefix)com.icloud-djharrold53.NativeDash</string>
 	</array>
+	<key>com.apple.security.files.user-selected.read-write</key>
+	<true/>
 	<key>com.apple.security.network.client</key>
 	<true/>
 	<key>com.apple.security.network.server</key>

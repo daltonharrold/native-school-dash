@@ -96,10 +96,17 @@ struct TimerProvider: TimelineProvider {
                 })?.schedule?.asDayType() {
                     // At EOD, show tomorrow's start
                     let endOfDay: Date = todaySchedule.periods.last!.getEndAsDate()
+                    let tomorrowStart: Date = Calendar.current.date(byAdding: .day, value: 1, to: tomorrowSchedule.periods.first!.getStartAsDate())!
                     let overnightPeriod: Period = Period(name: "Good night", start: todaySchedule.periods.last!.end, end:"00:00")
-                    let overnightEntry = TimerEntry(date: endOfDay, displayPeriod: overnightPeriod, scheduleName: tomorrowSchedule.name, tomorrowSchoolStart: Calendar.current.date(byAdding: .day, value: 1, to: tomorrowSchedule.periods.first!.getStartAsDate())!)
+                    let overnightEntry = TimerEntry(date: endOfDay, displayPeriod: overnightPeriod, scheduleName: tomorrowSchedule.name, tomorrowSchoolStart: tomorrowStart)
                     
                     entries.append(overnightEntry)
+                    
+                    let midnight = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Calendar.current.date(byAdding: .day, value: 1, to: .now)!)!
+                    let tomorrowMorningPeriod: Period = Period(name: "Good morning", start: "00:00", end: tomorrowSchedule.periods.first!.start)
+                    let tomorrowMorningEntry = TimerEntry(date: midnight, displayPeriod: tomorrowMorningPeriod, scheduleName: tomorrowSchedule.name, tomorrowSchoolStart: tomorrowStart)
+                    entries.append(tomorrowMorningEntry)
+                    
                 }
             } else {
                 // Could not find entry for today, so re-fetch and then re-try to make timeline
@@ -130,8 +137,7 @@ struct TimerProvider: TimelineProvider {
             Logger.widget.error("Could not fetch from Core Data for widget timeline. \(error)")
         }
         
-        let tomorrowMorning = Calendar.current.date(bySettingHour: 0, minute: 1, second: 0, of: Calendar.current.date(byAdding: .day, value: 1, to: .now)!)!
-        let timeline = Timeline(entries: entries, policy: .after(tomorrowMorning))
+        let timeline = Timeline(entries: entries, policy: .atEnd)
         Logger.widget.info("Successfuly refreshed timeline for timer widget")
         completion(timeline)
     }
@@ -304,6 +310,7 @@ struct TimerWidget: Widget {
         .description("A widget to display how much time is left in the current period at a glance.")
         #if os(iOS)
         .supportedFamilies([.systemSmall, .accessoryRectangular, .accessoryInline])
+        .disfavoredLocations([.iPhoneWidgetsOnMac], for: [.systemSmall, .accessoryRectangular, .accessoryInline])
         #elseif os(watchOS)
         .supportedFamilies([.accessoryRectangular, .accessoryCircular, .accessoryCorner, .accessoryInline])
         #elseif os(macOS)
