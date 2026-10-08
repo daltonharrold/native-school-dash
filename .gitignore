@@ -1,3 +1,4 @@
 Configuration/EnvProduction.xcconfig
 Testers.csv
 Archives
+*.DS_Store
